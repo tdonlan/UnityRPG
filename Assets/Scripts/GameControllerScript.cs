@@ -10,7 +10,6 @@ using SimpleRPG2;
 public class GameControllerScript : MonoBehaviour
 {
 
-
     public AssetLibrary assetLibrary { get; set; } 
     public BattleGame battleGame { get; set; }
 
@@ -25,15 +24,11 @@ public class GameControllerScript : MonoBehaviour
     public Point clickPoint { get; set; }
     GameObject SelectedTile { get; set; }
 
-
-
-
     private float UITimer { get; set; }
     
     public UIStateType uiState { get; set; }
 
     public PlayerDecideState playerDecideState { get; set; }
-    public bool awaitingClick = false;
 
     //UI Prefabs
     public GameObject InitiativePanel { get; set; }
@@ -110,8 +105,6 @@ public class GameControllerScript : MonoBehaviour
         {
             tileCharacterList.Add(LoadCharacter(character));
         }
-
-       
     }
 
     private GameObject LoadCharacter(GameCharacter character)
@@ -184,7 +177,6 @@ public class GameControllerScript : MonoBehaviour
         UpdateCamera();
         ClickTile();
 
-        
     }
 
     void UpdateDebug()
@@ -224,7 +216,7 @@ public class GameControllerScript : MonoBehaviour
 
     void UpdateNewTurn()
     {
-
+        FocusCamera(battleGame.ActiveCharacter.x, battleGame.ActiveCharacter.y);
 
         //Update Map
         LoadCharacters();
@@ -276,6 +268,8 @@ public class GameControllerScript : MonoBehaviour
 
     void UpdateBattleActions()
     {
+        FocusCamera(battleGame.ActiveCharacter.x, battleGame.ActiveCharacter.y);
+
         if (battleGame.ActiveCharacter.hp > 0)
         {
             if (battleGame.ActiveCharacter.type == CharacterType.Player)
@@ -397,12 +391,6 @@ public class GameControllerScript : MonoBehaviour
 
         Vector3 mouseWorldPosition = camera.ScreenToWorldPoint(Input.mousePosition);
 
-        /*
-        var debugText = GameObject.FindGameObjectWithTag("Text");
-        var textComponent = debugText.GetComponent<Text>();
-        textComponent.text = string.Format("{0},{1} | {2},{3}", Input.mousePosition.x, Input.mousePosition.y, mouseWorldPosition.x, mouseWorldPosition.y);
-        */
-
         if (Input.GetMouseButtonDown(0)) //left click
         {
 
@@ -449,7 +437,6 @@ public class GameControllerScript : MonoBehaviour
         SelectedTile = null;
     }
 
-
     private void UpdateCamera()
     {
         float speed = 100;
@@ -466,6 +453,13 @@ public class GameControllerScript : MonoBehaviour
 
         //mainCamera.transform.position = tempPosition;
         mainCamera.transform.position = MoveCamera(mainCamera, mainCamera.transform.position, tempPosition);
+
+    }
+
+    private void FocusCamera(int x, int y)
+    {
+        var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        mainCamera.transform.position = new Vector3(x, y,-10);
 
     }
 
