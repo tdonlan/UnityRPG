@@ -192,8 +192,6 @@ namespace SimpleRPG2
         public bool RunActionQueue()
         {
            
-                //DisplayScreen();
-
                 BattleAction action = actionQueue[0];
                 actionQueue.RemoveAt(0);
 
@@ -459,6 +457,13 @@ namespace SimpleRPG2
             return moveList;
         }
 
+  
+        public List<BattleAction> getRangedAttackActionList(int x, int y)
+        {
+            List<BattleAction> actionList = new List<BattleAction>();
+            actionList.Add(new BattleAction() { character = ActiveCharacter, targetTile = board.getTileFromLocation(x, y), actionType = BattleActionType.RangedAttack });
+            return actionList;
+        }
 
         private List<BattleAction> DisplayRangedAttackGetActionList()
         {
@@ -477,6 +482,23 @@ namespace SimpleRPG2
                     valid = true;
                 }
             }
+            return actionList;
+        }
+        
+        public List<BattleAction> getAttackActionList(int x, int y)
+        {
+            List<BattleAction> actionList = new List<BattleAction>();
+            List<Point> pointList = PathFind.Pathfind(board, ActiveCharacter.x, ActiveCharacter.y, x, y);
+            pointList.RemoveAt(0); //remove the character from pathfind.
+            pointList.RemoveAt(pointList.Count - 1); //remove the target from pathfind.
+
+            foreach (var p in pointList)
+            {
+                actionList.Add(new BattleAction() { character = ActiveCharacter, actionType = BattleActionType.Move, targetTile = board.getTileFromPoint(p) });
+            }
+
+            actionList.Add(new BattleAction() { character = ActiveCharacter, targetTile = board.getTileFromLocation(x, y), actionType = BattleActionType.Attack });
+
             return actionList;
         }
 

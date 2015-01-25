@@ -11,10 +11,6 @@ public class GameControllerScript : MonoBehaviour
 {
 
 
-
-
-
-
     public AssetLibrary assetLibrary { get; set; } 
     public BattleGame battleGame { get; set; }
 
@@ -36,6 +32,7 @@ public class GameControllerScript : MonoBehaviour
     
     public UIStateType uiState { get; set; }
 
+    public PlayerDecideState playerDecideState { get; set; }
     public bool awaitingClick = false;
 
     //UI Prefabs
@@ -227,6 +224,8 @@ public class GameControllerScript : MonoBehaviour
 
     void UpdateNewTurn()
     {
+
+
         //Update Map
         LoadCharacters();
 
@@ -239,6 +238,7 @@ public class GameControllerScript : MonoBehaviour
         if (battleGame.ActiveCharacter.type == CharacterType.Player)
         {
             uiState = UIStateType.PlayerDecide;
+            playerDecideState = PlayerDecideState.Waiting;
         }
         else
         {
@@ -248,7 +248,24 @@ public class GameControllerScript : MonoBehaviour
 
     void UpdatePlayerDecide()
     {
-        PlayerMoveSelect();
+        switch(playerDecideState)
+        {
+            case PlayerDecideState.Waiting:
+                break;
+            case PlayerDecideState.MovePendingClick:
+                PlayerMoveSelect();
+                break;
+            case PlayerDecideState.AttackPendingClick:
+                PlayerAttackSelect();
+                break;
+            case PlayerDecideState.RangedAttackPendingClick:
+                PlayerRangedAttackSelect();
+                break;
+            default:
+                break;
+
+        }
+       
     }
 
     void UpdateEnemyDecide()
@@ -318,19 +335,56 @@ public class GameControllerScript : MonoBehaviour
         {
             DebugText.text = string.Format("Select Destination");
             clickPoint = null;
-            awaitingClick = true;
+            playerDecideState = PlayerDecideState.MovePendingClick;
         }
     }
 
     public void PlayerMoveSelect()
     {
-        if(awaitingClick && clickPoint != null)
+        if(clickPoint != null)
         {
-            awaitingClick = false;
-
+            playerDecideState = PlayerDecideState.Waiting;
             battleGame.actionQueue.AddRange(battleGame.GetMoveActionList(clickPoint.x, clickPoint.y));
             uiState = UIStateType.PlayerExecute;
+        }
+    }
 
+    public void PlayerAttackStart()
+    {
+        if(uiState == UIStateType.PlayerDecide)
+        {
+            DebugText.text = string.Format("Select Target");
+            clickPoint = null;
+            playerDecideState = PlayerDecideState.AttackPendingClick;
+        }
+    }
+
+    public void PlayerAttackSelect()
+    {
+        if(clickPoint != null)
+        {
+            playerDecideState = PlayerDecideState.Waiting;
+            battleGame.actionQueue.AddRange(battleGame.getAttackActionList(clickPoint.x, clickPoint.y));
+            uiState = UIStateType.PlayerExecute;
+        }
+    }
+
+    public void PlayerRangedAttackStart()
+    {
+        if (uiState == UIStateType.PlayerDecide)
+        {
+            DebugText.text = string.Format("Select Target");
+            clickPoint = null;
+            playerDecideState = PlayerDecideState.RangedAttackPendingClick;
+        }
+    }
+    public void PlayerRangedAttackSelect()
+    {
+        if (clickPoint != null)
+        {
+            playerDecideState = PlayerDecideState.Waiting;
+            battleGame.actionQueue.AddRange(battleGame.getRangedAttackActionList(clickPoint.x, clickPoint.y));
+            uiState = UIStateType.PlayerExecute;
         }
     }
 

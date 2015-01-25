@@ -23,3 +23,14 @@ public enum UIStateType
     EnemyDecide,
     EnemyExecute
 }
+
+
+public enum PlayerDecideState
+{
+    Waiting,
+    MovePendingClick,
+    AttackPendingClick,
+    RangedAttackPendingClick,
+    ItemPendingClick,
+    AbilityPendingClick,
+}
