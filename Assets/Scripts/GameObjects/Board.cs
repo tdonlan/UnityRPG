@@ -194,7 +194,8 @@ namespace SimpleRPG2
         {
             foreach(Tile t in board)
             {
-                t.TempChar = t.TileChar;
+                t.TempChar = ' ';
+                //t.TempChar = t.TileChar;
             }
         }
 

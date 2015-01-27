@@ -33,7 +33,7 @@ namespace Assets
             spritesheetList.Add(getSpritesheet(SpritesheetType.Tiles, "dg_dungeon32"));
             spritesheetList.Add(getSpritesheet(SpritesheetType.Characters, "dg_classm32Edit"));
             spritesheetList.Add(getSpritesheet(SpritesheetType.Portraits, "portraitsEdit"));
-           
+            spritesheetList.Add(getSpritesheet(SpritesheetType.Particles, "dg_effects32Edit"));
         }
 
         private Spritesheet getSpritesheet(SpritesheetType type, string filename)

@@ -14,6 +14,7 @@ public class GameControllerScript : MonoBehaviour
     public BattleGame battleGame { get; set; }
 
     public List<GameObject> tileCharacterList { get; set; }
+    public List<GameObject> tempEffectList { get; set; }
 
     Text DebugText =null;
 
@@ -25,6 +26,7 @@ public class GameControllerScript : MonoBehaviour
     GameObject SelectedTile { get; set; }
 
     private float UITimer { get; set; }
+    private float TempEffectTimer { get; set; }
     
     public UIStateType uiState { get; set; }
 
@@ -41,6 +43,7 @@ public class GameControllerScript : MonoBehaviour
         this.battleGame = new BattleGame();
 
         tileCharacterList = new List<GameObject>();
+        tempEffectList = new List<GameObject>();
 
         this.r = new System.Random();
    
@@ -131,6 +134,51 @@ public class GameControllerScript : MonoBehaviour
 
     }
 
+    private void LoadTempEffects()
+    {
+        foreach (var c in tempEffectList)
+        {
+            Destroy(c);
+        }
+
+        tempEffectList.Clear();
+
+        for(int i =0;i<battleGame.board.board.GetLength(0);i++)
+        {
+            for(int j=0;j<battleGame.board.board.GetLength(1);j++)
+            {
+                var tile = battleGame.board.board[i, j];
+                /*
+                if(tile.TempChar == '*')
+                {
+                    tempEffectList.Add(LoadTempEffect(tile));
+                }
+                 * */
+                
+                if(tile.TempChar != ' ')
+                {
+                     tempEffectList.Add(LoadTempEffect(tile));
+                }
+               
+            }
+        }
+    }
+
+    private GameObject LoadTempEffect(Tile t)
+    {
+        int effectIndex = 102;
+        GameObject effectSprite = new GameObject("Effect");
+
+        SpriteRenderer renderer = effectSprite.AddComponent<SpriteRenderer>();
+        effectSprite.transform.position = new Vector3(t.x, t.y, -2);
+
+        renderer.sprite = assetLibrary.getSprite(SpritesheetType.Particles, effectIndex);
+
+
+        return effectSprite;
+    }
+    
+
     //load a sprite from resources and add as Game Object
     public void LoadTile(bool isWall, int x, int y)
     {
@@ -172,6 +220,7 @@ public class GameControllerScript : MonoBehaviour
         {
             UpdateBattle();
             UITimer = .5f;
+            LoadTempEffects();
         }
 
         UpdateCamera();
@@ -186,6 +235,8 @@ public class GameControllerScript : MonoBehaviour
 
     void UpdateBattle()
     {
+        battleGame.board.ClearTempTiles();
+
         //Update Map
         LoadCharacters();
 
@@ -545,7 +596,9 @@ public class GameControllerScript : MonoBehaviour
         UpdateSpriteComponent(charPortrait, "PortraitImage", assetLibrary.getSprite(SpritesheetType.Portraits, 0));
 
         UpdateTextComponent(charPortrait, "CharacterName", character.name.ToString());
-        UpdateTextComponent(charPortrait, "CharacterStats", string.Format("{0}/{1}", character.hp, character.totalHP));
+
+        string stats = string.Format("HP: {0}/{1} AP: {2}", character.hp, character.totalHP, character.ap);
+        UpdateTextComponent(charPortrait, "CharacterStats", stats);
 
         return charPortrait;
     }

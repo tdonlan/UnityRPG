@@ -12,6 +12,11 @@ namespace SimpleRPG2
         {
             if(game.r.Next(20) + attacker.attack > defender.ac)
             {
+
+                var tempTile = game.board.getTileFromLocation(defender.x, defender.y);
+                game.board.AddTempChar(tempTile, '*');
+                
+                
                 return Hit(attacker, defender, game,null);
             }
             else
