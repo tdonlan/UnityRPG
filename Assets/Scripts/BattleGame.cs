@@ -584,6 +584,14 @@ namespace SimpleRPG2
             return actionList;
         }
 
+        public List<BattleAction> getAbilityActionList(Ability a, int x, int y)
+        {
+            List<BattleAction> actionList = new List<BattleAction>();
+            actionList.Add(new BattleAction() { character = ActiveCharacter, actionType = BattleActionType.UseAbility, ability = a, targetTile = board.getTileFromLocation(x, y) });
+
+            return actionList;
+        }
+
         public List<BattleAction> DisplayAbilityGetActionList()
         {
             List<BattleAction> actionList = new List<BattleAction>();
