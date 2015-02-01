@@ -34,6 +34,7 @@ namespace Assets
             spritesheetList.Add(getSpritesheet(SpritesheetType.Characters, "dg_classm32Edit"));
             spritesheetList.Add(getSpritesheet(SpritesheetType.Portraits, "portraitsEdit"));
             spritesheetList.Add(getSpritesheet(SpritesheetType.Particles, "dg_effects32Edit"));
+            spritesheetList.Add(getSpritesheet(SpritesheetType.Items,"dg_armor32"));
         }
 
         private Spritesheet getSpritesheet(SpritesheetType type, string filename)

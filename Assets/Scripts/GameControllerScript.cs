@@ -56,12 +56,15 @@ public class GameControllerScript : MonoBehaviour
         
         this.uiState = UIStateType.NewTurn;
 
+        
+
         LoadBoard();
         LoadCharacters();
        
         LoadUI();
 
         SetCamera();
+     
 
     }
 
