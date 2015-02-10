@@ -29,13 +29,12 @@ public class EquipmentTestScript : MonoBehaviour {
         this.assetLibrary = new AssetLibrary();
         this.battleGame = new BattleGame();
 
-        WireTestImage();
-
         LoadEquipList();
 	}
 
     private void WireTestImage()
     {
+        /*
         var testImage = GameObject.FindGameObjectWithTag("TestImage");
         var eventTrigger = testImage.AddComponent<EventTrigger>();
         eventTrigger.delegates = new List<EventTrigger.Entry>();
@@ -46,6 +45,7 @@ public class EquipmentTestScript : MonoBehaviour {
         AddEventTrigger(eventTrigger, OnPointerClick, EventTriggerType.PointerClick,o);
         AddEventTrigger(eventTrigger, HoverEnterLeftEquip, EventTriggerType.PointerEnter);
         AddEventTrigger(eventTrigger, HoverExitLeftEquip, EventTriggerType.PointerExit);
+         * */
     }
 
     private void AddClickToGameObject(GameObject gameObject, UnityAction action, EventTriggerType triggerType)
@@ -77,8 +77,6 @@ public class EquipmentTestScript : MonoBehaviour {
     }
  
 
-
-
     private void AddEventTrigger(EventTrigger eventTrigger, UnityAction<BaseEventData> action, EventTriggerType triggerType)
     {
         // Create a nee TriggerEvent and add a listener
@@ -104,13 +102,6 @@ public class EquipmentTestScript : MonoBehaviour {
         // Add the EventTrigger.Entry to delegates list on the EventTrigger
         eventTrigger.delegates.Add(entry);
     }
-
-    private void OnPointerClick(System.Object eventObj)
-    {
-        //textField.text = "OnPointerClick " + data.selectedObject;
-        Debug.Log("OnPointerClick ");
-    }
-
 
 	
 	// Update is called once per frame
@@ -150,7 +141,7 @@ public class EquipmentTestScript : MonoBehaviour {
             GameObject tempObj = (GameObject)Instantiate(equipPrefab);
             updateArmorGameObject(tempObj, a);
             tempObj.transform.SetParent(rightEquipPanel.transform, true);
-
+            AddClickToGameObject(tempObj, SelectArmor, EventTriggerType.PointerClick, a);
             displayEquipList.Add(tempObj);
         }
 
@@ -177,6 +168,8 @@ public class EquipmentTestScript : MonoBehaviour {
 
             GameObject tempObj = (GameObject)Instantiate(equipPrefab);
             updateWeaponGameObject(tempObj, (Weapon)w);
+            AddClickToGameObject(tempObj, SelectWeapon, EventTriggerType.PointerClick,w);
+            
             tempObj.transform.SetParent(rightEquipPanel.transform, true);
 
             displayEquipList.Add(tempObj);
@@ -200,6 +193,7 @@ public class EquipmentTestScript : MonoBehaviour {
             ItemSet ammoSet = ItemHelper.getItemSet(battleGame.ActiveCharacter.inventory,a);
             GameObject tempObj = (GameObject)Instantiate(equipPrefab);
             updateAmmoGameObject(tempObj, ammoSet);
+            AddClickToGameObject(tempObj, SelectAmmo, EventTriggerType.PointerClick, a);
             tempObj.transform.SetParent(rightEquipPanel.transform, true);
 
             displayEquipList.Add(tempObj);
@@ -215,6 +209,8 @@ public class EquipmentTestScript : MonoBehaviour {
         GameObject equipPrefab = Resources.Load<GameObject>("EquipPrefab");
 
         GameObject leftEquipPanel = GameObject.FindGameObjectWithTag("EquipLeftPanel");
+
+        DestroyAllChildren(leftEquipPanel.transform);
 
         //weapon
         if(battleGame.ActiveCharacter.weapon != null)
@@ -249,6 +245,7 @@ public class EquipmentTestScript : MonoBehaviour {
         {
             GameObject tempObj = (GameObject)Instantiate(equipPrefab);
             updateAmmoGameObject(tempObj, battleGame.ActiveCharacter.Ammo);
+            AddClickToGameObject(tempObj, LoadDisplayAmmo, EventTriggerType.PointerClick);
             tempObj.transform.SetParent(leftEquipPanel.transform, true);
 
             currentEquipList.Add(tempObj);
@@ -257,6 +254,7 @@ public class EquipmentTestScript : MonoBehaviour {
         {
             GameObject tempObj = (GameObject)Instantiate(equipPrefab);
             updateEmptyGameObject(tempObj, ItemType.Ammo.ToString());
+            AddClickToGameObject(tempObj, LoadDisplayAmmo, EventTriggerType.PointerClick);
             tempObj.transform.SetParent(leftEquipPanel.transform, true);
 
             currentEquipList.Add(tempObj);
@@ -396,4 +394,37 @@ public class EquipmentTestScript : MonoBehaviour {
         var txtComp = DebugText.GetComponent<Text>();
         txtComp.text = "Clicked Equip";
     }
+
+    public void SelectWeapon(System.Object wepObj)
+    {
+        Weapon w = (Weapon)wepObj;
+        battleGame.ActiveCharacter.RemoveWeapon(battleGame.ActiveCharacter.weapon);
+        battleGame.ActiveCharacter.EquipWeapon(w);
+        LoadEquipList();
+        LoadDisplayWeapon();
+    }
+
+    public void SelectAmmo(System.Object ammoObj)
+    {
+        Ammo a = (Ammo)ammoObj;
+
+        battleGame.ActiveCharacter.RemoveAmmo();
+        battleGame.ActiveCharacter.EquipAmmo(a);
+
+        LoadEquipList();
+        LoadDisplayAmmo();
+    }
+
+    public void SelectArmor(System.Object armorObj)
+    {
+        Armor armor = (Armor)armorObj;
+
+        battleGame.ActiveCharacter.RemoveArmorInSlot(armor.armorType);
+        battleGame.ActiveCharacter.EquipArmor(armor);
+
+        LoadEquipList();
+        LoadDisplayArmor(armor.armorType);
+    }
+
+   
 }
