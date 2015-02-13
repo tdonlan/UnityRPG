@@ -8,6 +8,7 @@ using System.Linq;
 using Assets;
 
 using SimpleRPG2;
+using UnityEngine.EventSystems;
 
 public class GameControllerScript : MonoBehaviour
 {
@@ -478,6 +479,9 @@ public class GameControllerScript : MonoBehaviour
 
     private void ClickTile()
     {
+        
+    
+
 
         var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
@@ -487,19 +491,32 @@ public class GameControllerScript : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0)) //left click
         {
-
-            this.clickPoint = getBoardPointFromLocation(mouseWorldPosition.x, mouseWorldPosition.y);
-
-            if (clickPoint != null)
+            if (!checkPointOnUI(Input.mousePosition))
             {
-                SelectTile();
-            }
-            else
-            {
-                DeselectTile();
+                this.clickPoint = getBoardPointFromLocation(mouseWorldPosition.x, mouseWorldPosition.y);
+
+                if (clickPoint != null)
+                {
+                    SelectTile();
+                }
+                else
+                {
+                    DeselectTile();
+                }
             }
 
         }
+    }
+
+    //return true if point on top of UI
+    private bool checkPointOnUI(Vector3 screenPos)
+    {
+        Rect uiScreenRect = new Rect(0, 0, 1280, 210);
+        if(uiScreenRect.Contains(screenPos))
+        {
+            return true;
+        }
+        return false;
     }
 
     private Point getBoardPointFromLocation(float x, float y)

@@ -181,6 +181,15 @@ namespace SimpleRPG2
             game.CharacterKill(this);
         }
 
+        public Item getInventoryItembyItemID(long itemID)
+        {
+            var item = (from data in inventory
+                        where data.ID == itemID
+                        select data).FirstOrDefault();
+            return item;
+        }
+
+
         public void EquipWeapon(Weapon w)
         {
             if (inventory.Contains(w))

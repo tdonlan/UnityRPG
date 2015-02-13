@@ -29,24 +29,18 @@ public class EquipmentTestScript : MonoBehaviour {
         this.assetLibrary = new AssetLibrary();
         this.battleGame = new BattleGame();
 
-        LoadEquipList();
+        LoadCharacterStats();
+
 	}
 
-    private void WireTestImage()
+    private void LoadCharacterStats()
     {
-        /*
-        var testImage = GameObject.FindGameObjectWithTag("TestImage");
-        var eventTrigger = testImage.AddComponent<EventTrigger>();
-        eventTrigger.delegates = new List<EventTrigger.Entry>();
-
-
-        System.Object o = (System.Object)"Hello World";
-
-        AddEventTrigger(eventTrigger, OnPointerClick, EventTriggerType.PointerClick,o);
-        AddEventTrigger(eventTrigger, HoverEnterLeftEquip, EventTriggerType.PointerEnter);
-        AddEventTrigger(eventTrigger, HoverExitLeftEquip, EventTriggerType.PointerExit);
-         * */
+        var charPanel = GameObject.FindGameObjectWithTag("CharacterPanel");
+        UpdateTextComponent(charPanel, "CharNameText", battleGame.ActiveCharacter.name);
+        UpdateTextComponent(charPanel, "CharStats", battleGame.ActiveCharacter.ToString());
+    
     }
+
 
     private void AddClickToGameObject(GameObject gameObject, UnityAction action, EventTriggerType triggerType)
     {
@@ -117,10 +111,82 @@ public class EquipmentTestScript : MonoBehaviour {
         }
     }
 
-    //load the list of display equipment, give a type
-    private void LoadDisplayArmor(System.Object armorTypeObj)
+    //called to clear out current equiped if nothing in slot
+    public void ClearCurrentEquip()
     {
+        var currentEquipPanel = GameObject.FindGameObjectWithTag("EquipLeftPanel");
+        UpdateTextComponent(currentEquipPanel, "EquipName", "");
+        UpdateTextComponent(currentEquipPanel, "EquipType", "");
+        UpdateTextComponent(currentEquipPanel, "EquipStats", "");
+        UpdateSpriteComponent(currentEquipPanel, "EquipImage", assetLibrary.getSprite(SpritesheetType.Items, 0));
+    }
+
+    public void LoadCurrentWeapon()
+    {
+        var currentEquipPanel = GameObject.FindGameObjectWithTag("EquipLeftPanel");
+        if (battleGame.ActiveCharacter.weapon != null)
+        {
+            UpdateTextComponent(currentEquipPanel, "EquipName", battleGame.ActiveCharacter.weapon.name);
+            UpdateTextComponent(currentEquipPanel, "EquipType", battleGame.ActiveCharacter.weapon.weaponType.ToString());
+            UpdateTextComponent(currentEquipPanel, "EquipStats", battleGame.ActiveCharacter.weapon.ToString());
+            UpdateSpriteComponent(currentEquipPanel, "EquipImage", assetLibrary.getSprite(SpritesheetType.Items, 3));
+        }
+        else
+        {
+            ClearCurrentEquip();
+        }
+    }
+
+    public void LoadCurrentAmmo()
+    {
+        var currentEquipPanel = GameObject.FindGameObjectWithTag("EquipLeftPanel");
+        if (battleGame.ActiveCharacter.Ammo != null)
+        {
+
+            var item = battleGame.ActiveCharacter.getInventoryItembyItemID(battleGame.ActiveCharacter.Ammo.itemID);
+            var itemAmmo = (Ammo)item;
+            UpdateTextComponent(currentEquipPanel, "EquipName", item.name);
+            UpdateTextComponent(currentEquipPanel, "EquipType", itemAmmo.ammoType.ToString());
+            UpdateTextComponent(currentEquipPanel, "EquipStats", itemAmmo.ToString());
+            UpdateSpriteComponent(currentEquipPanel, "EquipImage", assetLibrary.getSprite(SpritesheetType.Items, 3));
+        }
+        else
+        {
+            ClearCurrentEquip();
+        }
+    }
+
+    public void LoadCurrentArmor(ArmorType armorType)
+    {
+        var currentEquipPanel = GameObject.FindGameObjectWithTag("EquipLeftPanel");
+
+        var armor = battleGame.ActiveCharacter.getArmorInSlot(armorType);
+        if (armor != null)
+        {
+            UpdateTextComponent(currentEquipPanel, "EquipName", armor.name);
+            UpdateTextComponent(currentEquipPanel, "EquipType", armorType.ToString());
+            UpdateTextComponent(currentEquipPanel, "EquipStats", armorType.ToString());
+            UpdateSpriteComponent(currentEquipPanel, "EquipImage", assetLibrary.getSprite(SpritesheetType.Items, 3));
+        }
+        else
+        {
+            ClearCurrentEquip();
+        }
+    }
+
+    public void LoadDisplayArmor(int armorType)
+    {
+       
+        LoadDisplayArmor((System.Object)armorType);
+    }
+
+    //load the list of display equipment, give a type
+    public void LoadDisplayArmor(System.Object armorTypeObj)
+    {
+      
         ArmorType armorType = (ArmorType)armorTypeObj;
+
+        LoadCurrentArmor((ArmorType)armorType);
 
         displayEquipList = new List<GameObject>();
         GameObject equipPrefab = Resources.Load<GameObject>("EquipPrefab");
@@ -148,8 +214,9 @@ public class EquipmentTestScript : MonoBehaviour {
 
     }
 
-    private void LoadDisplayWeapon()
+    public void LoadDisplayWeapon()
     {
+        LoadCurrentWeapon();
 
         displayEquipList = new List<GameObject>();
 
@@ -176,8 +243,10 @@ public class EquipmentTestScript : MonoBehaviour {
         }
     }
 
-    private void LoadDisplayAmmo()
+    public void LoadDisplayAmmo()
     {
+        LoadCurrentAmmo();
+
         displayEquipList = new List<GameObject>();
         GameObject equipPrefab = Resources.Load<GameObject>("EquipPrefab");
 
@@ -395,12 +464,15 @@ public class EquipmentTestScript : MonoBehaviour {
         txtComp.text = "Clicked Equip";
     }
 
+
     public void SelectWeapon(System.Object wepObj)
     {
         Weapon w = (Weapon)wepObj;
         battleGame.ActiveCharacter.RemoveWeapon(battleGame.ActiveCharacter.weapon);
         battleGame.ActiveCharacter.EquipWeapon(w);
-        LoadEquipList();
+
+
+        LoadCharacterStats();
         LoadDisplayWeapon();
     }
 
@@ -411,7 +483,8 @@ public class EquipmentTestScript : MonoBehaviour {
         battleGame.ActiveCharacter.RemoveAmmo();
         battleGame.ActiveCharacter.EquipAmmo(a);
 
-        LoadEquipList();
+
+        LoadCharacterStats();
         LoadDisplayAmmo();
     }
 
@@ -422,7 +495,8 @@ public class EquipmentTestScript : MonoBehaviour {
         battleGame.ActiveCharacter.RemoveArmorInSlot(armor.armorType);
         battleGame.ActiveCharacter.EquipArmor(armor);
 
-        LoadEquipList();
+
+        LoadCharacterStats();
         LoadDisplayArmor(armor.armorType);
     }
 
