@@ -106,8 +106,6 @@ public class EquipmentTestScript : MonoBehaviour {
         }
     }
 
-
-
     //load the list of display equipment, give a type
     public void LoadDisplayArmor(int armorType)
     {

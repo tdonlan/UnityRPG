@@ -480,9 +480,6 @@ public class GameControllerScript : MonoBehaviour
     private void ClickTile()
     {
         
-    
-
-
         var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
         var camera = mainCamera.GetComponent<Camera>();
@@ -672,38 +669,17 @@ public class GameControllerScript : MonoBehaviour
 
         }
 
-        UpdateSpriteComponent(charPortrait, "PortraitImage", assetLibrary.getSprite(SpritesheetType.Portraits, 0));
+        UIHelper.UpdateSpriteComponent(charPortrait, "PortraitImage", assetLibrary.getSprite(SpritesheetType.Portraits, 0));
 
-        UpdateTextComponent(charPortrait, "CharacterName", character.name.ToString());
+        UIHelper.UpdateTextComponent(charPortrait, "CharacterName", character.name.ToString());
 
         string stats = string.Format("HP: {0}/{1} AP: {2}", character.hp, character.totalHP, character.ap);
-        UpdateTextComponent(charPortrait, "CharacterStats", stats);
+        UIHelper.UpdateTextComponent(charPortrait, "CharacterStats", stats);
 
         return charPortrait;
     }
 
-    private void UpdateTextComponent(GameObject parent, string componentName, string text)
-    {
-        foreach (var comp in parent.GetComponentsInChildren<Text>())
-        {
-            if (comp.name == componentName)
-            {
-                comp.text = text;
-            }
-        }
-    }
-
-    private void UpdateSpriteComponent(GameObject parent, string componentName, Sprite sprite)
-    {
-        foreach (var comp in parent.GetComponentsInChildren<Image>())
-        {
-            if (comp.name == componentName)
-            {
-                comp.sprite = sprite;
-            }
-        }
-    }
-
+   
     private void LoadAbilityList()
     {
         var usableAbilityList = (from data in battleGame.ActiveCharacter.abilityList
@@ -715,7 +691,7 @@ public class GameControllerScript : MonoBehaviour
         Transform AbilityPanel = GameObject.FindGameObjectWithTag("AbilityContentPanel").transform;
 
         //Clear existing abilities
-        DestroyAllChildren(AbilityPanel);
+        UIHelper.DestroyAllChildren(AbilityPanel);
        
         foreach (var ab in usableAbilityList)
         {
@@ -726,13 +702,7 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
-    private void DestroyAllChildren(Transform parent)
-    {
-        for (int i = parent.childCount - 1; i >= 0; i--)
-        {
-            Destroy(parent.GetChild(i).gameObject);
-        }
-    }
+ 
 
     private void updateAbilityButton(GameObject parent, Sprite sprite, Ability selectedAbility)
     {
@@ -748,7 +718,7 @@ public class GameControllerScript : MonoBehaviour
         string abilityText = string.Format("{0} - {1}. AP: {2} Uses: {3}",a.name,a.description,a.ap,a.uses);
        
         //set click on icon
-        UpdateTextComponent(abilityItem, "AbilityText", abilityText);
+        UIHelper.UpdateTextComponent(abilityItem, "AbilityText", abilityText);
 
         return abilityItem;
     }
