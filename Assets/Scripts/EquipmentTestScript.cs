@@ -371,7 +371,7 @@ public class EquipmentTestScript : MonoBehaviour {
     private void updateEventTrigger(GameObject parent)
     {
 
-        var eventTrigger = parent.GetComponentInChildren<EventTrigger>();
+        //var eventTrigger = parent.GetComponentInChildren<EventTrigger>();
     }
 
     public void HoverEnterLeftEquip()

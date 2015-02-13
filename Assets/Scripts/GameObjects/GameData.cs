@@ -57,7 +57,7 @@ namespace SimpleRPG2
 
         private object LoadFromJson(string path)
         {
-            string jsonStr = File.ReadAllText(path);
+            //string jsonStr = File.ReadAllText(path);
 
            // return JsonConvert.DeserializeObject(jsonStr);
 
@@ -66,7 +66,7 @@ namespace SimpleRPG2
 
         private Dictionary<string,string> LoadJsonToDictionary(string path)
         {
-            string jsonStr = File.ReadAllText(path);
+            //string jsonStr = File.ReadAllText(path);
            // return JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonStr);
 
             return null;
