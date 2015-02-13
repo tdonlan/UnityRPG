@@ -845,7 +845,7 @@ namespace SimpleRPG2
 
         private void DisplayViewMenu2()
         {
-            List<string> displayCharList = new List<string>();
+            //List<string> displayCharList = new List<string>();
             
             foreach (var c in characterList)
             {

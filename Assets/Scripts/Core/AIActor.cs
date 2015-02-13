@@ -198,19 +198,16 @@ namespace SimpleRPG2
 
         private List<AIAction> getAIBuffActions()
         {
-            List<AIAction> aiActionList = new List<AIAction>();
             return AIActionList;
         }
 
         private List<AIAction> getAINukeActions()
         {
-            List<AIAction> aiActionList = new List<AIAction>();
             return AIActionList;
         }
 
         private List<AIAction> getAIFleeActions()
         {
-            List<AIAction> aiActionList = new List<AIAction>();
             return AIActionList;
         }
 

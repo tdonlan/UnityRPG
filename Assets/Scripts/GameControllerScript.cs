@@ -42,6 +42,24 @@ public class GameControllerScript : MonoBehaviour
     public GameObject InitiativePanel { get; set; }
     private GameObject InitPrefab { get; set; }
 
+    /// <summary>
+    /// Object that hold the Main Camera reference.
+    /// </summary>
+    private GameObject mainCamera;
+
+    /// <summary>
+    /// Holds the target position that the camera will be following.
+    /// With this target, is possible to make a smooth follow for the camera.
+    /// </summary>
+    private Vector3 cameraTargetPosition;
+
+    /// <summary>
+    /// This value will multiply the delta time to make the smooth effect on the camera movement.
+    /// This value must be configured by inspector.
+    /// </summary>
+    [Range(0.1f, 5)]
+    public float cameraSmooth;
+
     // Use this for initialization
     void Start()
     {
@@ -57,7 +75,8 @@ public class GameControllerScript : MonoBehaviour
         
         this.uiState = UIStateType.NewTurn;
 
-        
+        // initialize the camera reference
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
         LoadBoard();
         LoadCharacters();
@@ -214,9 +233,8 @@ public class GameControllerScript : MonoBehaviour
         int x = (int)Mathf.Round(battleGame.board.board.GetLength(0) / 2f);
         int y = (int)Mathf.Round(battleGame.board.board.GetLength(1) / 2f);
 
-        var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        mainCamera.transform.position = new Vector3(x, y, -10);
-
+        //mainCamera.transform.position = new Vector3(x, y, -10);
+        cameraTargetPosition = new Vector3(x, y, -10);
     }
 
 
@@ -233,6 +251,7 @@ public class GameControllerScript : MonoBehaviour
         }
 
         UpdateCamera();
+   
         ClickTile();
 
     }
@@ -483,8 +502,6 @@ public class GameControllerScript : MonoBehaviour
     
 
 
-        var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-
         var camera = mainCamera.GetComponent<Camera>();
 
         Vector3 mouseWorldPosition = camera.ScreenToWorldPoint(Input.mousePosition);
@@ -554,32 +571,33 @@ public class GameControllerScript : MonoBehaviour
         float vert = Input.GetAxis("Vertical") * speed;
         float hor = Input.GetAxis("Horizontal") * speed;
 
-        var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-
-        var destination = mainCamera.transform.position + new Vector3(hor, vert, 0);
+        var destination = cameraTargetPosition + new Vector3(hor, vert, 0);
         var velocity = Vector3.zero;
         float dampTime = 0.3f;
 
-        var tempPosition = Vector3.SmoothDamp(mainCamera.transform.position, destination, ref velocity, dampTime);
+        var tempPosition = Vector3.SmoothDamp(cameraTargetPosition, destination, ref velocity, dampTime);
 
-        //mainCamera.transform.position = tempPosition;
-        mainCamera.transform.position = MoveCamera(mainCamera, mainCamera.transform.position, tempPosition);
+        cameraTargetPosition = MoveCamera(cameraTargetPosition, tempPosition);
+
+        // SMOOTH EFFECT
+        // This makes the camera movement better for the eyes.
+        // The main value is now the cameraTargetPosition.
+        // And after everything get calculated, we lerp the real camera's position to this value.
+        mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, cameraTargetPosition, Time.deltaTime * cameraSmooth);
 
     }
 
     private void FocusCamera(int x, int y)
     {
-        var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        mainCamera.transform.position = new Vector3(x, y,-10);
+        //mainCamera.transform.position = new Vector3(x, y,-10);
+        cameraTargetPosition = new Vector3(x, y, -10);
 
     }
 
 
     //http://answers.unity3d.com/questions/501893/calculating-2d-camera-bounds.html
-    private Vector3 MoveCamera(GameObject camera, Vector3 oldPos, Vector3 newPos)
+    private Vector3 MoveCamera(Vector3 oldPos, Vector3 newPos)
     {
-
-
         float vertExtent = Camera.main.camera.orthographicSize;
         float horzExtent = vertExtent * Screen.width / Screen.height;
 

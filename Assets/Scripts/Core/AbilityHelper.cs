@@ -118,8 +118,6 @@ namespace SimpleRPG2
 
         private static bool UseAbilityPoint(GameCharacter character, Ability ability, Tile target, BattleGame game)
         {
-            Tile ActiveTile = game.board.getTileFromLocation(character.x, character.y);
-
             int dist = PlotLine.GetPointsOnLine(character.x, character.y, target.x, target.y).Count();
 
             if(dist <= ability.range)

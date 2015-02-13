@@ -120,7 +120,7 @@ namespace SimpleRPG2
                 {
                     return r.Next(Int32.Parse(strArray[0]), Int32.Parse(strArray[1]));
                 }
-                catch(Exception ex)
+                catch
                 {
                     return 0;
                 }
