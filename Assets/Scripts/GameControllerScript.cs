@@ -22,7 +22,7 @@ public class GameControllerScript : MonoBehaviour
     Text DebugText =null;
 
     public int TileSize = 32;
-    //public Board board { get; set; }
+
     public System.Random r { get; set; }
 
     public Point clickPoint { get; set; }
@@ -52,20 +52,17 @@ public class GameControllerScript : MonoBehaviour
         tempEffectList = new List<GameObject>();
 
         this.r = new System.Random();
-   
-        this.clickPoint = null;
-        
-        this.uiState = UIStateType.NewTurn;
 
-        
+        this.clickPoint = null;
+
+        this.uiState = UIStateType.NewTurn;
 
         LoadBoard();
         LoadCharacters();
-       
+
         LoadUI();
 
         SetCamera();
-     
 
     }
 
@@ -121,26 +118,15 @@ public class GameControllerScript : MonoBehaviour
 
     private GameObject LoadCharacter(GameCharacter character)
     {
-        int playerIndex = 5;
-        int monsterIndex = 83;
 
         GameObject characterSprite = new GameObject("Character");
 
         SpriteRenderer renderer = characterSprite.AddComponent<SpriteRenderer>();
         characterSprite.transform.position = new Vector3(character.x, character.y, -1);
 
-        if (character.type == CharacterType.Player)
-        {
-            renderer.sprite = assetLibrary.getSprite("Characters", playerIndex);
-        }
-        else
-        {
-            renderer.sprite = assetLibrary.getSprite("Characters", monsterIndex);
-         
-        }
+        renderer.sprite = assetLibrary.getSprite(character.characterSpritesheetName, character.characterSpriteIndex);
 
         return characterSprite;
-
     }
 
     private void LoadTempEffects()
@@ -669,7 +655,7 @@ public class GameControllerScript : MonoBehaviour
 
         }
 
-        UIHelper.UpdateSpriteComponent(charPortrait, "PortraitImage", assetLibrary.getSprite("Portraits", 0));
+        UIHelper.UpdateSpriteComponent(charPortrait, "PortraitImage", assetLibrary.getSprite(character.portraitSpritesheetName,character.portraitSpriteIndex));
 
         UIHelper.UpdateTextComponent(charPortrait, "CharacterName", character.name.ToString());
 
