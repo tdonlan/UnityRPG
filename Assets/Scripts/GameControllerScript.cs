@@ -131,11 +131,11 @@ public class GameControllerScript : MonoBehaviour
 
         if (character.type == CharacterType.Player)
         {
-            renderer.sprite = assetLibrary.getSprite(SpritesheetType.Characters, playerIndex);
+            renderer.sprite = assetLibrary.getSprite("Characters", playerIndex);
         }
         else
         {
-            renderer.sprite = assetLibrary.getSprite(SpritesheetType.Characters, monsterIndex);
+            renderer.sprite = assetLibrary.getSprite("Characters", monsterIndex);
          
         }
 
@@ -181,7 +181,7 @@ public class GameControllerScript : MonoBehaviour
         SpriteRenderer renderer = effectSprite.AddComponent<SpriteRenderer>();
         effectSprite.transform.position = new Vector3(t.x, t.y, -2);
 
-        renderer.sprite = assetLibrary.getSprite(SpritesheetType.Particles, effectIndex);
+        renderer.sprite = assetLibrary.getSprite("Particles", effectIndex);
 
 
         return effectSprite;
@@ -197,12 +197,12 @@ public class GameControllerScript : MonoBehaviour
         spriteObject.transform.position = new Vector3(x, y, 0);
         if(isWall)
         {
-            renderer.sprite = assetLibrary.getSprite(SpritesheetType.Tiles, 27);
+            renderer.sprite = assetLibrary.getSprite("Tiles", 27);
         
         }
         else
         {
-            renderer.sprite = assetLibrary.getSprite(SpritesheetType.Tiles, 2);
+            renderer.sprite = assetLibrary.getSprite("Tiles", 2);
            
         }
        
@@ -669,7 +669,7 @@ public class GameControllerScript : MonoBehaviour
 
         }
 
-        UIHelper.UpdateSpriteComponent(charPortrait, "PortraitImage", assetLibrary.getSprite(SpritesheetType.Portraits, 0));
+        UIHelper.UpdateSpriteComponent(charPortrait, "PortraitImage", assetLibrary.getSprite("Portraits", 0));
 
         UIHelper.UpdateTextComponent(charPortrait, "CharacterName", character.name.ToString());
 
@@ -696,7 +696,7 @@ public class GameControllerScript : MonoBehaviour
         foreach (var ab in usableAbilityList)
         {
             GameObject abilityItem = (GameObject)Instantiate(AbilityItemPrefab);
-            updateAbilityButton(abilityItem, assetLibrary.getSprite(SpritesheetType.Particles, 0), ab);
+            updateAbilityButton(abilityItem, assetLibrary.getSprite("Particles", 0), ab);
             abilityItem = updateAbilityItem(abilityItem, ab);
             abilityItem.transform.SetParent(AbilityPanel, true);
         }

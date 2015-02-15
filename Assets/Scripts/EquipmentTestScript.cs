@@ -50,18 +50,22 @@ public class EquipmentTestScript : MonoBehaviour {
         UIHelper.UpdateTextComponent(currentEquipPanel, "EquipName", "");
         UIHelper.UpdateTextComponent(currentEquipPanel, "EquipType", "");
         UIHelper.UpdateTextComponent(currentEquipPanel, "EquipStats", "");
-        UIHelper.UpdateSpriteComponent(currentEquipPanel, "EquipImage", assetLibrary.getSprite(SpritesheetType.Items, 0));
+        UIHelper.UpdateSpriteComponent(currentEquipPanel, "EquipImage", assetLibrary.getSprite("Blank", 0));
     }
 
     public void LoadCurrentWeapon()
     {
         var currentEquipPanel = GameObject.FindGameObjectWithTag("EquipLeftPanel");
+
+        
         if (battleGame.ActiveCharacter.weapon != null)
         {
-            UIHelper.UpdateTextComponent(currentEquipPanel, "EquipName", battleGame.ActiveCharacter.weapon.name);
-            UIHelper.UpdateTextComponent(currentEquipPanel, "EquipType", battleGame.ActiveCharacter.weapon.weaponType.ToString());
-            UIHelper.UpdateTextComponent(currentEquipPanel, "EquipStats", battleGame.ActiveCharacter.weapon.ToString());
-            UIHelper.UpdateSpriteComponent(currentEquipPanel, "EquipImage", assetLibrary.getSprite(SpritesheetType.Items, 3));
+
+            var wep = battleGame.ActiveCharacter.weapon;
+            UIHelper.UpdateTextComponent(currentEquipPanel, "EquipName", wep.name);
+            UIHelper.UpdateTextComponent(currentEquipPanel, "EquipType", wep.weaponType.ToString());
+            UIHelper.UpdateTextComponent(currentEquipPanel, "EquipStats", wep.ToString());
+            UIHelper.UpdateSpriteComponent(currentEquipPanel, "EquipImage", assetLibrary.getSprite(wep.sheetname, wep.spriteindex));
         }
         else
         {
@@ -80,7 +84,7 @@ public class EquipmentTestScript : MonoBehaviour {
             UIHelper.UpdateTextComponent(currentEquipPanel, "EquipName", item.name);
             UIHelper.UpdateTextComponent(currentEquipPanel, "EquipType", itemAmmo.ammoType.ToString());
             UIHelper.UpdateTextComponent(currentEquipPanel, "EquipStats", itemAmmo.ToString());
-            UIHelper.UpdateSpriteComponent(currentEquipPanel, "EquipImage", assetLibrary.getSprite(SpritesheetType.Items, 3));
+            UIHelper.UpdateSpriteComponent(currentEquipPanel, "EquipImage", assetLibrary.getSprite(itemAmmo.sheetname,itemAmmo.spriteindex));
         }
         else
         {
@@ -98,7 +102,7 @@ public class EquipmentTestScript : MonoBehaviour {
             UIHelper.UpdateTextComponent(currentEquipPanel, "EquipName", armor.name);
             UIHelper.UpdateTextComponent(currentEquipPanel, "EquipType", armorType.ToString());
             UIHelper.UpdateTextComponent(currentEquipPanel, "EquipStats", armorType.ToString());
-            UIHelper.UpdateSpriteComponent(currentEquipPanel, "EquipImage", assetLibrary.getSprite(SpritesheetType.Items, 3));
+            UIHelper.UpdateSpriteComponent(currentEquipPanel, "EquipImage", assetLibrary.getSprite(armor.sheetname,armor.spriteindex));
         }
         else
         {
@@ -197,7 +201,7 @@ public class EquipmentTestScript : MonoBehaviour {
     {
         var equipTypePanel = UIHelper.getChildObject(obj, "EquipTypePanel");
         UIHelper.UpdateTextComponent(equipTypePanel, "EquipType", type);
-        UIHelper.UpdateSpriteComponent(equipTypePanel, "EquipImage", assetLibrary.getSprite(SpritesheetType.Items, 43));
+        UIHelper.UpdateSpriteComponent(equipTypePanel, "EquipImage", assetLibrary.getSprite("Blank",0));
 
         UIHelper.UpdateTextComponent(obj, "EquipStats", "Empty");
         return obj;
@@ -208,7 +212,7 @@ public class EquipmentTestScript : MonoBehaviour {
 
         var equipTypePanel = UIHelper.getChildObject(obj, "EquipTypePanel");
         UIHelper.UpdateTextComponent(equipTypePanel, "EquipType", "Weapon");
-        UIHelper.UpdateSpriteComponent(equipTypePanel, "EquipImage", assetLibrary.getSprite(SpritesheetType.Items, 43));
+        UIHelper.UpdateSpriteComponent(equipTypePanel, "EquipImage", assetLibrary.getSprite(wep.sheetname,wep.spriteindex));
 
         UIHelper.UpdateTextComponent(obj, "EquipStats", wep.ToString());
         return obj;
@@ -218,7 +222,7 @@ public class EquipmentTestScript : MonoBehaviour {
     {
         var equipTypePanel = UIHelper.getChildObject(obj, "EquipTypePanel");
         UIHelper.UpdateTextComponent(equipTypePanel, "EquipType", "Ammo");
-        UIHelper.UpdateSpriteComponent(equipTypePanel, "EquipImage", assetLibrary.getSprite(SpritesheetType.Items, 43));
+        UIHelper.UpdateSpriteComponent(equipTypePanel, "EquipImage", assetLibrary.getSprite(ammo.sheetname,ammo.spriteindex));
 
         UIHelper.UpdateTextComponent(obj, "EquipStats", ammo.ToString());
         return obj;
@@ -228,7 +232,7 @@ public class EquipmentTestScript : MonoBehaviour {
     {
         var equipTypePanel = UIHelper.getChildObject(obj, "EquipTypePanel");
         UIHelper.UpdateTextComponent(equipTypePanel, "EquipType", armor.armorType.ToString());
-        UIHelper.UpdateSpriteComponent(equipTypePanel, "EquipImage", assetLibrary.getSprite(SpritesheetType.Items, 43));
+        UIHelper.UpdateSpriteComponent(equipTypePanel, "EquipImage", assetLibrary.getSprite(armor.sheetname,armor.spriteindex));
 
         UIHelper.UpdateTextComponent(obj, "EquipStats", armor.ToString());
 

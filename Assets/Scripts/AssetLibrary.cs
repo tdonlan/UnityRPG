@@ -10,7 +10,8 @@ namespace Assets
 
     public class Spritesheet
     {
-        public SpritesheetType type { get; set; }
+        public string sheetName { get; set; }
+    
         public string filename { get; set; }
         public List<Sprite> sprites { get; set; }
     }
@@ -30,19 +31,24 @@ namespace Assets
             //get the manifest from some external file
 
             spritesheetList = new List<Spritesheet>();
-            spritesheetList.Add(getSpritesheet(SpritesheetType.Tiles, "dg_dungeon32"));
-            spritesheetList.Add(getSpritesheet(SpritesheetType.Characters, "dg_classm32Edit"));
-            spritesheetList.Add(getSpritesheet(SpritesheetType.Portraits, "portraitsEdit"));
-            spritesheetList.Add(getSpritesheet(SpritesheetType.Particles, "dg_effects32Edit"));
-            spritesheetList.Add(getSpritesheet(SpritesheetType.Items,"dg_armor32"));
+            spritesheetList.Add(getSpritesheet("Tiles", "dg_dungeon32"));
+            spritesheetList.Add(getSpritesheet("Characters", "dg_classm32Edit"));
+            spritesheetList.Add(getSpritesheet("Portraits", "portraitsEdit"));
+            spritesheetList.Add(getSpritesheet("Particles", "dg_effects32Edit"));
+            spritesheetList.Add(getSpritesheet("Armor","dg_armor32"));
+            spritesheetList.Add(getSpritesheet("Weapons", "dg_weapons32"));
+            spritesheetList.Add(getSpritesheet("Jewels", "dg_jewls32"));
+            spritesheetList.Add(getSpritesheet("Wands", "dg_wands32"));
+            spritesheetList.Add(getSpritesheet("Potions", "dg_potions32"));
+            spritesheetList.Add(getSpritesheet("Blank", "blankItem"));
         }
 
-        private Spritesheet getSpritesheet(SpritesheetType type, string filename)
+        private Spritesheet getSpritesheet(string sheetname, string filename)
         {
             Spritesheet retval = new Spritesheet();
             retval.filename = filename;
-            retval.type = type;
-
+            retval.sheetName = sheetname;
+          
             Sprite[] spriteArray = Resources.LoadAll<Sprite>(filename);
 
             retval.sprites = spriteArray.ToList();
@@ -51,10 +57,10 @@ namespace Assets
  
         }
 
-        public Sprite getSprite(SpritesheetType type, int index)
+        public Sprite getSprite(string sheetname, int index)
         {
             Spritesheet sheet = (from data in spritesheetList
-                                 where data.type == type
+                                 where data.sheetName == sheetname
                                  select data).FirstOrDefault();
 
             if (sheet.sprites.Count > index)

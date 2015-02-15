@@ -22,7 +22,7 @@ namespace SimpleRPG2
             {
                 int count = usableItemList.Count(x => x.ID == item.ID);
                // int count = usableItemList.Select(x=>x.ID==item.ID).Count();
-                ItemSet tempItemSet = new ItemSet(){itemName=item.name,itemID=item.ID,count = count};
+                ItemSet tempItemSet = new ItemSet(){itemName=item.name,itemID=item.ID,count = count,sheetname=item.sheetname,spriteindex=item.spriteindex};
                 if(!retvalList.Contains(tempItemSet))
                 {
                     retvalList.Add(tempItemSet);
@@ -35,7 +35,7 @@ namespace SimpleRPG2
         public static ItemSet getItemSet(List<Item> inventory, Item i)
         {
             int count = inventory.Count(x => x.ID == i.ID);
-            return new ItemSet() { itemName = i.name, itemID = i.ID, count = count };
+            return new ItemSet() { itemName = i.name, itemID = i.ID, count = count,sheetname=i.sheetname,spriteindex=i.spriteindex };
         }
 
         public static Item getFirstItemWithID(List<Item> inventory, int ID)
