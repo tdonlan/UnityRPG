@@ -10,28 +10,73 @@ namespace SimpleRPG2
     {
         public static GameCharacter getEnemy(Random r)
         {
-            GameCharacter retval = new GameCharacter() {name="Goblin",displayChar='G',type=CharacterType.Enemy, ac = 10, attack = 5, totalHP = 50, hp = 50, ap=10, totalAP=10 };
+            GameCharacter retval = new GameCharacter()
+            {
+                name = "Goblin",
+                displayChar = 'G',
+                type = CharacterType.Enemy,
+                ac = 10,
+                attack = 5,
+                totalHP = 50,
+                hp = 50,
+                ap = 10,
+                totalAP = 10,
+                characterSpritesheetName = "Characters",
+                characterSpriteIndex = 85,
+                portraitSpritesheetName = "Portraits",
+                portraitSpriteIndex=98
+            };
             retval.weapon = ItemFactory.getLongsword(r);
             return retval;
         }
 
         public static EnemyCharacter getGoblin(Random r)
         {
-            EnemyCharacter goblin = new EnemyCharacter() {name="Goblin",displayChar='G',type= CharacterType.Enemy,ac=10,attack =5,totalHP=25,hp=25,totalAP=10,ap=10,enemyType=EnemyType.Warrior };
+            EnemyCharacter goblin = new EnemyCharacter()
+            {
+                name = "Goblin",
+                displayChar = 'G',
+                type = CharacterType.Enemy,
+                ac = 10,
+                attack = 5,
+                totalHP = 25,
+                hp = 25,
+                totalAP = 10,
+                ap = 10,
+                enemyType = EnemyType.Warrior,
+                characterSpritesheetName = "Characters",
+                characterSpriteIndex = 85,
+                portraitSpritesheetName = "Portraits",
+                portraitSpriteIndex = 98
+            };
             goblin.weapon = ItemFactory.getLongsword(r);
             return goblin;
         }
 
         public static GameCharacter getPlayerCharacter(Random r)
         {
-            GameCharacter retval =  new GameCharacter() {name="Warrior",displayChar='@',type=CharacterType.Player, ac = 10, attack = 50, totalHP = 50, hp = 20,ap=10,totalAP=10 };
+            GameCharacter retval = new GameCharacter()
+            {
+                name = "Warrior",
+                displayChar = '@',
+                type = CharacterType.Player,
+                ac = 10,
+                attack = 50,
+                totalHP = 50,
+                hp = 20,
+                ap = 10,
+                totalAP = 10,
+                characterSpritesheetName = "Characters",
+                characterSpriteIndex = 13,
+                portraitSpritesheetName = "Portraits",
+                portraitSpriteIndex = 0
+            };
         
             retval.inventory.Add(ItemFactory.getHealingPotion(r));
             retval.inventory.Add(ItemFactory.getHealingPotion(r));
             retval.inventory.Add(ItemFactory.getHealingPotion(r));
             retval.inventory.Add(ItemFactory.getHealingPotion(r));
             retval.inventory.Add(ItemFactory.getHealingPotion(r));
-
 
             //Weapons
             retval.weapon = ItemFactory.getLongsword(r);

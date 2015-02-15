@@ -14,8 +14,11 @@ namespace SimpleRPG2
         public int x { get; set; }
         public int y { get; set; }
 
-        public string sheetname { get; set; }
-        public int spriteindex { get; set; }
+        public string characterSpritesheetName { get; set; }
+        public int characterSpriteIndex { get; set; }
+
+        public string portraitSpritesheetName { get; set; }
+        public int portraitSpriteIndex { get; set; }
 
         private int _ac;
         public int ac
