@@ -13,6 +13,9 @@ namespace SimpleRPG2
         public int itemID { get; set; }
         public int count { get; set; }
 
+        public string sheetname { get; set; }
+        public int spriteindex { get; set; }
+
         public override bool Equals(object obj)
         {
             if (obj is ItemSet)
@@ -46,6 +49,9 @@ namespace SimpleRPG2
         public ItemType type { get; set; }
         public List<PassiveEffect> passiveEffects { get; set; }
         public List<ActiveEffect> activeEffects { get; set; }
+
+        public string sheetname { get; set; }
+        public int spriteindex { get; set; }
 
         public string getEffects()
         {

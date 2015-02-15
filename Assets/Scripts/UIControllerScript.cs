@@ -89,7 +89,7 @@ public class UIControllerScript : MonoBehaviour {
 
         }
 
-        UpdateSpriteComponent(charPortrait, "PortraitImage", gameController.assetLibrary.getSprite(SpritesheetType.Portraits, 0));
+        UpdateSpriteComponent(charPortrait, "PortraitImage", gameController.assetLibrary.getSprite("Portraits", 0));
 
         UpdateTextComponent(charPortrait, "CharacterName", character.name.ToString());
         UpdateTextComponent(charPortrait, "CharacterStats", string.Format("{0}/{1}",character.hp,character.totalHP));
