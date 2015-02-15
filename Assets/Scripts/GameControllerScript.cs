@@ -138,14 +138,8 @@ public class GameControllerScript : MonoBehaviour
             for(int j=0;j<battleGame.board.board.GetLength(1);j++)
             {
                 var tile = battleGame.board.board[i, j];
-                /*
-                if(tile.TempChar == '*')
-                {
-                    tempEffectList.Add(LoadTempEffect(tile));
-                }
-                 * */
-                
-                if(tile.TempChar != ' ')
+
+                if(tile.tempSheetName != string.Empty)
                 {
                      tempEffectList.Add(LoadTempEffect(tile));
                 }
@@ -156,13 +150,12 @@ public class GameControllerScript : MonoBehaviour
 
     private GameObject LoadTempEffect(Tile t)
     {
-        int effectIndex = 102;
         GameObject effectSprite = new GameObject("Effect");
 
         SpriteRenderer renderer = effectSprite.AddComponent<SpriteRenderer>();
         effectSprite.transform.position = new Vector3(t.x, t.y, -2);
 
-        renderer.sprite = assetLibrary.getSprite("Particles", effectIndex);
+        renderer.sprite = assetLibrary.getSprite(t.tempSheetName,t.tempSpriteIndex);
 
 
         return effectSprite;
@@ -668,7 +661,7 @@ public class GameControllerScript : MonoBehaviour
         foreach (var ab in usableAbilityList)
         {
             GameObject abilityItem = (GameObject)Instantiate(AbilityItemPrefab);
-            updateAbilityButton(abilityItem, assetLibrary.getSprite("Particles", 0), ab);
+            updateAbilityButton(abilityItem, assetLibrary.getSprite(ab.sheetname,ab.spriteindex), ab);
             abilityItem = updateAbilityItem(abilityItem, ab);
             abilityItem.transform.SetParent(AbilityPanel, true);
         }

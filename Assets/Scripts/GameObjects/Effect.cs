@@ -13,6 +13,9 @@ namespace SimpleRPG2
         public int minAmount { get; set; }
         public int maxAmount { get; set; }
 
+        public string sheetname { get; set; }
+        public int spriteindex { get; set; }
+
         public override string ToString()
         {
             return string.Format("{0} (Passive): {1} {2}-{3}", name, statType.ToString(), minAmount,maxAmount);
@@ -29,6 +32,9 @@ namespace SimpleRPG2
         public int maxAmount { get; set; }
 
         public int duration { get; set; }
+
+        public string sheetname { get; set; }
+        public int spriteindex { get; set; }
 
 
         public override string ToString()

@@ -49,6 +49,7 @@ namespace SimpleRPG2
             foreach (var t in tileAOEList)
             {
                 game.board.AddTempChar(t, '*');
+                game.board.AddTempEffect(t, ability.sheetname, ability.spriteindex);
             }
 
             var charAOEList = game.getCharactersFromTileList(tileAOEList);
@@ -62,6 +63,7 @@ namespace SimpleRPG2
 
             //Draw Temp Character
              game.board.AddTempChar(target, 'X');
+             game.board.AddTempEffect(target, ability.sheetname, ability.spriteindex);
             
 
             //special conditions if we're doing something on sourceCharacter
