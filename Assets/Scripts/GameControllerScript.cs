@@ -671,8 +671,8 @@ public class GameControllerScript : MonoBehaviour
 
     private void updateAbilityButton(GameObject parent, Sprite sprite, Ability selectedAbility)
     {
-        Image buttonImage = parent.GetComponentInChildren<Image>();
-        buttonImage.overrideSprite = sprite;
+        UIHelper.UpdateSpriteComponent(parent, "AbilityButtonImage", sprite);
+ 
 
         Button buttonClick = parent.GetComponentInChildren<Button>();
         buttonClick.onClick.AddListener(() => PlayerAbilityStart(selectedAbility));
