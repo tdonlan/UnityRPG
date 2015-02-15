@@ -17,15 +17,49 @@ namespace SimpleRPG2
                 {
                     if(game.r.NextDouble() > .95)
                     {
-                        b.board[i, j].empty = false;
-                        b.board[i, j].TileChar = '#';
+                        b.board[i, j] = getTile('#', i, j);
                     }
-                    
+                    else
+                    {
+                        b.board[i, j] = getTile('.', i, j);
+                    }
                 }
             }
 
             return b;
             
+        }
+
+        public static Tile getTile(char c, int x, int y)
+        {
+            Tile retval = new Tile(x,y);
+
+            retval.TileChar = c;
+            
+            retval.tempSheetName = string.Empty;
+            retval.tempSpriteIndex = 0;
+
+            switch(c)
+            {
+                case '.':
+                    retval.tileSheetName = "Tiles";
+                    retval.tileSpriteIndex = 2;
+
+                    retval.empty = true;
+                    
+                    break;
+                case '#':
+                    retval.tileSheetName = "Tiles";
+                    retval.tileSpriteIndex = 27;
+                    retval.empty = false;
+                    break;
+                default:
+                    retval.tileSheetName = "Tiles";
+                    retval.tileSpriteIndex = 2;
+                    retval.empty = true;
+                    break;
+            }
+            return retval;
         }
     }
 }
