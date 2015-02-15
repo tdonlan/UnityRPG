@@ -87,14 +87,9 @@ public class GameControllerScript : MonoBehaviour
         {
             for (int j = 0; j < this.battleGame.board.board.GetLength(1); j++)
             {
-                 if (battleGame.board.board[i,j].TileChar == '#')
-                {
-                    LoadTile(true, i, j);
-                }
-                else 
-                {
-                    LoadTile(false, i, j);
-                }
+
+                LoadTile(battleGame.board.board[i, j]);
+
             }
         }
     }
@@ -172,27 +167,18 @@ public class GameControllerScript : MonoBehaviour
 
         return effectSprite;
     }
-    
 
-    //load a sprite from resources and add as Game Object
-    public void LoadTile(bool isWall, int x, int y)
+    private void LoadTile(Tile t)
     {
-
         GameObject spriteObject = new GameObject("Tile " + name);
         SpriteRenderer renderer = spriteObject.AddComponent<SpriteRenderer>();
-        spriteObject.transform.position = new Vector3(x, y, 0);
-        if(isWall)
-        {
-            renderer.sprite = assetLibrary.getSprite("Tiles", 27);
-        
-        }
-        else
-        {
-            renderer.sprite = assetLibrary.getSprite("Tiles", 2);
-           
-        }
-       
+        spriteObject.transform.position = new Vector3(t.x, t.y, 0);
+
+        renderer.sprite = assetLibrary.getSprite(t.tileSheetName, t.tileSpriteIndex);
+
+
     }
+
 
     //Init the camera to middle of game board
     private void SetCamera()
