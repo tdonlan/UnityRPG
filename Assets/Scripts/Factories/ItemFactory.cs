@@ -19,13 +19,23 @@ namespace SimpleRPG2
 
         public static UsableItem getHealingPotion(Random r)
         {
-            UsableItem i = new UsableItem() {ID=1, name = "Healing Potion", activeEffects = new List<ActiveEffect>() { getActiveEffect(r) }, passiveEffects = null, type = ItemType.Potion, actionPoints=5,uses=1 };
+            ActiveEffect heal = new ActiveEffect()
+            {
+                name = "Heal",
+                duration = 1,
+                minAmount = 10,
+                maxAmount = 10,
+                statType = StatType.Heal,
+                sheetname = "Potions",
+                spriteindex = 18
+            };
+            UsableItem i = new UsableItem() { ID = 1, name = "Healing Potion", activeEffects = new List<ActiveEffect>() { heal }, passiveEffects = null, type = ItemType.Potion, actionPoints = 5, uses = 1, sheetname = "Potions", spriteindex = 18 };
             return i;
         }
 
         public static ActiveEffect getActiveEffect(Random r)
         {
-            return new ActiveEffect() {name="Heal",minAmount=5,maxAmount=10,duration=1,statType=StatType.HitPoints };
+            return new ActiveEffect() {name="Heal",minAmount=5,maxAmount=10,duration=1,statType=StatType.Heal };
         }
 
         public static PassiveEffect getPassiveEffect(Random r)

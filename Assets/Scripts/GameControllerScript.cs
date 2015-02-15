@@ -12,7 +12,6 @@ using UnityEngine.EventSystems;
 
 public class GameControllerScript : MonoBehaviour
 {
-
     public AssetLibrary assetLibrary { get; set; } 
     public BattleGame battleGame { get; set; }
 
@@ -33,7 +32,7 @@ public class GameControllerScript : MonoBehaviour
 
 
     private Ability selectedAbility { get; set; }
-    private Item selectedItem { get; set; }
+    private UsableItem selectedItem { get; set; }
     public UIStateType uiState { get; set; }
 
     public PlayerDecideState playerDecideState { get; set; }
@@ -78,7 +77,6 @@ public class GameControllerScript : MonoBehaviour
         InitiativePanel = GameObject.FindGameObjectWithTag("InitiativePanel");
 
         DebugText = GameObject.FindGameObjectWithTag("DebugText").GetComponent<Text>();
-
     }
 
     private void LoadBoard()
@@ -169,7 +167,6 @@ public class GameControllerScript : MonoBehaviour
 
         renderer.sprite = assetLibrary.getSprite(t.tileSheetName, t.tileSpriteIndex);
 
-
     }
 
 
@@ -252,6 +249,9 @@ public class GameControllerScript : MonoBehaviour
         //Update Abilities
         LoadAbilityList();
 
+        //update Items
+        LoadItemList();
+
         battleGame.NewTurn = false;
         battleGame.ActiveCharacter.RunActiveEffects(battleGame);
 
@@ -283,6 +283,9 @@ public class GameControllerScript : MonoBehaviour
                 break;
             case PlayerDecideState.AbilityPendingClick:
                 PlayerAbilitySelect();
+                break;
+            case PlayerDecideState.ItemPendingClick:
+                PlayerItemSelect();
                 break;
             default:
                 break;
@@ -340,6 +343,7 @@ public class GameControllerScript : MonoBehaviour
     //Create battle actions here, or lower level?
     public void PlayerEndTurn()
     {
+        HidePanels();
         if (uiState == UIStateType.PlayerDecide)
         {
             battleGame.NextTurn();
@@ -354,7 +358,7 @@ public class GameControllerScript : MonoBehaviour
 
     public void PlayerMoveStart()
     {
-        HideAbilityPanel();
+        HidePanels();
 
         if (uiState == UIStateType.PlayerDecide)
         {
@@ -376,7 +380,7 @@ public class GameControllerScript : MonoBehaviour
 
     public void PlayerAttackStart()
     {
-        HideAbilityPanel();
+        HidePanels();
 
         if(uiState == UIStateType.PlayerDecide)
         {
@@ -398,7 +402,7 @@ public class GameControllerScript : MonoBehaviour
 
     public void PlayerRangedAttackStart()
     {
-        HideAbilityPanel();
+        HidePanels();
 
         if (uiState == UIStateType.PlayerDecide)
         {
@@ -418,6 +422,29 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
+    public void PlayerItemStart(UsableItem selectedItem)
+    {
+        if (uiState == UIStateType.PlayerDecide)
+        {
+            clickPoint = null;
+            this.selectedItem = selectedItem;
+            playerDecideState = PlayerDecideState.ItemPendingClick;
+        }
+    }
+
+    public void PlayerItemSelect()
+    {
+        if (clickPoint != null)
+        {
+            playerDecideState = PlayerDecideState.Waiting;
+            battleGame.actionQueue.AddRange(battleGame.getItemActionList(selectedItem, clickPoint.x, clickPoint.y));
+            uiState = UIStateType.PlayerExecute;
+            HidePanels();
+            LoadItemList();
+        }
+    }
+
+
     public void PlayerAbilityStart(Ability selectedAbility)
     {
         if(uiState == UIStateType.PlayerDecide)
@@ -435,10 +462,9 @@ public class GameControllerScript : MonoBehaviour
             playerDecideState = PlayerDecideState.Waiting;
             battleGame.actionQueue.AddRange(battleGame.getAbilityActionList(selectedAbility, clickPoint.x, clickPoint.y));
             uiState = UIStateType.PlayerExecute;
-            HideAbilityPanel();
+            HidePanels();
             LoadAbilityList();
         }
-    
     }
 
 
@@ -578,8 +604,15 @@ public class GameControllerScript : MonoBehaviour
 
     #region UI
 
+    public void HidePanels()
+    {
+        HideItemPanel();
+        HideAbilityPanel();
+    }
+
     public void ShowAbilityPanel()
     {
+        HidePanels();
         var abilityPanel = GameObject.FindGameObjectWithTag("AbilitiesPanel");
         MoveUIObject(abilityPanel, new Vector3(-251, -268, -1));
        
@@ -590,6 +623,19 @@ public class GameControllerScript : MonoBehaviour
         var abilityPanel = GameObject.FindGameObjectWithTag("AbilitiesPanel");
         MoveUIObject(abilityPanel, new Vector3(265, -532, 0));
      
+    }
+
+    public void ShowItemPanel()
+    {
+        HidePanels();
+        var itemPanel = GameObject.FindGameObjectWithTag("ItemPanel");
+        MoveUIObject(itemPanel, new Vector3(-251, -268, -1));
+    }
+
+    public void HideItemPanel()
+    {
+        var itemPanel = GameObject.FindGameObjectWithTag("ItemPanel");
+        MoveUIObject(itemPanel, new Vector3(265, -532, 0));
     }
 
     private void MoveUIObject(GameObject uiObject, Vector3 newPos)
@@ -667,12 +713,42 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
- 
+    private void LoadItemList()
+    {
+        
+        List<ItemSet> itemSetList = ItemHelper.getItemSetList(battleGame.ActiveCharacter.inventory);
+
+        var usableItemList = (from data in itemSetList
+                         where data.count > 0
+                         select data).ToList();
+                        
+        var ItemPrefab = Resources.Load<GameObject>("ItemPrefab");
+
+        Transform ItemPanel = GameObject.FindGameObjectWithTag("ItemContentPanel").transform;
+
+        //Clear existing abilities
+        UIHelper.DestroyAllChildren(ItemPanel);
+
+        foreach (var item in usableItemList)
+        {
+
+            var usableItem = (UsableItem)ItemHelper.getFirstItemWithID(battleGame.ActiveCharacter.inventory, item.itemID);
+
+            GameObject itemObject = (GameObject)Instantiate(ItemPrefab);
+            UIHelper.UpdateTextComponent(itemObject, "ItemText", item.ToString());
+            UIHelper.UpdateSpriteComponent(itemObject, "ItemButtonImage", assetLibrary.getSprite(item.sheetname, item.spriteindex));
+
+            Button buttonClick = itemObject.GetComponentInChildren<Button>();
+            buttonClick.onClick.AddListener(() => PlayerItemStart(usableItem));
+
+            itemObject.transform.SetParent(ItemPanel, true);
+
+        }
+    }
 
     private void updateAbilityButton(GameObject parent, Sprite sprite, Ability selectedAbility)
     {
         UIHelper.UpdateSpriteComponent(parent, "AbilityButtonImage", sprite);
- 
 
         Button buttonClick = parent.GetComponentInChildren<Button>();
         buttonClick.onClick.AddListener(() => PlayerAbilityStart(selectedAbility));
