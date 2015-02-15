@@ -15,6 +15,7 @@ namespace SimpleRPG2
 
                 var tempTile = game.board.getTileFromLocation(defender.x, defender.y);
                 game.board.AddTempChar(tempTile, '*');
+                game.board.AddTempEffect(tempTile, GameConstants.weaponAttackSpritesheet, GameConstants.weaponAttackSpriteindex);
                 
                 
                 return Hit(attacker, defender, game,null);
@@ -45,6 +46,7 @@ namespace SimpleRPG2
                     foreach (var t in tileLOSList)
                     {
                         game.board.AddTempChar(t, '*');
+                        game.board.AddTempEffect(t, GameConstants.rangedAttackSpritesheet, GameConstants.rangedAttackSpriteindex);
                     }
 
                     //check LOS

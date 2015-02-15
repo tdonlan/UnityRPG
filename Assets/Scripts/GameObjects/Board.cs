@@ -190,11 +190,19 @@ namespace SimpleRPG2
             t.TempChar = c;
         }
 
+        public void AddTempEffect(Tile t, string sheetname, int spriteindex)
+        {
+            t.tempSheetName = sheetname;
+            t.tempSpriteIndex = spriteindex;
+        }
+
         public void ClearTempTiles()
         {
             foreach(Tile t in board)
             {
                 t.TempChar = ' ';
+                t.tempSheetName = string.Empty;
+                t.tempSpriteIndex = 0;
                 //t.TempChar = t.TileChar;
             }
         }

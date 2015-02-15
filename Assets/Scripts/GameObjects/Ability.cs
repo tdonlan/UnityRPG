@@ -22,6 +22,9 @@ namespace SimpleRPG2
         public List<ActiveEffect> activeEffects { get; set; }
         public List<PassiveEffect> passiveEffects { get; set; }
 
+        public string sheetname { get; set; }
+        public int spriteindex { get; set; }
+
         public override string ToString()
         {
             return string.Format("{0}: ap:{1} uses:{2} | {3}", name, ap, uses, description);

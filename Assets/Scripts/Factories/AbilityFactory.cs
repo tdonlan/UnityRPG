@@ -11,7 +11,8 @@ namespace SimpleRPG2
 
         public static Ability getFireball()
         {
-            ActiveEffect fireballEffect = new ActiveEffect() { name = "Fireball", duration = 1, minAmount = 100,maxAmount=200, statType = StatType.Damage };
+            ActiveEffect fireballEffect = new ActiveEffect() { name = "Fireball", duration = 1, minAmount = 100,maxAmount=200, statType = StatType.Damage,
+            sheetname="Particles",spriteindex=68};
 
             Ability fireball = new Ability()
             {
@@ -23,7 +24,9 @@ namespace SimpleRPG2
                 targetType = AbilityTargetType.LOSTarget,
                 tilePatternType = TilePatternType.NineSquare,
                 activeEffects = new List<ActiveEffect>() {fireballEffect },
-                passiveEffects=null
+                passiveEffects=null,
+                sheetname="Particles",
+                spriteindex=68
             };
 
             return fireball;
@@ -31,7 +34,7 @@ namespace SimpleRPG2
 
         public static Ability getMagicMissile()
         {
-            ActiveEffect missileEffect = new ActiveEffect(){name ="Magic Missile",duration=1,minAmount=1,maxAmount=6,statType=StatType.Damage};
+            ActiveEffect missileEffect = new ActiveEffect() { name = "Magic Missile", duration = 1, minAmount = 1, maxAmount = 6, statType = StatType.Damage, sheetname = "Particles", spriteindex = 33 };
             Ability magicMissile = new Ability()
             {
                 name= "Magic Missile",
@@ -42,7 +45,9 @@ namespace SimpleRPG2
                 targetType = AbilityTargetType.LOSTarget,
                 tilePatternType = TilePatternType.Single,
                 activeEffects = new List<ActiveEffect>(){missileEffect,missileEffect,missileEffect},
-                passiveEffects = null
+                passiveEffects = null,
+                sheetname = "Particles",
+                spriteindex = 33
             };
 
             return magicMissile;
@@ -50,7 +55,7 @@ namespace SimpleRPG2
 
         public static Ability getHeal()
         {
-            ActiveEffect healEffect = new ActiveEffect() { name = "Heal", duration = 1, minAmount = 5,maxAmount=10, statType = StatType.Heal };
+            ActiveEffect healEffect = new ActiveEffect() { name = "Heal", duration = 1, minAmount = 5, maxAmount = 10, statType = StatType.Heal, sheetname = "Particles", spriteindex = 97 };
             Ability heal = new Ability()
             {
                 name = "Heal",
@@ -61,7 +66,9 @@ namespace SimpleRPG2
                 targetType = AbilityTargetType.Self,
                 tilePatternType = TilePatternType.Single,
                 activeEffects = new List<ActiveEffect>() { healEffect },
-                passiveEffects = null
+                passiveEffects = null,
+                sheetname = "Particles",
+                spriteindex = 97
             };
 
             return heal;
@@ -69,7 +76,7 @@ namespace SimpleRPG2
 
         public static Ability getTeleport()
         {
-            ActiveEffect teleportEffect = new ActiveEffect() { name = "Teleport", duration = 1, minAmount = 0,maxAmount=0, statType = StatType.Teleport };
+            ActiveEffect teleportEffect = new ActiveEffect() { name = "Teleport", duration = 1, minAmount = 0, maxAmount = 0, statType = StatType.Teleport, sheetname = "Particles", spriteindex = 104 };
             Ability teleport = new Ability()
             {
                 name = "Teleport",
@@ -80,7 +87,9 @@ namespace SimpleRPG2
                 targetType = AbilityTargetType.PointEmpty,
                 tilePatternType = TilePatternType.Single,
                 activeEffects = new List<ActiveEffect>() { teleportEffect},
-                passiveEffects = null
+                passiveEffects = null,
+                sheetname = "Particles",
+                spriteindex = 104
             };
 
             return teleport;
@@ -88,7 +97,7 @@ namespace SimpleRPG2
 
         public static Ability getKnockback()
         {
-            ActiveEffect knockbackEffect = new ActiveEffect() { name = "Knockback", duration = 1, minAmount = 1,maxAmount=1, statType = StatType.Knockback };
+            ActiveEffect knockbackEffect = new ActiveEffect() { name = "Knockback", duration = 1, minAmount = 1, maxAmount = 1, statType = StatType.Knockback, sheetname = "Particles", spriteindex = 56 };
             Ability knockback = new Ability()
             {
                 name = "Knockback",
@@ -100,6 +109,8 @@ namespace SimpleRPG2
                 tilePatternType = TilePatternType.Single,
                 activeEffects = new List<ActiveEffect>() { knockbackEffect },
                 passiveEffects = null,
+                sheetname = "Particles",
+                spriteindex = 56
 
             };
 
@@ -110,9 +121,9 @@ namespace SimpleRPG2
 
         public static Ability getCharge()
         {
-            ActiveEffect chargeEffect = new ActiveEffect() { name = "Charge", duration = 1, minAmount = 5,maxAmount=5, statType = StatType.Teleport };
-            ActiveEffect knockbackEffect = new ActiveEffect() { name = "Knockback", duration = 1, minAmount = 1,maxAmount=1, statType = StatType.Knockback };
-            ActiveEffect damageEffect = new ActiveEffect() { name = "ChargeDamage", duration = 1, minAmount = 10,maxAmount=20, statType = StatType.Damage };
+            ActiveEffect chargeEffect = new ActiveEffect() { name = "Charge", duration = 1, minAmount = 5, maxAmount = 5, statType = StatType.Teleport,sheetname = "Particles", spriteindex = 56 };
+            ActiveEffect knockbackEffect = new ActiveEffect() { name = "Knockback", duration = 1, minAmount = 1, maxAmount = 1, statType = StatType.Knockback,sheetname = "Particles", spriteindex = 56 };
+            ActiveEffect damageEffect = new ActiveEffect() { name = "ChargeDamage", duration = 1, minAmount = 10, maxAmount = 20, statType = StatType.Damage, sheetname = "Particles", spriteindex = 102 };
 
             Ability charge = new Ability()
             {
@@ -125,6 +136,8 @@ namespace SimpleRPG2
                 tilePatternType = TilePatternType.Single,
                 activeEffects = new List<ActiveEffect>() { knockbackEffect, chargeEffect, damageEffect },
                 passiveEffects = null,
+                sheetname = "Particles",
+                spriteindex = 56
             };
 
             return charge;
@@ -132,8 +145,8 @@ namespace SimpleRPG2
 
         public static Ability getGrenade()
         {
-            ActiveEffect explodeEffect = new ActiveEffect() { name = "Explode", duration = 1, minAmount = 2,maxAmount=3, statType = StatType.Explode };
-            ActiveEffect fireEffect = new ActiveEffect() { name = "Fire", duration = 1, minAmount = 5,maxAmount=10, statType = StatType.Damage };
+            ActiveEffect explodeEffect = new ActiveEffect() { name = "Explode", duration = 1, minAmount = 2, maxAmount = 3, statType = StatType.Explode, sheetname = "Particles", spriteindex = 55 };
+            ActiveEffect fireEffect = new ActiveEffect() { name = "Fire", duration = 1, minAmount = 5, maxAmount = 10, statType = StatType.Damage, sheetname = "Particles", spriteindex = 68 };
 
             Ability grenade = new Ability()
             {
@@ -146,6 +159,8 @@ namespace SimpleRPG2
                 tilePatternType = TilePatternType.NineSquare,
                 activeEffects = new List<ActiveEffect>() { fireEffect, explodeEffect },
                 passiveEffects =null,
+                sheetname = "Particles",
+                spriteindex = 68
 
             };
 
@@ -160,7 +175,9 @@ namespace SimpleRPG2
                 duration = 3,
                 minAmount = 5,
                 maxAmount = 5,
-                statType = StatType.ActionPoints
+                statType = StatType.ActionPoints,
+                sheetname = "Particles",
+                spriteindex = 27
             };
 
             Ability haste = new Ability()
@@ -173,7 +190,9 @@ namespace SimpleRPG2
                 tilePatternType = TilePatternType.Single,
                 uses = 1,
                 activeEffects = new List<ActiveEffect>() { hasteEffect},
-                passiveEffects=null
+                passiveEffects = null,
+                sheetname = "Particles",
+                spriteindex = 27
 
             };
 
@@ -182,19 +201,29 @@ namespace SimpleRPG2
 
         public static Ability getShield()
         {
-            ActiveEffect shieldEffect = new ActiveEffect() { name = "Shield", duration = 2, minAmount = 10, maxAmount = 10, statType = StatType.HitPoints };
-            ActiveEffect healEffect = new ActiveEffect() { name = "Heal", duration = 1, minAmount = 999, maxAmount = 999, statType = StatType.Heal };
-            Ability shield = new Ability() {name = "Shield",description="Summon a temporary shield to protect you"
-            ,activeEffects = new List<ActiveEffect>(){shieldEffect,healEffect},
-            passiveEffects=null,
-            ap=5,range=1,targetType=AbilityTargetType.Self,tilePatternType=TilePatternType.Single,uses=1};
+            ActiveEffect shieldEffect = new ActiveEffect() { name = "Shield", duration = 2, minAmount = 10, maxAmount = 10, statType = StatType.HitPoints, sheetname = "Particles", spriteindex = 98 };
+            ActiveEffect healEffect = new ActiveEffect() { name = "Heal", duration = 1, minAmount = 999, maxAmount = 999, statType = StatType.Heal, sheetname = "Particles", spriteindex = 97 };
+
+            Ability shield = new Ability()
+            {
+                name = "Shield",
+                description = "Summon a temporary shield to protect you" ,
+                activeEffects = new List<ActiveEffect>() { shieldEffect, healEffect },
+                passiveEffects = null,
+                ap = 5,
+                range = 1,
+                targetType = AbilityTargetType.Self,
+                tilePatternType = TilePatternType.Single,
+                uses = 1,
+                sheetname="Particles",spriteindex=98
+            };
 
             return shield;
         }
 
         public static Ability getRage()
         {
-            ActiveEffect rageEffect = new ActiveEffect() { name = "Rage", duration = 2, minAmount = 5, maxAmount = 5, statType = StatType.Attack };
+            ActiveEffect rageEffect = new ActiveEffect() { name = "Rage", duration = 2, minAmount = 5, maxAmount = 5, statType = StatType.Attack, sheetname = "Particles", spriteindex = 102 };
 
             Ability rage = new Ability()
             {
@@ -206,7 +235,9 @@ namespace SimpleRPG2
                 passiveEffects = null,
                 range = 1,
                 targetType = AbilityTargetType.Self,
-                tilePatternType = TilePatternType.Single
+                tilePatternType = TilePatternType.Single,
+                sheetname = "Particles",
+                spriteindex = 102
             };
 
             return rage;
@@ -214,7 +245,7 @@ namespace SimpleRPG2
 
         public static Ability getWeb()
         {
-            ActiveEffect webEffect = new ActiveEffect() { name = "Web", duration = 99, minAmount = 0, maxAmount = 0, statType = StatType.Stuck };
+            ActiveEffect webEffect = new ActiveEffect() { name = "Web", duration = 99, minAmount = 0, maxAmount = 0, statType = StatType.Stuck, sheetname = "Particles", spriteindex = 94 };
             Ability web = new Ability()
             {
                 name = "Web",
@@ -225,7 +256,9 @@ namespace SimpleRPG2
                 passiveEffects = null,
                 range = 5,
                 targetType = AbilityTargetType.LOSTarget,
-                tilePatternType = TilePatternType.NineSquare
+                tilePatternType = TilePatternType.NineSquare,
+                sheetname = "Particles",
+                spriteindex = 94
             };
 
             return web;
@@ -233,7 +266,7 @@ namespace SimpleRPG2
 
         public static Ability getDispellMagic()
         {
-            ActiveEffect dispellEffect = new ActiveEffect() { name = "Dispell", duration = 1, minAmount = 1, maxAmount = 1, statType = StatType.Dispell };
+            ActiveEffect dispellEffect = new ActiveEffect() { name = "Dispell", duration = 1, minAmount = 1, maxAmount = 1, statType = StatType.Dispell, sheetname = "Particles", spriteindex = 107 };
             Ability dispell = new Ability()
             {
                 name = "Dispell",
@@ -245,6 +278,8 @@ namespace SimpleRPG2
                 range = 5,
                 targetType = AbilityTargetType.PointTarget,
                 tilePatternType = TilePatternType.Single,
+                sheetname = "Particles",
+                spriteindex = 107
             };
 
             return dispell;
@@ -252,7 +287,7 @@ namespace SimpleRPG2
 
         public static Ability getSlow()
         {
-            ActiveEffect slowEffect = new ActiveEffect() { name="Slow",duration=2,minAmount=-5,maxAmount=-5,statType = StatType.ActionPoints};
+            ActiveEffect slowEffect = new ActiveEffect() { name = "Slow", duration = 2, minAmount = -5, maxAmount = -5, statType = StatType.ActionPoints, sheetname = "Particles", spriteindex = 100 };
 
             Ability slow = new Ability()
             {
@@ -264,7 +299,9 @@ namespace SimpleRPG2
                 range = 5,
                 targetType = AbilityTargetType.SingleFoe,
                 tilePatternType = TilePatternType.Single,
-                uses = 5
+                uses = 5,
+                sheetname = "Particles",
+                spriteindex = 100
             };
 
             return slow;
@@ -272,7 +309,7 @@ namespace SimpleRPG2
 
         public static Ability getStun()
         {
-            ActiveEffect stunEffect = new ActiveEffect() { name = "Stun", duration = 5, minAmount = 0, maxAmount = 0, statType = StatType.Stun };
+            ActiveEffect stunEffect = new ActiveEffect() { name = "Stun", duration = 5, minAmount = 0, maxAmount = 0, statType = StatType.Stun, sheetname = "Particles", spriteindex = 58 };
             Ability stun = new Ability()
             {
                 name = "Stun",
@@ -283,14 +320,16 @@ namespace SimpleRPG2
                 range = 5,
                 targetType = AbilityTargetType.SingleFoe,
                 tilePatternType = TilePatternType.Single,
-                uses = 5
+                uses = 5,
+                sheetname = "Particles",
+                spriteindex = 58
             };
             return stun;
         }
 
         public static Ability getPoison()
         {
-            ActiveEffect poisonEffect = new ActiveEffect() { name = "Poison", duration = 99, minAmount = 10, maxAmount = 10, statType = StatType.Damage };
+            ActiveEffect poisonEffect = new ActiveEffect() { name = "Poison", duration = 99, minAmount = 10, maxAmount = 10, statType = StatType.Damage, sheetname = "Particles", spriteindex = 49 };
             Ability poison = new Ability()
             {
                 name = "Poison",
@@ -303,7 +342,9 @@ namespace SimpleRPG2
                 range = 1,
                 targetType = AbilityTargetType.PointTarget,
                 tilePatternType = TilePatternType.Single,
-                uses = 99
+                uses = 99,
+                sheetname = "Particles",
+                spriteindex = 49
             };
 
             return poison;
