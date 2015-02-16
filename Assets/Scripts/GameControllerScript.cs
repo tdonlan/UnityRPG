@@ -14,6 +14,7 @@ public class GameControllerScript : MonoBehaviour
 {
     public AssetLibrary assetLibrary { get; set; } 
     public BattleGame battleGame { get; set; }
+    public BattleStatusType battleStatus { get; set; }
 
     public List<GameObject> tileCharacterList { get; set; }
     public List<GameObject> tempEffectList { get; set; }
@@ -61,6 +62,8 @@ public class GameControllerScript : MonoBehaviour
         LoadUI();
 
         SetCamera();
+
+        DontDestroyOnLoad(this);
     }
 
     // Use this for initialization
@@ -190,19 +193,49 @@ public class GameControllerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateDebug();
-        UITimer -= Time.deltaTime; 
-        if(UITimer <= 0)
-        {
-            UpdateBattle();
-            UITimer = .5f;
-            LoadTempEffects();
+        if(battleStatus != BattleStatusType.GameOver)
+        { battleStatus = battleGame.getBattleStatus();
         }
+       
 
-        UpdateCamera();
-        ClickTile();
+        if (battleStatus == BattleStatusType.Running)
+        {
+
+
+            UpdateDebug();
+            UITimer -= Time.deltaTime;
+            if (UITimer <= 0)
+            {
+                UpdateBattle();
+                UITimer = .5f;
+                LoadTempEffects();
+            }
+
+            UpdateCamera();
+            ClickTile();
+        }
+        else if (battleStatus == BattleStatusType.PlayersDead)
+            {
+                battleStatus = BattleStatusType.GameOver;
+                LoseBattle();
+            }
+            else if (battleStatus == BattleStatusType.EnemiesDead)
+            {
+                battleStatus = BattleStatusType.GameOver;
+                WinBattle();
+            }
 
     }
+
+    private void LoseBattle()
+    {
+        Application.LoadLevel("GameOverScene");
+    }
+
+    private void WinBattle()
+{
+    Application.LoadLevel("GameOverScene");
+}
 
     void UpdateDebug()
     {

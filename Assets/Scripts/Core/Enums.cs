@@ -79,6 +79,7 @@ namespace SimpleRPG2
         PlayersDead,
         EnemiesDead,
         Running,
+        GameOver,
        
     }
 
