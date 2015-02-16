@@ -41,8 +41,7 @@ public class GameControllerScript : MonoBehaviour
     public GameObject InitiativePanel { get; set; }
     private GameObject InitPrefab { get; set; }
 
-    // Use this for initialization
-    void Start()
+    void Awake()
     {
         this.assetLibrary = new AssetLibrary();
         this.battleGame = new BattleGame();
@@ -62,6 +61,12 @@ public class GameControllerScript : MonoBehaviour
         LoadUI();
 
         SetCamera();
+    }
+
+    // Use this for initialization
+    void Start()
+    {
+  
 
     }
 
@@ -380,9 +385,26 @@ public class GameControllerScript : MonoBehaviour
 
     public void PlayerAttackStart()
     {
+
+        if (battleGame.ActiveCharacter.weapon != null)
+        {
+            if (battleGame.ActiveCharacter.weapon.weaponType == WeaponType.OneHandRanged || battleGame.ActiveCharacter.weapon.weaponType == WeaponType.TwoHandRanged)
+            {
+                PlayerRangedAttackStart();
+            }
+            else
+            {
+                PlayerMeleeAttackStart();
+            }
+
+        }
+    }
+
+    public void PlayerMeleeAttackStart()
+    {
         HidePanels();
 
-        if(uiState == UIStateType.PlayerDecide)
+        if (uiState == UIStateType.PlayerDecide)
         {
             DebugText.text = string.Format("Select Target");
             clickPoint = null;
@@ -418,7 +440,6 @@ public class GameControllerScript : MonoBehaviour
             playerDecideState = PlayerDecideState.Waiting;
             battleGame.actionQueue.AddRange(battleGame.getRangedAttackActionList(clickPoint.x, clickPoint.y));
             uiState = UIStateType.PlayerExecute;
-            
         }
     }
 
@@ -636,6 +657,18 @@ public class GameControllerScript : MonoBehaviour
     {
         var itemPanel = GameObject.FindGameObjectWithTag("ItemPanel");
         MoveUIObject(itemPanel, new Vector3(265, -532, 0));
+    }
+
+    public void ShowEquipPanel()
+    {
+        var equipPanel = GameObject.FindGameObjectWithTag("EquipPanel");
+        MoveUIObject(equipPanel, new Vector3(0, 0, 0));
+    }
+
+    public void HideEquipPanel()
+    {
+        var equipPanel = GameObject.FindGameObjectWithTag("EquipPanel");
+        MoveUIObject(equipPanel, new Vector3(-1400, -0, 0));
     }
 
     private void MoveUIObject(GameObject uiObject, Vector3 newPos)

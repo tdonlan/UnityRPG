@@ -15,6 +15,10 @@ using System.Linq;
 
 public class EquipmentTestScript : MonoBehaviour {
 
+
+    public GameObject gameController;
+    private GameControllerScript gameControllerScript;
+
     public AssetLibrary assetLibrary { get; set; } 
 
     public BattleGame battleGame { get; set; }
@@ -23,12 +27,19 @@ public class EquipmentTestScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+        this.gameControllerScript = (GameControllerScript)gameController.GetComponent<GameControllerScript>();
+        this.assetLibrary = gameControllerScript.assetLibrary;
+        this.battleGame = gameControllerScript.battleGame;
+
+        /*
         this.assetLibrary = new AssetLibrary();
         this.battleGame = new BattleGame();
-
+        */
         LoadCharacterStats();
 
 	}
+
 
     private void LoadCharacterStats()
     {
