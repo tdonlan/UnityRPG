@@ -9,6 +9,38 @@ namespace SimpleRPG2
     public class AbilityFactory
     {
 
+        public static List<Ability> getAbilityListFromStrList(List<string> strList)
+        {
+            List<Ability> retvalList = new List<Ability>();
+            foreach(var str in strList)
+            {
+                switch(str)
+                {
+                    case "Fireball": retvalList.Add(getFireball()); break;
+                    case "MagicMissile": retvalList.Add(getMagicMissile()); break;
+                    case "Heal": retvalList.Add(getHeal()); break;
+                    case "GroupHeal": retvalList.Add(getGroupHeal()); break;
+                    case "Teleport": retvalList.Add(getTeleport()); break;
+                    case "Knockback": retvalList.Add(getKnockback()); break;
+                    case "Charge": retvalList.Add(getCharge()); break;
+                    case "Grenade": retvalList.Add(getGrenade()); break;
+                    case "Haste": retvalList.Add(getHaste()); break;
+                    case "Shield": retvalList.Add(getShield()); break;
+                    case "Rage": retvalList.Add(getRage()); break;
+                    case "Web": retvalList.Add(getWeb()); break;
+                    case "DispellMagic": retvalList.Add(getDispellMagic()); break;
+                    case "Slow": retvalList.Add(getSlow()); break;
+                    case "Stun": retvalList.Add(getStun()); break;
+                    case "Poison": retvalList.Add(getPoison()); break;
+
+                    default:
+                        break;
+                        
+                }
+            }
+            return retvalList;
+        }
+
         public static Ability getFireball()
         {
             ActiveEffect fireballEffect = new ActiveEffect() { name = "Fireball", duration = 1, minAmount = 100,maxAmount=200, statType = StatType.Damage,
@@ -73,6 +105,29 @@ namespace SimpleRPG2
 
             return heal;
         }
+
+
+        public static Ability getGroupHeal()
+        {
+            ActiveEffect healEffect = new ActiveEffect() { name = "Group Heal", duration = 1, minAmount = 10, maxAmount = 20, statType = StatType.Heal, sheetname = "Particles", spriteindex = 97 };
+            Ability groupHeal = new Ability()
+            {
+                name = "Group Heal",
+                description = "Heal all Allies",
+                ap = 10,
+                range = 20,
+                uses = 1,
+                targetType = AbilityTargetType.AllFriends,
+                tilePatternType = TilePatternType.Single,
+                activeEffects = new List<ActiveEffect>() { healEffect },
+                passiveEffects = null,
+                sheetname = "Particles",
+                spriteindex = 97
+
+            };
+            return groupHeal;
+        }
+
 
         public static Ability getTeleport()
         {

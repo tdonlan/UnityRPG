@@ -32,6 +32,13 @@ namespace SimpleRPG2
                     dict.Add(AIActionType.Nuke, 85);
                     dict.Add(AIActionType.Flee, 50);
                     break;
+                case EnemyType.Archer:
+                    dict.Add(AIActionType.RangedAttack, 5);
+                    dict.Add(AIActionType.Buff, 0);
+                    dict.Add(AIActionType.Heal, 20);
+                    dict.Add(AIActionType.Nuke, 0);
+                    dict.Add(AIActionType.Flee, 50);
+                    break;
                 default:
                     break;
 

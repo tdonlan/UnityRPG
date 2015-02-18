@@ -8,14 +8,38 @@ namespace SimpleRPG2
 {
     public class ItemFactory
     {
-        public static Item getItem(Random r)
-        {
-            Item i = new Item() {ID=1,name="Healing Potion",activeEffects=new List<ActiveEffect>(){getActiveEffect(r)},passiveEffects=null,type=ItemType.Potion,
-                sheetname="Potions",spriteindex=18
-            };
 
-            return i;
+        public static List<Item> getItemListFromStrList(List<string> strList, Random r)
+        {
+            List<Item> retvalList = new List<Item>();
+            foreach(var str in strList)
+            {
+                switch (str)
+                {
+                    case "HealingPotion": retvalList.Add((Item)getHealingPotion(r)); break;
+                    case "Longsword": retvalList.Add((Item)getHealingPotion(r)); break;
+                    case "Dagger": retvalList.Add((Item)getDagger(r)); break;
+                    case "BattleAxe": retvalList.Add((Item)getBattleAxe(r)); break;
+                    case "Mace": retvalList.Add((Item)getMace(r)); break;
+                    case "Bow": retvalList.Add((Item)getBow(r)); break;
+                    case "PoisonArrow": retvalList.Add((Item)getPoisonArrow(r)); break;
+                    case "Grenade": retvalList.Add((Item)getGrenade(r)); break;
+                    case "MissileWand": retvalList.Add((Item)getMissileWand(r)); break;
+                    case "Chainmail": retvalList.Add((Item)getChainmail(r)); break;
+                    case "LeatherChest": retvalList.Add((Item)getLeatherChest(r)); break;
+                    case "Greathelm": retvalList.Add((Item)getGreathelm(r)); break;
+                    case "Cap": retvalList.Add((Item)getCap(r)); break;
+                    case "RegenRing": retvalList.Add((Item)getRegenRing(r)); break;
+                    case "AttackRing": retvalList.Add((Item)getAttackRing(r)); break;
+
+                    default:
+                        break;
+
+                }
+            }
+            return retvalList;
         }
+
 
         public static UsableItem getHealingPotion(Random r)
         {
@@ -33,15 +57,6 @@ namespace SimpleRPG2
             return i;
         }
 
-        public static ActiveEffect getActiveEffect(Random r)
-        {
-            return new ActiveEffect() {name="Heal",minAmount=5,maxAmount=10,duration=1,statType=StatType.Heal };
-        }
-
-        public static PassiveEffect getPassiveEffect(Random r)
-        {
-            return new PassiveEffect() { name = "Regen", minAmount = 1, maxAmount=1, statType = StatType.HitPoints };
-        }
 
         public static Weapon getLongsword(Random r)
         {
@@ -69,6 +84,43 @@ namespace SimpleRPG2
             return w;
         }
 
+        public static Weapon getMace(Random r)
+        {
+            Weapon w = new Weapon()
+            {
+                ID = 101,
+                name = "Holy Mace",
+                minDamage = 2,
+                maxDamage = 12,
+                type = ItemType.Weapon,
+                actionPoints = 5,
+                activeEffects = null,
+                passiveEffects = null,
+                sheetname = "Weapons",
+                spriteindex = 24
+            };
+            return w;
+        }
+
+        public static Weapon getDragonClaw(Random r)
+        {
+            Weapon w = new Weapon()
+            {
+                ID = 102,
+                name = "Dragon Claw",
+                minDamage = 20,
+                maxDamage = 50,
+                type = ItemType.Weapon,
+                actionPoints = 10,
+                activeEffects = null,
+                passiveEffects = null,
+                sheetname = "Weapons",
+                spriteindex = 17
+
+            };
+            return w;
+        }
+
         public static RangedWeapon getBow(Random r)
         {
             ActiveEffect stun = new ActiveEffect() { name = "Stun", duration = 2, maxAmount = 0, minAmount = 0, statType = StatType.Stun };
@@ -92,7 +144,7 @@ namespace SimpleRPG2
             return w;
         }
 
-        public static Ammo getArrow(Random r)
+        public static Ammo getPoisonArrow(Random r)
         {
             ActiveEffect poison = new ActiveEffect() { name = "Weak Poison", duration = 3, maxAmount = 2, minAmount = 1, statType = StatType.Damage };
             Ammo a = new Ammo() { ID = 20, activeEffects = new List<ActiveEffect>() { poison}, ammoType = AmmoType.Arrows, bonusDamage = 5, name = "Poison Arrow", passiveEffects = null, type = ItemType.Ammo,

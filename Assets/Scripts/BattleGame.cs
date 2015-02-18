@@ -39,20 +39,37 @@ namespace SimpleRPG2
             }
         }
 
-        public BattleGame()
+        public BattleGame(GameData gameData, Random r)
         {
-            //Load Game Data
-            //gameData = new GameData();
+            this.gameData = gameData;
 
+            this.r = r;
 
-            r = new Random();
             battleLog = new BattleLog();
+
+            LoadBoardFromData();
+            LoadCharactersFromData();
 
             StartBattle();
             
         }
 
+        private void LoadBoardFromData()
+        {
+            //randomized board for now
+            board = BoardFactory.getRandomBoard(this, 20);
+        }
+
+
+        private void LoadCharactersFromData()
+        {
+            characterList = new List<GameCharacter>();
+            characterList.AddRange(gameData.gameCharacterList);
+            battleLog.AddEntry("Characters Initialized");
+        }
+
      
+        //DEPRECATED - Characters come from Game Data
         private void InitChars()
         {
             characterList = new List<GameCharacter>();
@@ -70,10 +87,11 @@ namespace SimpleRPG2
             NewTurn = true;
             battleLog.AddEntry("Starting Battle");
 
-            board = BoardFactory.getRandomBoard(this, 20);
+            //board = BoardFactory.getRandomBoard(this, 20);
 
-            InitChars();
+            //InitChars();
             SetBattleInitiative();
+
             placeCharactersInBoard();
             
             //Battle is now run by Unity GameController
@@ -83,6 +101,7 @@ namespace SimpleRPG2
 
         private void SetBattleInitiative()
         { 
+            
             //randomize attack order 
         }
 

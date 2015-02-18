@@ -41,6 +41,7 @@ namespace Assets
             spritesheetList.Add(getSpritesheet("Wands", "dg_wands32"));
             spritesheetList.Add(getSpritesheet("Potions", "dg_potions32"));
             spritesheetList.Add(getSpritesheet("Blank", "blankItem"));
+            spritesheetList.Add(getSpritesheet("Dragons", "dg_dragon32Edit"));
         }
 
         private Spritesheet getSpritesheet(string sheetname, string filename)
