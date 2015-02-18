@@ -12,15 +12,23 @@ namespace SimpleRPG2
     public class GameData
     {
 
-        Dictionary<string, string> fileManifest { get; set; }
-        List<Ability> masterAbilityList { get; set; }
-        List<Item> masterItemList { get; set; }
+        public Dictionary<string, string> fileManifest { get; set; }
+        public List<Ability> masterAbilityList { get; set; }
+        public List<Item> masterItemList { get; set; }
+
+        public List<GameCharacter> gameCharacterList { get; set; }
+        public Board gameBoard { get; set; }
 
         public GameData()
         {
+
+            masterAbilityList = new List<Ability>();
+            masterItemList = new List<Item>();
+            gameCharacterList = new List<GameCharacter>();
+           
             //load manifest dictionary
-            string manifestPath = @"DataFiles\manifest.json";
-            LoadManifest(manifestPath);
+            //string manifestPath = @"DataFiles\manifest.json";
+            //LoadManifest(manifestPath);
 
             //load master list from json files
         }

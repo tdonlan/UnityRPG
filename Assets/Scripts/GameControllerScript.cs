@@ -45,8 +45,6 @@ public class GameControllerScript : MonoBehaviour
     void Awake()
     {
         this.assetLibrary = new AssetLibrary();
-        this.battleGame = new BattleGame();
-
         tileCharacterList = new List<GameObject>();
         tempEffectList = new List<GameObject>();
 
@@ -55,6 +53,10 @@ public class GameControllerScript : MonoBehaviour
         this.clickPoint = null;
 
         this.uiState = UIStateType.NewTurn;
+
+        var startScript = GameObject.FindObjectOfType<StartGameScript>();
+        var gameData = BattleFactory.getGameData(startScript.battleIndex, this.r);
+        this.battleGame = new BattleGame(gameData, r);
 
         LoadBoard();
         LoadCharacters();
@@ -69,8 +71,8 @@ public class GameControllerScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-  
 
+    
     }
 
     private void LoadUI()

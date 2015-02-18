@@ -1,95 +1,63 @@
 fileFormatVersion: 2
-guid: 01ad70982eafae8498cd4aefd850ae87
+guid: 0dbba995db83cf14ca9d8e3957c9a563
 TextureImporter:
   fileIDToRecycleName:
-    21300000: dg_classm32_0
-    21300002: dg_classm32_1
-    21300004: dg_classm32_2
-    21300006: dg_classm32_3
-    21300008: dg_classm32_4
-    21300010: dg_classm32_5
-    21300012: dg_classm32_6
-    21300014: dg_classm32_7
-    21300016: dg_classm32_8
-    21300018: dg_classm32_9
-    21300020: dg_classm32_10
-    21300022: dg_classm32_11
-    21300024: dg_classm32_12
-    21300026: dg_classm32_13
-    21300028: dg_classm32_14
-    21300030: dg_classm32_15
-    21300032: dg_classm32_16
-    21300034: dg_classm32_17
-    21300036: dg_classm32_18
-    21300038: dg_classm32_19
-    21300040: dg_classm32_20
-    21300042: dg_classm32_21
-    21300044: dg_classm32_22
-    21300046: dg_classm32_23
-    21300048: dg_classm32_24
-    21300050: dg_classm32_25
-    21300052: dg_classm32_26
-    21300054: dg_classm32_27
-    21300056: dg_classm32_28
-    21300058: dg_classm32_29
-    21300060: dg_classm32_30
-    21300062: dg_classm32_31
-    21300064: dg_classm32_32
-    21300066: dg_classm32_33
-    21300068: dg_classm32_34
-    21300070: dg_classm32_35
-    21300072: dg_classm32_36
-    21300074: dg_classm32_37
-    21300076: dg_classm32_38
-    21300078: dg_classm32_39
-    21300080: dg_classm32_40
-    21300082: dg_classm32_41
-    21300084: dg_classm32_42
-    21300086: dg_classm32_43
-    21300088: dg_classm32_44
-    21300090: dg_classm32_45
-    21300092: dg_classm32_46
-    21300094: dg_classm32_47
-    21300096: dg_classm32_48
-    21300098: dg_classm32_49
-    21300100: dg_classm32_50
-    21300102: dg_classm32_51
-    21300104: dg_classm32_52
-    21300106: dg_classm32_53
-    21300108: dg_classm32_54
-    21300110: dg_classm32_55
-    21300112: dg_classm32_56
-    21300114: dg_classm32_57
-    21300116: dg_classm32_58
-    21300118: dg_classm32_59
-    21300120: dg_classm32_60
-    21300122: dg_classm32_61
-    21300124: dg_classm32_62
-    21300126: dg_classm32_63
-    21300128: dg_classm32_64
-    21300130: dg_classm32_65
-    21300132: dg_classm32_66
-    21300134: dg_classm32_67
-    21300136: dg_classm32_68
-    21300138: dg_classm32_69
-    21300140: dg_classm32_70
-    21300142: dg_classm32_71
-    21300144: dg_classm32_72
-    21300146: dg_classm32_73
-    21300148: dg_classm32_74
-    21300150: dg_classm32_75
-    21300152: dg_classm32_76
-    21300154: dg_classm32_77
-    21300156: dg_classm32_78
-    21300158: dg_classm32_79
-    21300160: dg_classm32_80
-    21300162: dg_classm32_81
-    21300164: dg_classm32_82
-    21300166: dg_classm32_83
-    21300168: dg_classm32_84
-    21300170: dg_classm32_85
-    21300172: dg_classm32_86
-    21300174: dg_classm32_87
+    21300000: dg_dragon32Edit_0
+    21300002: dg_dragon32Edit_1
+    21300004: dg_dragon32Edit_2
+    21300006: dg_dragon32Edit_3
+    21300008: dg_dragon32Edit_4
+    21300010: dg_dragon32Edit_5
+    21300012: dg_dragon32Edit_6
+    21300014: dg_dragon32Edit_7
+    21300016: dg_dragon32Edit_8
+    21300018: dg_dragon32Edit_9
+    21300020: dg_dragon32Edit_10
+    21300022: dg_dragon32Edit_11
+    21300024: dg_dragon32Edit_12
+    21300026: dg_dragon32Edit_13
+    21300028: dg_dragon32Edit_14
+    21300030: dg_dragon32Edit_15
+    21300032: dg_dragon32Edit_16
+    21300034: dg_dragon32Edit_17
+    21300036: dg_dragon32Edit_18
+    21300038: dg_dragon32Edit_19
+    21300040: dg_dragon32Edit_20
+    21300042: dg_dragon32Edit_21
+    21300044: dg_dragon32Edit_22
+    21300046: dg_dragon32Edit_23
+    21300048: dg_dragon32Edit_24
+    21300050: dg_dragon32Edit_25
+    21300052: dg_dragon32Edit_26
+    21300054: dg_dragon32Edit_27
+    21300056: dg_dragon32Edit_28
+    21300058: dg_dragon32Edit_29
+    21300060: dg_dragon32Edit_30
+    21300062: dg_dragon32Edit_31
+    21300064: dg_dragon32Edit_32
+    21300066: dg_dragon32Edit_33
+    21300068: dg_dragon32Edit_34
+    21300070: dg_dragon32Edit_35
+    21300072: dg_dragon32Edit_36
+    21300074: dg_dragon32Edit_37
+    21300076: dg_dragon32Edit_38
+    21300078: dg_dragon32Edit_39
+    21300080: dg_dragon32Edit_40
+    21300082: dg_dragon32Edit_41
+    21300084: dg_dragon32Edit_42
+    21300086: dg_dragon32Edit_43
+    21300088: dg_dragon32Edit_44
+    21300090: dg_dragon32Edit_45
+    21300092: dg_dragon32Edit_46
+    21300094: dg_dragon32Edit_47
+    21300096: dg_dragon32Edit_48
+    21300098: dg_dragon32Edit_49
+    21300100: dg_dragon32Edit_50
+    21300102: dg_dragon32Edit_51
+    21300104: dg_dragon32Edit_52
+    21300106: dg_dragon32Edit_53
+    21300108: dg_dragon32Edit_54
+    21300110: dg_dragon32Edit_55
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -131,327 +99,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: dg_classm32_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 320
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 320
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 320
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 320
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 320
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 320
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_6
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 320
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_7
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 320
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 288
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_9
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 288
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_10
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 288
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_11
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 288
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_12
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 288
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_13
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 288
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_14
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 288
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_15
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 288
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_16
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_17
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_18
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_19
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_20
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_21
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_22
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_23
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_24
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_25
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_26
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_27
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_28
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_29
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_30
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_31
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_32
+    - name: dg_dragon32Edit_0
       rect:
         serializedVersion: 2
         x: 0
@@ -461,7 +109,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_33
+    - name: dg_dragon32Edit_1
       rect:
         serializedVersion: 2
         x: 32
@@ -471,7 +119,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_34
+    - name: dg_dragon32Edit_2
       rect:
         serializedVersion: 2
         x: 64
@@ -481,7 +129,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_35
+    - name: dg_dragon32Edit_3
       rect:
         serializedVersion: 2
         x: 96
@@ -491,7 +139,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_36
+    - name: dg_dragon32Edit_4
       rect:
         serializedVersion: 2
         x: 128
@@ -501,7 +149,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_37
+    - name: dg_dragon32Edit_5
       rect:
         serializedVersion: 2
         x: 160
@@ -511,7 +159,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_38
+    - name: dg_dragon32Edit_6
       rect:
         serializedVersion: 2
         x: 192
@@ -521,7 +169,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_39
+    - name: dg_dragon32Edit_7
       rect:
         serializedVersion: 2
         x: 224
@@ -531,7 +179,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_40
+    - name: dg_dragon32Edit_8
       rect:
         serializedVersion: 2
         x: 0
@@ -541,7 +189,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_41
+    - name: dg_dragon32Edit_9
       rect:
         serializedVersion: 2
         x: 32
@@ -551,7 +199,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_42
+    - name: dg_dragon32Edit_10
       rect:
         serializedVersion: 2
         x: 64
@@ -561,7 +209,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_43
+    - name: dg_dragon32Edit_11
       rect:
         serializedVersion: 2
         x: 96
@@ -571,7 +219,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_44
+    - name: dg_dragon32Edit_12
       rect:
         serializedVersion: 2
         x: 128
@@ -581,7 +229,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_45
+    - name: dg_dragon32Edit_13
       rect:
         serializedVersion: 2
         x: 160
@@ -591,7 +239,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_46
+    - name: dg_dragon32Edit_14
       rect:
         serializedVersion: 2
         x: 192
@@ -601,7 +249,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_47
+    - name: dg_dragon32Edit_15
       rect:
         serializedVersion: 2
         x: 224
@@ -611,7 +259,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_48
+    - name: dg_dragon32Edit_16
       rect:
         serializedVersion: 2
         x: 0
@@ -621,7 +269,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_49
+    - name: dg_dragon32Edit_17
       rect:
         serializedVersion: 2
         x: 32
@@ -631,7 +279,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_50
+    - name: dg_dragon32Edit_18
       rect:
         serializedVersion: 2
         x: 64
@@ -641,7 +289,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_51
+    - name: dg_dragon32Edit_19
       rect:
         serializedVersion: 2
         x: 96
@@ -651,7 +299,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_52
+    - name: dg_dragon32Edit_20
       rect:
         serializedVersion: 2
         x: 128
@@ -661,7 +309,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_53
+    - name: dg_dragon32Edit_21
       rect:
         serializedVersion: 2
         x: 160
@@ -671,7 +319,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_54
+    - name: dg_dragon32Edit_22
       rect:
         serializedVersion: 2
         x: 192
@@ -681,7 +329,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_55
+    - name: dg_dragon32Edit_23
       rect:
         serializedVersion: 2
         x: 224
@@ -691,7 +339,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_56
+    - name: dg_dragon32Edit_24
       rect:
         serializedVersion: 2
         x: 0
@@ -701,7 +349,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_57
+    - name: dg_dragon32Edit_25
       rect:
         serializedVersion: 2
         x: 32
@@ -711,7 +359,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_58
+    - name: dg_dragon32Edit_26
       rect:
         serializedVersion: 2
         x: 64
@@ -721,7 +369,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_59
+    - name: dg_dragon32Edit_27
       rect:
         serializedVersion: 2
         x: 96
@@ -731,7 +379,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_60
+    - name: dg_dragon32Edit_28
       rect:
         serializedVersion: 2
         x: 128
@@ -741,7 +389,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_61
+    - name: dg_dragon32Edit_29
       rect:
         serializedVersion: 2
         x: 160
@@ -751,7 +399,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_62
+    - name: dg_dragon32Edit_30
       rect:
         serializedVersion: 2
         x: 192
@@ -761,7 +409,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_63
+    - name: dg_dragon32Edit_31
       rect:
         serializedVersion: 2
         x: 224
@@ -771,7 +419,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_64
+    - name: dg_dragon32Edit_32
       rect:
         serializedVersion: 2
         x: 0
@@ -781,7 +429,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_65
+    - name: dg_dragon32Edit_33
       rect:
         serializedVersion: 2
         x: 32
@@ -791,7 +439,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_66
+    - name: dg_dragon32Edit_34
       rect:
         serializedVersion: 2
         x: 64
@@ -801,7 +449,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_67
+    - name: dg_dragon32Edit_35
       rect:
         serializedVersion: 2
         x: 96
@@ -811,7 +459,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_68
+    - name: dg_dragon32Edit_36
       rect:
         serializedVersion: 2
         x: 128
@@ -821,7 +469,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_69
+    - name: dg_dragon32Edit_37
       rect:
         serializedVersion: 2
         x: 160
@@ -831,7 +479,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_70
+    - name: dg_dragon32Edit_38
       rect:
         serializedVersion: 2
         x: 192
@@ -841,7 +489,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_71
+    - name: dg_dragon32Edit_39
       rect:
         serializedVersion: 2
         x: 224
@@ -851,7 +499,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_72
+    - name: dg_dragon32Edit_40
       rect:
         serializedVersion: 2
         x: 0
@@ -861,7 +509,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_73
+    - name: dg_dragon32Edit_41
       rect:
         serializedVersion: 2
         x: 32
@@ -871,7 +519,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_74
+    - name: dg_dragon32Edit_42
       rect:
         serializedVersion: 2
         x: 64
@@ -881,7 +529,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_75
+    - name: dg_dragon32Edit_43
       rect:
         serializedVersion: 2
         x: 96
@@ -891,7 +539,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_76
+    - name: dg_dragon32Edit_44
       rect:
         serializedVersion: 2
         x: 128
@@ -901,7 +549,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_77
+    - name: dg_dragon32Edit_45
       rect:
         serializedVersion: 2
         x: 160
@@ -911,7 +559,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_78
+    - name: dg_dragon32Edit_46
       rect:
         serializedVersion: 2
         x: 192
@@ -921,7 +569,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_79
+    - name: dg_dragon32Edit_47
       rect:
         serializedVersion: 2
         x: 224
@@ -931,7 +579,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_80
+    - name: dg_dragon32Edit_48
       rect:
         serializedVersion: 2
         x: 0
@@ -941,7 +589,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_81
+    - name: dg_dragon32Edit_49
       rect:
         serializedVersion: 2
         x: 32
@@ -951,7 +599,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_82
+    - name: dg_dragon32Edit_50
       rect:
         serializedVersion: 2
         x: 64
@@ -961,7 +609,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_83
+    - name: dg_dragon32Edit_51
       rect:
         serializedVersion: 2
         x: 96
@@ -971,7 +619,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_84
+    - name: dg_dragon32Edit_52
       rect:
         serializedVersion: 2
         x: 128
@@ -981,7 +629,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_85
+    - name: dg_dragon32Edit_53
       rect:
         serializedVersion: 2
         x: 160
@@ -991,7 +639,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_86
+    - name: dg_dragon32Edit_54
       rect:
         serializedVersion: 2
         x: 192
@@ -1001,7 +649,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dg_classm32_87
+    - name: dg_dragon32Edit_55
       rect:
         serializedVersion: 2
         x: 224

@@ -5,10 +5,11 @@ public class StartGameScript : MonoBehaviour {
 
 
     public string text { get; set; }
+    public int battleIndex { get; set; }
 
 	// Use this for initialization
 	void Start () {
-	
+        DontDestroyOnLoad(this);
 	}
 	
 	// Update is called once per frame
@@ -16,8 +17,10 @@ public class StartGameScript : MonoBehaviour {
 	
 	}
 
-    public void LoadBattle()
+    public void LoadBattle(int battleIndex)
     {
+
+        this.battleIndex = battleIndex;
         Application.LoadLevel("BattleScene");
     }
 

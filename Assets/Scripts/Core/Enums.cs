@@ -138,6 +138,7 @@ namespace SimpleRPG2
         Warrior,
         Mage,
         Priest,
+        Archer
     }
 
     public enum AIActionType
