@@ -40,8 +40,14 @@ namespace Assets
             spritesheetList.Add(getSpritesheet("Jewels", "dg_jewls32"));
             spritesheetList.Add(getSpritesheet("Wands", "dg_wands32"));
             spritesheetList.Add(getSpritesheet("Potions", "dg_potions32"));
-            spritesheetList.Add(getSpritesheet("Blank", "blankItem"));
             spritesheetList.Add(getSpritesheet("Dragons", "dg_dragon32Edit"));
+
+
+            spritesheetList.Add(getSpritesheet("Blank", "blankItem"));
+            spritesheetList.Add(getSpritesheet("InitBG1", "InitBG1"));
+            spritesheetList.Add(getSpritesheet("InitBG2", "InitBG2"));
+            spritesheetList.Add(getSpritesheet("HighlightTile", "highlightTile"));
+
         }
 
         private Spritesheet getSpritesheet(string sheetname, string filename)

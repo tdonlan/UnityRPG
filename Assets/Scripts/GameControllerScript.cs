@@ -12,6 +12,8 @@ using UnityEngine.EventSystems;
 
 public class GameControllerScript : MonoBehaviour
 {
+    public int battleIndex { get; set; }
+
     public AssetLibrary assetLibrary { get; set; } 
     public BattleGame battleGame { get; set; }
     public BattleStatusType battleStatus { get; set; }
@@ -26,6 +28,7 @@ public class GameControllerScript : MonoBehaviour
     public System.Random r { get; set; }
 
     public Point clickPoint { get; set; }
+    public List<GameObject> highlightTiles { get; set; }
     GameObject SelectedTile { get; set; }
 
     private float UITimer { get; set; }
@@ -55,7 +58,16 @@ public class GameControllerScript : MonoBehaviour
         this.uiState = UIStateType.NewTurn;
 
         var startScript = GameObject.FindObjectOfType<StartGameScript>();
-        var gameData = BattleFactory.getGameData(startScript.battleIndex, this.r);
+        if(startScript == null)
+        {
+            this.battleIndex = 1;
+        }
+        else
+        {
+            this.battleIndex = startScript.battleIndex;
+        }
+        var gameData = BattleFactory.getGameData(this.battleIndex, this.r);
+
         this.battleGame = new BattleGame(gameData, r);
 
         LoadBoard();
@@ -79,6 +91,8 @@ public class GameControllerScript : MonoBehaviour
     {
         LoadPrefabs();
         LoadInitiative();
+
+       
     }
 
     private void LoadPrefabs()
@@ -87,7 +101,9 @@ public class GameControllerScript : MonoBehaviour
         InitiativePanel = GameObject.FindGameObjectWithTag("InitiativePanel");
 
         DebugText = GameObject.FindGameObjectWithTag("DebugText").GetComponent<Text>();
+
     }
+
 
     private void LoadBoard()
     {
@@ -119,15 +135,16 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
+
     private GameObject LoadCharacter(GameCharacter character)
     {
 
-        GameObject characterSprite = new GameObject("Character");
+        GameObject characterSprite = new GameObject("Character" + character.name);
 
         SpriteRenderer renderer = characterSprite.AddComponent<SpriteRenderer>();
-        characterSprite.transform.position = new Vector3(character.x, character.y, -1);
-
         renderer.sprite = assetLibrary.getSprite(character.characterSpritesheetName, character.characterSpriteIndex);
+
+        characterSprite.transform.position = new Vector3(character.x, character.y, -1);
 
         return characterSprite;
     }
@@ -195,14 +212,13 @@ public class GameControllerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(battleStatus != BattleStatusType.GameOver)
-        { battleStatus = battleGame.getBattleStatus();
+        if (battleStatus != BattleStatusType.GameOver)
+        {
+            battleStatus = battleGame.getBattleStatus();
         }
-       
 
         if (battleStatus == BattleStatusType.Running)
         {
-
 
             UpdateDebug();
             UITimer -= Time.deltaTime;
@@ -217,15 +233,15 @@ public class GameControllerScript : MonoBehaviour
             ClickTile();
         }
         else if (battleStatus == BattleStatusType.PlayersDead)
-            {
-                battleStatus = BattleStatusType.GameOver;
-                LoseBattle();
-            }
-            else if (battleStatus == BattleStatusType.EnemiesDead)
-            {
-                battleStatus = BattleStatusType.GameOver;
-                WinBattle();
-            }
+        {
+            battleStatus = BattleStatusType.GameOver;
+            LoseBattle();
+        }
+        else if (battleStatus == BattleStatusType.EnemiesDead)
+        {
+            battleStatus = BattleStatusType.GameOver;
+            WinBattle();
+        }
 
     }
 
@@ -252,29 +268,36 @@ public class GameControllerScript : MonoBehaviour
         LoadCharacters();
 
         //Update UI
-        UpdateInitiativePanel();
+       // UpdateInitiativePanel();
 
         switch(uiState)
         {
             case UIStateType.NewTurn:
+                SetAllButtons(false);
                 UpdateNewTurn();
                 break;
             case UIStateType.PlayerDecide:
+                SetAllButtons(true);
                 UpdatePlayerDecide();
                 break;
             case UIStateType.PlayerExecute:
+                SetAllButtons(false);
                 UpdateBattleActions();
                 break;
             case UIStateType.EnemyDecide:
+                SetAllButtons(false);
                 UpdateEnemyDecide();
                 break;
             case UIStateType.EnemyExecute:
+                SetAllButtons(false);
                 UpdateBattleActions();
                 break;
             default:
                 break;
         }
     }
+
+
 
     void UpdateNewTurn()
     {
@@ -523,6 +546,29 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
+    private Button getButton(GameObject parent, string name)
+    {
+        var buttons = parent.GetComponentsInChildren<Button>();
+        foreach(var b in buttons)
+        {
+            if(b.name == name)
+            {
+                return b;
+            }
+        }
+        return null;
+    }
+
+    private void SetAllButtons(bool flag)
+    {
+        var canvas = GameObject.FindGameObjectWithTag("FrontCanvas");
+        getButton(canvas, "EndTurnButton").interactable = flag;
+        getButton(canvas, "MoveButton").interactable = flag;
+        getButton(canvas, "AttackButton").interactable = flag;
+        getButton(canvas, "AbilitiesButton").interactable = flag;
+        getButton(canvas, "ItemButton").interactable = flag;
+        getButton(canvas, "EquipmentButton").interactable = flag;
+    }
 
     private void ClickTile()
     {
@@ -586,6 +632,8 @@ public class GameControllerScript : MonoBehaviour
         renderer.sprite = Resources.Load<Sprite>("highlightTile");
     }
 
+
+
     private void DeselectTile()
     {
         Destroy(SelectedTile);
@@ -622,7 +670,6 @@ public class GameControllerScript : MonoBehaviour
     //http://answers.unity3d.com/questions/501893/calculating-2d-camera-bounds.html
     private Vector3 MoveCamera(GameObject camera, Vector3 oldPos, Vector3 newPos)
     {
-
 
         float vertExtent = Camera.main.camera.orthographicSize;
         float horzExtent = vertExtent * Screen.width / Screen.height;
@@ -725,6 +772,9 @@ public class GameControllerScript : MonoBehaviour
 
     private void LoadInitiative()
     {
+      
+
+
         if (battleGame != null)
         {
             foreach (var character in battleGame.characterList)
@@ -738,22 +788,37 @@ public class GameControllerScript : MonoBehaviour
 
     }
 
+    
+
     private GameObject updateCharPortrait(GameObject charPortrait, GameCharacter character)
     {
+        var panelImg = charPortrait.GetComponent<Image>();
+        if (character.type == CharacterType.Player)
+        {
+            panelImg.color = Color.green;
+
+        }
+        else
+        {
+            panelImg.color = Color.red;
+        }
+
 
         if (character == battleGame.ActiveCharacter)
         {
-            var panelImg = charPortrait.GetComponent<Image>();
-            panelImg.color = new Color(.8f, .8f, 0, .5f);
 
+            panelImg.color = Color.yellow;
+
+            panelImg.overrideSprite = assetLibrary.getSprite("InitBG2", 0);
         }
+
 
         UIHelper.UpdateSpriteComponent(charPortrait, "PortraitImage", assetLibrary.getSprite(character.portraitSpritesheetName,character.portraitSpriteIndex));
 
         UIHelper.UpdateTextComponent(charPortrait, "CharacterName", character.name.ToString());
 
         string stats = string.Format("HP: {0}/{1} AP: {2}", character.hp, character.totalHP, character.ap);
-        UIHelper.UpdateTextComponent(charPortrait, "CharacterStats", stats);
+        //UIHelper.UpdateTextComponent(charPortrait, "CharacterStats", stats);
 
         return charPortrait;
     }
