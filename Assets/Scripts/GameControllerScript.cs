@@ -262,13 +262,18 @@ public class GameControllerScript : MonoBehaviour
 
     void UpdateBattle()
     {
+
+
+
         battleGame.board.ClearTempTiles();
 
         //Update Map
         LoadCharacters();
 
         //Update UI
-       // UpdateInitiativePanel();
+        //UpdateInitiativePanel();
+        UpdateBattleLogText();
+
 
         switch(uiState)
         {
@@ -770,11 +775,16 @@ public class GameControllerScript : MonoBehaviour
         LoadInitiative();
     }
 
+
+    private void UpdateBattleLogText()
+    {
+        var battleLogContent = GameObject.FindGameObjectWithTag("BattleLogContent");
+        UIHelper.UpdateTextComponent(battleLogContent, "BattleLogText", battleGame.battleLog.ToString());
+    }
+
     private void LoadInitiative()
     {
       
-
-
         if (battleGame != null)
         {
             foreach (var character in battleGame.characterList)
