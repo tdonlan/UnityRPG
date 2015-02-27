@@ -128,6 +128,7 @@ public class GameControllerScript : MonoBehaviour
 
     private void LoadCharacters()
     {
+        LoadActiveCharacter();
 
         //clear Characters
         foreach( var c in tileCharacterList)
@@ -139,10 +140,28 @@ public class GameControllerScript : MonoBehaviour
        
         foreach(var character in battleGame.characterList)
         {
-            tileCharacterList.Add(LoadCharacter(character));
+            //tileCharacterList.Add(LoadCharacter(character));
+            tileCharacterList.Add(LoadCharacterOld(character));
         }
     }
 
+    private void LoadActiveCharacter()
+    {
+        if (battleGame.ActiveCharacter != null)
+        {
+            var ac = battleGame.ActiveCharacter;
+            var ActiveCharacterPanel = GameObject.FindGameObjectWithTag("ActiveCharacterPanel");
+            UIHelper.UpdateSpriteComponent(ActiveCharacterPanel, "ActiveCharacterPortrait", assetLibrary.getSprite(ac.portraitSpritesheetName,ac.portraitSpriteIndex));
+            UIHelper.UpdateTextComponent(ActiveCharacterPanel, "ActiveCharacterName", ac.name);
+            UIHelper.UpdateTextComponent(ActiveCharacterPanel,"ActiveCharacterAPText",string.Format("AP:{0}/{1}",ac.ap,ac.totalAP));
+
+            //hardcoded to 10
+            UIHelper.UpdateSliderValue(ActiveCharacterPanel,"ActiveCharacterAPSlider",ac.ap);
+
+            UIHelper.UpdateSliderValue(ActiveCharacterPanel, "ActiveCharacterHPSlider", (float)ac.hp / (float)ac.totalHP);
+
+        }
+    }
 
     private GameObject LoadCharacterOld(GameCharacter character)
     {
@@ -295,8 +314,6 @@ public class GameControllerScript : MonoBehaviour
     void UpdateBattle()
     {
 
-
-
         battleGame.board.ClearTempTiles();
 
         //Update Map
@@ -304,7 +321,8 @@ public class GameControllerScript : MonoBehaviour
 
         //Update UI
         //UpdateInitiativePanel();
-        UpdateBattleLogText();
+
+       // UpdateBattleLogText();
 
 
         switch(uiState)
@@ -754,7 +772,7 @@ public class GameControllerScript : MonoBehaviour
     {
         HidePanels();
         var abilityPanel = GameObject.FindGameObjectWithTag("AbilitiesPanel");
-        MoveUIObject(abilityPanel, new Vector3(-300, -275, -1));
+        MoveUIObject(abilityPanel, new Vector3(330, -250, -1));
        
     }
 
@@ -769,7 +787,7 @@ public class GameControllerScript : MonoBehaviour
     {
         HidePanels();
         var itemPanel = GameObject.FindGameObjectWithTag("ItemPanel");
-        MoveUIObject(itemPanel, new Vector3(-300, -275, -1));
+        MoveUIObject(itemPanel, new Vector3(330, -250, -1));
     }
 
     public void HideItemPanel()
@@ -829,8 +847,6 @@ public class GameControllerScript : MonoBehaviour
         }
 
     }
-
-    
 
     private GameObject updateCharPortrait(GameObject charPortrait, GameCharacter character)
     {
