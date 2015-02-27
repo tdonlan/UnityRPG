@@ -45,6 +45,8 @@ public class GameControllerScript : MonoBehaviour
     public GameObject InitiativePanel { get; set; }
     private GameObject InitPrefab { get; set; }
 
+    private GameObject CharacterPrefab { get; set; }
+
     void Awake()
     {
         this.assetLibrary = new AssetLibrary();
@@ -70,6 +72,8 @@ public class GameControllerScript : MonoBehaviour
 
         this.battleGame = new BattleGame(gameData, r);
 
+        LoadPrefabs();
+
         LoadBoard();
         LoadCharacters();
 
@@ -89,7 +93,7 @@ public class GameControllerScript : MonoBehaviour
 
     private void LoadUI()
     {
-        LoadPrefabs();
+     
         LoadInitiative();
 
        
@@ -98,6 +102,10 @@ public class GameControllerScript : MonoBehaviour
     private void LoadPrefabs()
     {
         InitPrefab = Resources.Load<GameObject>("BattleInitiativePanelPrefab");
+     
+
+        CharacterPrefab = Resources.Load<GameObject>("CharacterPrefab");
+
         InitiativePanel = GameObject.FindGameObjectWithTag("InitiativePanel");
 
         DebugText = GameObject.FindGameObjectWithTag("DebugText").GetComponent<Text>();
@@ -136,7 +144,7 @@ public class GameControllerScript : MonoBehaviour
     }
 
 
-    private GameObject LoadCharacter(GameCharacter character)
+    private GameObject LoadCharacterOld(GameCharacter character)
     {
 
         GameObject characterSprite = new GameObject("Character" + character.name);
@@ -147,6 +155,30 @@ public class GameControllerScript : MonoBehaviour
         characterSprite.transform.position = new Vector3(character.x, character.y, -1);
 
         return characterSprite;
+    }
+
+    private GameObject LoadCharacter(GameCharacter character)
+    {
+     
+       GameObject characterObject = (GameObject)Instantiate(CharacterPrefab);
+       GameObjectHelper.UpdateSprite(characterObject, "CharacterSprite", assetLibrary.getSprite(character.characterSpritesheetName, character.characterSpriteIndex));
+
+        if(character.type == CharacterType.Player)
+        {
+            GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.green);
+        }
+        else
+        {
+            GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.red);
+        }
+
+        UIHelper.UpdateTextComponent(characterObject, "CharacterName", character.name);
+        UIHelper.UpdateSliderValue(characterObject, "CharacterHPSlider", (float)character.hp / (float)character.totalHP);
+     
+       characterObject.transform.position = new Vector3(character.x, character.y, -1);
+
+       return characterObject;
+
     }
 
     private void LoadTempEffects()
@@ -722,14 +754,14 @@ public class GameControllerScript : MonoBehaviour
     {
         HidePanels();
         var abilityPanel = GameObject.FindGameObjectWithTag("AbilitiesPanel");
-        MoveUIObject(abilityPanel, new Vector3(-251, -268, -1));
+        MoveUIObject(abilityPanel, new Vector3(-300, -275, -1));
        
     }
 
     public void HideAbilityPanel()
     {
         var abilityPanel = GameObject.FindGameObjectWithTag("AbilitiesPanel");
-        MoveUIObject(abilityPanel, new Vector3(265, -532, 0));
+        MoveUIObject(abilityPanel, new Vector3(300, -600, 0));
      
     }
 
@@ -737,13 +769,13 @@ public class GameControllerScript : MonoBehaviour
     {
         HidePanels();
         var itemPanel = GameObject.FindGameObjectWithTag("ItemPanel");
-        MoveUIObject(itemPanel, new Vector3(-251, -268, -1));
+        MoveUIObject(itemPanel, new Vector3(-300, -275, -1));
     }
 
     public void HideItemPanel()
     {
         var itemPanel = GameObject.FindGameObjectWithTag("ItemPanel");
-        MoveUIObject(itemPanel, new Vector3(265, -532, 0));
+        MoveUIObject(itemPanel, new Vector3(300, -600, 0));
     }
 
     public void ShowEquipPanel()
