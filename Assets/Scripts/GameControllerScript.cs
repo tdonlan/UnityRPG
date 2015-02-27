@@ -834,7 +834,14 @@ public class GameControllerScript : MonoBehaviour
     {
         if (uiState == UIStateType.PlayerDecide)
         {
+           
             var equipPanel = GameObject.FindGameObjectWithTag("EquipPanel");
+
+            var equipControllerObject = GameObject.FindGameObjectWithTag("EquipmentController");
+            var equipScript = equipControllerObject.GetComponent<EquipmentTestScript>();
+            equipScript.RefreshEquipment();
+
+
             UIHelper.MoveUIObject(equipPanel, GameConfig.EquipPanelDisplayLocation);
         }
     }
