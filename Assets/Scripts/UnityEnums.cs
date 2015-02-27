@@ -32,5 +32,8 @@ public enum PlayerDecideState
     AttackPendingClick,
     RangedAttackPendingClick,
     ItemPendingClick,
+    ItemPanelShow,
     AbilityPendingClick,
+    AbilityPanelShow,
+    
 }

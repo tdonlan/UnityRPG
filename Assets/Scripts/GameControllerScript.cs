@@ -319,32 +319,28 @@ public class GameControllerScript : MonoBehaviour
         //Update Map
         LoadCharacters();
 
-        //Update UI
-        //UpdateInitiativePanel();
-
-       // UpdateBattleLogText();
-
+        UpdateBattleLogText();
 
         switch(uiState)
         {
             case UIStateType.NewTurn:
-                SetAllButtons(false);
+                UIHelper.SetAllButtons(false);
                 UpdateNewTurn();
                 break;
             case UIStateType.PlayerDecide:
-                SetAllButtons(true);
+            
                 UpdatePlayerDecide();
                 break;
             case UIStateType.PlayerExecute:
-                SetAllButtons(false);
+                UIHelper.SetAllButtons(false);
                 UpdateBattleActions();
                 break;
             case UIStateType.EnemyDecide:
-                SetAllButtons(false);
+                UIHelper.SetAllButtons(false);
                 UpdateEnemyDecide();
                 break;
             case UIStateType.EnemyExecute:
-                SetAllButtons(false);
+                UIHelper.SetAllButtons(false);
                 UpdateBattleActions();
                 break;
             default:
@@ -389,6 +385,7 @@ public class GameControllerScript : MonoBehaviour
         switch(playerDecideState)
         {
             case PlayerDecideState.Waiting:
+                UIHelper.SetAllButtons(true);
                 break;
             case PlayerDecideState.MovePendingClick:
                 PlayerMoveSelect();
@@ -466,23 +463,28 @@ public class GameControllerScript : MonoBehaviour
         {
             battleGame.NextTurn();
             uiState = UIStateType.NewTurn;
-
-            /*
-            battleGame.actionQueue.Add(new BattleAction() { character = battleGame.ActiveCharacter, actionType = BattleActionType.EndTurn });
-            uiState = UIStateType.PlayerExecute;
-             */
         }
     }
 
     public void PlayerMoveStart()
     {
         HidePanels();
-
         if (uiState == UIStateType.PlayerDecide)
         {
-            DebugText.text = string.Format("Select Destination");
-            clickPoint = null;
-            playerDecideState = PlayerDecideState.MovePendingClick;
+            if (playerDecideState == PlayerDecideState.Waiting)
+            {
+                UIHelper.SetAllButtons(false);
+                UIHelper.SetButton("MoveButton", true);
+
+                DebugText.text = string.Format("Select Destination");
+                clickPoint = null;
+                playerDecideState = PlayerDecideState.MovePendingClick;
+            }
+            else
+            {
+                UIHelper.SetAllButtons(true);
+                playerDecideState = PlayerDecideState.Waiting;
+            }
         }
     }
 
@@ -519,9 +521,22 @@ public class GameControllerScript : MonoBehaviour
 
         if (uiState == UIStateType.PlayerDecide)
         {
-            DebugText.text = string.Format("Select Target");
-            clickPoint = null;
-            playerDecideState = PlayerDecideState.AttackPendingClick;
+            if (playerDecideState == PlayerDecideState.Waiting)
+            {
+                UIHelper.SetAllButtons(false);
+                UIHelper.SetButton("AttackButton", true);
+
+                DebugText.text = string.Format("Select Target");
+                clickPoint = null;
+                playerDecideState = PlayerDecideState.AttackPendingClick;
+
+            }
+            else
+            {
+                UIHelper.SetAllButtons(true);
+                playerDecideState = PlayerDecideState.Waiting;
+            }
+           
         }
     }
 
@@ -541,9 +556,21 @@ public class GameControllerScript : MonoBehaviour
 
         if (uiState == UIStateType.PlayerDecide)
         {
-            DebugText.text = string.Format("Select Target");
-            clickPoint = null;
-            playerDecideState = PlayerDecideState.RangedAttackPendingClick;
+            if (playerDecideState == PlayerDecideState.Waiting)
+            {
+                UIHelper.SetAllButtons(false);
+                UIHelper.SetButton("AttackButton", true);
+
+                DebugText.text = string.Format("Select Target");
+                clickPoint = null;
+                playerDecideState = PlayerDecideState.RangedAttackPendingClick;
+            }
+
+            else
+            {
+                UIHelper.SetAllButtons(true);
+                playerDecideState = PlayerDecideState.Waiting;
+            }
         }
     }
     public void PlayerRangedAttackSelect()
@@ -560,9 +587,9 @@ public class GameControllerScript : MonoBehaviour
     {
         if (uiState == UIStateType.PlayerDecide)
         {
-            clickPoint = null;
-            this.selectedItem = selectedItem;
-            playerDecideState = PlayerDecideState.ItemPendingClick;
+                clickPoint = null;
+                this.selectedItem = selectedItem;
+                playerDecideState = PlayerDecideState.ItemPendingClick;
         }
     }
 
@@ -581,7 +608,7 @@ public class GameControllerScript : MonoBehaviour
 
     public void PlayerAbilityStart(Ability selectedAbility)
     {
-        if(uiState == UIStateType.PlayerDecide)
+        if (uiState == UIStateType.PlayerDecide)
         {
             clickPoint = null;
             this.selectedAbility = selectedAbility;
@@ -601,29 +628,7 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
-    private Button getButton(GameObject parent, string name)
-    {
-        var buttons = parent.GetComponentsInChildren<Button>();
-        foreach(var b in buttons)
-        {
-            if(b.name == name)
-            {
-                return b;
-            }
-        }
-        return null;
-    }
-
-    private void SetAllButtons(bool flag)
-    {
-        var canvas = GameObject.FindGameObjectWithTag("FrontCanvas");
-        getButton(canvas, "EndTurnButton").interactable = flag;
-        getButton(canvas, "MoveButton").interactable = flag;
-        getButton(canvas, "AttackButton").interactable = flag;
-        getButton(canvas, "AbilitiesButton").interactable = flag;
-        getButton(canvas, "ItemButton").interactable = flag;
-        getButton(canvas, "EquipmentButton").interactable = flag;
-    }
+  
 
     private void ClickTile()
     {
@@ -684,10 +689,8 @@ public class GameControllerScript : MonoBehaviour
         SelectedTile = new GameObject("SelectedTile");
         SpriteRenderer renderer = SelectedTile.AddComponent<SpriteRenderer>();
         SelectedTile.transform.position = new Vector3(clickPoint.x, clickPoint.y, 0);
-        renderer.sprite = Resources.Load<Sprite>("highlightTile");
+        renderer.sprite = Resources.Load<Sprite>("highlightTile 1");
     }
-
-
 
     private void DeselectTile()
     {
@@ -755,7 +758,6 @@ public class GameControllerScript : MonoBehaviour
             v3.y = Mathf.Clamp(newPos.y, minY, maxY);
         }
 
-
         return v3;
     }
 
@@ -770,49 +772,80 @@ public class GameControllerScript : MonoBehaviour
 
     public void ShowAbilityPanel()
     {
-        HidePanels();
-        var abilityPanel = GameObject.FindGameObjectWithTag("AbilitiesPanel");
-        MoveUIObject(abilityPanel, new Vector3(330, -250, -1));
-       
+        if(playerDecideState == PlayerDecideState.Waiting)
+        {
+            UIHelper.SetAllButtons(false);
+            UIHelper.SetButton("AbilitiesButton", true);
+
+            HidePanels();
+            var abilityPanel = GameObject.FindGameObjectWithTag("AbilitiesPanel");
+            UIHelper.MoveUIObject(abilityPanel, GameConfig.AbilityPanelDisplayLocation);
+
+            playerDecideState = PlayerDecideState.AbilityPanelShow;
+        }
+        else
+        {
+            HideAbilityPanel();
+            playerDecideState = PlayerDecideState.Waiting;
+            UIHelper.SetAllButtons(true);
+        }
+
     }
 
     public void HideAbilityPanel()
     {
         var abilityPanel = GameObject.FindGameObjectWithTag("AbilitiesPanel");
-        MoveUIObject(abilityPanel, new Vector3(300, -600, 0));
+        UIHelper.MoveUIObject(abilityPanel, GameConfig.AbilityPanelHideLocation);
      
     }
 
     public void ShowItemPanel()
     {
-        HidePanels();
-        var itemPanel = GameObject.FindGameObjectWithTag("ItemPanel");
-        MoveUIObject(itemPanel, new Vector3(330, -250, -1));
+        if (uiState == UIStateType.PlayerDecide)
+        {
+            if (playerDecideState == PlayerDecideState.Waiting)
+            {
+                UIHelper.SetAllButtons(false);
+                UIHelper.SetButton("ItemButton", true);
+
+
+                HidePanels();
+                var itemPanel = GameObject.FindGameObjectWithTag("ItemPanel");
+                UIHelper.MoveUIObject(itemPanel, GameConfig.ItemPanelDisplayLocation);
+
+                playerDecideState = PlayerDecideState.AbilityPanelShow;
+            }
+            else
+            {
+                HideItemPanel();
+                playerDecideState = PlayerDecideState.Waiting;
+                UIHelper.SetAllButtons(true);
+            }
+        }
     }
 
     public void HideItemPanel()
     {
         var itemPanel = GameObject.FindGameObjectWithTag("ItemPanel");
-        MoveUIObject(itemPanel, new Vector3(300, -600, 0));
+        UIHelper.MoveUIObject(itemPanel, GameConfig.ItemPanelHideLocation);
     }
 
     public void ShowEquipPanel()
     {
-        var equipPanel = GameObject.FindGameObjectWithTag("EquipPanel");
-        MoveUIObject(equipPanel, new Vector3(0, 0, 0));
+        if (uiState == UIStateType.PlayerDecide)
+        {
+            var equipPanel = GameObject.FindGameObjectWithTag("EquipPanel");
+            UIHelper.MoveUIObject(equipPanel, GameConfig.EquipPanelDisplayLocation);
+        }
     }
 
     public void HideEquipPanel()
     {
         var equipPanel = GameObject.FindGameObjectWithTag("EquipPanel");
-        MoveUIObject(equipPanel, new Vector3(-1400, -0, 0));
+        UIHelper.MoveUIObject(equipPanel, GameConfig.EquipPanelHideLocation);
     }
 
-    private void MoveUIObject(GameObject uiObject, Vector3 newPos)
-    {
-        var uiRectTransform = uiObject.GetComponent<RectTransform>();
-        uiRectTransform.localPosition = newPos;
-    }
+   
 
     public void UpdateInitiativePanel()
     {

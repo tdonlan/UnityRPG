@@ -123,5 +123,43 @@ using System.Linq;
             return null;
         }
 
+
+        public static Button getButton(GameObject parent, string name)
+        {
+            var buttons = parent.GetComponentsInChildren<Button>();
+            foreach (var b in buttons)
+            {
+                if (b.name == name)
+                {
+                    return b;
+                }
+            }
+            return null;
+        }
+
+        public static void SetAllButtons(bool flag)
+        {
+            var canvas = GameObject.FindGameObjectWithTag("FrontCanvas");
+            getButton(canvas, "EndTurnButton").interactable = flag;
+            getButton(canvas, "MoveButton").interactable = flag;
+            getButton(canvas, "AttackButton").interactable = flag;
+            getButton(canvas, "AbilitiesButton").interactable = flag;
+            getButton(canvas, "ItemButton").interactable = flag;
+            getButton(canvas, "EquipmentButton").interactable = flag;
+        }
+
+        public static void SetButton(string buttonName, bool flag)
+        {
+            var canvas = GameObject.FindGameObjectWithTag("FrontCanvas");
+            getButton(canvas, buttonName).interactable = flag;
+           
+        }
+
+        public static void MoveUIObject(GameObject uiObject, Vector3 newPos)
+        {
+            var uiRectTransform = uiObject.GetComponent<RectTransform>();
+            uiRectTransform.localPosition = newPos;
+        }
+
     }
 
