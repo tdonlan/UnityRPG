@@ -36,7 +36,16 @@ using System.Linq;
             }
         }
 
-
+        public static void UpdateSliderValue(GameObject parent, string componentName, float val)
+        {
+            foreach (var comp in parent.GetComponentsInChildren<Slider>())
+            {
+                if (comp.name == componentName)
+                {
+                    comp.value = val;
+                }
+            }
+        }
 
         public static void AddClickToGameObject(GameObject gameObject, UnityAction action, EventTriggerType triggerType)
         {
