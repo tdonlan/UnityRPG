@@ -140,8 +140,8 @@ public class GameControllerScript : MonoBehaviour
        
         foreach(var character in battleGame.characterList)
         {
-            //tileCharacterList.Add(LoadCharacter(character));
-            tileCharacterList.Add(LoadCharacterOld(character));
+            tileCharacterList.Add(LoadCharacter(character));
+            //tileCharacterList.Add(LoadCharacterOld(character));
         }
     }
 
@@ -185,6 +185,11 @@ public class GameControllerScript : MonoBehaviour
         if(character.type == CharacterType.Player)
         {
             GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.green);
+
+            if(battleGame.ActiveCharacter.Equals(character))
+            {
+                GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.yellow);
+            }
         }
         else
         {
