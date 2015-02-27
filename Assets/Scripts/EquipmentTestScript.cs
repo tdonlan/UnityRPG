@@ -32,20 +32,30 @@ public class EquipmentTestScript : MonoBehaviour {
         this.assetLibrary = gameControllerScript.assetLibrary;
         this.battleGame = gameControllerScript.battleGame;
 
-        /*
-        this.assetLibrary = new AssetLibrary();
-        this.battleGame = new BattleGame();
-        */
         LoadCharacterStats();
-
+        ClearCurrentEquip();
 	}
 
-
-    private void LoadCharacterStats()
+    public void RefreshEquipment()
     {
-        var charPanel = GameObject.FindGameObjectWithTag("CharacterPanel");
-        UIHelper.UpdateTextComponent(charPanel, "CharNameText", battleGame.ActiveCharacter.name);
-        UIHelper.UpdateTextComponent(charPanel, "CharStats", battleGame.ActiveCharacter.ToString());
+        LoadCharacterStats();
+        ClearCurrentEquip();
+    }
+
+
+    public void LoadCharacterStats()
+    {
+        if (battleGame.ActiveCharacter != null)
+        {
+
+            var ac = battleGame.ActiveCharacter;
+
+            var charPanel = GameObject.FindGameObjectWithTag("CharacterPanel");
+
+            UIHelper.UpdateSpriteComponent(charPanel, "CharImage", assetLibrary.getSprite(ac.characterSpritesheetName, ac.characterSpriteIndex));
+            UIHelper.UpdateTextComponent(charPanel, "CharNameText", battleGame.ActiveCharacter.name);
+            UIHelper.UpdateTextComponent(charPanel, "CharStats", battleGame.ActiveCharacter.ToString());
+        }
     
     }
 
