@@ -24,6 +24,7 @@ using System.Linq;
         public static readonly Vector3 ItemPanelHideLocation = new Vector3(300, -600, 0);
         public static readonly Vector3 EquipPanelHideLocation = new Vector3(-1400, -0, 0);
 
+        public static readonly Vector3 HoverStatsPanelLocation = new Vector3(0, 315, 0);
 
     }
 

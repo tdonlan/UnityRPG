@@ -31,6 +31,10 @@ public class GameControllerScript : MonoBehaviour
     public List<GameObject> highlightTiles { get; set; }
     GameObject SelectedTile { get; set; }
 
+
+    public GameObject HoverStatsObject { get; set; }
+    public bool isStatsDisplay { get; set; }
+
     private float UITimer { get; set; }
     private float TempEffectTimer { get; set; }
 
@@ -42,6 +46,7 @@ public class GameControllerScript : MonoBehaviour
     public PlayerDecideState playerDecideState { get; set; }
 
     //UI Prefabs
+    public GameObject HoverPrefab { get; set; }
     public GameObject InitiativePanel { get; set; }
     private GameObject InitPrefab { get; set; }
 
@@ -102,7 +107,7 @@ public class GameControllerScript : MonoBehaviour
     private void LoadPrefabs()
     {
         InitPrefab = Resources.Load<GameObject>("BattleInitiativePanelPrefab");
-     
+        HoverPrefab = Resources.Load<GameObject>("HoverPrefab");
 
         CharacterPrefab = Resources.Load<GameObject>("CharacterPrefab");
 
@@ -196,8 +201,10 @@ public class GameControllerScript : MonoBehaviour
             GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.red);
         }
 
-        UIHelper.UpdateTextComponent(characterObject, "CharacterName", character.name);
-        UIHelper.UpdateSliderValue(characterObject, "CharacterHPSlider", (float)character.hp / (float)character.totalHP);
+        var characterEventTrigger = characterObject.GetComponentInChildren<EventTrigger>();
+        UIHelper.AddEventTrigger(characterEventTrigger, DisplayHoverStats, EventTriggerType.PointerEnter);
+        UIHelper.AddEventTrigger(characterEventTrigger, HideHoverStats, EventTriggerType.PointerExit);
+
      
        characterObject.transform.position = new Vector3(character.x, character.y, -1);
 
@@ -313,7 +320,19 @@ public class GameControllerScript : MonoBehaviour
 
     void UpdateDebug()
     {
-        DebugText.text = string.Format("UIState: {0} BattleState {1}", uiState, battleGame.getBattleStatus());
+        Vector3 viewPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        var canvas = GameObject.FindGameObjectWithTag("FrontCanvas");
+
+        Vector2 canvasPos = Input.mousePosition - canvas.transform.localPosition; 
+
+
+
+        string mousePos = string.Format("Mouse: {0},{1} | World: {2},{3} | view {4},{5} | canvas {6},{7}",
+            Input.mousePosition.x, Input.mousePosition.y, viewPos.x, viewPos.y, worldPos.x, worldPos.y,canvasPos.x,canvasPos.y);
+        DebugText.text = mousePos;
+        //DebugText.text = string.Format("UIState: {0} BattleState {1}", uiState, battleGame.getBattleStatus());
     }
 
     void UpdateBattle()
@@ -663,6 +682,8 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
+   
+
     //return true if point on top of UI
     private bool checkPointOnUI(Vector3 screenPos)
     {
@@ -686,6 +707,24 @@ public class GameControllerScript : MonoBehaviour
             retval = new Point() { x = (int)x, y = (int)y };
         }
         return retval;
+    }
+
+    private Vector3 getBoardPositionFromScreenPosition(Vector3 pos)
+    {
+        var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+
+        var camera = mainCamera.GetComponent<Camera>();
+
+        return camera.ScreenToWorldPoint(pos);
+    }
+
+    private Vector3 getMouseViewportCoords()
+    {
+        var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+
+        var camera = mainCamera.GetComponent<Camera>();
+
+        return camera.ScreenToViewportPoint(Input.mousePosition);
     }
 
     private void SelectTile()
@@ -726,7 +765,6 @@ public class GameControllerScript : MonoBehaviour
     {
         var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         mainCamera.transform.position = new Vector3(x, y,-10);
-
     }
 
 
@@ -1002,6 +1040,45 @@ public class GameControllerScript : MonoBehaviour
 
 
     #endregion
+
+
+    public void DisplayHoverStats()
+    {
+        if (!isStatsDisplay)
+        {
+            Canvas canvas = GameObject.FindGameObjectWithTag("FrontCanvas").GetComponent<Canvas>();
+
+            isStatsDisplay = true;
+            HoverStatsObject = (GameObject)Instantiate(HoverPrefab);
+
+
+            HoverStatsObject.transform.SetParent(canvas.transform, true);
+
+            //Determine character being highlighted
+            Vector3 boardPos = getBoardPositionFromScreenPosition(Input.mousePosition);
+            Point boardPoint = getBoardPointFromLocation(boardPos.x, boardPos.y);
+            GameCharacter hoverCharacter = battleGame.getCharacterFromTile(battleGame.board.getTileFromLocation(boardPoint.x, boardPoint.y));
+
+            if (hoverCharacter != null)
+            {
+                //Update Hover panel
+                UIHelper.UpdateSliderValue(HoverStatsObject, "HPSlider", (float)hoverCharacter.hp / (float)hoverCharacter.totalHP);
+                UIHelper.UpdateTextComponent(HoverStatsObject, "CharacterName", hoverCharacter.name);
+                UIHelper.UpdateTextComponent(HoverStatsObject, "CharacterStats", hoverCharacter.ToString());
+            }
+
+            UIHelper.MoveUIObject(HoverStatsObject, GameConfig.HoverStatsPanelLocation);
+        
+        }
+    }
+
+   
+
+    public void HideHoverStats()
+    {
+        Destroy(HoverStatsObject);
+        isStatsDisplay = false;
+    }
 
 
 }
