@@ -310,7 +310,8 @@ namespace SimpleRPG2
 
         public override string ToString()
         {
-            string retval = name + "\n";
+            string retval = "";
+            //string retval = name + "\n";
             retval += string.Format("AC: {0} HP: {1}/{2} Atk: {3} AP: {4}/{5}\n", ac, hp, totalHP, attack, ap, totalAP);
 
             retval += weapon.ToString() + "\n";
