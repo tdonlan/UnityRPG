@@ -94,18 +94,18 @@ namespace SimpleRPG2
 
         public static EnemyCharacter getEnemyMage(Random r)
         {
-            return getEnemyFromGameCharacter(getMage(r), EnemyType.Mage);
+            return getEnemyFromGameCharacter(getMage(r), EnemyType.Warrior);
         }
 
         public static EnemyCharacter getEnemyPriest(Random r)
         {
-            return getEnemyFromGameCharacter(getPriest(r), EnemyType.Priest);
+            return getEnemyFromGameCharacter(getPriest(r), EnemyType.Warrior);
         }
 
 
         public static EnemyCharacter getEnemyArcher(Random r)
         {
-            return getEnemyFromGameCharacter(getArcher(r), EnemyType.Archer);
+            return getEnemyFromGameCharacter(getArcher(r), EnemyType.Warrior);
         }
 
         public static EnemyCharacter getDragon(Random r)

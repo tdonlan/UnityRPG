@@ -283,7 +283,8 @@ public class GameControllerScript : MonoBehaviour
         if (battleStatus == BattleStatusType.Running)
         {
 
-            UpdateDebug();
+            //UpdateDebug();
+
             UITimer -= Time.deltaTime;
             if (UITimer <= 0)
             {
