@@ -773,7 +773,7 @@ public class GameControllerScript : MonoBehaviour
     private Vector3 MoveCamera(GameObject camera, Vector3 oldPos, Vector3 newPos)
     {
 
-        float vertExtent = Camera.main.camera.orthographicSize;
+        float vertExtent = Camera.main.GetComponent<Camera>().orthographicSize;
         float horzExtent = vertExtent * Screen.width / Screen.height;
 
         var vertExtentTop = vertExtent - 0.5f;
