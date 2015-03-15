@@ -47,6 +47,18 @@ using System.Linq;
             }
         }
 
+        public static GameObject getGameObjectWithName(GameObject parent, string name, Type componentType)
+        {
+            foreach (var comp in parent.GetComponentsInChildren(componentType))
+            {
+                if (comp.name == name)
+                {
+                    return comp.gameObject;
+                }
+            }
+            return null;
+        }
+
         public static void AddClickToGameObject(GameObject gameObject, UnityAction action, EventTriggerType triggerType)
         {
             var eventTrigger = gameObject.AddComponent<EventTrigger>();

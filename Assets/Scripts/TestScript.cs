@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using System;
+using UnityEngine.EventSystems;
 
 public class TestScript : MonoBehaviour {
 
@@ -8,14 +11,25 @@ public class TestScript : MonoBehaviour {
     public bool isStatsDisplay { get; set; }
 
     GameObject HoverPrefab { get; set; }
+
+    GameObject characterPrefab { get; set; }
     
 
 	// Use this for initialization
 	void Start () {
         HoverPrefab = Resources.Load<GameObject>("HoverPrefab");
+        characterPrefab = Resources.Load<GameObject>("CharacterPrefab");
+
         isStatsDisplay = false;
 
         canvas = GameObject.FindObjectOfType<Canvas>();
+
+        //LoadCharacter();
+
+        //LoadPanel();
+
+        //AddCharacterCollider();
+
 
 	}
 	
@@ -23,6 +37,52 @@ public class TestScript : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    private void LoadPanel()
+    {
+
+        var testPanel = GameObject.FindGameObjectWithTag("TestPanel");
+        var testPanelEventTrigger = testPanel.GetComponentInChildren<EventTrigger>();
+        UIHelper.AddEventTrigger(testPanelEventTrigger, DisplayDebugText, EventTriggerType.PointerEnter);
+    }
+
+    private void LoadCharacter()
+    {
+        GameObject characterObject = (GameObject)Instantiate(characterPrefab);
+
+        var characterPanel = UIHelper.getGameObjectWithName(characterObject, "PanelOverlay", typeof(RectTransform));
+
+        //var characterEventTrigger = characterPanel.AddComponent<EventTrigger>();
+
+        var characterEventTrigger = characterObject.GetComponentInChildren<EventTrigger>();
+        UIHelper.AddEventTrigger(characterEventTrigger, DisplayDebugText, EventTriggerType.PointerEnter);
+        
+
+
+        characterObject.transform.position = new Vector3(2.5f, 2.5f, -1);
+    }
+
+    /*
+    private void AddCharacterCollider()
+    {
+        var characterObject = GameObject.FindGameObjectWithTag("CharacterObject");
+        var colliderComp = characterObject.GetComponentInChildren<BoxCollider2D>();
+        
+    }*/
+
+    private void OnMouseOver()
+    { }
+
+
+    public void DisplayDebugText()
+    {
+        var debugText = GameObject.FindGameObjectWithTag("DebugText");
+        var text = debugText.GetComponentInChildren<Text>();
+
+        text.text = "Hovering " + DateTime.Now.ToString();
+        
+    }
+
 
     public void DisplayHoverStats()
     {
