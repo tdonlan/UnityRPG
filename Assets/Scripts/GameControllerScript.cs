@@ -33,6 +33,7 @@ public class GameControllerScript : MonoBehaviour
 
 
     public GameObject HoverStatsObject { get; set; }
+    public GameObject CharacterHover { get; set; }
     public bool isStatsDisplay { get; set; }
 
     private float UITimer { get; set; }
@@ -51,6 +52,7 @@ public class GameControllerScript : MonoBehaviour
     private GameObject InitPrefab { get; set; }
 
     private GameObject CharacterPrefab { get; set; }
+    private GameObject CharacterPrefab2 { get; set; }
 
     void Awake()
     {
@@ -110,6 +112,7 @@ public class GameControllerScript : MonoBehaviour
         HoverPrefab = Resources.Load<GameObject>("HoverPrefab");
 
         CharacterPrefab = Resources.Load<GameObject>("CharacterPrefab");
+        CharacterPrefab2 = Resources.Load<GameObject>("CharacterPrefab2");
 
         InitiativePanel = GameObject.FindGameObjectWithTag("InitiativePanel");
 
@@ -146,7 +149,7 @@ public class GameControllerScript : MonoBehaviour
         foreach(var character in battleGame.characterList)
         {
             tileCharacterList.Add(LoadCharacter(character));
-            //tileCharacterList.Add(LoadCharacterOld(character));
+
         }
     }
 
@@ -168,30 +171,17 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
-    private GameObject LoadCharacterOld(GameCharacter character)
-    {
-
-        GameObject characterSprite = new GameObject("Character" + character.name);
-
-        SpriteRenderer renderer = characterSprite.AddComponent<SpriteRenderer>();
-        renderer.sprite = assetLibrary.getSprite(character.characterSpritesheetName, character.characterSpriteIndex);
-
-        characterSprite.transform.position = new Vector3(character.x, character.y, -1);
-
-        return characterSprite;
-    }
 
     private GameObject LoadCharacter(GameCharacter character)
     {
-     
-       GameObject characterObject = (GameObject)Instantiate(CharacterPrefab);
-       GameObjectHelper.UpdateSprite(characterObject, "CharacterSprite", assetLibrary.getSprite(character.characterSpritesheetName, character.characterSpriteIndex));
+        GameObject characterObject = (GameObject)Instantiate(CharacterPrefab2);
+        GameObjectHelper.UpdateSprite(characterObject, "CharacterSprite", assetLibrary.getSprite(character.characterSpritesheetName, character.characterSpriteIndex));
 
-        if(character.type == CharacterType.Player)
+        if (character.type == CharacterType.Player)
         {
             GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.green);
 
-            if(battleGame.ActiveCharacter.Equals(character))
+            if (battleGame.ActiveCharacter.Equals(character))
             {
                 GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.yellow);
             }
@@ -201,16 +191,12 @@ public class GameControllerScript : MonoBehaviour
             GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.red);
         }
 
-        var characterEventTrigger = characterObject.GetComponentInChildren<EventTrigger>();
-        UIHelper.AddEventTrigger(characterEventTrigger, DisplayHoverStats, EventTriggerType.PointerEnter);
-        UIHelper.AddEventTrigger(characterEventTrigger, HideHoverStats, EventTriggerType.PointerExit);
 
-     
-       characterObject.transform.position = new Vector3(character.x, character.y, -1);
+        characterObject.transform.position = new Vector3(character.x, character.y, -1);
 
-       return characterObject;
-
+        return characterObject;
     }
+
 
     private void LoadTempEffects()
     {
@@ -923,16 +909,16 @@ public class GameControllerScript : MonoBehaviour
         {
             foreach (var character in battleGame.characterList)
             {
-                GameObject charPortrait = (GameObject)Instantiate(InitPrefab);
-                charPortrait = updateCharPortrait(charPortrait, character);
+                GameObject initGameObject = (GameObject)Instantiate(InitPrefab);
+                initGameObject = updateInitPortrait(initGameObject, character);
 
-                charPortrait.transform.SetParent(InitiativePanel.transform, true);
+                initGameObject.transform.SetParent(InitiativePanel.transform, true);
             }
         }
 
     }
 
-    private GameObject updateCharPortrait(GameObject charPortrait, GameCharacter character)
+    private GameObject updateInitPortrait(GameObject charPortrait, GameCharacter character)
     {
         var panelImg = charPortrait.GetComponent<Image>();
         if (character.type == CharacterType.Player)
@@ -948,7 +934,6 @@ public class GameControllerScript : MonoBehaviour
 
         if (character == battleGame.ActiveCharacter)
         {
-
             panelImg.color = Color.yellow;
 
             panelImg.overrideSprite = assetLibrary.getSprite("InitBG2", 0);
@@ -960,7 +945,10 @@ public class GameControllerScript : MonoBehaviour
         UIHelper.UpdateTextComponent(charPortrait, "CharacterName", character.name.ToString());
 
         string stats = string.Format("HP: {0}/{1} AP: {2}", character.hp, character.totalHP, character.ap);
-        //UIHelper.UpdateTextComponent(charPortrait, "CharacterStats", stats);
+ 
+
+        UIHelper.AddClickToGameObject(charPortrait, UpdateInitiativeHover, EventTriggerType.PointerEnter, character);
+        UIHelper.AddClickToGameObject(charPortrait, ClearCharacterHover, EventTriggerType.PointerExit);
 
         return charPortrait;
     }
@@ -1042,44 +1030,63 @@ public class GameControllerScript : MonoBehaviour
 
     #endregion
 
-
-    public void DisplayHoverStats()
+    private void GetCharacterHover()
     {
-        if (!isStatsDisplay)
+        if (CharacterHover == null)
         {
-            Canvas canvas = GameObject.FindGameObjectWithTag("FrontCanvas").GetComponent<Canvas>();
-
-            isStatsDisplay = true;
-            HoverStatsObject = (GameObject)Instantiate(HoverPrefab);
-
-
-            HoverStatsObject.transform.SetParent(canvas.transform, true);
-
-            //Determine character being highlighted
-            Vector3 boardPos = getBoardPositionFromScreenPosition(Input.mousePosition);
-            Point boardPoint = getBoardPointFromLocation(boardPos.x, boardPos.y);
-            GameCharacter hoverCharacter = battleGame.getCharacterFromTile(battleGame.board.getTileFromLocation(boardPoint.x, boardPoint.y));
-
-            if (hoverCharacter != null)
-            {
-                //Update Hover panel
-                UIHelper.UpdateSliderValue(HoverStatsObject, "HPSlider", (float)hoverCharacter.hp / (float)hoverCharacter.totalHP);
-                UIHelper.UpdateTextComponent(HoverStatsObject, "CharacterName", hoverCharacter.name);
-                UIHelper.UpdateTextComponent(HoverStatsObject, "CharacterStats", hoverCharacter.ToString());
-            }
-
-            UIHelper.MoveUIObject(HoverStatsObject, GameConfig.HoverStatsPanelLocation);
-        
+            CharacterHover = GameObject.FindGameObjectWithTag("CharacterHover");
         }
     }
 
-   
-
-    public void HideHoverStats()
+    public void UpdateInitiativeHover(System.Object characterObject)
     {
-        Destroy(HoverStatsObject);
-        isStatsDisplay = false;
+
+        GameCharacter character = (GameCharacter)characterObject;
+
+        GetCharacterHover();
+
+        if (character != null)
+        {
+            UIHelper.UpdateSliderValue(CharacterHover, "HPSlider", (float)character.hp / (float)character.totalHP);
+            UIHelper.UpdateTextComponent(CharacterHover, "CharacterName", character.name);
+            UIHelper.UpdateTextComponent(CharacterHover, "CharacterStats", character.ToString());
+        }
     }
 
+    public void UpdateCharacterHover()
+    {
+        GetCharacterHover();
+
+        //Determine character being highlighted
+        Vector3 boardPos = getBoardPositionFromScreenPosition(Input.mousePosition);
+        Point boardPoint = getBoardPointFromLocation(boardPos.x, boardPos.y);
+        GameCharacter hoverCharacter = battleGame.getCharacterFromTile(battleGame.board.getTileFromLocation(boardPoint.x, boardPoint.y));
+
+        if (hoverCharacter != null)
+        {
+            UIHelper.UpdateSliderValue(CharacterHover, "HPSlider", (float)hoverCharacter.hp / (float)hoverCharacter.totalHP);
+            UIHelper.UpdateTextComponent(CharacterHover, "CharacterName", hoverCharacter.name);
+            UIHelper.UpdateTextComponent(CharacterHover, "CharacterStats", hoverCharacter.ToString());
+        }
+    }
+
+    public void ClearCharacterHover()
+    {
+        GetCharacterHover();
+        UIHelper.UpdateSliderValue(CharacterHover, "HPSlider",0);
+        UIHelper.UpdateTextComponent(CharacterHover, "CharacterName", "");
+        UIHelper.UpdateTextComponent(CharacterHover, "CharacterStats", "");
+    }
+
+    public void DisplayDebugText()
+    {
+        var debugText = GameObject.FindGameObjectWithTag("DebugText");
+        var text = debugText.GetComponentInChildren<Text>();
+
+        text.text = "Hovering " + DateTime.Now.ToString();
+
+    }
+
+ 
 
 }
