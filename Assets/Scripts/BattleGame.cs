@@ -87,15 +87,12 @@ namespace SimpleRPG2
             NewTurn = true;
             battleLog.AddEntry("Starting Battle");
 
-            //board = BoardFactory.getRandomBoard(this, 20);
 
-            //InitChars();
             SetBattleInitiative();
 
             placeCharactersInBoard();
-            
-            //Battle is now run by Unity GameController
-            //RunBattle();
+
+            battleLog.AddEntry(string.Format("{0}'s turn", ActiveCharacter.name));
 
         }
 
@@ -118,6 +115,8 @@ namespace SimpleRPG2
             {
                 currentCharacter = 0;
             }
+
+            battleLog.AddEntry(string.Format("{0}'s turn", ActiveCharacter.name));
         }
 
         public void NextTurnActiveDied()
@@ -128,6 +127,8 @@ namespace SimpleRPG2
             {
                 currentCharacter = 0;
             }
+
+            battleLog.AddEntry(string.Format("{0}'s turn", ActiveCharacter.name));
         }
 
         //currently, randomize
@@ -210,7 +211,6 @@ namespace SimpleRPG2
         //return false if we fail the action queue, otherwise false
         public bool RunActionQueue()
         {
-           
                 BattleAction action = actionQueue[0];
                 actionQueue.RemoveAt(0);
 
@@ -253,6 +253,8 @@ namespace SimpleRPG2
                         }
                         break;
                     case BattleActionType.EndTurn:
+                        battleLog.AddEntry(string.Format("{0} ended turn.", ActiveCharacter.name));
+
                         NextTurn();
                         return true;
                         
@@ -932,8 +934,23 @@ namespace SimpleRPG2
         {
             if (!CoreHelper.checkEffect(character.activeEffects, character.passiveEffects, StatType.Stun))
             {
-                return board.MoveCharacter(character, board.getTileFromLocation(x, y));
+               
+                bool canMove = board.MoveCharacter(character, board.getTileFromLocation(x, y));
+                if(canMove)
+                {
+                     battleLog.AddEntry(string.Format("{0} moved to {1},{2}", character.name, x, y));
+                }
+                else
+                {
+                     battleLog.AddEntry(string.Format("{0} was unable to move to {1},{2}", character.name, x, y));
+                }
+                return canMove;
             }
+            else
+            {
+                battleLog.AddEntry(string.Format("{0} is stunned and unable to move.", character.name));
+            }
+
             return false;
         }
 
@@ -952,8 +969,11 @@ namespace SimpleRPG2
                     }
                 }
             }
+            else
+            {
+                battleLog.AddEntry(string.Format("{0} is stunned and unable to attack.", character.name));
+            }
 
-            battleLog.AddEntry("Ranged attack failed.");
             return false;
         }
 
@@ -972,6 +992,10 @@ namespace SimpleRPG2
                         }
                     }
                 }
+            }
+            else
+            {
+                battleLog.AddEntry(string.Format("{0} is stunned and unable attack.", character.name));
             }
 
             return false;
@@ -1015,8 +1039,6 @@ namespace SimpleRPG2
 
                         ActiveCharacter.inventory.Remove(item);
                     }
-
-                  
                 }
                
                 if(usedItem)
@@ -1031,6 +1053,10 @@ namespace SimpleRPG2
                 }
                
             }
+            else{
+                battleLog.AddEntry(string.Format("{0} is stunned and unable to use {1}.", character.name, item.name));
+            }
+            
             return false;
 
         }
@@ -1052,6 +1078,11 @@ namespace SimpleRPG2
                     }
                 }
             }
+            else
+            {
+                battleLog.AddEntry(string.Format("{0} is stunned and unable to use {1}.", character.name, ability.name));
+            }
+
             return false;
         }
 
@@ -1065,7 +1096,7 @@ namespace SimpleRPG2
             if (!CoreHelper.checkEffect(ActiveCharacter.activeEffects, ActiveCharacter.passiveEffects, StatType.Stun))
             {
                 actionList = AI.getBattleActionList((EnemyCharacter)ActiveCharacter, this);
-                //actionList = AI.attackNearestPlayer(ActiveCharacter, this);
+               
 
             }
 
@@ -1083,7 +1114,5 @@ namespace SimpleRPG2
             characterList.Remove(character);
 
         }
-
-  
     }
 }

@@ -15,6 +15,7 @@ namespace Assets
         public string filename { get; set; }
         public List<Sprite> sprites { get; set; }
     }
+
         
     public class AssetLibrary
     {

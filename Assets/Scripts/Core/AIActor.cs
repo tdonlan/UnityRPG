@@ -161,37 +161,43 @@ namespace SimpleRPG2
         //currently only abilities that are for self
         private List<AIAction> getAIHealActions(BattleGame game)
         {
+         
             List<AIAction> aiActionList = new List<AIAction>();
+          
+                Tile targetTile = game.board.getTileFromLocation(character.x, character.y);
 
-            Tile targetTile = game.board.getTileFromLocation(character.x,character.y);
-
-            foreach(var a in character.abilityList)
-            {
-                if(a.uses > 0 && a.canUseSelf())
+                foreach (var a in character.abilityList)
                 {
-                    if(a.activeEffects.Select(x=>x.statType==StatType.Heal) != null)
+                    if (a.uses > 0 && a.canUseSelf())
                     {
-                        List<BattleAction> battleActionList = new List<BattleAction>(){new BattleAction(){ability=a,character=character,targetCharacter=character,targetTile=targetTile,actionType=BattleActionType.UseAbility}};
-                        aiActionList.Add(new AIAction() { actionType = AIActionType.Heal, cost = a.ap, battleActionList = battleActionList });
+                        if (a.activeEffects.Select(x => x.statType == StatType.Heal) != null)
+                        {
+                            List<BattleAction> battleActionList = new List<BattleAction>() { new BattleAction() { ability = a, character = character, targetCharacter = character, targetTile = targetTile, actionType = BattleActionType.UseAbility } };
+                            aiActionList.Add(new AIAction() { actionType = AIActionType.Heal, cost = a.ap, battleActionList = battleActionList });
+                        }
                     }
                 }
-            }
 
-            var usableItems = from data in character.inventory
-                              where data is UsableItem
-                              select data;
+                var usableItems = from data in character.inventory
+                                  where data is UsableItem
+                                  select data;
 
-            foreach (var i in usableItems.ToList())
-            {
-
-                UsableItem tempItem = (UsableItem)i;
-
-                if(i.activeEffects.Select(x=>x.statType == StatType.Heal) != null)
+                foreach (var i in usableItems.ToList())
                 {
-                    List<BattleAction> battleActionList = new List<BattleAction>() { new BattleAction() { item=tempItem, character = character, targetCharacter = character, targetTile = targetTile, actionType = BattleActionType.UseItem} };
-                    aiActionList.Add(new AIAction() { actionType = AIActionType.Heal, cost = tempItem.actionPoints, battleActionList = battleActionList });
+
+                    UsableItem tempItem = (UsableItem)i;
+
+                    if (tempItem.activeEffects != null)
+                    {
+                        if (i.activeEffects.Select(x => x.statType == StatType.Heal) != null)
+                        {
+                            List<BattleAction> battleActionList = new List<BattleAction>() { new BattleAction() { item = tempItem, character = character, targetCharacter = character, targetTile = targetTile, actionType = BattleActionType.UseItem } };
+                            aiActionList.Add(new AIAction() { actionType = AIActionType.Heal, cost = tempItem.actionPoints, battleActionList = battleActionList });
+                        }
+                    }
                 }
-            }
+            
+   
 
             return AIActionList;
         }

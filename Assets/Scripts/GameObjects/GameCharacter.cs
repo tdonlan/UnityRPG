@@ -23,7 +23,7 @@ namespace SimpleRPG2
         private int _ac;
         public int ac
         {
-            get { return _ac + CoreHelper.getArmorAmount(equippedArmor) + CoreHelper.getEffectAmount(new Random(), activeEffects, StatType.Armor); }
+            get { return _ac + CoreHelper.getArmorAmount(equippedArmor) + CoreHelper.getEffectAmount(new Random(), activeEffects, passiveEffects, StatType.Armor); }
             set { _ac = value; }
         }
 
@@ -32,7 +32,7 @@ namespace SimpleRPG2
         {
             get
             {
-                return _totalHP + CoreHelper.getEffectAmount(new Random(), activeEffects, StatType.HitPoints);
+                return _totalHP + CoreHelper.getEffectAmount(new Random(), activeEffects, passiveEffects, StatType.HitPoints);
             }
             set
             {
@@ -43,10 +43,13 @@ namespace SimpleRPG2
         public int hp { get; set; }
 
         private int _attack;
-        public int attack { get { return _attack + CoreHelper.getEffectAmount(new Random(), activeEffects, StatType.Attack); } set { _attack = value; } }
+        public int attack { get { return _attack + CoreHelper.getEffectAmount(new Random(), activeEffects, passiveEffects, StatType.Attack); } set { _attack = value; } }
 
-        public int ap { get; set; }
-        public int totalAP { get; set; }
+       
+        public int ap {get;set;}
+
+        private int _totalAP ;
+        public int totalAP { get { return _totalAP + CoreHelper.getEffectAmount(new Random(), activeEffects, passiveEffects, StatType.ActionPoints); } set { _totalAP = value; } }
 
         public List<Item> inventory { get; set; }
         public List<Armor> equippedArmor { get; set; }
@@ -100,6 +103,8 @@ namespace SimpleRPG2
             a.duration--;
             if (a.duration > 0)
             {
+                game.battleLog.AddEntry(string.Format("{0} was added to {1}.", a.name, this.name));
+
                 activeEffects.Add(a);
             }
         }
@@ -133,6 +138,8 @@ namespace SimpleRPG2
                 activeEffects[i].duration--;
                 if (activeEffects[i].duration <= 0)
                 {
+                    game.battleLog.AddEntry(string.Format("{0} expired on {1}.", activeEffects[i].name, this.name));
+
                     activeEffects.RemoveAt(i);
                 }
             }
@@ -140,16 +147,28 @@ namespace SimpleRPG2
 
         private void ActivateEffect(ActiveEffect effect, BattleGame game)
         {
+            int amt = 0;
             switch (effect.statType)
             {
                 case StatType.Damage:
-                    this.Damage(game.r.Next(effect.minAmount, effect.maxAmount), game);
+                     amt = game.r.Next(effect.minAmount, effect.maxAmount);
+
+                    game.battleLog.AddEntry(string.Format("{0} was damaged by {1} for {2}", this.name, effect.name, amt.ToString()));
+
+                    this.Damage(amt, game);
                     break;
                 case StatType.Heal:
-                    this.Heal(game.r.Next(effect.minAmount, effect.maxAmount), game);
+                     amt = game.r.Next(effect.minAmount, effect.maxAmount);
+                     game.battleLog.AddEntry(string.Format("{0} was healed by {1} for {2}", this.name, effect.name, amt.ToString()));
+
+                    this.Heal(amt, game);
                     break;
                 case StatType.Dispell:
-                    RemoveTopActiveEffects(game.r.Next(effect.minAmount, effect.maxAmount));
+
+                    amt = game.r.Next(effect.minAmount, effect.maxAmount);
+                    game.battleLog.AddEntry(string.Format("{0} removed {1} effects from {2}", effect.name, amt, this.name));
+
+                    RemoveTopActiveEffects(amt);
                     break;
                 default:
                     break;
@@ -158,16 +177,11 @@ namespace SimpleRPG2
 
         public void Damage(int amount, BattleGame game)
         {
-
-            game.battleLog.AddEntry(string.Format("{0} was hurt for {1}", this.name, amount));
-
             this.hp -= amount;
             if (this.hp <= 0)
             {
                 Kill(game);
             }
-
-
         }
 
         public void Heal(int amount, BattleGame game)
@@ -184,6 +198,8 @@ namespace SimpleRPG2
 
         public void Kill(BattleGame game)
         {
+            game.battleLog.AddEntry(string.Format("{0} was killed.", this.name));
+
             game.CharacterKill(this);
         }
 
@@ -202,6 +218,9 @@ namespace SimpleRPG2
             {
                 inventory.Remove(w);
                 this.weapon = w;
+
+                
+
                 if (w.passiveEffects != null)
                 {
                     foreach (var pe in w.passiveEffects)
@@ -314,7 +333,11 @@ namespace SimpleRPG2
             //string retval = name + "\n";
             retval += string.Format("AC: {0} HP: {1}/{2} Atk: {3} AP: {4}/{5}\n", ac, hp, totalHP, attack, ap, totalAP);
 
-            retval += weapon.ToString() + "\n";
+            if(weapon != null)
+            { 
+                retval += weapon.ToString() + "\n";
+            }
+
             foreach (var e in equippedArmor)
             {
                 retval += e.ToString() + "\n";
@@ -324,6 +347,7 @@ namespace SimpleRPG2
             {
                 retval += ae.ToString() + "\n";
             }
+
             foreach (var pe in passiveEffects)
             {
                 retval += pe.ToString() + "\n";

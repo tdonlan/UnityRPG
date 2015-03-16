@@ -56,39 +56,40 @@ public class GameControllerScript : MonoBehaviour
 
     void Awake()
     {
-        this.assetLibrary = new AssetLibrary();
-        tileCharacterList = new List<GameObject>();
-        tempEffectList = new List<GameObject>();
+        
+    }
 
-        this.r = new System.Random();
-
-        this.clickPoint = null;
-
-        this.uiState = UIStateType.NewTurn;
-
-        var startScript = GameObject.FindObjectOfType<StartGameScript>();
-        if(startScript == null)
+    void OnLevelWasLoaded(int level)
+    {
+        if (level == 1)
         {
-            this.battleIndex = 1;
+            this.assetLibrary = new AssetLibrary();
+            tileCharacterList = new List<GameObject>();
+            tempEffectList = new List<GameObject>();
+
+            this.r = new System.Random();
+
+            this.clickPoint = null;
+
+            this.uiState = UIStateType.NewTurn;
+
+            getBattleIndex();
+           
+            var gameData = BattleFactory.getGameData(this.battleIndex, this.r);
+
+            this.battleGame = new BattleGame(gameData, r);
+
+            LoadPrefabs();
+
+            LoadBoard();
+            LoadCharacters();
+
+            LoadUI();
+
+            SetCamera();
+
+            DontDestroyOnLoad(this);
         }
-        else
-        {
-            this.battleIndex = startScript.battleIndex;
-        }
-        var gameData = BattleFactory.getGameData(this.battleIndex, this.r);
-
-        this.battleGame = new BattleGame(gameData, r);
-
-        LoadPrefabs();
-
-        LoadBoard();
-        LoadCharacters();
-
-        LoadUI();
-
-        SetCamera();
-
-        DontDestroyOnLoad(this);
     }
 
     // Use this for initialization
@@ -96,6 +97,21 @@ public class GameControllerScript : MonoBehaviour
     {
 
     
+    }
+
+    private void getBattleIndex()
+    {
+        var startScript = GameObject.FindObjectOfType<StartGameScript>();
+        if (startScript == null)
+        {
+            this.battleIndex = 1;
+        }
+        else
+        {
+            this.battleIndex = startScript.battleIndex;
+        }
+
+        Destroy(startScript);
     }
 
     private void LoadUI()
@@ -275,7 +291,7 @@ public class GameControllerScript : MonoBehaviour
             if (UITimer <= 0)
             {
                 UpdateBattle();
-                UITimer = .5f;
+                UITimer = getUpdateBattleTimer();
                 LoadTempEffects();
             }
 
@@ -284,26 +300,40 @@ public class GameControllerScript : MonoBehaviour
         }
         else if (battleStatus == BattleStatusType.PlayersDead)
         {
-            battleStatus = BattleStatusType.GameOver;
             LoseBattle();
         }
         else if (battleStatus == BattleStatusType.EnemiesDead)
         {
-            battleStatus = BattleStatusType.GameOver;
             WinBattle();
         }
 
     }
 
-    private void LoseBattle()
+    private float getUpdateBattleTimer()
     {
+        if(battleGame.ActiveCharacter.type == CharacterType.Enemy)
+        {
+            return GameConfig.enemyUpdateBattleTimer;
+        }
+        else
+        {
+            return GameConfig.playerUpdateBattleTimer; 
+
+        }
+
+    }
+
+    public void LoseBattle()
+    {
+        battleStatus = BattleStatusType.GameOver;
         Application.LoadLevel("GameOverScene");
     }
 
     private void WinBattle()
-{
-    Application.LoadLevel("GameOverScene");
-}
+    {
+        battleStatus = BattleStatusType.GameOver;
+        Application.LoadLevel("GameOverScene");
+    }
 
     void UpdateDebug()
     {
@@ -313,8 +343,6 @@ public class GameControllerScript : MonoBehaviour
         var canvas = GameObject.FindGameObjectWithTag("FrontCanvas");
 
         Vector2 canvasPos = Input.mousePosition - canvas.transform.localPosition; 
-
-
 
         string mousePos = string.Format("Mouse: {0},{1} | World: {2},{3} | view {4},{5} | canvas {6},{7}",
             Input.mousePosition.x, Input.mousePosition.y, viewPos.x, viewPos.y, worldPos.x, worldPos.y,canvasPos.x,canvasPos.y);
@@ -472,6 +500,8 @@ public class GameControllerScript : MonoBehaviour
         HidePanels();
         if (uiState == UIStateType.PlayerDecide)
         {
+            battleGame.battleLog.AddEntry(string.Format("{0} ended turn.", battleGame.ActiveCharacter.name));
+
             battleGame.NextTurn();
             uiState = UIStateType.NewTurn;
         }
@@ -745,6 +775,20 @@ public class GameControllerScript : MonoBehaviour
 
         //mainCamera.transform.position = tempPosition;
         mainCamera.transform.position = MoveCamera(mainCamera, mainCamera.transform.position, tempPosition);
+
+        UpdateCameraScroll(mainCamera);
+
+    }
+
+    private void UpdateCameraScroll(GameObject mainCameraObject)
+    {
+        var camera = mainCameraObject.GetComponent<Camera>();
+
+
+        camera.orthographicSize = Mathf.Clamp(camera.orthographicSize + Input.GetAxis("Mouse ScrollWheel") * 2, 5f, 10f);
+
+
+         
 
     }
 
