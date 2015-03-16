@@ -314,7 +314,11 @@ namespace SimpleRPG2
             //string retval = name + "\n";
             retval += string.Format("AC: {0} HP: {1}/{2} Atk: {3} AP: {4}/{5}\n", ac, hp, totalHP, attack, ap, totalAP);
 
-            retval += weapon.ToString() + "\n";
+            if(weapon != null)
+            { 
+                retval += weapon.ToString() + "\n";
+            }
+
             foreach (var e in equippedArmor)
             {
                 retval += e.ToString() + "\n";
@@ -324,6 +328,7 @@ namespace SimpleRPG2
             {
                 retval += ae.ToString() + "\n";
             }
+
             foreach (var pe in passiveEffects)
             {
                 retval += pe.ToString() + "\n";
