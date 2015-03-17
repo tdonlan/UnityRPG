@@ -23,7 +23,7 @@ namespace SimpleRPG2
         private int _ac;
         public int ac
         {
-            get { return _ac + CoreHelper.getArmorAmount(equippedArmor) + CoreHelper.getEffectAmount(new Random(), activeEffects, StatType.Armor); }
+            get { return _ac + CoreHelper.getArmorAmount(equippedArmor) + CoreHelper.getEffectAmount(new Random(), activeEffects, passiveEffects, StatType.Armor); }
             set { _ac = value; }
         }
 
@@ -32,7 +32,7 @@ namespace SimpleRPG2
         {
             get
             {
-                return _totalHP + CoreHelper.getEffectAmount(new Random(), activeEffects, StatType.HitPoints);
+                return _totalHP + CoreHelper.getEffectAmount(new Random(), activeEffects, passiveEffects, StatType.HitPoints);
             }
             set
             {
@@ -43,10 +43,13 @@ namespace SimpleRPG2
         public int hp { get; set; }
 
         private int _attack;
-        public int attack { get { return _attack + CoreHelper.getEffectAmount(new Random(), activeEffects, StatType.Attack); } set { _attack = value; } }
+        public int attack { get { return _attack + CoreHelper.getEffectAmount(new Random(), activeEffects, passiveEffects, StatType.Attack); } set { _attack = value; } }
 
-        public int ap { get; set; }
-        public int totalAP { get; set; }
+       
+        public int ap {get;set;}
+
+        private int _totalAP ;
+        public int totalAP { get { return _totalAP + CoreHelper.getEffectAmount(new Random(), activeEffects, passiveEffects, StatType.ActionPoints); } set { _totalAP = value; } }
 
         public List<Item> inventory { get; set; }
         public List<Armor> equippedArmor { get; set; }

@@ -19,6 +19,8 @@ public class GameOverController : MonoBehaviour {
 
     public void Restart()
     {
+        Destroy(this.gameControllerScript);
+
         Application.LoadLevel("StartScene");
     }
 }

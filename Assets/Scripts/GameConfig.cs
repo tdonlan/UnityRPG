@@ -26,5 +26,9 @@ using System.Linq;
 
         public static readonly Vector3 HoverStatsPanelLocation = new Vector3(0, 315, 0);
 
+        public static readonly float playerUpdateBattleTimer = 0.5f;
+        public static readonly float enemyUpdateBattleTimer = 0.25f;
+
+
     }
 

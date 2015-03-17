@@ -131,7 +131,7 @@ namespace SimpleRPG2
             }
         }
 
-        public static int getEffectAmount(Random r, List<ActiveEffect> activeEffects, StatType stat )
+        public static int getEffectAmount(Random r, List<ActiveEffect> activeEffects, List<PassiveEffect> passiveEffects, StatType stat )
         {
             int amount = 0;
             foreach(var ae in activeEffects)
@@ -141,6 +141,14 @@ namespace SimpleRPG2
                     amount += r.Next(ae.minAmount, ae.maxAmount);
                 }
             }
+            foreach(var pe in passiveEffects)
+            {
+                if(pe.statType == stat)
+                {
+                    amount += r.Next(pe.minAmount, pe.maxAmount);
+                }
+            }
+
             return amount;
         }
 
@@ -154,6 +162,7 @@ namespace SimpleRPG2
             return amount;
         }
 
+        //Determines if a stat is effected (for buff icons, highlights, etc)
         public static bool checkEffect(List<ActiveEffect> activeList, List<PassiveEffect> passiveList, StatType statType)
         {
             bool retval = false;
