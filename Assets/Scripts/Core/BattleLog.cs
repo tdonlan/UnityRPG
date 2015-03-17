@@ -22,6 +22,7 @@ namespace SimpleRPG2
             log.Add(txt + "\n");
         }
 
+        //DEPRECATED
         public void Print(int num)
         {
             string retval = "";
@@ -36,6 +37,27 @@ namespace SimpleRPG2
             }
 
             Console.Write(retval);
+        }
+
+        //num most recent lines
+        //0 = all
+        public string PrintLog(int num)
+        {
+            string retval = "";
+            int index = 0;
+            if (log.Count > num)
+            {
+                index = log.Count - num;
+            }
+            if(num == 0)
+            {
+                index = 0;
+            }
+            for (int i = index; i < log.Count; i++)
+            {
+                retval += string.Format("{0}. {1}\n", i, log[i]);
+            }
+            return retval;
         }
 
         //return the 4 most recent log entries in reverse order

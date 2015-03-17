@@ -8,9 +8,14 @@ public class GameOverController : MonoBehaviour {
 	void Start () {
         this.gameControllerScript = GameObject.FindObjectOfType<GameControllerScript>();
 
-        var canvas = GameObject.FindObjectOfType<Canvas>().gameObject;
-        UIHelper.UpdateTextComponent(canvas, "BattleLogText", gameControllerScript.battleGame.battleLog.ToString());
+        LoadBattleLog();
 	}
+
+    private void LoadBattleLog()
+    {
+        var battleLogContent = GameObject.FindGameObjectWithTag("BattleLogContent");
+        UIHelper.UpdateTextComponent(battleLogContent, "BattleLogContent", gameControllerScript.battleGame.battleLog.PrintLog(0));
+    }
 	
 	// Update is called once per frame
 	void Update () {
