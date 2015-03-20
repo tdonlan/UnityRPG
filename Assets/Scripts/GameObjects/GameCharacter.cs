@@ -103,6 +103,8 @@ namespace SimpleRPG2
             a.duration--;
             if (a.duration > 0)
             {
+                game.battleLog.AddEntry(string.Format("{0} was added to {1}.", a.name, this.name));
+
                 activeEffects.Add(a);
             }
         }
@@ -136,6 +138,8 @@ namespace SimpleRPG2
                 activeEffects[i].duration--;
                 if (activeEffects[i].duration <= 0)
                 {
+                    game.battleLog.AddEntry(string.Format("{0} expired on {1}.", activeEffects[i].name, this.name));
+
                     activeEffects.RemoveAt(i);
                 }
             }
@@ -143,16 +147,28 @@ namespace SimpleRPG2
 
         private void ActivateEffect(ActiveEffect effect, BattleGame game)
         {
+            int amt = 0;
             switch (effect.statType)
             {
                 case StatType.Damage:
-                    this.Damage(game.r.Next(effect.minAmount, effect.maxAmount), game);
+                     amt = game.r.Next(effect.minAmount, effect.maxAmount);
+
+                    game.battleLog.AddEntry(string.Format("{0} was damaged by {1} for {2}", this.name, effect.name, amt.ToString()));
+
+                    this.Damage(amt, game);
                     break;
                 case StatType.Heal:
-                    this.Heal(game.r.Next(effect.minAmount, effect.maxAmount), game);
+                     amt = game.r.Next(effect.minAmount, effect.maxAmount);
+                     game.battleLog.AddEntry(string.Format("{0} was healed by {1} for {2}", this.name, effect.name, amt.ToString()));
+
+                    this.Heal(amt, game);
                     break;
                 case StatType.Dispell:
-                    RemoveTopActiveEffects(game.r.Next(effect.minAmount, effect.maxAmount));
+
+                    amt = game.r.Next(effect.minAmount, effect.maxAmount);
+                    game.battleLog.AddEntry(string.Format("{0} removed {1} effects from {2}", effect.name, amt, this.name));
+
+                    RemoveTopActiveEffects(amt);
                     break;
                 default:
                     break;
@@ -161,16 +177,11 @@ namespace SimpleRPG2
 
         public void Damage(int amount, BattleGame game)
         {
-
-            game.battleLog.AddEntry(string.Format("{0} was hurt for {1}", this.name, amount));
-
             this.hp -= amount;
             if (this.hp <= 0)
             {
                 Kill(game);
             }
-
-
         }
 
         public void Heal(int amount, BattleGame game)
@@ -187,6 +198,8 @@ namespace SimpleRPG2
 
         public void Kill(BattleGame game)
         {
+            game.battleLog.AddEntry(string.Format("{0} was killed.", this.name));
+
             game.CharacterKill(this);
         }
 
@@ -205,6 +218,9 @@ namespace SimpleRPG2
             {
                 inventory.Remove(w);
                 this.weapon = w;
+
+                
+
                 if (w.passiveEffects != null)
                 {
                     foreach (var pe in w.passiveEffects)

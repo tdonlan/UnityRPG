@@ -500,6 +500,8 @@ public class GameControllerScript : MonoBehaviour
         HidePanels();
         if (uiState == UIStateType.PlayerDecide)
         {
+            battleGame.battleLog.AddEntry(string.Format("{0} ended turn.", battleGame.ActiveCharacter.name));
+
             battleGame.NextTurn();
             uiState = UIStateType.NewTurn;
         }
