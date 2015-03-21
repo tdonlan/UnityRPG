@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace SimpleRPG2
+namespace UnityRPG
 {
     public class BattleGame
     {
@@ -57,6 +57,9 @@ namespace SimpleRPG2
         private void LoadBoardFromData()
         {
             //randomized board for now
+
+            
+
             board = BoardFactory.getRandomBoard(this, 20);
         }
 

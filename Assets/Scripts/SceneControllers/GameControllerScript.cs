@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Linq;
 
-using Assets;
+using UnityRPG;
 
-using SimpleRPG2;
+using UnityRPG;
 using UnityEngine.EventSystems;
 
 public class GameControllerScript : MonoBehaviour

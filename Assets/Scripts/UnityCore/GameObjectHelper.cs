@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 using System;
 using UnityEngine.UI;
-using Assets;
+using UnityRPG;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using System.Linq;

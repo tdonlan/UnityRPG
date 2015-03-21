@@ -5,7 +5,7 @@ using System.Text;
 
 using UnityEngine;
 
-namespace Assets
+namespace UnityRPG
 {
 
     public class Spritesheet
@@ -80,4 +80,70 @@ namespace Assets
         }
         
     }
+
+
+
+    public class TileSpriteLookup
+    {
+        public char tileChar { get; set; }
+        public string tileName { get; set; }
+        public string spritesheetName { get; set; }
+        public int spritesheetIndex { get; set; }
+        public bool isEmpty { get; set; }
+        public TileSpriteType tileSpriteType { get; set; }
+
+        public TileSpriteLookup(char tileChar, string spriteSheet, int index, bool isEmpty, TileSpriteType type)
+        {
+            this.tileChar = tileChar;
+            this.tileName = tileChar.ToString();
+            this.spritesheetName = spriteSheet;
+            this.spritesheetIndex = index;
+            this.isEmpty = isEmpty;
+            this.tileSpriteType = type;
+        }
+    }
+
+
+    public class TileSpriteLibrary
+    {
+        public Dictionary<string, List<TileSpriteLookup>> tileSpriteDictionary { get; set; }
+
+        public TileSpriteLibrary()
+        {
+            tileSpriteDictionary = new Dictionary<string, List<TileSpriteLookup>>();
+            LoadTileSpriteLibrary();
+        }
+
+        public List<TileSpriteLookup> getTileSpriteList(string name)
+        {
+            if (tileSpriteDictionary.ContainsKey(name))
+            {
+                return tileSpriteDictionary[name];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        //Load this from external file / JSON
+        private void LoadTileSpriteLibrary()
+        {
+            tileSpriteDictionary.Add("Dungeon", getDungeonTileSpriteList());
+        }
+
+        private List<TileSpriteLookup> getDungeonTileSpriteList()
+        {
+            List<TileSpriteLookup> tileSpriteList = new List<TileSpriteLookup>();
+            tileSpriteList.Add(new TileSpriteLookup('.', "Tiles", 2, true, TileSpriteType.Floor));
+            tileSpriteList.Add(new TileSpriteLookup('#', "Tiles", 27, false, TileSpriteType.Wall));
+            tileSpriteList.Add(new TileSpriteLookup('P', "Tiles", 2, true, TileSpriteType.PlayerStart));
+            tileSpriteList.Add(new TileSpriteLookup('E', "Tiles", 2, true, TileSpriteType.EnemyStart));
+
+            return tileSpriteList;
+
+        }
+    }
+
+
 }

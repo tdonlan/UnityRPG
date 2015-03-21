@@ -7,7 +7,7 @@ using System.IO;
 
 //JSON.NET NOT PART OF UNITY.  NEED TO PURCHASE, OR FIND ANOTHER SOLUTION FOR UNITY.
 
-namespace SimpleRPG2
+namespace UnityRPG
 {
     public class GameData
     {

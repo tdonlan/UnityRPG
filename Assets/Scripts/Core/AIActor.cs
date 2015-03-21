@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace SimpleRPG2
+namespace UnityRPG
 {
     public class AIActor
     {

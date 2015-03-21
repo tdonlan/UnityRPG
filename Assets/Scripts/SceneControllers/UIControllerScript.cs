@@ -2,9 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 
-using Assets;
+using UnityRPG;
 
-using SimpleRPG2;
+using UnityRPG;
 
 
 public class UIControllerScript : MonoBehaviour {

@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
-using SimpleRPG2;
+using UnityRPG;
 using System;
 using UnityEngine.UI;
-using Assets;
+using UnityRPG;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
