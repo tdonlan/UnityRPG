@@ -1114,6 +1114,5 @@ namespace SimpleRPG2
             characterList.Remove(character);
 
         }
-
     }
 }

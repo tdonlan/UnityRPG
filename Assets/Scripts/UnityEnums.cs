@@ -14,6 +14,16 @@ public enum SpritesheetType
 
 }
 
+public enum TileSpriteType
+{
+    Wall,
+    Floor,
+    PlayerStart,
+    EnemyStart,
+    NPCStart,
+    Special,
+}
+
 
 public enum UIStateType
 {
