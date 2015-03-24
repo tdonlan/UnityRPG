@@ -7,14 +7,14 @@ using System.Linq;
 
 using UnityRPG;
 
-using UnityRPG;
 using UnityEngine.EventSystems;
 
 public class GameControllerScript : MonoBehaviour
 {
     public int battleIndex { get; set; }
 
-    public AssetLibrary assetLibrary { get; set; } 
+    public GameData gameData { get; set; }
+
     public BattleGame battleGame { get; set; }
     public BattleStatusType battleStatus { get; set; }
 
@@ -47,6 +47,8 @@ public class GameControllerScript : MonoBehaviour
     public PlayerDecideState playerDecideState { get; set; }
 
     //UI Prefabs
+    public GameObject ItemPrefab { get; set; }
+    public GameObject AbilityItemPrefab { get; set; }
     public GameObject HoverPrefab { get; set; }
     public GameObject InitiativePanel { get; set; }
     private GameObject InitPrefab { get; set; }
@@ -63,7 +65,7 @@ public class GameControllerScript : MonoBehaviour
     {
         if (level == 1)
         {
-            this.assetLibrary = new AssetLibrary();
+           
             tileCharacterList = new List<GameObject>();
             tempEffectList = new List<GameObject>();
 
@@ -75,7 +77,7 @@ public class GameControllerScript : MonoBehaviour
 
             getBattleIndex();
            
-            var gameData = BattleFactory.getGameData(this.battleIndex, this.r);
+            this.gameData = BattleFactory.getGameData(this.battleIndex, this.r);
 
             this.battleGame = new BattleGame(gameData, r);
 
@@ -119,16 +121,17 @@ public class GameControllerScript : MonoBehaviour
      
         LoadInitiative();
 
-       
     }
 
     private void LoadPrefabs()
     {
-        InitPrefab = Resources.Load<GameObject>("BattleInitiativePanelPrefab");
-        HoverPrefab = Resources.Load<GameObject>("HoverPrefab");
+         ItemPrefab = Resources.Load<GameObject>("Prefab/ItemPrefab");
+        AbilityItemPrefab = Resources.Load<GameObject>("Prefab/AbilityPrefab");
+        InitPrefab = Resources.Load<GameObject>("Prefab/BattleInitiativePanelPrefab");
+        HoverPrefab = Resources.Load<GameObject>("Prefab/HoverPrefab");
 
-        CharacterPrefab = Resources.Load<GameObject>("CharacterPrefab");
-        CharacterPrefab2 = Resources.Load<GameObject>("CharacterPrefab2");
+        CharacterPrefab = Resources.Load<GameObject>("Prefab/CharacterPrefab");
+        CharacterPrefab2 = Resources.Load<GameObject>("Prefab/CharacterPrefab2");
 
         InitiativePanel = GameObject.FindGameObjectWithTag("InitiativePanel");
 
@@ -175,7 +178,7 @@ public class GameControllerScript : MonoBehaviour
         {
             var ac = battleGame.ActiveCharacter;
             var ActiveCharacterPanel = GameObject.FindGameObjectWithTag("ActiveCharacterPanel");
-            UIHelper.UpdateSpriteComponent(ActiveCharacterPanel, "ActiveCharacterPortrait", assetLibrary.getSprite(ac.portraitSpritesheetName,ac.portraitSpriteIndex));
+            UIHelper.UpdateSpriteComponent(ActiveCharacterPanel, "ActiveCharacterPortrait", gameData.assetLibrary.getSprite(ac.portraitSpritesheetName,ac.portraitSpriteIndex));
             UIHelper.UpdateTextComponent(ActiveCharacterPanel, "ActiveCharacterName", ac.name);
             UIHelper.UpdateTextComponent(ActiveCharacterPanel,"ActiveCharacterAPText",string.Format("AP:{0}/{1}",ac.ap,ac.totalAP));
 
@@ -191,7 +194,7 @@ public class GameControllerScript : MonoBehaviour
     private GameObject LoadCharacter(GameCharacter character)
     {
         GameObject characterObject = (GameObject)Instantiate(CharacterPrefab2);
-        GameObjectHelper.UpdateSprite(characterObject, "CharacterSprite", assetLibrary.getSprite(character.characterSpritesheetName, character.characterSpriteIndex));
+        GameObjectHelper.UpdateSprite(characterObject, "CharacterSprite", gameData.assetLibrary.getSprite(character.characterSpritesheetName, character.characterSpriteIndex));
 
         if (character.type == CharacterType.Player)
         {
@@ -245,7 +248,7 @@ public class GameControllerScript : MonoBehaviour
         SpriteRenderer renderer = effectSprite.AddComponent<SpriteRenderer>();
         effectSprite.transform.position = new Vector3(t.x, t.y, -2);
 
-        renderer.sprite = assetLibrary.getSprite(t.tempSheetName,t.tempSpriteIndex);
+        renderer.sprite = gameData.assetLibrary.getSprite(t.tempSheetName, t.tempSpriteIndex);
 
 
         return effectSprite;
@@ -257,7 +260,7 @@ public class GameControllerScript : MonoBehaviour
         SpriteRenderer renderer = spriteObject.AddComponent<SpriteRenderer>();
         spriteObject.transform.position = new Vector3(t.x, t.y, 0);
 
-        renderer.sprite = assetLibrary.getSprite(t.tileSheetName, t.tileSpriteIndex);
+        renderer.sprite = gameData.assetLibrary.getSprite(t.tileSheetName, t.tileSpriteIndex);
 
     }
 
@@ -750,7 +753,7 @@ public class GameControllerScript : MonoBehaviour
         SelectedTile = new GameObject("SelectedTile");
         SpriteRenderer renderer = SelectedTile.AddComponent<SpriteRenderer>();
         SelectedTile.transform.position = new Vector3(clickPoint.x, clickPoint.y, 0);
-        renderer.sprite = Resources.Load<Sprite>("highlightTile 1");
+        renderer.sprite = Resources.Load<Sprite>("Sprites/highlightTile 1");
     }
 
     private void DeselectTile()
@@ -980,11 +983,11 @@ public class GameControllerScript : MonoBehaviour
         {
             panelImg.color = Color.yellow;
 
-            panelImg.overrideSprite = assetLibrary.getSprite("InitBG2", 0);
+            panelImg.overrideSprite = gameData.assetLibrary.getSprite("InitBG2", 0);
         }
 
 
-        UIHelper.UpdateSpriteComponent(charPortrait, "PortraitImage", assetLibrary.getSprite(character.portraitSpritesheetName,character.portraitSpriteIndex));
+        UIHelper.UpdateSpriteComponent(charPortrait, "PortraitImage", gameData.assetLibrary.getSprite(character.portraitSpritesheetName, character.portraitSpriteIndex));
 
         UIHelper.UpdateTextComponent(charPortrait, "CharacterName", character.name.ToString());
 
@@ -1004,7 +1007,7 @@ public class GameControllerScript : MonoBehaviour
                                  where data.uses > 0
                                  select data).ToList();
 
-        var AbilityItemPrefab = Resources.Load<GameObject>("AbilityPrefab");
+
 
         Transform AbilityPanel = GameObject.FindGameObjectWithTag("AbilityContentPanel").transform;
 
@@ -1014,7 +1017,7 @@ public class GameControllerScript : MonoBehaviour
         foreach (var ab in usableAbilityList)
         {
             GameObject abilityItem = (GameObject)Instantiate(AbilityItemPrefab);
-            updateAbilityButton(abilityItem, assetLibrary.getSprite(ab.sheetname,ab.spriteindex), ab);
+            updateAbilityButton(abilityItem, gameData.assetLibrary.getSprite(ab.sheetname, ab.spriteindex), ab);
             abilityItem = updateAbilityItem(abilityItem, ab);
             abilityItem.transform.SetParent(AbilityPanel, true);
         }
@@ -1029,7 +1032,7 @@ public class GameControllerScript : MonoBehaviour
                          where data.count > 0
                          select data).ToList();
                         
-        var ItemPrefab = Resources.Load<GameObject>("ItemPrefab");
+ 
 
         Transform ItemPanel = GameObject.FindGameObjectWithTag("ItemContentPanel").transform;
 
@@ -1043,7 +1046,7 @@ public class GameControllerScript : MonoBehaviour
 
             GameObject itemObject = (GameObject)Instantiate(ItemPrefab);
             UIHelper.UpdateTextComponent(itemObject, "ItemText", item.ToString());
-            UIHelper.UpdateSpriteComponent(itemObject, "ItemButtonImage", assetLibrary.getSprite(item.sheetname, item.spriteindex));
+            UIHelper.UpdateSpriteComponent(itemObject, "ItemButtonImage", gameData.assetLibrary.getSprite(item.sheetname, item.spriteindex));
 
             Button buttonClick = itemObject.GetComponentInChildren<Button>();
             buttonClick.onClick.AddListener(() => PlayerItemStart(usableItem));

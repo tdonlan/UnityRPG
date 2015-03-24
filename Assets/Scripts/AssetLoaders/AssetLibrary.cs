@@ -21,10 +21,21 @@ namespace UnityRPG
     {
         
         public List<Spritesheet> spritesheetList {get;set;}
+        public TileSpriteLibrary tileSpriteLibrary { get; set; }
+        public List<string> boardStringList { get; set; }
 
         public AssetLibrary()
         {
             LoadSpritesheets();
+            LoadBoards();
+
+            tileSpriteLibrary = new TileSpriteLibrary();
+        }
+
+        private void LoadBoards()
+        {
+            boardStringList = new List<string>();
+            boardStringList.Add(Resources.Load<TextAsset>("Data/Map1").text);
         }
 
         private void LoadSpritesheets()
@@ -32,22 +43,22 @@ namespace UnityRPG
             //get the manifest from some external file
 
             spritesheetList = new List<Spritesheet>();
-            spritesheetList.Add(getSpritesheet("Tiles", "dg_dungeon32"));
-            spritesheetList.Add(getSpritesheet("Characters", "dg_classm32Edit"));
-            spritesheetList.Add(getSpritesheet("Portraits", "portraitsEdit"));
-            spritesheetList.Add(getSpritesheet("Particles", "dg_effects32Edit"));
-            spritesheetList.Add(getSpritesheet("Armor","dg_armor32"));
-            spritesheetList.Add(getSpritesheet("Weapons", "dg_weapons32"));
-            spritesheetList.Add(getSpritesheet("Jewels", "dg_jewls32"));
-            spritesheetList.Add(getSpritesheet("Wands", "dg_wands32"));
-            spritesheetList.Add(getSpritesheet("Potions", "dg_potions32"));
-            spritesheetList.Add(getSpritesheet("Dragons", "dg_dragon32Edit"));
+            spritesheetList.Add(getSpritesheet("Tiles", "Sprites/dg_dungeon32"));
+            spritesheetList.Add(getSpritesheet("Characters", "Sprites/dg_classm32Edit"));
+            spritesheetList.Add(getSpritesheet("Portraits", "Sprites/portraitsEdit"));
+            spritesheetList.Add(getSpritesheet("Particles", "Sprites/dg_effects32Edit"));
+            spritesheetList.Add(getSpritesheet("Armor", "Sprites/dg_armor32"));
+            spritesheetList.Add(getSpritesheet("Weapons", "Sprites/dg_weapons32"));
+            spritesheetList.Add(getSpritesheet("Jewels", "Sprites/dg_jewls32"));
+            spritesheetList.Add(getSpritesheet("Wands", "Sprites/dg_wands32"));
+            spritesheetList.Add(getSpritesheet("Potions", "Sprites/dg_potions32"));
+            spritesheetList.Add(getSpritesheet("Dragons", "Sprites/dg_dragon32Edit"));
 
 
-            spritesheetList.Add(getSpritesheet("Blank", "blankItem"));
-            spritesheetList.Add(getSpritesheet("InitBG1", "InitBG1"));
-            spritesheetList.Add(getSpritesheet("InitBG2", "InitBG2"));
-            spritesheetList.Add(getSpritesheet("HighlightTile", "highlightTile"));
+            spritesheetList.Add(getSpritesheet("Blank", "Sprites/blankItem"));
+            spritesheetList.Add(getSpritesheet("InitBG1", "Sprites/InitBG1"));
+            spritesheetList.Add(getSpritesheet("InitBG2", "Sprites/InitBG2"));
+            spritesheetList.Add(getSpritesheet("HighlightTile", "Sprites/highlightTile"));
 
         }
 
@@ -102,6 +113,8 @@ namespace UnityRPG
             this.tileSpriteType = type;
         }
     }
+
+    
 
 
     public class TileSpriteLibrary

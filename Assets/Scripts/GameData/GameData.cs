@@ -11,7 +11,7 @@ namespace UnityRPG
 {
     public class GameData
     {
-
+        public AssetLibrary assetLibrary { get; set; }
         public Dictionary<string, string> fileManifest { get; set; }
         public List<Ability> masterAbilityList { get; set; }
         public List<Item> masterItemList { get; set; }
@@ -21,6 +21,7 @@ namespace UnityRPG
 
         public GameData()
         {
+            assetLibrary = new AssetLibrary();
 
             masterAbilityList = new List<Ability>();
             masterItemList = new List<Item>();

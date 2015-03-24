@@ -58,7 +58,8 @@ namespace UnityRPG
         {
             //randomized board for now
 
-            
+            string boardStr = gameData.assetLibrary.boardStringList[0];
+            //board = BoardFactory.getBoardFromBoardData(this, BoardDataFactory.getDungeonBoard(gameData.assetLibrary.tileSpriteLibrary, boardStr));
 
             board = BoardFactory.getRandomBoard(this, 20);
         }

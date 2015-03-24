@@ -29,7 +29,7 @@ public class EquipmentTestScript : MonoBehaviour {
 	void Start () {
 
         this.gameControllerScript = (GameControllerScript)gameController.GetComponent<GameControllerScript>();
-        this.assetLibrary = gameControllerScript.assetLibrary;
+        this.assetLibrary = gameControllerScript.gameData.assetLibrary;
         this.battleGame = gameControllerScript.battleGame;
 
         LoadCharacterStats();
@@ -138,7 +138,7 @@ public class EquipmentTestScript : MonoBehaviour {
         LoadCurrentArmor((ArmorType)armorType);
 
         displayEquipList = new List<GameObject>();
-        GameObject equipPrefab = Resources.Load<GameObject>("EquipPrefab");
+        GameObject equipPrefab = Resources.Load<GameObject>("Prefab/EquipPrefab");
 
         GameObject rightEquipPanel = GameObject.FindGameObjectWithTag("EquipRightPanelContent");
         UIHelper.DestroyAllChildren(rightEquipPanel.transform);
@@ -169,7 +169,7 @@ public class EquipmentTestScript : MonoBehaviour {
 
         displayEquipList = new List<GameObject>();
 
-        GameObject equipPrefab = Resources.Load<GameObject>("EquipPrefab");
+        GameObject equipPrefab = Resources.Load<GameObject>("Prefab/EquipPrefab");
 
         GameObject rightEquipPanel = GameObject.FindGameObjectWithTag("EquipRightPanelContent");
 
@@ -197,7 +197,7 @@ public class EquipmentTestScript : MonoBehaviour {
         LoadCurrentAmmo();
 
         displayEquipList = new List<GameObject>();
-        GameObject equipPrefab = Resources.Load<GameObject>("EquipPrefab");
+        GameObject equipPrefab = Resources.Load<GameObject>("Prefab/EquipPrefab");
 
         GameObject rightEquipPanel = GameObject.FindGameObjectWithTag("EquipRightPanelContent");
         UIHelper.DestroyAllChildren(rightEquipPanel.transform);

@@ -10,15 +10,17 @@ namespace UnityRPG
     {
         //These boards will be loaded from external JSON
 
-        public static BoardData getDungeonBoard(TileSpriteLibrary tileLibrary)
+        public static BoardData getDungeonBoard(TileSpriteLibrary tileLibrary, string boardStr)
         {
-            char[,] simpleCharBoard = getCharArrayFromString(getSimpleBoardString());
+            char[,] simpleCharBoard = getCharArrayFromString(boardStr);
             BoardData boardData = new BoardData(simpleCharBoard,tileLibrary.getTileSpriteList("Dungeon"),"Dungeon1",null);
             return boardData;
         }
 
-        public static char[,] getCharArrayFromString(string str)
+        private static char[,] getCharArrayFromString(string str)
         {
+            str = str.Replace("\r","").Replace("\n","");
+
             int len = (int)Math.Sqrt((double)str.Length);  //assuming board string is square
             char[,] charArray = new char[len, len];
 
@@ -34,31 +36,6 @@ namespace UnityRPG
              return charArray;
         }
 
-        public static string getSimpleBoardString()
-        {
-
-            return @"###################
-                        #.................#
-                        #.................#
-                        #.........##......#
-                        #.................#
-                        #.................#
-                        #....##......E....#
-                        #....#........E...#
-                        #............E....#
-                        #.....#....E..E...#
-                        #.PP...#.....E....#
-                        #.PP...#......E...#
-                        #.PP.........E....#
-                        #.....#...........#
-                        #.................#
-                        #.................#
-                        #.......###.......#
-                        #.................#
-                        #.................#
-                        ###################";
-
-        }
     }
 
 }
