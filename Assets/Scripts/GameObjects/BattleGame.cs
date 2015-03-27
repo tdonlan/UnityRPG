@@ -137,8 +137,18 @@ namespace UnityRPG
         {
             foreach(var gc in characterList)
             {
-                var freeTile = board.getFreeTile();
-                board.FillTile(gc, freeTile);
+                if(gc.type == CharacterType.Player)
+                {
+                    var freeTile = board.getFreeTileOfType(TileSpriteType.PlayerStart);
+                    board.FillTile(gc, freeTile);
+                }
+                else
+                {
+                    var freeTile = board.getFreeTileOfType(TileSpriteType.EnemyStart);
+                    board.FillTile(gc, freeTile);
+                }
+            
+               
             }
         }
 

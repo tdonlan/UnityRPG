@@ -92,6 +92,7 @@ namespace UnityRPG
             retval.TileChar = tileLookup.tileChar;
             retval.tileSheetName = tileLookup.spritesheetName; 
             retval.tileSpriteIndex = tileLookup.spritesheetIndex;
+            retval.tileSpriteLookup = tileLookup;
 
             retval.tempSheetName = string.Empty;
             retval.tempSpriteIndex = 0;
