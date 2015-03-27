@@ -21,16 +21,13 @@ public class GameControllerScript : MonoBehaviour
     public List<GameObject> tileCharacterList { get; set; }
     public List<GameObject> tempEffectList { get; set; }
 
-    Text DebugText =null;
-
-    public int TileSize = 32;
+    Text DebugText = null;
 
     public System.Random r { get; set; }
 
     public Point clickPoint { get; set; }
     public List<GameObject> highlightTiles { get; set; }
     GameObject SelectedTile { get; set; }
-
 
     public GameObject HoverStatsObject { get; set; }
     public GameObject CharacterHover { get; set; }
@@ -39,12 +36,14 @@ public class GameControllerScript : MonoBehaviour
     private float UITimer { get; set; }
     private float TempEffectTimer { get; set; }
 
-
     private Ability selectedAbility { get; set; }
     private UsableItem selectedItem { get; set; }
     public UIStateType uiState { get; set; }
 
     public PlayerDecideState playerDecideState { get; set; }
+
+    //Camera Pan / Zoom
+    BattleSceneCameraData cameraData { get; set; }
 
     //UI Prefabs
     public GameObject ItemPrefab { get; set; }
@@ -273,6 +272,10 @@ public class GameControllerScript : MonoBehaviour
 
         var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         mainCamera.transform.position = new Vector3(x, y, -10);
+
+        var cam = mainCamera.GetComponent<Camera>();
+
+        cameraData = new BattleSceneCameraData(x, y, cam.orthographicSize, GameConfig.PanLerp, GameConfig.ZoomLerp);
 
     }
 
@@ -762,24 +765,29 @@ public class GameControllerScript : MonoBehaviour
         SelectedTile = null;
     }
 
+
+    public void MoveCameraToCharacter(System.Object characterObject)
+    {
+        GameCharacter gc = (GameCharacter)characterObject;
+        FocusCamera(gc.x, gc.y);
+    }
+
     private void UpdateCamera()
     {
-        float speed = 100;
-        float vert = Input.GetAxis("Vertical") * speed;
-        float hor = Input.GetAxis("Horizontal") * speed;
-
         var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
-        var destination = mainCamera.transform.position + new Vector3(hor, vert, 0);
-        var velocity = Vector3.zero;
-        float dampTime = 0.3f;
+        float vert = Input.GetAxis("Vertical") * GameConfig.PanSpeed;
+        float hor = Input.GetAxis("Horizontal") * GameConfig.PanSpeed;
 
-        var tempPosition = Vector3.SmoothDamp(mainCamera.transform.position, destination, ref velocity, dampTime);
+        var destination = new Vector2(cameraData.CameraX + hor, cameraData.CameraY + vert);
+        var fixedDestination = MoveCamera(mainCamera, mainCamera.transform.position, destination);
 
-        //mainCamera.transform.position = tempPosition;
-        mainCamera.transform.position = MoveCamera(mainCamera, mainCamera.transform.position, tempPosition);
+        cameraData.SetCamera(fixedDestination.x, fixedDestination.y);
+
+        mainCamera.transform.position = cameraData.UpdateCamera(mainCamera.transform.position.x, mainCamera.transform.position.y, mainCamera.transform.position.z);
 
         UpdateCameraScroll(mainCamera);
+      
 
     }
 
@@ -787,20 +795,18 @@ public class GameControllerScript : MonoBehaviour
     {
         var camera = mainCameraObject.GetComponent<Camera>();
 
+        var newZoom = Input.GetAxis("Mouse ScrollWheel");
 
-        camera.orthographicSize = Mathf.Clamp(camera.orthographicSize + Input.GetAxis("Mouse ScrollWheel") * 2, 5f, 10f);
+        cameraData.SetZoom(Mathf.Clamp(cameraData.Zoom + newZoom * GameConfig.ZoomFactor, GameConfig.MinZoom, GameConfig.MaxZoom));
 
-
-         
+        camera.orthographicSize = cameraData.UpdateZoom(camera.orthographicSize);
 
     }
 
     private void FocusCamera(int x, int y)
     {
-        var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        mainCamera.transform.position = new Vector3(x, y,-10);
+        cameraData.SetCamera(x, y);
     }
-
 
     //http://answers.unity3d.com/questions/501893/calculating-2d-camera-bounds.html
     private Vector3 MoveCamera(GameObject camera, Vector3 oldPos, Vector3 newPos)
@@ -996,6 +1002,7 @@ public class GameControllerScript : MonoBehaviour
 
         UIHelper.AddClickToGameObject(charPortrait, UpdateInitiativeHover, EventTriggerType.PointerEnter, character);
         UIHelper.AddClickToGameObject(charPortrait, ClearCharacterHover, EventTriggerType.PointerExit);
+        UIHelper.AddClickToGameObject(charPortrait, MoveCameraToCharacter, EventTriggerType.PointerClick, character);
 
         return charPortrait;
     }

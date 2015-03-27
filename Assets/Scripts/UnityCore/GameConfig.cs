@@ -29,6 +29,14 @@ using System.Linq;
         public static readonly float playerUpdateBattleTimer = 0.5f;
         public static readonly float enemyUpdateBattleTimer = 0.25f;
 
+        public static readonly float PanSpeed = 1f;
+        public static readonly float PanLerp = 0.25f;
+        public static readonly float ZoomLerp = 0.1f;
+
+        public static readonly float ZoomFactor = 5;
+        public static readonly float MinZoom = 2.5f;
+        public static readonly float MaxZoom = 10f;
+
 
     }
 
