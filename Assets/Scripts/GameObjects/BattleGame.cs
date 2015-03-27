@@ -88,7 +88,6 @@ namespace UnityRPG
             NewTurn = true;
             battleLog.AddEntry("Starting Battle");
 
-
             SetBattleInitiative();
 
             placeCharactersInBoard();

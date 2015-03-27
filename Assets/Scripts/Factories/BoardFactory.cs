@@ -36,6 +36,7 @@ namespace UnityRPG
             var tileLookupDict = gameData.assetLibrary.tileSpriteLibrary.getTileSpriteDictionary(boardData.tileLookupName);
 
             char[,] boardCharArray = getCharArrayFromString(boardLayoutStr);
+            boardCharArray = flipBoardXAxis(boardCharArray);
 
             Board b = new Board(game, boardCharArray.GetLength(0));
 
@@ -43,12 +44,31 @@ namespace UnityRPG
             {
                 for (int j = 0; j < boardCharArray.GetLength(1); j++)
                 {
-                    var tileLookup = tileLookupDict[boardCharArray[i, j]];
-                    b.board[i, j] = getTileFromData(tileLookup, i, j);
+                    var tileLookup = tileLookupDict[boardCharArray[i,j]];
+                    b.board[j,i] = getTileFromData(tileLookup, j,i);
                 }
             }
 
             return b;
+
+        }
+
+        //flip the board on the horizontal axis so it displays correctly in unity
+        private static char[,] flipBoardXAxis(char[,] board1)
+        {
+            int height = board1.GetLength(0);
+            int width = board1.GetLength(1);
+
+            char[,] retvalBoard = new char[height, width];
+            for(int i=0;i<height;i++)
+            {
+                for(int j=0;j<width;j++)
+                {
+                    retvalBoard[i, j] = board1[height - i - 1, j];
+                }
+            }
+
+            return retvalBoard;
 
         }
 

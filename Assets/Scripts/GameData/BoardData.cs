@@ -30,9 +30,6 @@ namespace UnityRPG
             this.levelName = levelName;
             this.boardMetaData = metaData;
         }
-
-       
-
     }
 
    

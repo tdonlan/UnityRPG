@@ -11,8 +11,6 @@ namespace UnityRPG
 {
     public class GameData
     {
-
-
         public Dictionary<string, BoardData> BoardDataDictionary { get; set; }
 
         public AssetLibrary assetLibrary { get; set; }
