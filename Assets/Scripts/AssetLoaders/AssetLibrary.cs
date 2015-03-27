@@ -22,7 +22,9 @@ namespace UnityRPG
         
         public List<Spritesheet> spritesheetList {get;set;}
         public TileSpriteLibrary tileSpriteLibrary { get; set; }
-        public List<string> boardStringList { get; set; }
+
+        public Dictionary<string, string> boardLayoutDictionary { get; set; }
+   
 
         public AssetLibrary()
         {
@@ -34,8 +36,8 @@ namespace UnityRPG
 
         private void LoadBoards()
         {
-            boardStringList = new List<string>();
-            boardStringList.Add(Resources.Load<TextAsset>("Data/Map1").text);
+            boardLayoutDictionary = new Dictionary<string, string>();
+            boardLayoutDictionary.Add("Map1", Resources.Load<TextAsset>("Data/Map1").text);
         }
 
         private void LoadSpritesheets()
@@ -119,15 +121,15 @@ namespace UnityRPG
 
     public class TileSpriteLibrary
     {
-        public Dictionary<string, List<TileSpriteLookup>> tileSpriteDictionary { get; set; }
+        public Dictionary<string, Dictionary<char,TileSpriteLookup>> tileSpriteDictionary { get; set; }
 
         public TileSpriteLibrary()
         {
-            tileSpriteDictionary = new Dictionary<string, List<TileSpriteLookup>>();
+            tileSpriteDictionary = new Dictionary<string, Dictionary<char, TileSpriteLookup>>();
             LoadTileSpriteLibrary();
         }
 
-        public List<TileSpriteLookup> getTileSpriteList(string name)
+        public Dictionary<char,TileSpriteLookup> getTileSpriteDictionary(string name)
         {
             if (tileSpriteDictionary.ContainsKey(name))
             {
@@ -139,21 +141,34 @@ namespace UnityRPG
             }
         }
 
+        public TileSpriteLookup getTileSpriteLookupFromLibraryAndChar(string libraryName, char c)
+        {
+            if (tileSpriteDictionary.ContainsKey(libraryName))
+            {
+                var tileLookupDict = tileSpriteDictionary[libraryName];
+                if (tileLookupDict.ContainsKey(c))
+                {
+                    return tileLookupDict[c];
+                }
+            }
+            return null;
+        }
+
         //Load this from external file / JSON
         private void LoadTileSpriteLibrary()
         {
-            tileSpriteDictionary.Add("Dungeon", getDungeonTileSpriteList());
+            tileSpriteDictionary.Add("Dungeon", getDungeonTileSpriteDictionary());
         }
 
-        private List<TileSpriteLookup> getDungeonTileSpriteList()
+        private Dictionary<char,TileSpriteLookup> getDungeonTileSpriteDictionary()
         {
-            List<TileSpriteLookup> tileSpriteList = new List<TileSpriteLookup>();
-            tileSpriteList.Add(new TileSpriteLookup('.', "Tiles", 2, true, TileSpriteType.Floor));
-            tileSpriteList.Add(new TileSpriteLookup('#', "Tiles", 27, false, TileSpriteType.Wall));
-            tileSpriteList.Add(new TileSpriteLookup('P', "Tiles", 2, true, TileSpriteType.PlayerStart));
-            tileSpriteList.Add(new TileSpriteLookup('E', "Tiles", 2, true, TileSpriteType.EnemyStart));
+            Dictionary<char, TileSpriteLookup> tileSpriteDict = new Dictionary<char, TileSpriteLookup>();
+            tileSpriteDict.Add('.', new TileSpriteLookup('.', "Tiles", 2, true, TileSpriteType.Floor));
+            tileSpriteDict.Add('#',new TileSpriteLookup('#', "Tiles", 27, false, TileSpriteType.Wall));
+            tileSpriteDict.Add('P',new TileSpriteLookup('P', "Tiles", 2, true, TileSpriteType.PlayerStart));
+            tileSpriteDict.Add('E',new TileSpriteLookup('E', "Tiles", 2, true, TileSpriteType.EnemyStart));
 
-            return tileSpriteList;
+            return tileSpriteDict;
 
         }
     }

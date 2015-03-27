@@ -15,33 +15,24 @@ namespace UnityRPG
 
     public class BoardData
     {
-        public int size { get; set; } //currently only square boards
-        public char[,] boardTileData { get; set; }
-        public List<TileSpriteLookup> tileSpriteLookupList { get; set; }
+        public string boardLayoutName { get; set; }
+        public string tileLookupName { get; set; }
         public string levelName {get;set;}
         public BoardMetaData boardMetaData { get; set; }
 
         //store where to go once battle is complete
         //references to enemies
 
-        public BoardData(char[,] boardTileData, List<TileSpriteLookup> tileSpriteLookupList, string name, BoardMetaData metaData)
+        public BoardData(string layoutName, string tileLookupName, string levelName, BoardMetaData metaData)
         {
-            this.boardTileData = boardTileData;
-            this.tileSpriteLookupList = tileSpriteLookupList;
-            this.levelName = name;
+            this.boardLayoutName = layoutName;
+            this.tileLookupName = tileLookupName;
+            this.levelName = levelName;
             this.boardMetaData = metaData;
         }
 
-        //Need error handling if we dont find
-        public TileSpriteLookup getTileSpriteData(char c)
-        {
-            var tileSpriteData = (from data in tileSpriteLookupList
-                                  where data.tileChar == c
-                                  select data).FirstOrDefault();
+       
 
-            return tileSpriteData;
-        }
-        
     }
 
    

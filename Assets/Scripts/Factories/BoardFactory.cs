@@ -30,6 +30,48 @@ namespace UnityRPG
             return b;
         }
 
+        public static Board getBoardFromBoardData(GameData gameData, BattleGame game, BoardData boardData)
+        {
+            var boardLayoutStr = gameData.assetLibrary.boardLayoutDictionary[boardData.boardLayoutName];
+            var tileLookupDict = gameData.assetLibrary.tileSpriteLibrary.getTileSpriteDictionary(boardData.tileLookupName);
+
+            char[,] boardCharArray = getCharArrayFromString(boardLayoutStr);
+
+            Board b = new Board(game, boardCharArray.GetLength(0));
+
+            for (int i = 0; i < boardCharArray.GetLength(0); i++)
+            {
+                for (int j = 0; j < boardCharArray.GetLength(1); j++)
+                {
+                    var tileLookup = tileLookupDict[boardCharArray[i, j]];
+                    b.board[i, j] = getTileFromData(tileLookup, i, j);
+                }
+            }
+
+            return b;
+
+        }
+
+        private static char[,] getCharArrayFromString(string str)
+        {
+            str = str.Replace("\r", "").Replace("\n", "");
+
+            int len = (int)Math.Sqrt((double)str.Length);  //assuming board string is square
+            char[,] charArray = new char[len, len];
+
+            char[] flatCharArray = str.ToCharArray();
+            for (int i = 0; i < len; i++)
+            {
+                for (int j = 0; j < len; j++)
+                {
+                    charArray[i, j] = flatCharArray[i * len + j];
+                }
+            }
+
+            return charArray;
+        }
+
+        /*
         public static Board getBoardFromBoardData(BattleGame game, BoardData data)
         {
             Board b = new Board(game, data.size);
@@ -42,6 +84,7 @@ namespace UnityRPG
             }
             return b;
         }
+         * */
 
         public static Tile getTileFromData(TileSpriteLookup tileLookup, int x, int y)
         {

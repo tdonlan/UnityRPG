@@ -11,6 +11,10 @@ namespace UnityRPG
 {
     public class GameData
     {
+
+
+        public Dictionary<string, BoardData> BoardDataDictionary { get; set; }
+
         public AssetLibrary assetLibrary { get; set; }
         public Dictionary<string, string> fileManifest { get; set; }
         public List<Ability> masterAbilityList { get; set; }
@@ -22,6 +26,9 @@ namespace UnityRPG
         public GameData()
         {
             assetLibrary = new AssetLibrary();
+
+            LoadBoardDataDictionary();
+
 
             masterAbilityList = new List<Ability>();
             masterItemList = new List<Item>();
@@ -43,6 +50,12 @@ namespace UnityRPG
                 LoadList((MasterListType)Enum.Parse(typeof(MasterListType), key), fileManifest[key]);
             }
 
+        }
+
+        public void LoadBoardDataDictionary()
+        {
+            BoardDataDictionary = new Dictionary<string, BoardData>();
+            BoardDataDictionary.Add("Board1", new BoardData("Map1", "Dungeon", "Board1", null));
         }
 
         public void LoadList(MasterListType type, string path)
