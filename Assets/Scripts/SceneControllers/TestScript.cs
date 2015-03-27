@@ -11,14 +11,18 @@ public class TestScript : MonoBehaviour {
     public bool isStatsDisplay { get; set; }
 
     GameObject HoverPrefab { get; set; }
+    GameObject TextPopupPrefab { get; set; }
 
     GameObject characterPrefab { get; set; }
-    
+
+    GameObject tempText { get; set; }
+    public float tempTextTimer { get; set; }
 
 	// Use this for initialization
 	void Start () {
         HoverPrefab = Resources.Load<GameObject>("HoverPrefab");
         characterPrefab = Resources.Load<GameObject>("CharacterPrefab");
+        TextPopupPrefab = Resources.Load<GameObject>("Prefab/TextPopupPrefab");
 
         isStatsDisplay = false;
 
@@ -35,7 +39,11 @@ public class TestScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        tempTextTimer -= Time.deltaTime;
+        if(tempTextTimer <=0)
+        {
+            Destroy(tempText);
+        }
 	}
 
     private void LoadPanel()
@@ -113,5 +121,25 @@ public class TestScript : MonoBehaviour {
     {
         Destroy(HoverStatsObject);
         isStatsDisplay = false;
+    }
+
+
+    public void PopupText()
+    {
+        tempTextTimer = 1f;
+        tempText = (GameObject)Instantiate(TextPopupPrefab);
+       UpdateTextPopup(tempText, new Vector3(2.5f, 2.5f, 0), "Popup Text!");
+
+
+    }
+
+    private void UpdateTextPopup(GameObject textPopup, Vector3 pos, string text)
+    {
+        textPopup.transform.position = pos;
+
+        var textMesh = textPopup.GetComponentInChildren<TextMesh>();
+        textMesh.text = text;
+
+
     }
 }

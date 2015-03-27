@@ -150,6 +150,13 @@ namespace UnityRPG
         Nuke,
         Flee
     }
+
+    public enum TempEffectType
+    {
+        Particle,
+        Sprite,
+        Text
+    }
         
 
 }
