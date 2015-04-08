@@ -3,6 +3,9 @@ using System.Collections;
 using UnityEngine.UI;
 using System;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
+
+using UnityRPG;
 
 public class TestScript : MonoBehaviour {
 
@@ -15,14 +18,21 @@ public class TestScript : MonoBehaviour {
 
     GameObject characterPrefab { get; set; }
 
-    GameObject tempText { get; set; }
-    public float tempTextTimer { get; set; }
+    AssetLibrary assetLibrary { get; set; }
+
+  
+
+    private List<TempEffect> tempEffectList { get; set; }
 
 	// Use this for initialization
 	void Start () {
+        this.assetLibrary = new AssetLibrary();
+
         HoverPrefab = Resources.Load<GameObject>("HoverPrefab");
         characterPrefab = Resources.Load<GameObject>("CharacterPrefab");
         TextPopupPrefab = Resources.Load<GameObject>("Prefab/TextPopupPrefab");
+
+        tempEffectList = new List<TempEffect>();
 
         isStatsDisplay = false;
 
@@ -38,13 +48,33 @@ public class TestScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        tempTextTimer -= Time.deltaTime;
-        if(tempTextTimer <=0)
+    void Update()
+    {
+        float delta = Time.deltaTime;
+
+        UpdateTempEffects(delta);
+    }
+
+    private void UpdateTempEffects(float delta)
+    {
+        for(int i=tempEffectList.Count-1;i>=0;i--)
         {
-            Destroy(tempText);
+            tempEffectList[i].Update(delta);
+            if(tempEffectList[i].isExpired)
+            {
+                Destroy(tempEffectList[i].gameObject);
+                tempEffectList.RemoveAt(i);
+            }
         }
-	}
+    }
+
+
+    private void AddEffect(TempEffectType type, float duration, Vector3 pos,Vector3 dest, GameObject gameObject)
+    {
+        TempEffect te = new TempEffect(type, gameObject, duration, pos,dest);
+   
+        tempEffectList.Add(te);
+    }
 
     private void LoadPanel()
     {
@@ -124,22 +154,53 @@ public class TestScript : MonoBehaviour {
     }
 
 
-    public void PopupText()
+    
+    private void UpdateTextPopup(GameObject textPopup, string text, Color c)
     {
-        tempTextTimer = 1f;
-        tempText = (GameObject)Instantiate(TextPopupPrefab);
-       UpdateTextPopup(tempText, new Vector3(2.5f, 2.5f, 0), "Popup Text!");
-
-
-    }
-
-    private void UpdateTextPopup(GameObject textPopup, Vector3 pos, string text)
-    {
-        textPopup.transform.position = pos;
-
         var textMesh = textPopup.GetComponentInChildren<TextMesh>();
         textMesh.text = text;
+        textMesh.color = c;
+        var meshRenderer = textPopup.GetComponentInChildren<MeshRenderer>();
+        meshRenderer.sortingLayerName = "Foreground";
+    }
 
+
+    public void StartParticles()
+    {
+        var fireParticle = assetLibrary.getPrefabGameObject("Fire_01");
+
+        var rend = fireParticle.GetComponentInChildren<Renderer>();
+        rend.sortingLayerName = "Foreground";
+             
+
+        //var meshRenderer = fireParticle.GetComponentInChildren<MeshRenderer>();
+       // meshRenderer.sortingLayerName = "Foreground";
+
+        AddEffect(TempEffectType.Particle, 1, new Vector3(3, 3,-2), new Vector3(3,3,-2), fireParticle);
 
     }
+
+
+    public void StartText()
+    {
+        var textObj = assetLibrary.getPrefabGameObject("TextPopup");
+        UpdateTextPopup(textObj, "2", Color.green);
+        AddEffect(TempEffectType.Text, 1, new Vector3(3, 3),new Vector3(3,4), textObj);
+    }
+
+    public void StartSprite()
+    {
+
+        StartTempSprite(new Vector3(3, 3,-2), "Particles", 48);
+    }
+
+    public void StartTempSprite(Vector3 pos, string spritesheetName, int spriteIndex)
+    {
+        var sprite = assetLibrary.getSprite(spritesheetName, spriteIndex);
+        var spriteObj = assetLibrary.getPrefabGameObject("Sprite");
+
+        GameObjectHelper.UpdateSprite(spriteObj, "Sprite", sprite);
+        AddEffect(TempEffectType.Sprite, 1, pos, pos, spriteObj);
+    }
+
 }

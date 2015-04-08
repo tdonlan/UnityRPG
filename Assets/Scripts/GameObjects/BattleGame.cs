@@ -8,6 +8,10 @@ namespace UnityRPG
 {
     public class BattleGame
     {
+
+        public GameControllerScript gameControllerScript;
+
+
         public GameData gameData;
       
         public Board board;
@@ -39,8 +43,9 @@ namespace UnityRPG
             }
         }
 
-        public BattleGame(GameData gameData, Random r)
+        public BattleGame(GameData gameData, Random r, GameControllerScript gameScript)
         {
+            this.gameControllerScript = gameScript;
             this.gameData = gameData;
 
             this.r = r;

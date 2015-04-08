@@ -38,6 +38,13 @@ using System.Linq;
 
         }
 
+        public static GameObject LoadPrefab(string prefabFileName)
+        {
+           return (GameObject)MonoBehaviour.Instantiate(Resources.Load<GameObject>(prefabFileName));
+
+        }
+
+       
 
     }
 

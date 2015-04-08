@@ -16,12 +16,30 @@ namespace UnityRPG
         public List<Sprite> sprites { get; set; }
     }
 
+    public class Prefab
+    {
+        public string prefabName { get; set; }
+        public string filename { get; set; }
+        public float duration { get; set; }
+        public float radius { get; set; }
+
+        public Prefab(string name, string filename)
+        {
+            this.prefabName = name;
+            this.filename = filename;
+
+            this.duration = 1;
+            this.radius = 0;
+        }
+    }
+
         
     public class AssetLibrary
     {
         
         public List<Spritesheet> spritesheetList {get;set;}
-        public TileSpriteLibrary tileSpriteLibrary { get; set; }
+        public List<Prefab> prefabList { get; set; }
+        public TileSpriteLibrary tileSpriteLibrary { get; set;}
 
         public Dictionary<string, string> boardLayoutDictionary { get; set; }
    
@@ -29,6 +47,7 @@ namespace UnityRPG
         public AssetLibrary()
         {
             LoadSpritesheets();
+            LoadPrefabs();
             LoadBoards();
 
             tileSpriteLibrary = new TileSpriteLibrary();
@@ -38,6 +57,36 @@ namespace UnityRPG
         {
             boardLayoutDictionary = new Dictionary<string, string>();
             boardLayoutDictionary.Add("Map1", Resources.Load<TextAsset>("Data/Map1").text);
+        }
+
+        private void LoadPrefabs()
+        {
+            prefabList = new List<Prefab>();
+
+            //Particles
+            prefabList.Add(new Prefab("FireBoom", "Elementals/Prefab/Fire/Boom"));
+            prefabList.Add(new Prefab("FireBurst", "Elementals/Prefab/Fire/Fire Burst"));
+            prefabList.Add(new Prefab("FireMist", "Elementals/Prefab/Fire/Fire Mist"));
+            prefabList.Add(new Prefab("FireSpray", "Elementals/Prefab/Fire/Fire Spray"));
+            prefabList.Add(new Prefab("Fire_01", "Elementals/Prefab/Fire/Fire_01"));
+            prefabList.Add(new Prefab("Fire_02", "Elementals/Prefab/Fire/Fire_02"));
+            prefabList.Add(new Prefab("Fire_03", "Elementals/Prefab/Fire/Fire_03"));
+            prefabList.Add(new Prefab("Firewall", "Elementals/Prefab/Fire/Firewall"));
+            prefabList.Add(new Prefab("FireMagma", "Elementals/Prefab/Fire/Magma Burst"));
+            prefabList.Add(new Prefab("FireEnchant", "Elementals/Prefab/Fire/Flame Enchant"));
+            prefabList.Add(new Prefab("HolyBlast", "Elementals/Prefab/Light/Holy Blast"));
+            prefabList.Add(new Prefab("HolyShine", "Elementals/Prefab/Light/Holy Shine"));
+            prefabList.Add(new Prefab("Lightning", "Elementals/Prefab/Thunder/Lightning"));
+            prefabList.Add(new Prefab("LightningSpark", "Elementals/Prefab/Thunder/Lightning Spark"));
+            prefabList.Add(new Prefab("Thunder", "Elementals/Prefab/Thunder/Thunder"));
+            prefabList.Add(new Prefab("Cyclone", "Elementals/Prefab/Wind/Cyclone"));
+
+            //Text
+            prefabList.Add(new Prefab("TextPopup", "Prefab/TextPopupPrefab"));
+
+            //sprite
+            prefabList.Add(new Prefab("Sprite", "Prefab/SpritePrefab"));
+
         }
 
         private void LoadSpritesheets()
@@ -55,7 +104,6 @@ namespace UnityRPG
             spritesheetList.Add(getSpritesheet("Wands", "Sprites/dg_wands32"));
             spritesheetList.Add(getSpritesheet("Potions", "Sprites/dg_potions32"));
             spritesheetList.Add(getSpritesheet("Dragons", "Sprites/dg_dragon32Edit"));
-
 
             spritesheetList.Add(getSpritesheet("Blank", "Sprites/blankItem"));
             spritesheetList.Add(getSpritesheet("InitBG1", "Sprites/InitBG1"));
@@ -91,9 +139,24 @@ namespace UnityRPG
             return null;
 
         }
+
+        public Prefab getPrefab(string prefabName)
+        {
+            Prefab pre = (from data in prefabList
+                          where data.prefabName == prefabName
+                          select data).FirstOrDefault();
+
+            return pre;
+        }
+
+        public GameObject getPrefabGameObject(string prefabName)
+        {
+            var prefab = getPrefab(prefabName);
+
+            return GameObjectHelper.LoadPrefab(prefab.filename);
+        }
         
     }
-
 
 
     public class TileSpriteLookup
@@ -115,9 +178,6 @@ namespace UnityRPG
             this.tileSpriteType = type;
         }
     }
-
-    
-
 
     public class TileSpriteLibrary
     {

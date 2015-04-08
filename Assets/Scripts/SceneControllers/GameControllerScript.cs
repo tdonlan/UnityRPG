@@ -19,7 +19,7 @@ public class GameControllerScript : MonoBehaviour
     public BattleStatusType battleStatus { get; set; }
 
     public List<GameObject> tileCharacterList { get; set; }
-    public List<GameObject> tempEffectList { get; set; }
+    public List<TempEffect> tempEffectList { get; set; }
 
     Text DebugText = null;
 
@@ -66,7 +66,7 @@ public class GameControllerScript : MonoBehaviour
         {
            
             tileCharacterList = new List<GameObject>();
-            tempEffectList = new List<GameObject>();
+            tempEffectList = new List<TempEffect>();
 
             this.r = new System.Random();
 
@@ -78,7 +78,7 @@ public class GameControllerScript : MonoBehaviour
            
             this.gameData = BattleFactory.getGameData(this.battleIndex, this.r);
 
-            this.battleGame = new BattleGame(gameData, r);
+            this.battleGame = new BattleGame(gameData, r,this);
 
             LoadPrefabs();
 
@@ -215,12 +215,13 @@ public class GameControllerScript : MonoBehaviour
         return characterObject;
     }
 
-
+    //Deprecated
+    /*
     private void LoadTempEffects()
     {
         foreach (var c in tempEffectList)
         {
-            Destroy(c);
+            //Destroy(c);
         }
 
         tempEffectList.Clear();
@@ -233,7 +234,7 @@ public class GameControllerScript : MonoBehaviour
 
                 if(tile.tempSheetName != string.Empty)
                 {
-                     tempEffectList.Add(LoadTempEffect(tile));
+                     //tempEffectList.Add(LoadTempEffect(tile));
                 }
                
             }
@@ -252,6 +253,7 @@ public class GameControllerScript : MonoBehaviour
 
         return effectSprite;
     }
+     * */
 
     private void LoadTile(Tile t)
     {
@@ -283,6 +285,9 @@ public class GameControllerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        float delta = Time.deltaTime;
+
         if (battleStatus != BattleStatusType.GameOver)
         {
             battleStatus = battleGame.getBattleStatus();
@@ -293,12 +298,14 @@ public class GameControllerScript : MonoBehaviour
 
             //UpdateDebug();
 
+            UpdateTempEffects(delta);
+
             UITimer -= Time.deltaTime;
             if (UITimer <= 0)
             {
                 UpdateBattle();
                 UITimer = getUpdateBattleTimer();
-                LoadTempEffects();
+                //LoadTempEffects();
             }
 
             UpdateCamera();
@@ -1141,6 +1148,90 @@ public class GameControllerScript : MonoBehaviour
 
     }
 
- 
+    #region TempEffects
+
+    private void UpdateTempEffects(float delta)
+    {
+        for (int i = tempEffectList.Count - 1; i >= 0; i--)
+        {
+            tempEffectList[i].Update(delta);
+            if (tempEffectList[i].isExpired)
+            {
+                Destroy(tempEffectList[i].gameObject);
+                tempEffectList.RemoveAt(i);
+            }
+        }
+    }
+
+    private void AddEffect(TempEffectType type, float duration, Vector3 pos, Vector3 dest, GameObject gameObject)
+    {
+        TempEffect te = new TempEffect(type, gameObject, duration, pos, dest);
+
+        tempEffectList.Add(te);
+    }
+
+
+    public void StartTempParticles(string particleName, Vector3 pos)
+    {
+        
+        var particleObj = gameData.assetLibrary.getPrefabGameObject(particleName);
+
+        var rend = particleObj.GetComponentInChildren<Renderer>();
+        rend.sortingLayerName = "Foreground";
+
+        AddEffect(TempEffectType.Particle, 1, pos, pos, particleObj);
+
+    }
+
+    public void StartTempTextOnChar(GameCharacter gameCharacter, int amount, bool isDamage)
+    {
+        Color c = Color.green;
+        if(isDamage)
+        {
+            c = Color.red;
+        }
+
+        Vector3 charPos = new Vector3(gameCharacter.x,gameCharacter.y,-2);
+
+        StartTempText(charPos, c, amount.ToString());
+    }
+
+    public void StartTempText(Vector3 pos, Color c, string text)
+    {
+        var textObj = gameData.assetLibrary.getPrefabGameObject("TextPopup");
+        UpdateTextPopup(textObj, text, c);
+
+
+
+        Vector3 endPos = new Vector3(pos.x,pos.y+.2f,pos.z);
+
+       
+        AddEffect(TempEffectType.Text, 10, pos, endPos, textObj);
+    }
+
+     private void UpdateTextPopup(GameObject textPopup, string text, Color c)
+    {
+        var textMesh = textPopup.GetComponentInChildren<TextMesh>();
+        textMesh.text = text;
+        textMesh.color = c;
+
+        var meshRenderer = textPopup.GetComponentInChildren<MeshRenderer>();
+        meshRenderer.sortingLayerName = "Foreground";
+
+    }
+
+    public void StartTempSprite(Vector3 pos, string spritesheetName, int spriteIndex)
+    {
+        var sprite = gameData.assetLibrary.getSprite(spritesheetName, spriteIndex);
+        var spriteObj = gameData.assetLibrary.getPrefabGameObject("Sprite");
+        GameObjectHelper.UpdateSprite(spriteObj, "Sprite", sprite);
+
+        AddEffect(TempEffectType.Sprite, 1, pos, pos, spriteObj);
+    }
+
+    #endregion
+
+
+
 
 }

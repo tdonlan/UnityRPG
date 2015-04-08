@@ -118,6 +118,7 @@ namespace UnityRPG
             defender.Damage(dmg, game);
 
             game.battleLog.AddEntry(string.Format("{0} hit {1} for {2} damage.", attacker.name, defender.name, dmg));
+            game.gameControllerScript.StartTempTextOnChar(defender, dmg, true);
 
             if(attacker.weapon.activeEffects != null)
             {
