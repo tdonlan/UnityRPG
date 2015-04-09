@@ -50,8 +50,8 @@ namespace UnityRPG
                 minAmount = 10,
                 maxAmount = 10,
                 statType = StatType.Heal,
-                sheetname = "Potions",
-                spriteindex = 18
+                effectName = "Potions",
+                effectIndex = 18
             };
             UsableItem i = new UsableItem() { ID = 1, name = "Healing Potion", activeEffects = new List<ActiveEffect>() { heal }, passiveEffects = null, type = ItemType.Potion, actionPoints = 5, uses = 1, sheetname = "Potions", spriteindex = 18 };
             return i;

@@ -154,12 +154,14 @@ namespace UnityRPG
                      amt = game.r.Next(effect.minAmount, effect.maxAmount);
 
                     game.battleLog.AddEntry(string.Format("{0} was damaged by {1} for {2}", this.name, effect.name, amt.ToString()));
+                    game.gameControllerScript.StartTempTextOnChar(this, amt, true);
 
                     this.Damage(amt, game);
                     break;
                 case StatType.Heal:
                      amt = game.r.Next(effect.minAmount, effect.maxAmount);
                      game.battleLog.AddEntry(string.Format("{0} was healed by {1} for {2}", this.name, effect.name, amt.ToString()));
+                     game.gameControllerScript.StartTempTextOnChar(this, amt, false);
 
                     this.Heal(amt, game);
                     break;

@@ -20,6 +20,8 @@ public class TestScript : MonoBehaviour {
 
     AssetLibrary assetLibrary { get; set; }
 
+    int particleCounter = 0;
+
   
 
     private List<TempEffect> tempEffectList { get; set; }
@@ -167,16 +169,18 @@ public class TestScript : MonoBehaviour {
 
     public void StartParticles()
     {
-        var fireParticle = assetLibrary.getPrefabGameObject("Fire_01");
 
-        var rend = fireParticle.GetComponentInChildren<Renderer>();
+        GameObject particle = assetLibrary.getPrefabGameObject( assetLibrary.prefabList[particleCounter].prefabName);
+        particleCounter++;
+        if (particleCounter >= assetLibrary.prefabList.Count)
+        {
+            particleCounter = 0;
+        }
+
+        var rend = particle.GetComponentInChildren<Renderer>();
         rend.sortingLayerName = "Foreground";
-             
 
-        //var meshRenderer = fireParticle.GetComponentInChildren<MeshRenderer>();
-       // meshRenderer.sortingLayerName = "Foreground";
-
-        AddEffect(TempEffectType.Particle, 1, new Vector3(3, 3,-2), new Vector3(3,3,-2), fireParticle);
+        AddEffect(TempEffectType.Particle, 3, new Vector3(3, 3, -2), new Vector3(3, 3, -2), particle);
 
     }
 

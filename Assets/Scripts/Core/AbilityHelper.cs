@@ -50,6 +50,8 @@ namespace UnityRPG
             {
                 game.board.AddTempChar(t, '*');
                 game.board.AddTempEffect(t, ability.sheetname, ability.spriteindex);
+
+                UseAbilityTempEffect(game, character, t, ability);
             }
 
             var charAOEList = game.getCharactersFromTileList(tileAOEList);
@@ -58,13 +60,58 @@ namespace UnityRPG
 
         }
 
+        private static void UseAbilityTempEffect( BattleGame game,GameCharacter character, Tile target, Ability ability)
+        {
+            foreach (var ae in ability.activeEffects)
+            {
+                switch (ae.effectType)
+                {
+                    case TempEffectType.Particle:
+                        game.gameControllerScript.StartTempParticles(ae.effectName, new UnityEngine.Vector3(target.x, target.y));
+                        break;
+                    case TempEffectType.Sprite:
+                        game.gameControllerScript.StartTempSprite(new UnityEngine.Vector3(target.x, target.y), ae.effectName, ae.effectIndex);
+                        break;
+                    case TempEffectType.Text:
+                        game.gameControllerScript.StartTempText(new UnityEngine.Vector3(target.x, target.y), UnityEngine.Color.grey, ability.name);
+                        break;
+                }
+            }
+
+        }
+
+        private static void UseAbilityTempEffect(BattleGame game, GameCharacter character, GameCharacter target, Ability ability)
+        {
+            foreach (var ae in ability.activeEffects)
+            {
+                switch (ae.effectType)
+                {
+                    case TempEffectType.Particle:
+                        game.gameControllerScript.StartTempParticles(ae.effectName, new UnityEngine.Vector3(target.x, target.y));
+                        break;
+                    case TempEffectType.Sprite:
+                        game.gameControllerScript.StartTempSprite(new UnityEngine.Vector3(target.x, target.y), ae.effectName, ae.effectIndex);
+                        break;
+                    case TempEffectType.Text:
+                        game.gameControllerScript.StartTempText(new UnityEngine.Vector3(target.x, target.y), UnityEngine.Color.grey, ability.name);
+                        break;
+                }
+            }
+        }
+
         private static bool UseAbilityOnCharList(GameCharacter sourceCharacter, Tile target, Ability ability, List<GameCharacter> characterList, BattleGame game)
         {
 
             //Draw Temp Character
              game.board.AddTempChar(target, 'X');
              game.board.AddTempEffect(target, ability.sheetname, ability.spriteindex);
-            
+
+
+            foreach(var c in characterList)
+            {
+                UseAbilityTempEffect(game, sourceCharacter, c, ability);
+            }
+             
 
             //special conditions if we're doing something on sourceCharacter
             if(characterList.Count ==0)

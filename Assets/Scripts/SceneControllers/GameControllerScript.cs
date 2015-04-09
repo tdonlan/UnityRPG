@@ -1170,6 +1170,10 @@ public class GameControllerScript : MonoBehaviour
         tempEffectList.Add(te);
     }
 
+    public void TestParticle()
+    {
+        StartTempParticles("Fire_01", new Vector3(3, 3, -2));
+    }
 
     public void StartTempParticles(string particleName, Vector3 pos)
     {
@@ -1191,22 +1195,34 @@ public class GameControllerScript : MonoBehaviour
             c = Color.red;
         }
 
-        Vector3 charPos = new Vector3(gameCharacter.x,gameCharacter.y,-2);
+        Vector3 charPos = new Vector3(gameCharacter.x,gameCharacter.y+0.5f,-2);
 
         StartTempText(charPos, c, amount.ToString());
     }
+
+    public void StartTempSpriteOnChar(GameCharacter gameCharacter, string spritesheet, int spriteindex)
+    {
+         Vector3 charPos = new Vector3(gameCharacter.x,gameCharacter.y,-2);
+         StartTempSprite(charPos, spritesheet, spriteindex);
+
+    }
+
+    public void StartTempParticleOnChar(GameCharacter gameCharacter, string particleName)
+    {
+        Vector3 charPos = new Vector3(gameCharacter.x, gameCharacter.y, -2);
+        StartTempParticles(particleName, charPos);
+    }
+
+
 
     public void StartTempText(Vector3 pos, Color c, string text)
     {
         var textObj = gameData.assetLibrary.getPrefabGameObject("TextPopup");
         UpdateTextPopup(textObj, text, c);
 
-
-
         Vector3 endPos = new Vector3(pos.x,pos.y+.2f,pos.z);
 
-       
-        AddEffect(TempEffectType.Text, 10, pos, endPos, textObj);
+        AddEffect(TempEffectType.Text, 1, pos, endPos, textObj);
     }
 
      private void UpdateTextPopup(GameObject textPopup, string text, Color c)
