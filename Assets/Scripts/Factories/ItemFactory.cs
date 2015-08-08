@@ -17,7 +17,7 @@ namespace SimpleRPG2
                 switch (str)
                 {
                     case "HealingPotion": retvalList.Add((Item)getHealingPotion(r)); break;
-                    case "Longsword": retvalList.Add((Item)getHealingPotion(r)); break;
+                    case "Longsword": retvalList.Add((Item)getLongsword(r)); break;
                     case "Dagger": retvalList.Add((Item)getDagger(r)); break;
                     case "BattleAxe": retvalList.Add((Item)getBattleAxe(r)); break;
                     case "Mace": retvalList.Add((Item)getMace(r)); break;
