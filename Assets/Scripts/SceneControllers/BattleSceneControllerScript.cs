@@ -12,10 +12,9 @@ using UnityEngine.EventSystems;
 public class BattleSceneControllerScript : MonoBehaviour
 {
     public GameDataObject gameDataObject { get; set; }
+    public GameData gameData { get; set; }
 
     public int battleIndex { get; set; }
-
-    public GameData gameData { get; set; }
 
     public BattleGame battleGame { get; set; }
     public BattleStatusType battleStatus { get; set; }
@@ -57,49 +56,38 @@ public class BattleSceneControllerScript : MonoBehaviour
     private GameObject CharacterPrefab { get; set; }
     private GameObject CharacterPrefab2 { get; set; }
 
-    void Awake()
-    {
-        
-    }
 
     void OnLevelWasLoaded(int level)
     {
 
-            loadGameData();
+        loadGameData();
 
-            tileCharacterList = new List<GameObject>();
-            tempEffectList = new List<TempEffect>();
+        tileCharacterList = new List<GameObject>();
+        tempEffectList = new List<TempEffect>();
 
-            this.r = new System.Random();
+        this.r = new System.Random();
 
-            this.clickPoint = null;
+        this.clickPoint = null;
 
-            this.uiState = UIStateType.NewTurn;
+        this.uiState = UIStateType.NewTurn;
 
-            getBattleIndex();
-           
-            this.gameData = BattleFactory.getGameData(this.battleIndex, this.r);
+        getBattleIndex();
 
-            this.battleGame = new BattleGame(gameData, r,this);
+        this.gameData = BattleFactory.getGameData(this.battleIndex, this.r);
 
-            LoadPrefabs();
+        this.battleGame = new BattleGame(gameData, r, this);
 
-            LoadBoard();
-            LoadCharacters();
+        LoadPrefabs();
 
-            LoadUI();
+        LoadBoard();
+        LoadCharacters();
 
-            SetCamera();
+        LoadUI();
 
-            DontDestroyOnLoad(this);
-        
-    }
+        SetCamera();
 
-    // Use this for initialization
-    void Start()
-    {
+        DontDestroyOnLoad(this);
 
-    
     }
 
     private void loadGameData()
@@ -109,7 +97,6 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     private void getBattleIndex()
     {
-
         if (gameDataObject == null)
         {
             this.battleIndex = 1;
@@ -118,19 +105,16 @@ public class BattleSceneControllerScript : MonoBehaviour
         {
             this.battleIndex = gameDataObject.battleIndex;
         }
-
     }
 
     private void LoadUI()
     {
-     
         LoadInitiative();
-
     }
 
     private void LoadPrefabs()
     {
-         ItemPrefab = Resources.Load<GameObject>("Prefab/ItemPrefab");
+        ItemPrefab = Resources.Load<GameObject>("Prefab/ItemPrefab");
         AbilityItemPrefab = Resources.Load<GameObject>("Prefab/AbilityPrefab");
         InitPrefab = Resources.Load<GameObject>("Prefab/BattleInitiativePanelPrefab");
         HoverPrefab = Resources.Load<GameObject>("Prefab/HoverPrefab");
@@ -141,9 +125,7 @@ public class BattleSceneControllerScript : MonoBehaviour
         InitiativePanel = GameObject.FindGameObjectWithTag("InitiativePanel");
 
         DebugText = GameObject.FindGameObjectWithTag("DebugText").GetComponent<Text>();
-
     }
-
 
     private void LoadBoard()
     {
@@ -151,9 +133,7 @@ public class BattleSceneControllerScript : MonoBehaviour
         {
             for (int j = 0; j < this.battleGame.board.board.GetLength(1); j++)
             {
-
                 LoadTile(battleGame.board.board[i, j]);
-
             }
         }
     }
@@ -221,46 +201,7 @@ public class BattleSceneControllerScript : MonoBehaviour
         return characterObject;
     }
 
-    //Deprecated
-    /*
-    private void LoadTempEffects()
-    {
-        foreach (var c in tempEffectList)
-        {
-            //Destroy(c);
-        }
-
-        tempEffectList.Clear();
-
-        for(int i =0;i<battleGame.board.board.GetLength(0);i++)
-        {
-            for(int j=0;j<battleGame.board.board.GetLength(1);j++)
-            {
-                var tile = battleGame.board.board[i, j];
-
-                if(tile.tempSheetName != string.Empty)
-                {
-                     //tempEffectList.Add(LoadTempEffect(tile));
-                }
-               
-            }
-        }
-    }
-
-    private GameObject LoadTempEffect(Tile t)
-    {
-        GameObject effectSprite = new GameObject("Effect");
-
-        SpriteRenderer renderer = effectSprite.AddComponent<SpriteRenderer>();
-        effectSprite.transform.position = new Vector3(t.x, t.y, -2);
-
-        renderer.sprite = gameData.assetLibrary.getSprite(t.tempSheetName, t.tempSpriteIndex);
-
-
-        return effectSprite;
-    }
-     * */
-
+  
     private void LoadTile(Tile t)
     {
         GameObject spriteObject = new GameObject("Tile " + name);
@@ -268,9 +209,7 @@ public class BattleSceneControllerScript : MonoBehaviour
         spriteObject.transform.position = new Vector3(t.x, t.y, 0);
 
         renderer.sprite = gameData.assetLibrary.getSprite(t.tileSheetName, t.tileSpriteIndex);
-
     }
-
 
     //Init the camera to middle of game board
     private void SetCamera()
@@ -302,7 +241,6 @@ public class BattleSceneControllerScript : MonoBehaviour
         if (battleStatus == BattleStatusType.Running)
         {
 
-            //UpdateDebug();
 
             UpdateTempEffects(delta);
 
@@ -311,7 +249,6 @@ public class BattleSceneControllerScript : MonoBehaviour
             {
                 UpdateBattle();
                 UITimer = getUpdateBattleTimer();
-                //LoadTempEffects();
             }
 
             UpdateCamera();
@@ -366,7 +303,7 @@ public class BattleSceneControllerScript : MonoBehaviour
         string mousePos = string.Format("Mouse: {0},{1} | World: {2},{3} | view {4},{5} | canvas {6},{7}",
             Input.mousePosition.x, Input.mousePosition.y, viewPos.x, viewPos.y, worldPos.x, worldPos.y,canvasPos.x,canvasPos.y);
         DebugText.text = mousePos;
-        //DebugText.text = string.Format("UIState: {0} BattleState {1}", uiState, battleGame.getBattleStatus());
+
     }
 
     void UpdateBattle()
