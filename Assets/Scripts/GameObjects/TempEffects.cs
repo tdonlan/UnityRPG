@@ -102,7 +102,7 @@ namespace UnityRPG
             this.TempEffectList = new List<TempEffect>();
         }
 
-        public void Update(GameControllerScript gameController, float delta)
+        public void Update(BattleSceneControllerScript gameController, float delta)
         {
             foreach(var te in TempEffectList)
             {

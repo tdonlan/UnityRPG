@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using System;
 public class CharacterColliderScript : MonoBehaviour {
 
-    public GameControllerScript gameControllerScript;
+    public BattleSceneControllerScript gameControllerScript;
 	// Use this for initialization
 	void Start () {
         getGameControllerScript();
@@ -15,7 +15,7 @@ public class CharacterColliderScript : MonoBehaviour {
         if(this.gameControllerScript == null)
         {
             var gameControllerObject = GameObject.FindGameObjectWithTag("GameController");
-            this.gameControllerScript = gameControllerObject.GetComponentInChildren<GameControllerScript>();
+            this.gameControllerScript = gameControllerObject.GetComponentInChildren<BattleSceneControllerScript>();
         }
     }
 	

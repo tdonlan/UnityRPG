@@ -10,7 +10,7 @@ using UnityRPG;
 public class UIControllerScript : MonoBehaviour {
 
     public GameObject gameControllerObject;
-    public GameControllerScript gameController {get;set;}
+    public BattleSceneControllerScript gameController {get;set;}
 
     public Canvas FrontCanvas { get; set; }
     public GameObject InitiativePanel { get; set; }
@@ -32,7 +32,7 @@ public class UIControllerScript : MonoBehaviour {
 
     private void LoadGameController()
     {
-        gameController = gameControllerObject.GetComponent<GameControllerScript>();
+        gameController = gameControllerObject.GetComponent<BattleSceneControllerScript>();
     }
 
     private void LoadPrefabs()
