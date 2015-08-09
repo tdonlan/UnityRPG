@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace SimpleRPG2
+namespace UnityRPG
 {
     public class Tile
     {
@@ -20,6 +20,11 @@ namespace SimpleRPG2
 
         public string tempSheetName { get; set; }
         public int tempSpriteIndex { get; set; }
+
+
+        public TileSpriteLookup tileSpriteLookup { get; set; }
+             
+
 
         public Tile(int x, int y)
         {

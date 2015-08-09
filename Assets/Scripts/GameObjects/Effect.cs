@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace SimpleRPG2
+namespace UnityRPG
 {
     public class PassiveEffect
     {
@@ -33,8 +33,20 @@ namespace SimpleRPG2
 
         public int duration { get; set; }
 
-        public string sheetname { get; set; }
-        public int spriteindex { get; set; }
+
+        //public string sheetname { get; set; }
+       // public int spriteindex { get; set; }
+
+        public TempEffectType effectType { get; set; }
+        public string effectName { get; set; }
+        public int effectIndex { get; set; }
+             
+        public ActiveEffect()
+        {
+            effectType = TempEffectType.Sprite;
+                
+        }
+        
 
 
         public override string ToString()

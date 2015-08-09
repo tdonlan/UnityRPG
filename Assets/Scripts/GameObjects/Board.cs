@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace SimpleRPG2
+namespace UnityRPG
 {
     public class Point
     {
@@ -192,6 +192,7 @@ namespace SimpleRPG2
 
         public void AddTempEffect(Tile t, string sheetname, int spriteindex)
         {
+
             t.tempSheetName = sheetname;
             t.tempSpriteIndex = spriteindex;
         }
@@ -207,8 +208,31 @@ namespace SimpleRPG2
             }
         }
 
+        public Tile getFreeTileOfType(TileSpriteType tileSpriteType)
+        {
+            var tileTypeList = getTileListOfType(tileSpriteType);
+            var freeTile = (from data in tileTypeList
+                            where data.empty == true
+                            select data).FirstOrDefault();
+            return freeTile;
+        }
 
-         
+        
+         public List<Tile> getTileListOfType(TileSpriteType tileSpriteType)
+        {
+            List<Tile> tileList = new List<Tile>();
+            for (int i = 0; i < board.GetLength(0); i++)
+            {
+                for (int j = 0; j < board.GetLength(1); j++)
+                {
+                   if(board[i,j].tileSpriteLookup.tileSpriteType ==  tileSpriteType)
+                   {
+                        tileList.Add(board[i, j]);
+                    }
+                }
+            }
+            return tileList;
+        }
         
         public Tile getFreeTile()
         {

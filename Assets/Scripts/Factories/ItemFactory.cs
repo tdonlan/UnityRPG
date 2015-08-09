@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace SimpleRPG2
+namespace UnityRPG
 {
     public class ItemFactory
     {
@@ -17,7 +17,9 @@ namespace SimpleRPG2
                 switch (str)
                 {
                     case "HealingPotion": retvalList.Add((Item)getHealingPotion(r)); break;
+
                     case "Longsword": retvalList.Add((Item)getLongsword(r)); break;
+
                     case "Dagger": retvalList.Add((Item)getDagger(r)); break;
                     case "BattleAxe": retvalList.Add((Item)getBattleAxe(r)); break;
                     case "Mace": retvalList.Add((Item)getMace(r)); break;
@@ -50,8 +52,9 @@ namespace SimpleRPG2
                 minAmount = 10,
                 maxAmount = 10,
                 statType = StatType.Heal,
-                sheetname = "Potions",
-                spriteindex = 18
+                effectName = "Potions",
+                effectIndex = 18
+
             };
             UsableItem i = new UsableItem() { ID = 1, name = "Healing Potion", activeEffects = new List<ActiveEffect>() { heal }, passiveEffects = null, type = ItemType.Potion, actionPoints = 5, uses = 1, sheetname = "Potions", spriteindex = 18 };
             return i;

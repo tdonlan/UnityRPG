@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SimpleRPG2
+namespace UnityRPG
 {
 
     public class PlotLine

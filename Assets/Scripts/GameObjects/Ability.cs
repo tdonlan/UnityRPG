@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace SimpleRPG2
+namespace UnityRPG
 {
     public class Ability
     {
@@ -24,6 +24,14 @@ namespace SimpleRPG2
 
         public string sheetname { get; set; }
         public int spriteindex { get; set; }
+
+
+
+        public Ability()
+        {
+            
+        }
+
 
         public override string ToString()
         {

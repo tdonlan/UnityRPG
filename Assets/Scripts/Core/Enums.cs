@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace SimpleRPG2
+namespace UnityRPG
 {
    public enum CharacterType
    {
@@ -149,6 +149,13 @@ namespace SimpleRPG2
         Buff,
         Nuke,
         Flee
+    }
+
+    public enum TempEffectType
+    {
+        Particle,
+        Sprite,
+        Text
     }
         
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace SimpleRPG2
+namespace UnityRPG
 {
     public class CombatHelper
     {
@@ -118,6 +118,8 @@ namespace SimpleRPG2
             defender.Damage(dmg, game);
 
             game.battleLog.AddEntry(string.Format("{0} hit {1} for {2} damage.", attacker.name, defender.name, dmg));
+            game.gameControllerScript.StartTempTextOnChar(defender, dmg, true);
+            game.gameControllerScript.StartTempSpriteOnChar(defender, "Particles", 48);
 
             if(attacker.weapon.activeEffects != null)
             {
