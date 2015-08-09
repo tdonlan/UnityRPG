@@ -18,6 +18,12 @@ public class StartControllerScript : MonoBehaviour {
         gameDataObject = GameObject.FindObjectOfType<GameDataObject>();
     }
 
+    public void LoadBattle(int battleIndex)
+    {
+        this.gameDataObject.battleIndex = battleIndex;
+        Application.LoadLevel((int)UnitySceneIndex.BattleGame);
+    }
+
     public void EnterWorld()
     {
         Application.LoadLevel((int)UnitySceneIndex.World);

@@ -11,6 +11,8 @@ using UnityEngine.EventSystems;
 
 public class BattleSceneControllerScript : MonoBehaviour
 {
+    public GameDataObject gameDataObject { get; set; }
+
     public int battleIndex { get; set; }
 
     public GameData gameData { get; set; }
@@ -62,9 +64,9 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     void OnLevelWasLoaded(int level)
     {
-        if (level == 1)
-        {
-           
+
+            loadGameData();
+
             tileCharacterList = new List<GameObject>();
             tempEffectList = new List<TempEffect>();
 
@@ -90,7 +92,7 @@ public class BattleSceneControllerScript : MonoBehaviour
             SetCamera();
 
             DontDestroyOnLoad(this);
-        }
+        
     }
 
     // Use this for initialization
@@ -100,19 +102,23 @@ public class BattleSceneControllerScript : MonoBehaviour
     
     }
 
+    private void loadGameData()
+    {
+        gameDataObject = GameObject.FindObjectOfType<GameDataObject>();
+    }
+
     private void getBattleIndex()
     {
-        var startScript = GameObject.FindObjectOfType<StartGameScript>();
-        if (startScript == null)
+
+        if (gameDataObject == null)
         {
             this.battleIndex = 1;
         }
         else
         {
-            this.battleIndex = startScript.battleIndex;
+            this.battleIndex = gameDataObject.battleIndex;
         }
 
-        Destroy(startScript);
     }
 
     private void LoadUI()
