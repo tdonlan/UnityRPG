@@ -62,14 +62,14 @@ using System.Linq;
         public static void AddClickToGameObject(GameObject gameObject, UnityAction action, EventTriggerType triggerType)
         {
             var eventTrigger = gameObject.AddComponent<EventTrigger>();
-            eventTrigger.delegates = new List<EventTrigger.Entry>();
+            eventTrigger.triggers = new List<EventTrigger.Entry>();
             AddEventTrigger(eventTrigger, action, triggerType);
         }
 
         public static void AddClickToGameObject(GameObject gameObject, UnityAction<System.Object> action, EventTriggerType triggerType, System.Object eventObject)
         {
             var eventTrigger = gameObject.AddComponent<EventTrigger>();
-            eventTrigger.delegates = new List<EventTrigger.Entry>();
+            eventTrigger.triggers = new List<EventTrigger.Entry>();
             AddEventTrigger(eventTrigger, action, triggerType, eventObject);
         }
 
@@ -84,7 +84,7 @@ using System.Linq;
             EventTrigger.Entry entry = new EventTrigger.Entry() { callback = trigger, eventID = triggerType };
 
             // Add the EventTrigger.Entry to delegates list on the EventTrigger
-            eventTrigger.delegates.Add(entry);
+            eventTrigger.triggers.Add(entry);
         }
 
 
@@ -98,7 +98,7 @@ using System.Linq;
             EventTrigger.Entry entry = new EventTrigger.Entry() { callback = trigger, eventID = triggerType };
 
             // Add the EventTrigger.Entry to delegates list on the EventTrigger
-            eventTrigger.delegates.Add(entry);
+            eventTrigger.triggers.Add(entry);
         }
 
         public static void AddEventTrigger(EventTrigger eventTrigger, UnityAction<System.Object> action, EventTriggerType triggerType, System.Object eventObj)
@@ -111,7 +111,7 @@ using System.Linq;
             EventTrigger.Entry entry = new EventTrigger.Entry() { callback = trigger, eventID = triggerType };
 
             // Add the EventTrigger.Entry to delegates list on the EventTrigger
-            eventTrigger.delegates.Add(entry);
+            eventTrigger.triggers.Add(entry);
         }
 
 
