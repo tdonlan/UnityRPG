@@ -33,6 +33,7 @@ namespace UnityRPG
 
         public int duration { get; set; }
 
+
         //public string sheetname { get; set; }
        // public int spriteindex { get; set; }
 
@@ -46,6 +47,7 @@ namespace UnityRPG
                 
         }
         
+
 
         public override string ToString()
         {

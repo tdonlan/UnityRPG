@@ -19,6 +19,7 @@ namespace UnityRPG
                     if(game.r.NextDouble() > .95)
                     {
                         b.board[i, j] = getTile('#', i, j);
+
                     }
                     else
                     {
@@ -85,6 +86,7 @@ namespace UnityRPG
                 for (int j = 0; j < len; j++)
                 {
                     charArray[i, j] = flatCharArray[i * len + j];
+
                 }
             }
 
@@ -121,7 +123,7 @@ namespace UnityRPG
             return retval;
         }
 
-       //DEPRECATED
+      
         public static Tile getTile(char c, int x, int y)
         {
             Tile retval = new Tile(x,y);

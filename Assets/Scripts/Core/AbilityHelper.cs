@@ -51,7 +51,9 @@ namespace UnityRPG
                 game.board.AddTempChar(t, '*');
                 game.board.AddTempEffect(t, ability.sheetname, ability.spriteindex);
 
+
                 UseAbilityTempEffect(game, character, t, ability);
+
             }
 
             var charAOEList = game.getCharactersFromTileList(tileAOEList);
@@ -107,11 +109,13 @@ namespace UnityRPG
              game.board.AddTempEffect(target, ability.sheetname, ability.spriteindex);
 
 
+
             foreach(var c in characterList)
             {
                 UseAbilityTempEffect(game, sourceCharacter, c, ability);
             }
              
+
 
             //special conditions if we're doing something on sourceCharacter
             if(characterList.Count ==0)

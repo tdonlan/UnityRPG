@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cb41c72d030f93a4fa0e4f32d7f563ca
+guid: a1325393ebba4e44e9934134b30e8aa1
 TextureImporter:
   fileIDToRecycleName:
     21300000: dg_jewls32_0
@@ -60,6 +60,9 @@ TextureImporter:
   isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
   maxTextureSize: 1024
@@ -70,6 +73,7 @@ TextureImporter:
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
+  rGBM: 0
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
@@ -485,3 +489,5 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

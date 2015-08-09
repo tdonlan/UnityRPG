@@ -21,8 +21,10 @@ namespace UnityRPG
         public string tempSheetName { get; set; }
         public int tempSpriteIndex { get; set; }
 
+
         public TileSpriteLookup tileSpriteLookup { get; set; }
              
+
 
         public Tile(int x, int y)
         {

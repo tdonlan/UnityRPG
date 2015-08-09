@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0dbba995db83cf14ca9d8e3957c9a563
+guid: 0bcb47134bc14d846aabc6dc40328b0b
 TextureImporter:
   fileIDToRecycleName:
     21300000: dg_dragon32Edit_0
@@ -76,6 +76,9 @@ TextureImporter:
   isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
   maxTextureSize: 1024
@@ -86,6 +89,7 @@ TextureImporter:
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
+  rGBM: 0
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
@@ -661,3 +665,5 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

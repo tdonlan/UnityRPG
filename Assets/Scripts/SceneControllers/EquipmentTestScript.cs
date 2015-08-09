@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UnityRPG;
 using System;
 using UnityEngine.UI;
-using UnityRPG;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
@@ -29,7 +28,9 @@ public class EquipmentTestScript : MonoBehaviour {
 	void Start () {
 
         this.gameControllerScript = (GameControllerScript)gameController.GetComponent<GameControllerScript>();
+
         this.assetLibrary = gameControllerScript.gameData.assetLibrary;
+
         this.battleGame = gameControllerScript.battleGame;
 
         LoadCharacterStats();

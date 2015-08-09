@@ -43,9 +43,11 @@ namespace UnityRPG
             }
         }
 
+
         public BattleGame(GameData gameData, Random r, GameControllerScript gameScript)
         {
             this.gameControllerScript = gameScript;
+
             this.gameData = gameData;
 
             this.r = r;
@@ -62,10 +64,12 @@ namespace UnityRPG
         private void LoadBoardFromData()
         {
             //randomized board for now
+
             board = BoardFactory.getBoardFromBoardData(this.gameData,this, gameData.BoardDataDictionary["Board1"]);
 
             //board = BoardFactory.getRandomBoard(this, 20);
         }
+
 
         private void LoadCharactersFromData()
         {

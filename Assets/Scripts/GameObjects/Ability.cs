@@ -26,10 +26,12 @@ namespace UnityRPG
         public int spriteindex { get; set; }
 
 
+
         public Ability()
         {
             
         }
+
 
         public override string ToString()
         {
