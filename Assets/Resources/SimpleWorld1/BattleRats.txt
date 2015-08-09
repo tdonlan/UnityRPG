@@ -1,0 +1,31 @@
+1
+Rat Battle
+1;ZoneTown;Info;The rats scury from the dirty cracks in the alleyway and leap at you!;Town;
+--
+2:Rat
+3:Rat
+4:Rat
+5:Win
+----
+2
+Rat
+1;Rat;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Rat;0;0
+--
+----
+3
+Rat
+1;Rat;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Rat;0;0
+--
+----
+4
+Rat
+1;Rat;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Rat;0;0
+--
+----
+5
+Win
+1;WinScreen;Win;You slaughter the diseased rats with a vengeance, leaving only smashed bundles of fur and blood;WinScreen
+{RatsKilled;QuestRat2}
+{AddItem;2;Gold Tooth;1}
+--
+----

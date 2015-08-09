@@ -1,0 +1,20 @@
+1
+Edge of Forest
+0;Edge of Forest;Link;The edge of forest;Forest;-300;-100
+--
+----
+2
+Deeper into the Forest
+4;Deeper into the Forest;Link;The forest grows dark and forboding;Forest;-300;-100
+--
+----
+3
+Howling Wolves!
+99;Howling Wolves!;Battle;A pack of snarling wolves leaps from the trees.;Wolves;-300;-100
+--
+----
+4
+A Strange Hermit
+5;A Strange Hermit;Dialog;A strange unkempt hermit emerges from the trees, smoking a pipe.;Forest;-300;-100
+--
+----

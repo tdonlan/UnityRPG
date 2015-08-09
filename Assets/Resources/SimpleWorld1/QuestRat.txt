@@ -1,0 +1,29 @@
+﻿1
+A Secret of the Rats!
+QuestRat;Zoe wants you to kill the rats in the alley.
+--
+2:Kill the rats.
+----
+2
+Rats are dead.
+QuestRat2;You killed the rats and found a gold tooth.
+--
+3:Return to Zoe.
+----
+3
+Pa's old tooth
+QuestRat3;Use Pa's old key to open the chest in the woods.
+--
+4:Open the chest in the woods.
+----
+4
+Old Chest
+QuestRat4;You opened the old chest in the woods.
+--
+5:Return to Zoe.
+----
+5
+Complete
+QuestRat5;Zoe congratulates you on a job well done!
+--
+----

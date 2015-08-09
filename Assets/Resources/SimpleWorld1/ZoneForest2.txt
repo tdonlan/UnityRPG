@@ -1,0 +1,17 @@
+1
+Clearing in the Woods
+3;Clearing in the Woods;Link;The forest opens up to a clearing of old and ruins.;Forest;-300;-100
+--
+2:Skeletons!
+3:Treasure Chest {!ForestChest}
+----
+2
+Skeletons!
+99;Skeletons!;Battle;A dozen evil skeletons rise from the ground and attack!;SkeletonSprite;-300;-100
+--
+----
+3
+Treasure Chest
+8;Treasure Chest;Info;A wooden chest with an iron lock;TreasureChestSprite;-300;-100
+--
+----

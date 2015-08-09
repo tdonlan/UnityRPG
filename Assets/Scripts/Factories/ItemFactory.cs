@@ -8,7 +8,30 @@ namespace UnityRPG
 {
     public class ItemFactory
     {
+        //DIALOG TEST STUFF
+        //---------------------
 
+        public static int itemCounter = 1;
+        public static Item getItem(string name)
+        {
+            return new Item() { ID = itemCounter++, name = name };
+        }
+
+        public static Dictionary<long, Item> getItemDictionary()
+        {
+            Dictionary<long, Item> itemDictionary = new Dictionary<long, Item>();
+            List<string> itemNameList = new List<string>() { "Gold", "Gold Tooth", "Old Key", "Red Gem" };
+            foreach (var s in itemNameList)
+            {
+                Item tempItem = ItemFactory.getItem(s);
+                itemDictionary.Add(tempItem.ID, tempItem);
+            }
+
+            return itemDictionary;
+        }
+
+
+        //---------------------
         public static List<Item> getItemListFromStrList(List<string> strList, Random r)
         {
             List<Item> retvalList = new List<Item>();

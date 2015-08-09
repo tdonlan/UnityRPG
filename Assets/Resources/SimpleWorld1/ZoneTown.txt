@@ -1,0 +1,31 @@
+1
+Town Square
+0;Town Square;Link;A quaint little town nested in the foothills;Town;-300;-100
+--
+2:Zoe
+3:Alley{!QuestRat2}
+4:Blacksmith
+----
+2
+Zoe
+2;Zoe;Dialog;A perky girl with red hair and freckles.  Talkative;ZoeSprite;0;0
+--
+1:Town Square
+3:Alley
+4:Blacksmith
+----
+3
+Alley
+7;Alley;Battle;A garbage strewn alley way, with rats swarming out of the garbage heap;RatSprite;100;100
+--
+1:Town Square
+2:Zoe
+4:Blacksmith
+----
+4
+Blacksmith
+99;Blacksmith;Store;A brawny man with soot-stained bulging forearms;BlacksmithSprite;-200;100
+--
+1:Town Square
+2:Zoe
+3:Alley
