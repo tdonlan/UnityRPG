@@ -12,6 +12,10 @@ using UnityEngine.EventSystems;
 public class BattleSceneControllerScript : MonoBehaviour
 {
     public GameDataObject gameDataObject { get; set; }
+    public long parentTreeLink;
+    public BattleTree battleTree { get; set; }
+
+
     public GameData gameData { get; set; }
 
     public int battleIndex { get; set; }
@@ -61,6 +65,7 @@ public class BattleSceneControllerScript : MonoBehaviour
     {
 
         loadGameData();
+        loadTreeStore();
 
         tileCharacterList = new List<GameObject>();
         tempEffectList = new List<TempEffect>();
@@ -86,13 +91,31 @@ public class BattleSceneControllerScript : MonoBehaviour
 
         SetCamera();
 
-        DontDestroyOnLoad(this);
+       // DontDestroyOnLoad(this);
 
     }
+
+
 
     private void loadGameData()
     {
         gameDataObject = GameObject.FindObjectOfType<GameDataObject>();
+    }
+
+
+    private void loadTreeStore()
+    {
+        //dont select tree, get the tree node from current zone content
+        //assuming the parent is a zone type for now
+        ZoneTree parentTree = (ZoneTree)gameDataObject.treeStore.getCurrentTree();
+        ZoneTreeNode parentTreeNode = (ZoneTreeNode)parentTree.getNode(parentTree.currentIndex);
+        long dialogLink = parentTreeNode.content.linkIndex;
+
+        parentTreeLink = gameDataObject.treeStore.currentTreeIndex;
+
+        gameDataObject.treeStore.SelectTree(dialogLink);
+        battleTree = (BattleTree)gameDataObject.treeStore.getCurrentTree();
+
     }
 
     private void getBattleIndex()
@@ -285,11 +308,14 @@ public class BattleSceneControllerScript : MonoBehaviour
         Application.LoadLevel("GameOverScene");
     }
 
+    //DEPRECATED
+    /*
     private void WinBattle()
     {
         battleStatus = BattleStatusType.GameOver;
         Application.LoadLevel("GameOverScene");
     }
+     * */
 
     void UpdateDebug()
     {
@@ -1191,6 +1217,19 @@ public class BattleSceneControllerScript : MonoBehaviour
     #endregion
 
 
+    public void WinBattle()
+    {
+        //Select win node, run actions
+        var winNode = battleTree.getWinNode();
+        winNode.SelectNode(battleTree);
+
+        gameDataObject.runActions(winNode.actionList);
+        //switch back to parent tree link
+        gameDataObject.treeStore.SelectTree(parentTreeLink);
+        //go back to the zone view
+        Application.LoadLevel((int)UnitySceneIndex.Zone);
+
+    }
 
 
 }

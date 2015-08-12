@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using UnityRPG;
 using UnityEngine.EventSystems;
 
-public class TileSceneControllerScript : MonoBehaviour {
+public class ZoneControllerScript : MonoBehaviour {
 
     public GameDataObject gameDataObject { get; set; }
 
@@ -115,7 +115,7 @@ public class TileSceneControllerScript : MonoBehaviour {
         //get name of prefab of this map - match same name of tree?
         tileMapPrefab = Resources.Load<GameObject>(zoneTree.treeName);
         tileMapObject = (GameObject)Instantiate(tileMapPrefab);
-        tileMapPrefab.tag = "tileMap";
+        tileMapObject.tag = "tileMap";
     }
 
     private void loadTileMapData()
@@ -354,7 +354,7 @@ public class TileSceneControllerScript : MonoBehaviour {
 
     private void ClickBattleNode(long battleIndex)
     {
-        Application.LoadLevel((int)UnitySceneIndex.Battle);
+        Application.LoadLevel((int)UnitySceneIndex.BattleGame);
     }
 
 

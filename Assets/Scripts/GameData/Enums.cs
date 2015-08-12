@@ -1,4 +1,16 @@
 ﻿
+
+public enum UnitySceneIndex
+{
+    Start = 0,
+    World = 1,
+    Zone = 2,
+    Dialog = 3,
+    Battle = 4,
+    BattleGame = 5,
+    GameOver = 6
+}
+
 public enum SpritesheetType
 {
     Tiles,
@@ -44,16 +56,7 @@ public enum PlayerDecideState
 
 }
 
-public enum UnitySceneIndex
-{
-    Start=0,
-    World=1,
-    Zone=2,
-    Dialog=3,
-    Battle=4,
-    BattleGame=5,
-    GameOver=6
-}
+
 
     public enum TreeType
     {

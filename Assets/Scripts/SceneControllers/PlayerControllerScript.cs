@@ -10,7 +10,7 @@ public class PlayerControllerScript : MonoBehaviour {
 
     public Bounds playerBounds;
 
-    private TileSceneControllerScript tileSceneScript;
+    private ZoneControllerScript tileSceneScript;
 
     private Camera mainCamera;
     
@@ -22,7 +22,7 @@ public class PlayerControllerScript : MonoBehaviour {
 
     private void setRefs()
     {
-        this.tileSceneScript = GameObject.FindObjectOfType<TileSceneControllerScript>().GetComponent<TileSceneControllerScript>();
+        this.tileSceneScript = GameObject.FindObjectOfType<ZoneControllerScript>().GetComponent<ZoneControllerScript>();
         this.mainCamera = GameObject.FindObjectOfType<Camera>();
 
        
