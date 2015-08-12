@@ -16,18 +16,7 @@ public class GameDataObject : MonoBehaviour
     public List<long> playerInventory = new List<long>();
 
     //Loaded Data
-    public Dictionary<long, ItemData> itemDataDictionary { get; set; }
-    public Dictionary<long, UsableItemData> usableItemDataDictionary { get; set; }
-    public Dictionary<long, WeaponData> weaponDataDictionary { get; set; }
-    public Dictionary<long, RangedWeaponData> rangedWeaponDataDictionary { get; set; }
-    public Dictionary<long, AmmoData> ammoDataDictionary { get; set; }
-    public Dictionary<long, ArmorData> armorDataDictionary { get; set; }
-
-    public Dictionary<long, EffectData> effectDataDictionary { get; set; }
-    public Dictionary<long, AbilityData> abilityDataDictionary { get; set; }
-
-    public Dictionary<long, GameCharacterData> gameCharacterDataDictionary { get; set; }
-
+    public GameDataSet gameDataSet { get; set; }
 
     //Battle Scene Data
 
@@ -56,15 +45,16 @@ public class GameDataObject : MonoBehaviour
 
     public void loadGameData()
     {
+        gameDataSet = new GameDataSet();
 
-        usableItemDataDictionary = getDataObjectDictionary("Data/UsableItems", typeof(UsableItemData)).ToDictionary(x => x.Key, x => (UsableItemData)x.Value);
-        weaponDataDictionary = getDataObjectDictionary("Data/Weapons", typeof(WeaponData)).ToDictionary(x => x.Key, x => (WeaponData)x.Value);
-        rangedWeaponDataDictionary = getDataObjectDictionary("Data/RangedWeapons", typeof(RangedWeaponData)).ToDictionary(x => x.Key, x => (RangedWeaponData)x.Value);
-        ammoDataDictionary = getDataObjectDictionary("Data/Ammo", typeof(AmmoData)).ToDictionary(x => x.Key, x => (AmmoData)x.Value);
-        armorDataDictionary = getDataObjectDictionary("Data/Armors", typeof(ArmorData)).ToDictionary(x => x.Key, x => (ArmorData)x.Value);
+        gameDataSet.usableItemDataDictionary = getDataObjectDictionary("Data/UsableItems", typeof(UsableItemData)).ToDictionary(x => x.Key, x => (UsableItemData)x.Value);
+        gameDataSet.weaponDataDictionary = getDataObjectDictionary("Data/Weapons", typeof(WeaponData)).ToDictionary(x => x.Key, x => (WeaponData)x.Value);
+        gameDataSet.rangedWeaponDataDictionary = getDataObjectDictionary("Data/RangedWeapons", typeof(RangedWeaponData)).ToDictionary(x => x.Key, x => (RangedWeaponData)x.Value);
+        gameDataSet.ammoDataDictionary = getDataObjectDictionary("Data/Ammo", typeof(AmmoData)).ToDictionary(x => x.Key, x => (AmmoData)x.Value);
+        gameDataSet.armorDataDictionary = getDataObjectDictionary("Data/Armors", typeof(ArmorData)).ToDictionary(x => x.Key, x => (ArmorData)x.Value);
 
-        effectDataDictionary = getDataObjectDictionary("Data/Effects", typeof(EffectData)).ToDictionary(x => x.Key, x => (EffectData)x.Value);
-        abilityDataDictionary = getDataObjectDictionary("Data/Abilities", typeof(AbilityData)).ToDictionary(x => x.Key, x => (AbilityData)x.Value);
+        gameDataSet.effectDataDictionary = getDataObjectDictionary("Data/Effects", typeof(EffectData)).ToDictionary(x => x.Key, x => (EffectData)x.Value);
+        gameDataSet.abilityDataDictionary = getDataObjectDictionary("Data/Abilities", typeof(AbilityData)).ToDictionary(x => x.Key, x => (AbilityData)x.Value);
 
     }
 

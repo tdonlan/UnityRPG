@@ -5,6 +5,22 @@ using System.Text;
 
 namespace UnityRPG
 {
+    //easy grouping of all data dictionaries
+    public class GameDataSet
+    {
+        public Dictionary<long, ItemData> itemDataDictionary { get; set; }
+        public Dictionary<long, UsableItemData> usableItemDataDictionary { get; set; }
+        public Dictionary<long, WeaponData> weaponDataDictionary { get; set; }
+        public Dictionary<long, RangedWeaponData> rangedWeaponDataDictionary { get; set; }
+        public Dictionary<long, AmmoData> ammoDataDictionary { get; set; }
+        public Dictionary<long, ArmorData> armorDataDictionary { get; set; }
+
+        public Dictionary<long, EffectData> effectDataDictionary { get; set; }
+        public Dictionary<long, AbilityData> abilityDataDictionary { get; set; }
+
+        public Dictionary<long, GameCharacterData> gameCharacterDataDictionary { get; set; }
+    }
+
     public class EffectData
     {
         public long ID { get; set; }
@@ -55,11 +71,11 @@ namespace UnityRPG
         public string portraitSpritesheetName { get; set; }
         public int portraitSpriteIndex { get; set; }
 
-        private int ac { get; set; }
+        public int ac { get; set; }
 
         public int hp { get; set; }
 
-        private int attack { get; set; }
+        public int attack { get; set; }
 
         public int ap { get; set; }
 

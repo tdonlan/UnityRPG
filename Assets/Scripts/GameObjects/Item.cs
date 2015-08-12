@@ -10,7 +10,7 @@ namespace UnityRPG
     public class ItemSet
     {
         public string itemName { get; set; }
-        public int itemID { get; set; }
+        public long itemID { get; set; }
         public int count { get; set; }
 
         public string sheetname { get; set; }
@@ -44,7 +44,7 @@ namespace UnityRPG
 
     public class Item
     {
-        public int ID { get; set; }
+        public long ID { get; set; }
         public string name { get; set; }
         public ItemType type { get; set; }
         public List<PassiveEffect> passiveEffects { get; set; }

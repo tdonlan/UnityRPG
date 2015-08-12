@@ -15,10 +15,6 @@ namespace UnityRPG
 
         public AssetLibrary assetLibrary { get; set; }
 
-        public Dictionary<string, string> fileManifest { get; set; }
-        public List<Ability> masterAbilityList { get; set; }
-        public List<Item> masterItemList { get; set; }
-
         public List<GameCharacter> gameCharacterList { get; set; }
         public Board gameBoard { get; set; }
 
@@ -28,8 +24,6 @@ namespace UnityRPG
 
             LoadBoardDataDictionary();
 
-            masterAbilityList = new List<Ability>();
-            masterItemList = new List<Item>();
             gameCharacterList = new List<GameCharacter>();
         }
 

@@ -8,6 +8,149 @@ namespace UnityRPG
 {
     public class ItemFactory
     {
+
+        //return an item, given an index of an unknown type (for inventory, etc)
+        //should we use a lookup for index range, to know what list to use?
+        public static Item getItemFromIndex(long index, GameDataSet gameDataSet)
+        {
+            if (index <= GameConstants.ITEMS_MAX_INDEX)
+            {
+                return getItemFromItemData(gameDataSet.itemDataDictionary[index], gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
+            }
+            else if (index <= GameConstants.USABLEITEMS_MAX_INDEX)
+            {
+                return getUsableItemFromData(gameDataSet.usableItemDataDictionary[index], gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
+            }
+            else if (index <= GameConstants.WEAPONS_MAX_INDEX)
+            {
+                return getWeaponFromWeaponData(gameDataSet.weaponDataDictionary[index], gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
+            }
+            else if (index <= GameConstants.RANGEDWEAPONS_MAX_INDEX)
+            {
+                return getRangedWeaponFromRangedWeaponData(gameDataSet.rangedWeaponDataDictionary[index], gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
+            }
+            else if (index <= GameConstants.AMMO_MAX_INDEX)
+            {
+                return getAmmoFromAmmoData(gameDataSet.ammoDataDictionary[index], gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
+            }
+            else if (index <= GameConstants.ARMOR_MAX_INDEX)
+            {
+                return getArmorFromArmorData(gameDataSet.armorDataDictionary[index], gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static Item getItemFromItemData(ItemData data, Dictionary<long, AbilityData> abilityDataDictionary, Dictionary<long, EffectData> effectDataDictionary)
+        {
+            Item i = new Item()
+            {
+                ID = data.ID,
+                name = data.name,
+                sheetname = data.sheetname,
+                spriteindex = data.spriteindex,
+                type = data.type
+            };
+
+            if (data.activeEffects.Count > 0)
+            {
+                List<ActiveEffect> aeList = new List<ActiveEffect>();
+
+                foreach (long l in data.activeEffects)
+                {
+                    if (effectDataDictionary.ContainsKey(l))
+                    {
+                        aeList.Add(AbilityFactory.getActiveEffectFromEffectData(effectDataDictionary[l]));
+                    }
+
+                }
+                i.activeEffects = aeList;
+            }
+
+            if (data.passiveEffects.Count > 0)
+            {
+                List<PassiveEffect> peList = new List<PassiveEffect>();
+
+                foreach (long l in data.passiveEffects)
+                {
+                    if (effectDataDictionary.ContainsKey(l))
+                    {
+                        peList.Add(AbilityFactory.getPassiveEffectFromEffectData(effectDataDictionary[l]));
+                    }
+
+                }
+                i.passiveEffects = peList;
+            }
+
+            return i;
+        }
+
+        public static UsableItem getUsableItemFromData(UsableItemData data, Dictionary<long, AbilityData> abilityDataDictionary, Dictionary<long, EffectData> effectDataDictionary)
+        {
+            Item i = getItemFromItemData(data, abilityDataDictionary, effectDataDictionary);
+            UsableItem ui = (UsableItem)i;
+            ui.actionPoints = data.actionPoints;
+            ui.uses = data.uses;
+
+            if (data.itemAbility.Count > 0)
+            {
+                List<Ability> abilityList = new List<Ability>();
+
+                foreach (long l in data.itemAbility)
+                {
+                    if (abilityDataDictionary.ContainsKey(l))
+                    {
+                        abilityList.Add(AbilityFactory.getAbilityFromAbilityData(abilityDataDictionary[l], effectDataDictionary));
+                    }
+
+                }
+                ui.itemAbility = abilityList.FirstOrDefault(); //hack?  can we have multiple abilities on usable items?
+            }
+            return ui;
+        }
+
+        public static Weapon getWeaponFromWeaponData(WeaponData data, Dictionary<long, AbilityData> abilityDataDictionary, Dictionary<long, EffectData> effectDataDictionary)
+        {
+            Weapon w = (Weapon)getItemFromItemData(data, abilityDataDictionary, effectDataDictionary);
+            w.minDamage = data.minDamage;
+            w.maxDamage = data.maxDamage;
+            w.actionPoints = data.actionPoints;
+            w.weaponType = data.weaponType;
+
+            return w;
+        }
+        
+        public static RangedWeapon getRangedWeaponFromRangedWeaponData(RangedWeaponData data, Dictionary<long, AbilityData> abilityDataDictionary, Dictionary<long, EffectData> effectDataDictionary)
+        {
+            RangedWeapon rw = (RangedWeapon)getWeaponFromWeaponData(data, abilityDataDictionary, effectDataDictionary);
+            rw.range = data.range;
+            rw.ammoType = data.ammoType;
+
+            return rw;
+        }
+
+        public static Ammo getAmmoFromAmmoData(AmmoData data, Dictionary<long, AbilityData> abilityDataDictionary, Dictionary<long, EffectData> effectDataDictionary)
+        {
+
+            Ammo a = (Ammo)getItemFromItemData(data,abilityDataDictionary,effectDataDictionary);
+            a.bonusDamage = data.bonusDamage;
+            a.ammoType = data.ammoType;
+
+            return a;
+        }
+
+        public static Armor getArmorFromArmorData(ArmorData data, Dictionary<long, AbilityData> abilityDataDictionary, Dictionary<long, EffectData> effectDataDictionary)
+        {
+            Armor a = (Armor)getItemFromItemData(data,abilityDataDictionary,effectDataDictionary);
+            a.armor = data.armor;
+            a.armorType = data.armorType;
+            return a;
+        }
+
+
+        #region DialogTestStuff
         //DIALOG TEST STUFF
         //---------------------
 
@@ -30,8 +173,13 @@ namespace UnityRPG
             return itemDictionary;
         }
 
+        #endregion
+
 
         //---------------------
+
+        #region OldFactory
+
         public static List<Item> getItemListFromStrList(List<string> strList, Random r)
         {
             List<Item> retvalList = new List<Item>();
@@ -180,7 +328,7 @@ namespace UnityRPG
             return a;
         }
 
-        #region usableItems
+
         public static UsableItem getGrenade(Random r)
         {
             //Get an existing ability, but make it free to use
@@ -212,9 +360,7 @@ namespace UnityRPG
 
             return wand;
         }
-        #endregion
 
-        #region Armor
 
         public static Armor getChainmail(Random r)
         {
