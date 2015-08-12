@@ -29,7 +29,7 @@ public class EquipmentControllerScript : MonoBehaviour {
 
         this.gameControllerScript = (BattleSceneControllerScript)gameController.GetComponent<BattleSceneControllerScript>();
 
-        this.assetLibrary = gameControllerScript.gameData.assetLibrary;
+        this.assetLibrary = gameControllerScript.battleGameData.assetLibrary;
 
         this.battleGame = gameControllerScript.battleGame;
 

@@ -9,7 +9,7 @@ using System.IO;
 
 namespace UnityRPG
 {
-    public class GameData
+    public class BattleGameData
     {
         public Dictionary<string, BoardData> BoardDataDictionary { get; set; }
 
@@ -22,7 +22,7 @@ namespace UnityRPG
         public List<GameCharacter> gameCharacterList { get; set; }
         public Board gameBoard { get; set; }
 
-        public GameData()
+        public BattleGameData()
         {
             assetLibrary = new AssetLibrary();
 

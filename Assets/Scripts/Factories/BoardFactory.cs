@@ -31,7 +31,7 @@ namespace UnityRPG
             return b;
         }
 
-        public static Board getBoardFromBoardData(GameData gameData, BattleGame game, BoardData boardData)
+        public static Board getBoardFromBoardData(BattleGameData gameData, BattleGame game, BoardData boardData)
         {
             var boardLayoutStr = gameData.assetLibrary.boardLayoutDictionary[boardData.boardLayoutName];
             var tileLookupDict = gameData.assetLibrary.tileSpriteLibrary.getTileSpriteDictionary(boardData.tileLookupName);

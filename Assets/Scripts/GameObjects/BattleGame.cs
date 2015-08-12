@@ -12,7 +12,7 @@ namespace UnityRPG
         public BattleSceneControllerScript gameControllerScript;
 
 
-        public GameData gameData;
+        public BattleGameData gameData;
       
         public Board board;
         public List<GameCharacter> characterList;
@@ -43,8 +43,7 @@ namespace UnityRPG
             }
         }
 
-
-        public BattleGame(GameData gameData, Random r, BattleSceneControllerScript gameScript)
+        public BattleGame(BattleGameData gameData, Random r, BattleSceneControllerScript gameScript)
         {
             this.gameControllerScript = gameScript;
 

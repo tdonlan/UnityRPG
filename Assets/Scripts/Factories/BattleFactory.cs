@@ -9,9 +9,10 @@ namespace UnityRPG
 {
     public class BattleFactory
     {
-        public static GameData getGameData(int battleindex, Random r)
+        //DEPRECATED
+        public static BattleGameData getGameData(int battleindex, Random r)
         {
-            GameData retval = new GameData();
+            BattleGameData retval = new BattleGameData();
             switch(battleindex)
             {
                 case 0:
@@ -28,6 +29,24 @@ namespace UnityRPG
             }
 
             return retval;
+        }
+
+        public static List<GameCharacter> getBattleGameCharacterList(int battleIndex, Random r)
+        {
+            switch (battleIndex)
+            {
+                case 0:
+                    return getCharacterList(new List<string>() { "Warrior", "Priest", "Rogue", "Goblin", "Goblin", "Goblin", "Goblin" }, r);
+                   
+                case 1:
+                    return getCharacterList(new List<string>() { "Warrior", "Priest", "Rogue", "Mage", "EnemyWarrior", "EnemyPriest", "EnemyMage", "EnemyArcher" }, r);
+              
+                case 2:
+                    return getCharacterList(new List<string>() { "Warrior", "Priest", "Rogue", "Mage", "Archer", "Dragon" }, r);
+                  
+                default:
+                    return null;
+            }
         }
 
         //given a list of character names, return a list of GameCharacters
