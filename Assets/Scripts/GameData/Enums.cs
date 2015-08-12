@@ -143,7 +143,6 @@ public enum PlayerDecideState
         Arrows,
         Bolts,
         Stones,
-
     }
 
     public enum ArmorType

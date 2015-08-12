@@ -1,0 +1,7 @@
+ID,Name,Type,ActiveEffects,PassiveEffects,SheetName,SpriteIndex,Armor,ArmorType
+1,Chain Mail,Armor,,,Armor,45,10,Chest
+2,Leather Chest,Armor,,,Armor,38,5,Chest
+3,Great Helm,Armor,,,Armor,14,5,Head
+4,Leather Cap,Armor,,,Armor,10,1,Head
+5,Regeneration Ring,Armor,{5},,Jewels,23,0,Ring
+6,Attack Ring,Armor,,{6},Jewels,5,0,Ring

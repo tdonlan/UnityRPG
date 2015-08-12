@@ -1,0 +1,2 @@
+ID,Name,Type,ActiveEffects,PassiveEffects,SheetName,SpriteIndex,MinDamage,MaxDamage,AP,WeaponType,Range,AmmoType
+1,Stun Bow,Weapon,{8},,Weapons,61,5,5,5,TwoHandRanged,15,Arrows

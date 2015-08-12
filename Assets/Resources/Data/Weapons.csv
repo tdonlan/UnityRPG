@@ -1,0 +1,6 @@
+ID,Name,Type,ActiveEffects,PassiveEffects,SheetName,SpriteIndex,MinDamage,MaxDamage,AP,WeaponType
+1,Longsword,Weapon,,,Weapons,12,5,10,2,OneHandMelee
+2,Dagger,Weapon,,,Weapons,3,1,2,1,OneHandMelee
+3,Flaming Battle Axe,Weapon,{7},,Weapons,69,10,20,5,TwoHandMelee
+4,Holy Mace,Weapon,,,Weapons,24,2,12,5,OneHandMelee
+5,Dragon Claw,Weapon,,,Weapons,17,20,50,10,OneHandMelee

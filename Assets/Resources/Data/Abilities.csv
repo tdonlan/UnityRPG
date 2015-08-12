@@ -1,0 +1,5 @@
+ID,Name,Description,AP,Uses,Range,TargetType,TilePatternType,ActiveEffects,PassiveEffects,SheetName,SpriteIndex
+1,Fireball,Send a large ball of flame into a crowd of foes,5,5,20,LOSTarget,NineSquare,{1},,Particles,68
+2,Magic Missile,Shoot three magic missiles to a target,5,5,20,LOSTarget,Single,{2;2;2},,Particles,33
+3,Heal,Heal Self,5,1,1,Self,Single,{3},,Particles,97
+4,Group Heal,Heal all allies,10,1,20,AllFriends,Single,{4},,Particles,97

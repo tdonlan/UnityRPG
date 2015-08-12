@@ -15,6 +15,20 @@ public class GameDataObject : MonoBehaviour
     public Dictionary<long, Item> itemDictionary;
     public List<long> playerInventory = new List<long>();
 
+    //Loaded Data
+    public Dictionary<long, ItemData> itemDataDictionary { get; set; }
+    public Dictionary<long, UsableItemData> usableItemDataDictionary { get; set; }
+    public Dictionary<long, WeaponData> weaponDataDictionary { get; set; }
+    public Dictionary<long, RangedWeaponData> rangedWeaponDataDictionary { get; set; }
+    public Dictionary<long, AmmoData> ammoDataDictionary { get; set; }
+    public Dictionary<long, ArmorData> armorDataDictionary { get; set; }
+
+    public Dictionary<long, EffectData> effectDataDictionary { get; set; }
+    public Dictionary<long, AbilityData> abilityDataDictionary { get; set; }
+
+    public Dictionary<long, GameCharacterData> gameCharacterDataDictionary { get; set; }
+
+
     //Battle Scene Data
 
     public Dictionary<string, BoardData> BoardDataDictionary { get; set; }
@@ -28,6 +42,7 @@ public class GameDataObject : MonoBehaviour
         loadTreeStore();
         this.testText = "Hello World";
         loadItemList();
+        loadGameData();
 
         LoadBoardDataDictionary();
 
@@ -38,6 +53,28 @@ public class GameDataObject : MonoBehaviour
     {
         itemDictionary = ItemFactory.getItemDictionary();
     }
+
+    public void loadGameData()
+    {
+
+        usableItemDataDictionary = getDataObjectDictionary("Data/UsableItems", typeof(UsableItemData)).ToDictionary(x => x.Key, x => (UsableItemData)x.Value);
+        weaponDataDictionary = getDataObjectDictionary("Data/Weapons", typeof(WeaponData)).ToDictionary(x => x.Key, x => (WeaponData)x.Value);
+        rangedWeaponDataDictionary = getDataObjectDictionary("Data/RangedWeapons", typeof(RangedWeaponData)).ToDictionary(x => x.Key, x => (RangedWeaponData)x.Value);
+        ammoDataDictionary = getDataObjectDictionary("Data/Ammo", typeof(AmmoData)).ToDictionary(x => x.Key, x => (AmmoData)x.Value);
+        armorDataDictionary = getDataObjectDictionary("Data/Armors", typeof(ArmorData)).ToDictionary(x => x.Key, x => (ArmorData)x.Value);
+
+        effectDataDictionary = getDataObjectDictionary("Data/Effects", typeof(EffectData)).ToDictionary(x => x.Key, x => (EffectData)x.Value);
+        abilityDataDictionary = getDataObjectDictionary("Data/Abilities", typeof(AbilityData)).ToDictionary(x => x.Key, x => (AbilityData)x.Value);
+
+    }
+
+    private Dictionary<long, object> getDataObjectDictionary(string assetName, Type dataType)
+    {
+        TextAsset manifestTextAsset2 = Resources.Load<TextAsset>(assetName);
+        return DataLoader.loadMasterDictionary(manifestTextAsset2.text, dataType);
+    }
+
+    
 
     private void loadTreeStore()
     {
