@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-
 namespace UnityRPG
 {
     public class CharacterFactory
@@ -72,7 +71,7 @@ namespace UnityRPG
                 character.equippedArmor = armorList;
             }
 
-            if (data.weapon != null && data.weapon > 0)
+            if (data.weapon > 0)
             {
                 Weapon w = (Weapon)ItemFactory.getItemFromIndex(data.weapon, gameDataSet);
                 character.weapon = w;
@@ -105,6 +104,12 @@ namespace UnityRPG
 
                 }
                 character.passiveEffects = peList;
+            }
+
+
+            if (data.type == CharacterType.Enemy)
+            {
+                character = getEnemyFromGameCharacter(character, data.enemyType);
             }
 
             return character;

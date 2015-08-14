@@ -2,24 +2,24 @@
 Rat Battle
 1;ZoneTown;Info;The rats scury from the dirty cracks in the alleyway and leap at you!;Town;
 --
-2:Rat
-3:Rat
-4:Rat
+2:Enemy
+3:Enemy
+4:Enemy
 5:Win
 ----
 2
 Rat
-1;Rat;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Rat;0;0
+80002;Rat;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Rat;0;0
 --
 ----
 3
 Rat
-1;Rat;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Rat;0;0
+80002;Rat;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Rat;0;0
 --
 ----
 4
 Rat
-1;Rat;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Rat;0;0
+80002;Rat;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Rat;0;0
 --
 ----
 5

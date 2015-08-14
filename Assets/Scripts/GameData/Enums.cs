@@ -234,6 +234,7 @@ public enum PlayerDecideState
 
     public enum EnemyType
     {
+        None,
         Warrior,
         Mage,
         Priest,

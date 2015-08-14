@@ -64,6 +64,7 @@ namespace UnityRPG
         public string name { get; set; }
         public char displayChar { get; set; }
         public CharacterType type { get; set; }
+        public EnemyType enemyType { get; set; }
 
         public string characterSpritesheetName { get; set; }
         public int characterSpriteIndex { get; set; }

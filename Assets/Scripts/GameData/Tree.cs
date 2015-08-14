@@ -368,6 +368,11 @@ using System.Text;
              return treeNodeDictionary.ContainsKey(index);
          }
 
+         public List<BattleTreeNode> getEnemyNodeList()
+         {
+             return treeNodeDictionary.Values.Where(x => x.content.nodeType == BattleNodeType.Enemy).ToList();
+         }
+
          public BattleTreeNode getWinNode()
          {
              long winLink = treeNodeDictionary[currentIndex].getBranchList(this).Where(x => x.description.ToLower().Equals("win")).FirstOrDefault().linkIndex;

@@ -79,7 +79,8 @@ public class BattleSceneControllerScript : MonoBehaviour
         getBattleIndex();
 
         //instante battleGameData. Use the tree for this, not the index.
-        this.battleGameData = BattleFactory.getGameData(this.battleIndex, this.r);
+        //this.battleGameData = BattleFactory.getGameData(this.battleIndex, this.r);
+        this.battleGameData = BattleFactory.getBattleGameDataFromZoneTree(gameDataObject.playerGameCharacter, battleTree, gameDataObject.gameDataSet);
 
         this.battleGame = new BattleGame(battleGameData, r, this);
 

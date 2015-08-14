@@ -1,4 +1,4 @@
-ID,Name,Type,CharacterSpritesheetName,CharacterSpriteIndex,PortraitSpritesheetName,PortraitSpriteIndex,AC,HP,Attack,AP,Inventory,EquippedArmor,Weapon,ActiveEffects,PassiveEffects,AbilityList
-80001,Player,Player,Characters,13,Portraits,0,10,50,20,10,,,40000,,,
-80002,Rat,Enemy,Characters,79,Portraits,121,5,10,10,10,,,40006,,,
-80003,Wolf,Enemy,Characters,79,Portraits,121,10,25,20,10,,,40007,,,
+ID,Name,Type,CharacterSpritesheetName,CharacterSpriteIndex,PortraitSpritesheetName,PortraitSpriteIndex,AC,HP,Attack,AP,Inventory,EquippedArmor,Weapon,ActiveEffects,PassiveEffects,AbilityList,EnemyType
+80001,Player,Player,Characters,13,Portraits,0,10,50,20,10,,,40000,,,,None
+80002,Rat,Enemy,Characters,79,Portraits,121,5,10,10,10,,,40006,,,,Warrior
+80003,Wolf,Enemy,Characters,79,Portraits,121,10,25,20,10,,,40007,,,,Warrior

@@ -9,8 +9,28 @@ namespace UnityRPG
 {
     public class BattleFactory
     {
-       
 
+        public static BattleGameData getBattleGameDataFromZoneTree(GameCharacter playerCharacter, BattleTree battleTree, GameDataSet gameDataSet)
+        {
+            BattleGameData retval = new BattleGameData();
+
+            //load player
+
+            retval.gameCharacterList.Add(playerCharacter);
+
+            //load enemies
+            foreach (var enemyNode in battleTree.getEnemyNodeList())
+            {
+                if(gameDataSet.gameCharacterDataDictionary.ContainsKey(enemyNode.content.linkIndex)){
+                       var enemyData = gameDataSet.gameCharacterDataDictionary[enemyNode.content.linkIndex];
+                       retval.gameCharacterList.Add(CharacterFactory.getGameCharacterFromGameCharacterData(enemyData, gameDataSet));
+                }
+             
+            }
+
+            return retval;
+           
+        }
 
 
         public static BattleGameData getGameData(int battleindex, Random r)
@@ -34,7 +54,7 @@ namespace UnityRPG
             return retval;
         }
 
-        public static List<GameCharacter> getBattleGameCharacterList(int battleIndex, Random r)
+        private static List<GameCharacter> getBattleGameCharacterList(int battleIndex, Random r)
         {
             switch (battleIndex)
             {
