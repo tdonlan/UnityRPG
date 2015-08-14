@@ -1,10 +1,10 @@
 ID,Name,StatType,MinAmount,MaxAmount,Duration,SheetName,SpriteIndex
-1,Fireball,Damage,100,200,1,Particles,68
-2,Magic Missile,Damage,1,6,1,Particles,33
-3,Heal,Heal,5,10,1,Particles,97
-4,Group Heal,Heal,10,20,1,Particles,97
-5,Regeneration,Heal,1,1,5,Particles,1
-6,Attack Boost,Attack,5,5,-1,Particles,1
-7,Flame,Damage,5,10,2,Particles,68
-8,Stun,Stun,0,0,2,Particles,1
-9,Weak Poison,Damage,1,2,3,Particles,1
+1001,Fireball,Damage,100,200,1,Particles,68
+1002,Magic Missile,Damage,1,6,1,Particles,33
+1003,Heal,Heal,5,10,1,Particles,97
+1004,Group Heal,Heal,10,20,1,Particles,97
+1005,Regeneration,Heal,1,1,5,Particles,1
+1006,Attack Boost,Attack,5,5,-1,Particles,1
+1007,Flame,Damage,5,10,2,Particles,68
+1008,Stun,Stun,0,0,2,Particles,1
+1009,Weak Poison,Damage,1,2,3,Particles,1

@@ -9,7 +9,10 @@ namespace UnityRPG
 {
     public class BattleFactory
     {
-        //DEPRECATED
+       
+
+
+
         public static BattleGameData getGameData(int battleindex, Random r)
         {
             BattleGameData retval = new BattleGameData();

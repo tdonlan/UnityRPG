@@ -13,6 +13,8 @@ public class GameDataObject : MonoBehaviour
     public TreeStore treeStore { get; set; }
     public string testText { get; set; }
     public Dictionary<long, Item> itemDictionary;
+
+    public GameCharacter playerGameCharacter;
     public List<long> playerInventory = new List<long>();
 
     //Loaded Data
@@ -32,10 +34,16 @@ public class GameDataObject : MonoBehaviour
         this.testText = "Hello World";
         loadItemList();
         loadGameData();
-
+        loadPlayerGameCharacter();
         LoadBoardDataDictionary();
 
         DontDestroyOnLoad(this);
+    }
+
+    private void loadPlayerGameCharacter()
+    {
+        //load this from a save game.  If we are starting a new game, then get this from the masterlist
+        playerGameCharacter = CharacterFactory.getGameCharacterFromGameCharacterData(gameDataSet.gameCharacterDataDictionary[80001], gameDataSet);
     }
 
     private void loadItemList()
@@ -55,7 +63,7 @@ public class GameDataObject : MonoBehaviour
 
         gameDataSet.effectDataDictionary = getDataObjectDictionary("Data/Effects", typeof(EffectData)).ToDictionary(x => x.Key, x => (EffectData)x.Value);
         gameDataSet.abilityDataDictionary = getDataObjectDictionary("Data/Abilities", typeof(AbilityData)).ToDictionary(x => x.Key, x => (AbilityData)x.Value);
-
+        gameDataSet.gameCharacterDataDictionary = getDataObjectDictionary("Data/GameCharacters", typeof(GameCharacterData)).ToDictionary(x => x.Key, x => (GameCharacterData)x.Value);
     }
 
     private Dictionary<long, object> getDataObjectDictionary(string assetName, Type dataType)
@@ -63,8 +71,6 @@ public class GameDataObject : MonoBehaviour
         TextAsset manifestTextAsset2 = Resources.Load<TextAsset>(assetName);
         return DataLoader.loadMasterDictionary(manifestTextAsset2.text, dataType);
     }
-
-    
 
     private void loadTreeStore()
     {

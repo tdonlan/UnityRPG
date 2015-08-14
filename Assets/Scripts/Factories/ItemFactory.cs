@@ -90,9 +90,21 @@ namespace UnityRPG
         public static UsableItem getUsableItemFromData(UsableItemData data, Dictionary<long, AbilityData> abilityDataDictionary, Dictionary<long, EffectData> effectDataDictionary)
         {
             Item i = getItemFromItemData(data, abilityDataDictionary, effectDataDictionary);
-            UsableItem ui = (UsableItem)i;
-            ui.actionPoints = data.actionPoints;
-            ui.uses = data.uses;
+            UsableItem ui = new UsableItem()
+            {
+
+                activeEffects = i.activeEffects,
+                ID = i.ID,
+                name = i.name,
+                passiveEffects = i.passiveEffects,
+                sheetname = i.sheetname,
+                spriteindex = i.spriteindex,
+                type = i.type,
+                uses = data.uses,
+                actionPoints = data.actionPoints,
+
+            };
+
 
             if (data.itemAbility.Count > 0)
             {
@@ -113,39 +125,89 @@ namespace UnityRPG
 
         public static Weapon getWeaponFromWeaponData(WeaponData data, Dictionary<long, AbilityData> abilityDataDictionary, Dictionary<long, EffectData> effectDataDictionary)
         {
-            Weapon w = (Weapon)getItemFromItemData(data, abilityDataDictionary, effectDataDictionary);
-            w.minDamage = data.minDamage;
-            w.maxDamage = data.maxDamage;
-            w.actionPoints = data.actionPoints;
-            w.weaponType = data.weaponType;
+            Item i = getItemFromItemData(data, abilityDataDictionary, effectDataDictionary);
+
+            Weapon w = new Weapon()
+            {
+                actionPoints = data.actionPoints,
+                activeEffects = i.activeEffects,
+                ID = i.ID,
+                maxDamage = data.maxDamage,
+                minDamage = data.minDamage,
+                name = i.name,
+                passiveEffects = i.passiveEffects,
+                sheetname = i.sheetname,
+                spriteindex = i.spriteindex,
+                type = i.type,
+                weaponType = data.weaponType
+
+            };
+          
 
             return w;
         }
         
         public static RangedWeapon getRangedWeaponFromRangedWeaponData(RangedWeaponData data, Dictionary<long, AbilityData> abilityDataDictionary, Dictionary<long, EffectData> effectDataDictionary)
         {
-            RangedWeapon rw = (RangedWeapon)getWeaponFromWeaponData(data, abilityDataDictionary, effectDataDictionary);
-            rw.range = data.range;
-            rw.ammoType = data.ammoType;
+            Weapon w = getWeaponFromWeaponData(data, abilityDataDictionary, effectDataDictionary);
+            RangedWeapon rw = new RangedWeapon()
+            {
+                ID = w.ID,
+                name = w.name,
+                actionPoints = w.actionPoints,
+                activeEffects = w.activeEffects,
+                maxDamage = w.maxDamage,
+                minDamage = w.minDamage,
+                passiveEffects = w.passiveEffects,
+                sheetname = w.sheetname,
+                spriteindex = w.spriteindex,
+                type = w.type,
+                weaponType = w.weaponType,
+
+                range = data.range,
+                ammoType = data.ammoType
+            };
 
             return rw;
         }
 
         public static Ammo getAmmoFromAmmoData(AmmoData data, Dictionary<long, AbilityData> abilityDataDictionary, Dictionary<long, EffectData> effectDataDictionary)
         {
-
-            Ammo a = (Ammo)getItemFromItemData(data,abilityDataDictionary,effectDataDictionary);
-            a.bonusDamage = data.bonusDamage;
-            a.ammoType = data.ammoType;
+            Item i = getItemFromItemData(data, abilityDataDictionary, effectDataDictionary);
+            Ammo a = new Ammo()
+            {
+                activeEffects = i.activeEffects,
+                ammoType = data.ammoType,
+                bonusDamage = data.bonusDamage,
+                ID = i.ID,
+                name = i.name,
+                passiveEffects = i.passiveEffects,
+                sheetname = i.sheetname,
+                spriteindex = i.spriteindex,
+                type = i.type
+            };
+            
 
             return a;
         }
 
         public static Armor getArmorFromArmorData(ArmorData data, Dictionary<long, AbilityData> abilityDataDictionary, Dictionary<long, EffectData> effectDataDictionary)
         {
-            Armor a = (Armor)getItemFromItemData(data,abilityDataDictionary,effectDataDictionary);
-            a.armor = data.armor;
-            a.armorType = data.armorType;
+            Item i = getItemFromItemData(data, abilityDataDictionary, effectDataDictionary);
+
+            Armor a = new Armor()
+            {
+                activeEffects = i.activeEffects,
+                armor = data.armor,
+                armorType = data.armorType,
+                ID = i.ID,
+                name = i.name,
+                passiveEffects = i.passiveEffects,
+                sheetname = i.sheetname,
+                spriteindex = i.spriteindex,
+                type = i.type
+            };
+           
             return a;
         }
 

@@ -9,7 +9,7 @@ namespace UnityRPG
     public class CharacterFactory
     {
 
-        public GameCharacter getGameCharacterFromGameCharacterData(GameCharacterData data, GameDataSet gameDataSet)
+        public static GameCharacter getGameCharacterFromGameCharacterData(GameCharacterData data, GameDataSet gameDataSet)
         {
             GameCharacter character = new GameCharacter()
             {
@@ -75,6 +75,7 @@ namespace UnityRPG
             if (data.weapon != null && data.weapon > 0)
             {
                 Weapon w = (Weapon)ItemFactory.getItemFromIndex(data.weapon, gameDataSet);
+                character.weapon = w;
             }
 
             if (data.activeEffects.Count > 0)
