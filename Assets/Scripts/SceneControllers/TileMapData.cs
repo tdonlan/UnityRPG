@@ -7,8 +7,6 @@ using UnityEngine;
 namespace UnityRPG
 {
 
-   
-
     public class ZoneObjectBounds
     {
         public Bounds bounds;
@@ -23,7 +21,13 @@ namespace UnityRPG
         public Bounds spawnBounds;
         public List<Bounds> objectBounds = new List<Bounds>();
 
-        public List<ZoneObjectBounds> objectBoundsList = new List<ZoneObjectBounds>();
+        //USED?  - REMOVE IF NOT
+        //public List<ZoneObjectBounds> objectBoundsList = new List<ZoneObjectBounds>();
+
+        //Battle Bounds
+        public List<Bounds> playerSpawnBounds = new List<Bounds>();
+        public List<Bounds> enemySpawnBounds = new List<Bounds>();
+        public List<Bounds> npcSpawnBounds = new List<Bounds>();
 
         public Tile[,] tileArray;
 
@@ -34,6 +38,15 @@ namespace UnityRPG
             loadSpawn(tileMapGameObject);
             loadTileArray(tileMapGameObject);
             
+        }
+
+        private void loadObjectBounds(GameObject tileMapGameObject)
+        {
+
+            objectBounds = getObjectBoundsFromType(tileMapGameObject, "objects");
+            playerSpawnBounds = getObjectBoundsFromType(tileMapGameObject, "PlayerStart");
+            enemySpawnBounds = getObjectBoundsFromType(tileMapGameObject, "EnemyStart");
+            npcSpawnBounds = getObjectBoundsFromType(tileMapGameObject, "NPCStart");
         }
 
         //Calculate the 2D array of tiles, given the tile prefab
@@ -62,12 +75,13 @@ namespace UnityRPG
                 }
                 strTileArray += System.Environment.NewLine;
             }
-            int i = 1;
+            
         }
 
-        private void loadObjectBounds(GameObject tileMapGameObject)
+        private List<Bounds> getObjectBoundsFromType(GameObject tileMapGameObject, string objectName)
         {
-            Transform objectChild = tileMapGameObject.transform.FindChild("objects");
+            List<Bounds> objectBounds = new List<Bounds>();
+            Transform objectChild = tileMapGameObject.transform.FindChild(objectName);
             if (objectChild != null)
             {
                 foreach (var box in objectChild.GetComponentsInChildren<BoxCollider2D>())
@@ -76,11 +90,7 @@ namespace UnityRPG
                 }
             }
 
-        }
-
-        private void loadObjectBoundList(GameObject tileMapGameObject)
-        {
-
+            return objectBounds;
         }
 
         private void loadSpawn(GameObject tileMapGameObject)
@@ -131,6 +141,8 @@ namespace UnityRPG
             }
             return false;
         }
+
+        
 
         public int checkObjectCollision(Bounds testBounds)
         {

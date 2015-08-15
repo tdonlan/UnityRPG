@@ -60,11 +60,12 @@ namespace UnityRPG
             
         }
 
+
         private void LoadBoardFromData()
         {
             //randomized board for now
-
-            board = BoardFactory.getBoardFromBoardData(this.gameData,this, gameData.BoardDataDictionary["Board1"]);
+            board = BoardFactory.getBoardFromBattleGameData(this.gameData, this);
+            //board = BoardFactory.getBoardFromBoardData(this.gameData,this, gameData.BoardDataDictionary["Board1"]);
 
             //board = BoardFactory.getRandomBoard(this, 20);
         }
@@ -78,17 +79,7 @@ namespace UnityRPG
         }
 
      
-        //DEPRECATED - Characters come from Game Data
-        private void InitChars()
-        {
-            characterList = new List<GameCharacter>();
-            characterList.Add(CharacterFactory.getPlayerCharacter(r));
-            characterList.Add(CharacterFactory.getGoblin(r));
-            characterList.Add(CharacterFactory.getGoblin(r));
-            characterList.Add(CharacterFactory.getGoblin(r));
 
-            battleLog.AddEntry("Characters Initialized");
-        }
 
         private void StartBattle()
         {
@@ -154,76 +145,12 @@ namespace UnityRPG
                     var freeTile = board.getFreeTileOfType(TileSpriteType.EnemyStart);
                     board.FillTile(gc, freeTile);
                 }
-            
-               
+
             }
         }
 
         #region BattleLoop
 
-        //DEPRECATED with Unity UI
-        private void RunBattle()
-        {
-            BattleStatusType battleStatus = getBattleStatus();
-            while (battleStatus == BattleStatusType.Running)
-            {
-
-                if (NewTurn)
-                {
-                    NewTurn = false;
-                    ActiveCharacter.RunActiveEffects(this);
-                }
-
-                DisplayScreen();
-
-                if (ActiveCharacter.hp > 0)
-                {
-
-                        if (ActiveCharacter.type == CharacterType.Player)
-                        {
-                            if (actionQueue.Count > 0)
-                            {
-                                RunActionQueue();
-                            }
-                            else
-                            {
-                                 actionQueue = DisplayMainMenuGetActionList();
-                            }
-                        }
-                        else
-                        {
-                            if (actionQueue.Count > 0)
-                            {
-                                if (!RunActionQueue())
-                                {
-                                    NextTurn();
-                                }
-                            }
-                            else
-                            {
-                                actionQueue = getEnemyActionList();
-                            }
-                        }
-                }
-                else
-                {
-                    CharacterKill(ActiveCharacter);
-                    NextTurnActiveDied();
-                }
-
-                battleStatus = getBattleStatus();
-            }
-
-            if (battleStatus == BattleStatusType.PlayersDead)
-            {
-                LoseBattle();
-            }
-            else if (battleStatus == BattleStatusType.EnemiesDead)
-            {
-                WinBattle();
-            }
-
-        }
 
         //while we have actions in the queue, execute, otherwise return
         //return false if we fail the action queue, otherwise false
@@ -345,113 +272,6 @@ namespace UnityRPG
         #endregion
 
 
-        #region DisplayScreen
-
-        private void DisplayScreen()
-        {
-            
-           // Console.Clear();
-            Console.WriteLine(board.ToString());
-            battleLog.Print(1);
-            DisplayCharList();
-            DisplayActiveChar();
-        }
-
-        private void DisplayTempBoard()
-        {
-            //Console.Clear();
-            Console.WriteLine(board.ToStringTemp());
-            battleLog.Print(1);
-            DisplayCharList();
-            DisplayActiveChar();
-
-            board.ClearTempTiles();
-        }
-
-        //display the list of characters, indicating active
-        private void DisplayCharList()
-        {
-            string txt = "";
-            int counter = 0;
-            foreach(var c in characterList)
-            {
-                if(counter == currentCharacter)
-                {
-                    txt += string.Format(" ->{0} ({1})<- ", c.name, c.displayChar);
-                }
-                else
-                {
-                    txt += string.Format(" {0} ({1}) ", c.name, c.displayChar);
-                }
-                counter++;
-            }
-
-            Console.WriteLine(txt);
-        }
-
-        private void DisplayActiveChar()
-        {
-            Console.WriteLine("----------------------------");
-            Console.WriteLine(ActiveCharacter.ToString());
-            Console.WriteLine("----------------------------");
-
-        }
-
-        #endregion
-
-        #region DisplayMenus
-
-        private List<BattleAction> DisplayMainMenuGetActionList()
-        {
-            List<BattleAction> actionList = new List<BattleAction>();
-
-            List<string> menu = new List<string>(){"1. View",
-                "2. Move","3. Attack", "4. Ranged Attack","5. Use Item",
-                "6. Use Ability", "7. Equipment", "8. End Turn", "9. Refresh"};
-            int input = CoreHelper.displayMenuGetInt(menu);
-            switch (input)
-            {
-                case 1:
-                    //DisplayViewMenu();
-                    DisplayViewMenu2();
-                    break;
-                case 2:
-                    actionList = DisplayMoveGetActionList();
-        
-                    break;
-  
-                case 3:
-                    actionList = DisplayAttackGetActionList();
-
-                    break;
-                case 4:
-                    actionList = DisplayRangedAttackGetActionList();
-
-                    break;
-                case 5:
-                    actionList = DisplayItemGetActionList();
- 
-                    break;
-                case 6:
-                    actionList = DisplayAbilityGetActionList();
-
-                    break;
-                case 7:
-                    DisplayEquipmentMenu();
-                    break;
-
-                case 8:
-                    Skip();
-                    break;
-                case 9:
-                    break;
-                default: break;
-            }
-
-            return actionList;
-        }
-
-
         public List<BattleAction> GetMoveActionList(int x, int y)
         {
             List<BattleAction> moveList = new List<BattleAction>();
@@ -466,36 +286,7 @@ namespace UnityRPG
             return moveList;
         }
 
-        private List<BattleAction> DisplayMoveGetActionList()
-        {
-
-            List<BattleAction> moveList = new List<BattleAction>();
-
-            List<string> menu = new List<string>() { "Enter destination ex: 'A,1'" };
-            bool valid = false;
-            while (!valid)
-            {
-                string input = CoreHelper.displayMenuGetStr(menu);
-
-                Point targetPoint = CoreHelper.parseStringPoint(input);
-                if (targetPoint != null)
-                {
-                    List<Point> pointList = PathFind.Pathfind(board, ActiveCharacter.x, ActiveCharacter.y, targetPoint.x, targetPoint.y);
-                    pointList.RemoveAt(0); //remove the character from pathfind.
-                    foreach (var p in pointList)
-                    {
-                        moveList.Add(new BattleAction() { character = ActiveCharacter, actionType = BattleActionType.Move, targetTile = board.getTileFromPoint(p) });
-                    }
-
-                    valid = true;
-
-                }
-
-            }
-
-            return moveList;
-        }
-
+       
   
         public List<BattleAction> getRangedAttackActionList(int x, int y)
         {
@@ -504,25 +295,7 @@ namespace UnityRPG
             return actionList;
         }
 
-        private List<BattleAction> DisplayRangedAttackGetActionList()
-        {
-            List<BattleAction> actionList = new List<BattleAction>();
-
-            List<string> menu = new List<string>() { "Enter target ex: 'A,1'" };
-            bool valid = false;
-            while (!valid)
-            {
-                string input = CoreHelper.displayMenuGetStr(menu);
-
-                Point p = CoreHelper.parseStringPoint(input);
-                if (p != null)
-                {
-                    actionList.Add(new BattleAction() { character = ActiveCharacter, targetTile = board.getTileFromLocation(p.x, p.y), actionType = BattleActionType.RangedAttack });
-                    valid = true;
-                }
-            }
-            return actionList;
-        }
+      
         
         public List<BattleAction> getAttackActionList(int x, int y)
         {
@@ -542,86 +315,8 @@ namespace UnityRPG
         }
 
 
-        //Move to the target then attack
-        private List<BattleAction> DisplayAttackGetActionList()
-        {
-            List<BattleAction> actionList = new List<BattleAction>();
 
-            List<string> menu = new List<string>() { "Enter target ex: 'A,1'" };
-            bool valid = false;
-            while (!valid)
-            {
-                string input = CoreHelper.displayMenuGetStr(menu);
-
-                Point targetPoint = CoreHelper.parseStringPoint(input);
-                if (targetPoint != null)
-                {
-                    //path find to target
-                    List<Point> pointList = PathFind.Pathfind(board, ActiveCharacter.x, ActiveCharacter.y, targetPoint.x, targetPoint.y);
-                    pointList.RemoveAt(0); //remove the character from pathfind.
-                    pointList.RemoveAt(pointList.Count - 1); //remove the target from pathfind.
-
-                    foreach (var p in pointList)
-                    {
-                        actionList.Add(new BattleAction() { character = ActiveCharacter, actionType = BattleActionType.Move, targetTile = board.getTileFromPoint(p) });
-                    }
-
-                    //attack action
-                    actionList.Add(new BattleAction() { character = ActiveCharacter, targetTile = board.getTileFromLocation(targetPoint.x, targetPoint.y), actionType = BattleActionType.Attack });
-
-                    valid = true;
-                }
-            }
-            return actionList;
-        }
-
-        private List<BattleAction> DisplayItemGetActionList()
-        {
-            List<BattleAction> actionList = new List<BattleAction>();
-
-            List<string> itemList = new List<string>();
-            int counter = 1;
-
-            List<ItemSet> itemSetList = ItemHelper.getItemSetList(ActiveCharacter.inventory);
-
-            foreach (var i in itemSetList)
-            {
-                if (i.count > 1)
-                {
-                    itemList.Add(string.Format("{0}. {1}({2})", counter, i.itemName, i.count));
-                }
-                else
-                {
-                    itemList.Add(string.Format("{0}. {1}", counter, i.itemName));
-                }
-
-                counter++;
-            }
-
-            int input = CoreHelper.displayMenuGetInt(itemList);
-
-            UsableItem tempItem = (UsableItem)ItemHelper.getFirstItemWithID(ActiveCharacter.inventory, itemSetList[input - 1].itemID);
-
-            Tile targetTile = null;
-            if (tempItem.itemAbility != null)
-            {
-                bool valid = false;
-                while (!valid)
-                {
-                    string strTile = CoreHelper.displayMenuGetStr(new List<string>() { "Enter Target: (ex: A,1)" });
-
-                    Point p = CoreHelper.parseStringPoint(strTile);
-                    if (p != null)
-                    {
-                        targetTile = board.getTileFromLocation(p.x, p.y);
-                        valid = true;
-                    }
-                }
-            }
-
-            actionList.Add(new BattleAction() { character = ActiveCharacter, targetTile = targetTile, actionType = BattleActionType.UseItem, item = tempItem });
-            return actionList;
-        }
+       
 
         public List<BattleAction> getAbilityActionList(Ability a, int x, int y)
         {
@@ -637,273 +332,6 @@ namespace UnityRPG
             actionList.Add(new BattleAction() { character = ActiveCharacter, actionType = BattleActionType.UseItem, item = i, targetTile = board.getTileFromLocation(x, y) });
             return actionList;
         }
-
-        public List<BattleAction> DisplayAbilityGetActionList()
-        {
-            List<BattleAction> actionList = new List<BattleAction>();
-
-            List<string> displayList = new List<string>();
-            int counter = 1;
-
-            var usableAbilityList = (from data in ActiveCharacter.abilityList
-                                     where data.uses > 0
-                                     select data).ToList();
-
-            foreach (var i in usableAbilityList)
-            {
-                displayList.Add(string.Format("{0}. {1}", counter, i.name));
-                counter++;
-            }
-
-            int input = CoreHelper.displayMenuGetInt(displayList);
-
-            if (input > 0 && input <= usableAbilityList.Count)
-            {
-
-                bool valid = false;
-                while (!valid)
-                {
-                    string targetTile = CoreHelper.displayMenuGetStr(new List<string>() { "Enter Target: (ex: A,1)" });
-
-                    Point p = CoreHelper.parseStringPoint(targetTile);
-                    if (p != null)
-                    {
-
-                        actionList.Add(new BattleAction() { character = ActiveCharacter, actionType = BattleActionType.UseAbility, ability = usableAbilityList[input - 1], targetTile = board.getTileFromLocation(p.x, p.y) });
-
-                        valid = true;
-                    }
-                }
-            }
-
-            return actionList;
-        }
-
-        #endregion
-
-
-        #region Equipment
-
-        private void DisplayEquipmentMenu()
-        {
-            List<string> equipStrMenu = new List<string>();
-            int counter = 1;
-            if (ActiveCharacter.weapon != null)
-            {
-                equipStrMenu.Add(string.Format("{0}. Weapon: {1}", counter, ActiveCharacter.weapon.ToString()));
-            }
-            else
-            {
-                equipStrMenu.Add(string.Format("{0}. Equip Weapon", counter ));
-            }
-            counter++;
-
-            if (ActiveCharacter.Ammo != null)
-            {
-                equipStrMenu.Add(string.Format("{0} Ammo: {1}", counter, ActiveCharacter.Ammo.ToString()));
-            }
-            else
-            {
-                equipStrMenu.Add(string.Format("{0} Equip Ammo", counter));
-            }
-            counter++;
-
-            List<ArmorType> armorTypeList = new List<ArmorType>();
-
-
-            foreach (var a in Enum.GetValues(typeof(ArmorType)))
-            {
-                armorTypeList.Add((ArmorType)a);
-
-                Armor tempArmor = ActiveCharacter.getArmorInSlot((ArmorType)a);
-                if(tempArmor != null)
-                {
-                    equipStrMenu.Add(string.Format("{0}. {1}", counter, tempArmor.ToString()));
-                }
-                else
-                {
-                    equipStrMenu.Add(string.Format("{0}. {1}", counter, a.ToString()));
-                }
-                counter++;
-            }
-
-            equipStrMenu.Add(string.Format("{0}. Back", counter));
-
-            int index = CoreHelper.displayMenuGetInt(equipStrMenu);
-            if(index != counter)
-            {
-                if(index == 1)
-                {
-                    DisplayWeaponsMenu();
-                }
-                else if(index == 2)
-                {
-                    DisplayAmmoMenu();
-                }
-                else
-                {
-                    DisplayArmorMenu(armorTypeList[index - 2]);
-                }
-            }
-            return;
-
-        }
-
-        private void DisplayArmorMenu(ArmorType armorType)
-        {
-            Console.WriteLine(armorType.ToString());
-
-            Armor currentArmor = ActiveCharacter.getArmorInSlot(armorType);
-            if (currentArmor != null)
-            {
-                Console.WriteLine(currentArmor.ToString());
-            }
-            
-            var armorList = from data in ActiveCharacter.inventory
-                           where data.type == ItemType.Armor 
-                           select data;
-
-            var armorTypeList = (from Armor data in armorList
-                                 where data.armorType == armorType
-                                 select data).ToList();
-
-
-            List<string> armorStrList = new List<string>();
-            int counter = 1;
-            foreach (var w in armorTypeList)
-            {
-                armorStrList.Add(string.Format("{0}. {1}", counter, w.ToString()));
-                counter++;
-            }
-
-            armorStrList.Add(string.Format("{0}. Back", counter));
-
-            int armorIndex = CoreHelper.displayMenuGetInt(armorStrList);
-            if (armorIndex != counter)
-            {
-                ActiveCharacter.RemoveArmorInSlot(armorType);
-                ActiveCharacter.EquipArmor(armorTypeList[armorIndex - 1]);
-            }
-
-            return;
-
-        }
-
-        private void DisplayWeaponsMenu()
-        {
-             Console.WriteLine("Weapons");
-            //Current Weapon
-             if (ActiveCharacter.weapon != null)
-             {
-                 Console.WriteLine(ActiveCharacter.weapon.ToString());
-             }
-            //Available Weps
-             var wepList = (from data in ActiveCharacter.inventory
-                           where data.type == ItemType.Weapon
-                           select data).ToList();
-
-             List<string> wepStrList = new List<string>();
-            int counter = 1;
-            foreach(var w in wepList)
-            {
-                wepStrList.Add(string.Format("{0}. {1}", counter, w.ToString()));
-                counter++;
-            }
-
-            wepStrList.Add(string.Format("{0}. Back", counter));
-
-            int wepIndex = CoreHelper.displayMenuGetInt(wepStrList);
-            if(wepIndex != counter)
-            {
-                ActiveCharacter.RemoveWeapon(ActiveCharacter.weapon);
-                ActiveCharacter.EquipWeapon((Weapon)wepList[wepIndex - 1]);
-            }
-
-            return;
-            
-        }
-
-        private void DisplayAmmoMenu()
-        {
-            Console.WriteLine("Ammo");
-            //Current Weapon
-            if (ActiveCharacter.Ammo != null)
-            {
-                Console.WriteLine(ActiveCharacter.Ammo.ToString());
-            }
-
-            //Available ammo
-            //var ammoList = (from data in ActiveCharacter.inventory
-            //               where data.type == ItemType.Ammo
-            //               select data).GroupBy(x=>x.ID).ToList();
-
-            var ammoList = (from data in ActiveCharacter.inventory
-                            where data.type == ItemType.Ammo
-                            select data).ToList();
-
-            List<string> ammoStrList = new List<string>();
-            int counter = 1;
-            foreach (var a in ammoList)
-            {
-                ammoStrList.Add(string.Format("{0}. {1}", counter, a.ToString()));
-                counter++;
-            }
-
-            ammoStrList.Add(string.Format("{0}. Back", counter));
-
-            int ammoIndex = CoreHelper.displayMenuGetInt(ammoStrList);
-            if (ammoIndex != counter)
-            {
-                ActiveCharacter.RemoveAmmo();
-                ActiveCharacter.EquipAmmo((Ammo)ammoList[ammoIndex - 1]);
-            }
-
-            return;
-
-        }
-
-       #endregion
-
-        #region ViewMenu
-
-        private void DisplayViewMenu()
-        {
-
-            Console.Write(battleLog.ToString());
-
-            //get list of characters
-            List<string> displayCharList = new List<string>();
-            int count = 1;
-            foreach(var c in characterList)
-            {
-                displayCharList.Add(string.Format("{0}.{1} ({2})", count, c.name, c.displayChar));
-                count++;
-            }
-
-            int input = CoreHelper.displayMenuGetInt(displayCharList);
-            
-            //Display the Character
-            Console.Write(characterList[input - 1].ToString());
-            Console.Write(">");
-            Console.ReadLine();
-            return;
-        }
-
-        private void DisplayViewMenu2()
-        {
-            List<string> displayCharList = new List<string>();
-            
-            foreach (var c in characterList)
-            {
-                Console.WriteLine(c.ToString());
-            }
-
-            Console.ReadLine();
-            return;
-        }
-
-        #endregion
-
 
         #region BoardHelpers
         public GameCharacter getCharacterFromTile(Tile t)

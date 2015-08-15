@@ -8,6 +8,9 @@ namespace UnityRPG
 {
     public class BoardFactory
     {
+
+
+
         //DEPRECATED
         public static Board getRandomBoard(BattleGame game, int size)
         {
@@ -31,6 +34,49 @@ namespace UnityRPG
             return b;
         }
 
+        //construct a custom tile array for use in battle board, from tileMapData
+        private Tile[,] getBoardTileArrayFromTileMapData(TileMapData tileMapData)
+        {
+            Tile[,] boardTileArray = new Tile[tileMapData.tileArray.GetLength(0), tileMapData.tileArray.GetLength(1)];
+            for (int i = 0; i < boardTileArray.GetLength(0); i++)
+            {
+                for (int j = 0; j < boardTileArray.GetLength(1); j++)
+                {
+                    /*
+                     TileSpriteLookup tileLookup = new TileSpriteLookup('',"",0,tileMapData.tileArray[i,j].empty,TileSpriteType.);
+
+                    boardTileArrayj, i] = getTileFromData(tileLookup, j, i);
+                    boardTileArray[j,i] = new Tile(j, i);
+
+
+                    var tileLookup = tileLookupDict[boardCharArray[i, j]];
+                    b.board[j, i] = getTileFromData(tileLookup, j, i);
+                     * */
+
+                }
+
+                
+            }
+        
+            foreach (var playerSpawn in tileMapData.playerSpawnBounds)
+            {
+                Point tilePoint = GameObjectHelper.getTileLocationFromVectorPos(playerSpawn.center, tileMapData);
+            }
+
+            return boardTileArray;
+        }
+
+       
+
+        public static Board getBoardFromBattleGameData(BattleGameData battleGameData, BattleGame battleGame)
+        {
+            Board b = new Board(battleGame, battleGameData.tileArray.GetLength(0));
+            b.board = battleGameData.tileArray;
+
+            return b;
+        }
+
+        //DEPRECATED
         public static Board getBoardFromBoardData(BattleGameData gameData, BattleGame game, BoardData boardData)
         {
             var boardLayoutStr = gameData.assetLibrary.boardLayoutDictionary[boardData.boardLayoutName];

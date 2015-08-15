@@ -10,7 +10,7 @@ namespace UnityRPG
     public class BattleFactory
     {
 
-        public static BattleGameData getBattleGameDataFromZoneTree(GameCharacter playerCharacter, BattleTree battleTree, GameDataSet gameDataSet)
+        public static BattleGameData getBattleGameDataFromZoneTree(GameCharacter playerCharacter, BattleTree battleTree, GameDataSet gameDataSet, TileMapData tileMapData)
         {
             BattleGameData retval = new BattleGameData();
 
@@ -28,12 +28,14 @@ namespace UnityRPG
              
             }
 
+            retval.tileArray = tileMapData.tileArray;
+
             return retval;
            
         }
 
-
-        public static BattleGameData getGameData(int battleindex, Random r)
+        //DEPRECATED
+        private static BattleGameData getGameData(int battleindex, Random r)
         {
             BattleGameData retval = new BattleGameData();
             switch(battleindex)

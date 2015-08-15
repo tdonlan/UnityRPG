@@ -225,7 +225,7 @@ namespace UnityRPG
             {
                 for (int j = 0; j < board.GetLength(1); j++)
                 {
-                   if(board[i,j].tileSpriteLookup.tileSpriteType ==  tileSpriteType)
+                   if(board[i,j].tileSpriteLookup.tileSpriteType == tileSpriteType)
                    {
                         tileList.Add(board[i, j]);
                     }

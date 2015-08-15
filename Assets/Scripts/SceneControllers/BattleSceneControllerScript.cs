@@ -12,6 +12,11 @@ using UnityEngine.EventSystems;
 public class BattleSceneControllerScript : MonoBehaviour
 {
     public GameDataObject gameDataObject { get; set; }
+
+    public GameObject tileMapPrefab;
+    public GameObject tileMapObject;
+
+    public TileMapData tileMapData;
     public long parentTreeLink;
     public BattleTree battleTree { get; set; }
 
@@ -66,6 +71,7 @@ public class BattleSceneControllerScript : MonoBehaviour
 
         loadGameData();
         loadTreeStore();
+        loadTileMapData();
 
         tileCharacterList = new List<GameObject>();
         tempEffectList = new List<TempEffect>();
@@ -80,13 +86,13 @@ public class BattleSceneControllerScript : MonoBehaviour
 
         //instante battleGameData. Use the tree for this, not the index.
         //this.battleGameData = BattleFactory.getGameData(this.battleIndex, this.r);
-        this.battleGameData = BattleFactory.getBattleGameDataFromZoneTree(gameDataObject.playerGameCharacter, battleTree, gameDataObject.gameDataSet);
+        this.battleGameData = BattleFactory.getBattleGameDataFromZoneTree(gameDataObject.playerGameCharacter, battleTree, gameDataObject.gameDataSet, tileMapData);
 
         this.battleGame = new BattleGame(battleGameData, r, this);
 
         LoadPrefabs();
 
-        LoadBoard();
+        //LoadBoard();
         LoadCharacters();
 
         LoadUI();
@@ -116,6 +122,18 @@ public class BattleSceneControllerScript : MonoBehaviour
         battleTree = (BattleTree)gameDataObject.treeStore.getCurrentTree();
 
     }
+
+
+
+    private void loadTileMapData()
+    {
+        tileMapPrefab = Resources.Load<GameObject>(battleTree.treeName);
+        tileMapObject = (GameObject)Instantiate(tileMapPrefab);
+        tileMapObject.tag = "tileMap";
+        tileMapData = new TileMapData(tileMapObject);
+
+    }
+
 
     private void getBattleIndex()
     {
@@ -148,6 +166,7 @@ public class BattleSceneControllerScript : MonoBehaviour
 
         DebugText = GameObject.FindGameObjectWithTag("DebugText").GetComponent<Text>();
     }
+
 
     private void LoadBoard()
     {
@@ -263,7 +282,6 @@ public class BattleSceneControllerScript : MonoBehaviour
         if (battleStatus == BattleStatusType.Running)
         {
 
-
             UpdateTempEffects(delta);
 
             UITimer -= Time.deltaTime;
@@ -306,15 +324,6 @@ public class BattleSceneControllerScript : MonoBehaviour
         battleStatus = BattleStatusType.GameOver;
         Application.LoadLevel("GameOverScene");
     }
-
-    //DEPRECATED
-    /*
-    private void WinBattle()
-    {
-        battleStatus = BattleStatusType.GameOver;
-        Application.LoadLevel("GameOverScene");
-    }
-     * */
 
     void UpdateDebug()
     {
