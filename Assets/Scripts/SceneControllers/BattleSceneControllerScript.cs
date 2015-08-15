@@ -120,10 +120,7 @@ public class BattleSceneControllerScript : MonoBehaviour
 
         gameDataObject.treeStore.SelectTree(dialogLink);
         battleTree = (BattleTree)gameDataObject.treeStore.getCurrentTree();
-
     }
-
-
 
     private void loadTileMapData()
     {
@@ -237,12 +234,12 @@ public class BattleSceneControllerScript : MonoBehaviour
         }
 
 
-        characterObject.transform.position = new Vector3(character.x, character.y, -1);
+        characterObject.transform.position = new Vector3(character.x, -character.y, 0);
 
         return characterObject;
     }
 
-  
+  //DEPRECATED
     private void LoadTile(Tile t)
     {
         GameObject spriteObject = new GameObject("Tile " + name);
@@ -256,7 +253,7 @@ public class BattleSceneControllerScript : MonoBehaviour
     private void SetCamera()
     {
         int x = (int)Mathf.Round(battleGame.board.board.GetLength(0) / 2f);
-        int y = (int)Mathf.Round(battleGame.board.board.GetLength(1) / 2f);
+        int y = -(int)Mathf.Round(battleGame.board.board.GetLength(1) / 2f);
 
         var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         mainCamera.transform.position = new Vector3(x, y, -10);
@@ -444,7 +441,7 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     void UpdateBattleActions()
     {
-        FocusCamera(battleGame.ActiveCharacter.x, battleGame.ActiveCharacter.y);
+        FocusCamera(battleGame.ActiveCharacter.x, -battleGame.ActiveCharacter.y);
 
         if (battleGame.ActiveCharacter.hp > 0)
         {
@@ -670,6 +667,8 @@ public class BattleSceneControllerScript : MonoBehaviour
 
         Vector3 mouseWorldPosition = camera.ScreenToWorldPoint(Input.mousePosition);
 
+        DebugText.text = mouseWorldPosition.ToString();
+
         if (Input.GetMouseButtonDown(0)) //left click
         {
             if (!checkPointOnUI(Input.mousePosition))
@@ -764,9 +763,9 @@ public class BattleSceneControllerScript : MonoBehaviour
         float hor = Input.GetAxis("Horizontal") * GameConfig.PanSpeed;
 
         var destination = new Vector2(cameraData.CameraX + hor, cameraData.CameraY + vert);
-        var fixedDestination = MoveCamera(mainCamera, mainCamera.transform.position, destination);
-
-        cameraData.SetCamera(fixedDestination.x, fixedDestination.y);
+        //var fixedDestination = MoveCamera(mainCamera, mainCamera.transform.position, destination);
+        cameraData.SetCamera(destination.x, destination.y);
+        //cameraData.SetCamera(fixedDestination.x, fixedDestination.y);
 
         mainCamera.transform.position = cameraData.UpdateCamera(mainCamera.transform.position.x, mainCamera.transform.position.y, mainCamera.transform.position.z);
 
@@ -1098,13 +1097,18 @@ public class BattleSceneControllerScript : MonoBehaviour
         //Determine character being highlighted
         Vector3 boardPos = getBoardPositionFromScreenPosition(Input.mousePosition);
         Point boardPoint = getBoardPointFromLocation(boardPos.x, boardPos.y);
-        GameCharacter hoverCharacter = battleGame.getCharacterFromTile(battleGame.board.getTileFromLocation(boardPoint.x, boardPoint.y));
-
-        if (hoverCharacter != null)
+        if (boardPoint != null)
         {
-            UIHelper.UpdateSliderValue(CharacterHover, "HPSlider", (float)hoverCharacter.hp / (float)hoverCharacter.totalHP);
-            UIHelper.UpdateTextComponent(CharacterHover, "CharacterName", hoverCharacter.name);
-            UIHelper.UpdateTextComponent(CharacterHover, "CharacterStats", hoverCharacter.ToString());
+
+
+            GameCharacter hoverCharacter = battleGame.getCharacterFromTile(battleGame.board.getTileFromLocation(boardPoint.x, boardPoint.y));
+
+            if (hoverCharacter != null)
+            {
+                UIHelper.UpdateSliderValue(CharacterHover, "HPSlider", (float)hoverCharacter.hp / (float)hoverCharacter.totalHP);
+                UIHelper.UpdateTextComponent(CharacterHover, "CharacterName", hoverCharacter.name);
+                UIHelper.UpdateTextComponent(CharacterHover, "CharacterStats", hoverCharacter.ToString());
+            }
         }
     }
 

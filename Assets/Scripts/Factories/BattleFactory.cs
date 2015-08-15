@@ -14,6 +14,8 @@ namespace UnityRPG
         {
             BattleGameData retval = new BattleGameData();
 
+            retval.tileMapData = tileMapData;
+
             //load player
 
             retval.gameCharacterList.Add(playerCharacter);
@@ -27,8 +29,6 @@ namespace UnityRPG
                 }
              
             }
-
-            retval.tileArray = tileMapData.tileArray;
 
             return retval;
            
@@ -55,7 +55,7 @@ namespace UnityRPG
 
             return retval;
         }
-
+        //DEPRECATED
         private static List<GameCharacter> getBattleGameCharacterList(int battleIndex, Random r)
         {
             switch (battleIndex)
@@ -74,6 +74,8 @@ namespace UnityRPG
             }
         }
 
+
+        //DEPRECATED
         //given a list of character names, return a list of GameCharacters
         private static List<GameCharacter> getCharacterList(List<string> characterNames,Random r)
         {

@@ -16,7 +16,9 @@ namespace UnityRPG
         public AssetLibrary assetLibrary { get; set; }
 
         public List<GameCharacter> gameCharacterList { get; set; }
-        public Tile[,] tileArray { get; set; }
+        public TileMapData tileMapData { get; set; }
+       // public Tile[,] tileArray { get; set; }
+
         public Board gameBoard { get; set; }
 
         public BattleGameData()

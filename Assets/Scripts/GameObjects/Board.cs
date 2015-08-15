@@ -19,10 +19,7 @@ namespace UnityRPG
             this.x = x;
             this.y = y;
         }
-
-
     }
-
 
     public class Board
     {

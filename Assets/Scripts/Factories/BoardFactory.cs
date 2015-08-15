@@ -34,44 +34,69 @@ namespace UnityRPG
             return b;
         }
 
+        private static TileSpriteLookup getTileSpriteLookupFromTileData(int x, int y, bool isEmpty, TileMapData tileMapData)
+        {
+            TileSpriteType tileSpriteType = TileSpriteType.Floor;
+            if (isEmpty)
+            {
+                tileSpriteType = TileSpriteType.Wall;
+            }
+            if (tileMapData.checkEnemySpawnCollision(new Point(x, -y)))
+            {
+                tileSpriteType = TileSpriteType.EnemyStart;
+            }
+            else if (tileMapData.checkPlayerSpawnCollision(new Point(x, -y)))
+            {
+                tileSpriteType = TileSpriteType.PlayerStart;
+            }
+
+            TileSpriteLookup tileSpriteLookup = new TileSpriteLookup('_',"",0,isEmpty,tileSpriteType);
+            return tileSpriteLookup;
+
+        }
+
         //construct a custom tile array for use in battle board, from tileMapData
-        private Tile[,] getBoardTileArrayFromTileMapData(TileMapData tileMapData)
+        private static Tile[,] getBoardTileArrayFromTileMapData(TileMapData tileMapData)
         {
             Tile[,] boardTileArray = new Tile[tileMapData.tileArray.GetLength(0), tileMapData.tileArray.GetLength(1)];
             for (int i = 0; i < boardTileArray.GetLength(0); i++)
             {
                 for (int j = 0; j < boardTileArray.GetLength(1); j++)
                 {
-                    /*
-                     TileSpriteLookup tileLookup = new TileSpriteLookup('',"",0,tileMapData.tileArray[i,j].empty,TileSpriteType.);
-
-                    boardTileArrayj, i] = getTileFromData(tileLookup, j, i);
-                    boardTileArray[j,i] = new Tile(j, i);
-
-
-                    var tileLookup = tileLookupDict[boardCharArray[i, j]];
-                    b.board[j, i] = getTileFromData(tileLookup, j, i);
-                     * */
-
+                    TileSpriteLookup tileSpriteLookup = getTileSpriteLookupFromTileData(i,j,tileMapData.tileArray[i,j].empty,tileMapData);
+                    Tile tempTile = new Tile(i,j,tileSpriteLookup.isEmpty);
+                    boardTileArray[i,j] = tempTile;
                 }
-
-                
-            }
-        
-            foreach (var playerSpawn in tileMapData.playerSpawnBounds)
-            {
-                Point tilePoint = GameObjectHelper.getTileLocationFromVectorPos(playerSpawn.center, tileMapData);
             }
 
             return boardTileArray;
+        }
+
+        private static Tile[,] copyTileArray(Tile[,] tileArray1)
+        {
+            int width = tileArray1.GetLength(0);
+            int height = tileArray1.GetLength(1);
+            Tile[,] newTileArray = new Tile[width,height];
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    newTileArray[x, y] = tileArray1[x, y];
+                }
+           
+            }
+
+            return newTileArray;
+
         }
 
        
 
         public static Board getBoardFromBattleGameData(BattleGameData battleGameData, BattleGame battleGame)
         {
-            Board b = new Board(battleGame, battleGameData.tileArray.GetLength(0));
-            b.board = battleGameData.tileArray;
+            Board b = new Board(battleGame, battleGameData.tileMapData.tileArray.GetLength(0));
+            b.board = copyTileArray(battleGameData.tileMapData.tileArray);
 
             return b;
         }

@@ -21,9 +21,6 @@ namespace UnityRPG
         public Bounds spawnBounds;
         public List<Bounds> objectBounds = new List<Bounds>();
 
-        //USED?  - REMOVE IF NOT
-        //public List<ZoneObjectBounds> objectBoundsList = new List<ZoneObjectBounds>();
-
         //Battle Bounds
         public List<Bounds> playerSpawnBounds = new List<Bounds>();
         public List<Bounds> enemySpawnBounds = new List<Bounds>();
@@ -36,6 +33,7 @@ namespace UnityRPG
             loadCollisionRectListFromPrefab(tileMapGameObject);
             loadObjectBounds(tileMapGameObject);
             loadSpawn(tileMapGameObject);
+
             loadTileArray(tileMapGameObject);
             
         }
@@ -69,7 +67,11 @@ namespace UnityRPG
                     Vector3 size = new Vector3(Tile.TILE_SIZE, Tile.TILE_SIZE);
                     Bounds tileBounds = new Bounds(center, size);
                     bool empty = !checkCollision(tileBounds);
+
                     tileArray[x, y] = new Tile(x, y, empty);
+
+                    //Extra metadata on tile
+                    tileArray[x, y].tileSpriteLookup = getTileSpriteLookup(tileBounds, x, y, empty);
 
                     strTileArray += empty ? "." : "#";
                 }
@@ -77,6 +79,31 @@ namespace UnityRPG
             }
             
         }
+
+        private  TileSpriteLookup getTileSpriteLookup(Bounds testBounds, int x, int y, bool isEmpty)
+        {
+            TileSpriteType tileSpriteType = TileSpriteType.Floor;
+            if (!isEmpty)
+            {
+                tileSpriteType = TileSpriteType.Wall;
+            }
+            else if (checkObjectBounds(enemySpawnBounds, testBounds))
+            {
+                tileSpriteType = TileSpriteType.EnemyStart;
+            }
+            else if (checkObjectBounds(playerSpawnBounds, testBounds))
+            {
+                tileSpriteType = TileSpriteType.PlayerStart;
+            }
+            else if (checkObjectBounds(npcSpawnBounds, testBounds))
+            {
+                tileSpriteType = TileSpriteType.NPCStart;
+            }
+
+            TileSpriteLookup tileSpriteLookup = new TileSpriteLookup('_',"",0,isEmpty,tileSpriteType);
+            return tileSpriteLookup;
+        }
+
 
         private List<Bounds> getObjectBoundsFromType(GameObject tileMapGameObject, string objectName)
         {
@@ -154,6 +181,46 @@ namespace UnityRPG
                 }
             }
             return -1;
+        }
+
+        public bool checkObjectBounds(List<Bounds> boundsList, Bounds testBounds)
+        {
+            foreach (var b in boundsList)
+            {
+                if (b.Intersects(testBounds))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        //Given a point, check if it is in the player spawn bounds (used to find spawn tiles in battle maps)
+        public bool checkPlayerSpawnCollision(Point centerPoint)
+        {
+            Bounds checkBounds = new Bounds(new Vector3(centerPoint.x, centerPoint.y, 0), new Vector3(Tile.TILE_SIZE, Tile.TILE_SIZE));
+            foreach (var playerSpawn in playerSpawnBounds)
+            {
+                if (checkBounds.Intersects(playerSpawn))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        //Given a point, check if it is in the enemy spawn bounds (used to find spawn tiles in battle maps)
+        public bool checkEnemySpawnCollision(Point centerPoint)
+        {
+            Bounds checkBounds = new Bounds(new Vector3(centerPoint.x, centerPoint.y, 0), new Vector3(Tile.TILE_SIZE, Tile.TILE_SIZE));
+            foreach (var enemySpawn in enemySpawnBounds)
+            {
+                if (checkBounds.Intersects(enemySpawn))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public List<Point> getPath(int x1, int y1, int x2, int y2)
