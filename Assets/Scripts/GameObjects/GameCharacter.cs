@@ -369,9 +369,10 @@ namespace UnityRPG
         public EnemyType enemyType { get; set; }
         public AIActor aiActor { get; set; }
 
-        public EnemyCharacter()
+        public EnemyCharacter(EnemyType enemyType)
         {
-            aiActor = new AIActor(this, enemyType);
+            this.enemyType = enemyType;
+            this.aiActor = new AIActor(this, enemyType);
         }
     }
 

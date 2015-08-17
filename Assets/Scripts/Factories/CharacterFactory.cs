@@ -121,7 +121,7 @@ namespace UnityRPG
 
         private static EnemyCharacter getEnemyFromGameCharacter(GameCharacter gameChar, EnemyType enemyType)
         {
-            EnemyCharacter enemyChar = new EnemyCharacter()
+            EnemyCharacter enemyChar = new EnemyCharacter(enemyType)
             {
                 abilityList = gameChar.abilityList,
                 ac = gameChar.ac,
@@ -176,7 +176,7 @@ namespace UnityRPG
 
         public static EnemyCharacter getGoblin(Random r)
         {
-            EnemyCharacter goblin = new EnemyCharacter()
+            EnemyCharacter goblin = new EnemyCharacter(EnemyType.Warrior)
             {
                 name = "Goblin",
                 displayChar = 'G',
@@ -220,7 +220,7 @@ namespace UnityRPG
 
         public static EnemyCharacter getDragon(Random r)
         {
-            EnemyCharacter dragon = new EnemyCharacter()
+            EnemyCharacter dragon = new EnemyCharacter(EnemyType.Warrior)
             {
                 name = "Dragon",
                 displayChar = 'D',
