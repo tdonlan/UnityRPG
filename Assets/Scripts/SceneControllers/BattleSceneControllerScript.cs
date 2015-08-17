@@ -56,6 +56,8 @@ public class BattleSceneControllerScript : MonoBehaviour
     BattleSceneCameraData cameraData { get; set; }
 
     //UI Prefabs
+
+
     public GameObject ItemPrefab { get; set; }
     public GameObject AbilityItemPrefab { get; set; }
     public GameObject HoverPrefab { get; set; }
@@ -99,8 +101,35 @@ public class BattleSceneControllerScript : MonoBehaviour
 
         SetCamera();
 
-       // DontDestroyOnLoad(this);
+        //testing
+        displayCollisionSprites();
 
+    }
+
+    //testing
+
+
+    private void displayCollisionSprites()
+    {
+        for (int i = 0; i < battleGame.board.board.GetLength(0); i++)
+        {
+            for (int j = 0; j < battleGame.board.board.GetLength(1); j++)
+            {
+
+                if (!battleGame.board.board[i, j].empty)
+                {
+                    SelectedTile = new GameObject("SelectedTile");
+                    SpriteRenderer renderer = SelectedTile.AddComponent<SpriteRenderer>();
+                    renderer.sortingOrder = 1;
+                    renderer.color = Color.red;
+                    Vector3 pos = getWorldPosFromTilePoint(new Point(i, -j));
+                    SelectedTile.transform.position = pos;
+
+                    renderer.sprite = Resources.Load<Sprite>("Sprites/highlightTile 1");
+                }
+                       
+            }
+        }
     }
 
     private void loadGameData()
@@ -164,7 +193,7 @@ public class BattleSceneControllerScript : MonoBehaviour
         DebugText = GameObject.FindGameObjectWithTag("DebugText").GetComponent<Text>();
     }
 
-
+    //DEPRECATED
     private void LoadBoard()
     {
         for (int i = 0; i < this.battleGame.board.board.GetLength(0); i++)
@@ -233,8 +262,8 @@ public class BattleSceneControllerScript : MonoBehaviour
             GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.red);
         }
 
-
-        characterObject.transform.position = new Vector3(character.x, -character.y, 0);
+        var characterPos = getWorldPosFromTilePoint(new Point(character.x, -character.y));
+        characterObject.transform.position = characterPos;
 
         return characterObject;
     }
@@ -378,7 +407,7 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     void UpdateNewTurn()
     {
-        FocusCamera(battleGame.ActiveCharacter.x, battleGame.ActiveCharacter.y);
+        FocusCamera(battleGame.ActiveCharacter.x, -battleGame.ActiveCharacter.y);
 
         //Update Map
         LoadCharacters();
@@ -673,7 +702,9 @@ public class BattleSceneControllerScript : MonoBehaviour
         {
             if (!checkPointOnUI(Input.mousePosition))
             {
-                this.clickPoint = getBoardPointFromLocation(mouseWorldPosition.x, mouseWorldPosition.y);
+                var mouseTilePt = getTileLocationFromVectorPos(mouseWorldPosition);
+                this.clickPoint = new Point(mouseTilePt.x, -mouseTilePt.y);
+                //this.clickPoint = getBoardPointFromLocation(mouseWorldPosition.x, -mouseWorldPosition.y);
 
                 if (clickPoint != null)
                 {
@@ -699,6 +730,34 @@ public class BattleSceneControllerScript : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    private Bounds getTileBounds(int x, int y)
+    {
+        Vector3 center = new UnityEngine.Vector3(x, y, 0);
+        Vector3 size = new UnityEngine.Vector3(Tile.TILE_SIZE, Tile.TILE_SIZE);
+        Bounds b = new UnityEngine.Bounds(center, size);
+        return b;
+    }
+
+    private Point getTileLocationFromVectorPos(Vector3 pos)
+    {
+
+        int x = Mathf.RoundToInt(pos.x / Tile.TILE_SIZE);
+        int y = Mathf.RoundToInt(pos.y / Tile.TILE_SIZE);
+
+        Point retval = null;
+
+        if (x >= 0 && x <= tileMapData.tileArray.GetLength(0) && y <= 0 && y >= -tileMapData.tileArray.GetLength(1))
+        {
+            retval = new Point() { x = (int)x, y = (int)y };
+        }
+        return retval;
+    }
+
+    private Vector3 getWorldPosFromTilePoint(Point p)
+    {
+        return new Vector3(p.x * Tile.TILE_SIZE, p.y * Tile.TILE_SIZE, 0);
     }
 
     private Point getBoardPointFromLocation(float x, float y)
@@ -738,7 +797,10 @@ public class BattleSceneControllerScript : MonoBehaviour
         Destroy(SelectedTile);
         SelectedTile = new GameObject("SelectedTile");
         SpriteRenderer renderer = SelectedTile.AddComponent<SpriteRenderer>();
-        SelectedTile.transform.position = new Vector3(clickPoint.x, clickPoint.y, 0);
+        renderer.sortingOrder = 1;
+
+        SelectedTile.transform.position = getWorldPosFromTilePoint(new Point(clickPoint.x, -clickPoint.y));
+       
         renderer.sprite = Resources.Load<Sprite>("Sprites/highlightTile 1");
     }
 
@@ -752,7 +814,7 @@ public class BattleSceneControllerScript : MonoBehaviour
     public void MoveCameraToCharacter(System.Object characterObject)
     {
         GameCharacter gc = (GameCharacter)characterObject;
-        FocusCamera(gc.x, gc.y);
+        FocusCamera(gc.x, -gc.y);
     }
 
     private void UpdateCamera()
@@ -788,7 +850,8 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     private void FocusCamera(int x, int y)
     {
-        cameraData.SetCamera(x, y);
+        var cameraPos = getWorldPosFromTilePoint(new Point(x,y));
+        cameraData.SetCamera(cameraPos.x,cameraPos.y);
     }
 
     //http://answers.unity3d.com/questions/501893/calculating-2d-camera-bounds.html
@@ -1096,10 +1159,9 @@ public class BattleSceneControllerScript : MonoBehaviour
 
         //Determine character being highlighted
         Vector3 boardPos = getBoardPositionFromScreenPosition(Input.mousePosition);
-        Point boardPoint = getBoardPointFromLocation(boardPos.x, boardPos.y);
+        Point boardPoint = getBoardPointFromLocation(boardPos.x, -boardPos.y);
         if (boardPoint != null)
         {
-
 
             GameCharacter hoverCharacter = battleGame.getCharacterFromTile(battleGame.board.getTileFromLocation(boardPoint.x, boardPoint.y));
 

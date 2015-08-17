@@ -28,7 +28,6 @@ public class CharacterColliderScript : MonoBehaviour {
     {
         gameControllerScript.UpdateCharacterHover();
 
-
     }
 
     public void OnMouseExit()

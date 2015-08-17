@@ -57,9 +57,7 @@ namespace UnityRPG
             LoadCharactersFromData();
 
             StartBattle();
-            
         }
-
 
         private void LoadBoardFromData()
         {
@@ -77,9 +75,6 @@ namespace UnityRPG
             characterList.AddRange(gameData.gameCharacterList);
             battleLog.AddEntry("Characters Initialized");
         }
-
-     
-
 
         private void StartBattle()
         {
