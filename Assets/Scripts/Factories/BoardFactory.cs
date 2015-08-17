@@ -55,22 +55,7 @@ namespace UnityRPG
 
         }
 
-        //construct a custom tile array for use in battle board, from tileMapData
-        private static Tile[,] getBoardTileArrayFromTileMapData(TileMapData tileMapData)
-        {
-            Tile[,] boardTileArray = new Tile[tileMapData.tileArray.GetLength(0), tileMapData.tileArray.GetLength(1)];
-            for (int i = 0; i < boardTileArray.GetLength(0); i++)
-            {
-                for (int j = 0; j < boardTileArray.GetLength(1); j++)
-                {
-                    TileSpriteLookup tileSpriteLookup = getTileSpriteLookupFromTileData(i,j,tileMapData.tileArray[i,j].empty,tileMapData);
-                    Tile tempTile = new Tile(i,j,tileSpriteLookup.isEmpty);
-                    boardTileArray[i,j] = tempTile;
-                }
-            }
-
-            return boardTileArray;
-        }
+     
 
         private static Tile[,] copyTileArray(Tile[,] tileArray1)
         {
@@ -95,8 +80,8 @@ namespace UnityRPG
 
         public static Board getBoardFromBattleGameData(BattleGameData battleGameData, BattleGame battleGame)
         {
-            Board b = new Board(battleGame, battleGameData.tileMapData.tileArray.GetLength(0));
-            b.board = copyTileArray(battleGameData.tileMapData.tileArray);
+            Board b = new Board(battleGame, battleGameData.tileMapData.battleTileArray.GetLength(0));
+            b.board = copyTileArray(battleGameData.tileMapData.battleTileArray);
 
             return b;
         }

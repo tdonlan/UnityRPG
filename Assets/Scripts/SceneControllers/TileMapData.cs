@@ -26,7 +26,8 @@ namespace UnityRPG
         public List<Bounds> enemySpawnBounds = new List<Bounds>();
         public List<Bounds> npcSpawnBounds = new List<Bounds>();
 
-        public Tile[,] tileArray;
+        public Tile[,] zoneTileArray;
+        public Tile[,] battleTileArray;
 
         public TileMapData(GameObject tileMapGameObject)
         {
@@ -34,7 +35,8 @@ namespace UnityRPG
             loadObjectBounds(tileMapGameObject);
             loadSpawn(tileMapGameObject);
 
-            loadTileArray(tileMapGameObject);
+            loadBattleTileArray(tileMapGameObject);
+            loadZoneTileArray(tileMapGameObject);
             
         }
 
@@ -47,8 +49,42 @@ namespace UnityRPG
             npcSpawnBounds = getObjectBoundsFromType(tileMapGameObject, "NPCStart");
         }
 
-        //Calculate the 2D array of tiles, given the tile prefab
-        private void loadTileArray(GameObject tileMapGameObject)
+        //Battle Tile Array uses 32x32 px tiles.  Also includes tileSpriteLookup metadata object
+        private void loadBattleTileArray(GameObject tileMapGameObject)
+        {
+
+            string strTileArray = "";
+
+            Bounds mapBounds = tileMapGameObject.GetComponentInChildren<Renderer>().bounds;
+
+            int tileWidth = (int)Math.Ceiling(mapBounds.size.x );
+            int tileHeight = (int)Math.Ceiling(mapBounds.size.y );
+
+            battleTileArray = new Tile[tileWidth, tileHeight];
+            for (int y = 0; y < tileHeight; y++)
+            {
+                for (int x = 0; x < tileWidth; x++)
+                {
+                 
+                    Vector3 center = new Vector3(x + Tile.TILE_SIZE, -y + Tile.TILE_SIZE,0);
+                    Vector3 size = new Vector3(Tile.TILE_SIZE, Tile.TILE_SIZE);
+                    Bounds tileBounds = new Bounds(center, size);
+                    bool empty = !checkCollision(tileBounds);
+
+                    battleTileArray[x, y] = new Tile(x, y, empty);
+
+                    //Extra metadata on tile
+                    battleTileArray[x, y].tileSpriteLookup = getTileSpriteLookup(tileBounds, x, y, empty);
+
+                    strTileArray += empty ? "." : "#";
+                }
+                strTileArray += System.Environment.NewLine;
+            }
+            int i = 1;
+        }
+
+        //Zone TileArray uses 16x16 px tiles, used only for zone pathfinding
+        private void loadZoneTileArray(GameObject tileMapGameObject)
         {
 
             string strTileArray = "";
@@ -58,26 +94,25 @@ namespace UnityRPG
             int tileWidth = (int)Math.Ceiling(mapBounds.size.x / Tile.TILE_SIZE);
             int tileHeight = (int)Math.Ceiling(mapBounds.size.y / Tile.TILE_SIZE);
 
-            tileArray = new Tile[tileWidth, tileHeight];
+
+            zoneTileArray = new Tile[tileWidth, tileHeight];
             for (int y = 0; y < tileHeight; y++)
             {
                 for (int x = 0; x < tileWidth; x++)
                 {
                     Vector3 center = new Vector3(x * Tile.TILE_SIZE + (Tile.TILE_SIZE / 2), -y * Tile.TILE_SIZE + (Tile.TILE_SIZE / 2), 0);
+                    
                     Vector3 size = new Vector3(Tile.TILE_SIZE, Tile.TILE_SIZE);
                     Bounds tileBounds = new Bounds(center, size);
                     bool empty = !checkCollision(tileBounds);
 
-                    tileArray[x, y] = new Tile(x, y, empty);
-
-                    //Extra metadata on tile
-                    tileArray[x, y].tileSpriteLookup = getTileSpriteLookup(tileBounds, x, y, empty);
+                    zoneTileArray[x, y] = new Tile(x, y, empty);
 
                     strTileArray += empty ? "." : "#";
                 }
                 strTileArray += System.Environment.NewLine;
             }
-            
+     
         }
 
         private  TileSpriteLookup getTileSpriteLookup(Bounds testBounds, int x, int y, bool isEmpty)
@@ -223,9 +258,10 @@ namespace UnityRPG
             return false;
         }
 
+        //Pathfinding helper for Zone Map
         public List<Point> getPath(int x1, int y1, int x2, int y2)
         {
-            return PathFind.Pathfind(this.tileArray, x1, y1, x2, y2);
+            return PathFind.Pathfind(this.zoneTileArray, x1, y1, x2, y2);
         }
 
     }

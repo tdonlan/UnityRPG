@@ -742,13 +742,15 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     private Point getTileLocationFromVectorPos(Vector3 pos)
     {
+        int x = Mathf.RoundToInt(pos.x );
+        int y = Mathf.RoundToInt(pos.y );
 
-        int x = Mathf.RoundToInt(pos.x / Tile.TILE_SIZE);
-        int y = Mathf.RoundToInt(pos.y / Tile.TILE_SIZE);
+        //int x = Mathf.RoundToInt(pos.x / Tile.TILE_SIZE);
+        //int y = Mathf.RoundToInt(pos.y / Tile.TILE_SIZE);
 
         Point retval = null;
 
-        if (x >= 0 && x <= tileMapData.tileArray.GetLength(0) && y <= 0 && y >= -tileMapData.tileArray.GetLength(1))
+        if (x >= 0 && x <= tileMapData.battleTileArray.GetLength(0) && y <= 0 && y >= -tileMapData.battleTileArray.GetLength(1))
         {
             retval = new Point() { x = (int)x, y = (int)y };
         }
@@ -757,7 +759,8 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     private Vector3 getWorldPosFromTilePoint(Point p)
     {
-        return new Vector3(p.x * Tile.TILE_SIZE, p.y * Tile.TILE_SIZE, 0);
+        return new Vector3(p.x, p.y, 0);
+        //return new Vector3(p.x * Tile.TILE_SIZE, p.y * Tile.TILE_SIZE, 0);
     }
 
     private Point getBoardPointFromLocation(float x, float y)

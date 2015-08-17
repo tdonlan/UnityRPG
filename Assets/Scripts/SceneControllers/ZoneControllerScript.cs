@@ -237,7 +237,7 @@ public class ZoneControllerScript : MonoBehaviour {
         
         Point retval = null;
 
-        if (x >= 0 && x <= tileMapData.tileArray.GetLength(0) && y <= 0 && y >= -tileMapData.tileArray.GetLength(1))
+        if (x >= 0 && x <= tileMapData.zoneTileArray.GetLength(0) && y <= 0 && y >= -tileMapData.zoneTileArray.GetLength(1))
         {
             retval = new Point() { x = (int)x, y = (int)y };
         }
