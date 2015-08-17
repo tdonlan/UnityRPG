@@ -354,7 +354,7 @@ public class ZoneControllerScript : MonoBehaviour {
 
     private void ClickBattleNode(long battleIndex)
     {
-        Application.LoadLevel((int)UnitySceneIndex.BattleGame);
+        Application.LoadLevel((int)UnitySceneIndex.Battle);
     }
 
 

@@ -8,8 +8,6 @@ using UnityRPG;
 
 public class GameDataObject : MonoBehaviour
 {
-    public int battleIndex { get; set; }
-
     public TreeStore treeStore { get; set; }
     public string testText { get; set; }
     public Dictionary<long, Item> itemDictionary;

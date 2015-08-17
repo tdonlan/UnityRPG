@@ -6,9 +6,7 @@ public enum UnitySceneIndex
     World = 1,
     Zone = 2,
     Dialog = 3,
-    Battle = 4,
-    BattleGame = 5,
-    GameOver = 6
+    Battle = 4
 }
 
 public enum SpritesheetType

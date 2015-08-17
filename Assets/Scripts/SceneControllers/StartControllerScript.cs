@@ -20,8 +20,7 @@ public class StartControllerScript : MonoBehaviour {
 
     public void LoadBattle(int battleIndex)
     {
-        this.gameDataObject.battleIndex = battleIndex;
-        Application.LoadLevel((int)UnitySceneIndex.BattleGame);
+        Application.LoadLevel((int)UnitySceneIndex.Battle);
     }
 
     public void EnterWorld()

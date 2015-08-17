@@ -23,8 +23,6 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     public BattleGameData battleGameData { get; set; }
 
-    public int battleIndex { get; set; }
-
     public BattleGame battleGame { get; set; }
     public BattleStatusType battleStatus { get; set; }
 
@@ -84,17 +82,12 @@ public class BattleSceneControllerScript : MonoBehaviour
 
         this.uiState = UIStateType.NewTurn;
 
-        getBattleIndex();
-
-        //instante battleGameData. Use the tree for this, not the index.
-        //this.battleGameData = BattleFactory.getGameData(this.battleIndex, this.r);
         this.battleGameData = BattleFactory.getBattleGameDataFromZoneTree(gameDataObject.playerGameCharacter, battleTree, gameDataObject.gameDataSet, tileMapData);
 
         this.battleGame = new BattleGame(battleGameData, r, this);
 
         LoadPrefabs();
 
-        //LoadBoard();
         LoadCharacters();
 
         LoadUI();
@@ -102,13 +95,11 @@ public class BattleSceneControllerScript : MonoBehaviour
         SetCamera();
 
         //testing
-        displayCollisionSprites();
+        //displayCollisionSprites();
 
     }
 
     //testing
-
-
     private void displayCollisionSprites()
     {
         for (int i = 0; i < battleGame.board.board.GetLength(0); i++)
@@ -161,18 +152,6 @@ public class BattleSceneControllerScript : MonoBehaviour
     }
 
 
-    private void getBattleIndex()
-    {
-        if (gameDataObject == null)
-        {
-            this.battleIndex = 1;
-        }
-        else
-        {
-            this.battleIndex = gameDataObject.battleIndex;
-        }
-    }
-
     private void LoadUI()
     {
         LoadInitiative();
@@ -191,18 +170,6 @@ public class BattleSceneControllerScript : MonoBehaviour
         InitiativePanel = GameObject.FindGameObjectWithTag("InitiativePanel");
 
         DebugText = GameObject.FindGameObjectWithTag("DebugText").GetComponent<Text>();
-    }
-
-    //DEPRECATED
-    private void LoadBoard()
-    {
-        for (int i = 0; i < this.battleGame.board.board.GetLength(0); i++)
-        {
-            for (int j = 0; j < this.battleGame.board.board.GetLength(1); j++)
-            {
-                LoadTile(battleGame.board.board[i, j]);
-            }
-        }
     }
 
     private void LoadCharacters()
@@ -268,15 +235,6 @@ public class BattleSceneControllerScript : MonoBehaviour
         return characterObject;
     }
 
-  //DEPRECATED
-    private void LoadTile(Tile t)
-    {
-        GameObject spriteObject = new GameObject("Tile " + name);
-        SpriteRenderer renderer = spriteObject.AddComponent<SpriteRenderer>();
-        spriteObject.transform.position = new Vector3(t.x, t.y, 0);
-
-        renderer.sprite = battleGameData.assetLibrary.getSprite(t.tileSheetName, t.tileSpriteIndex);
-    }
 
     //Init the camera to middle of game board
     private void SetCamera()
