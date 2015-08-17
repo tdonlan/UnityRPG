@@ -89,10 +89,9 @@ public class PauseMenuScript : MonoBehaviour {
     private string getInventory()
     {
         string inventoryStr = "";
-        foreach (var l in gameDataObject.playerInventory)
+        foreach (var item in gameDataObject.playerGameCharacter.inventory)
         {
-
-            Item item = gameDataObject.itemDictionary[l];
+            //Item item = gameDataObject.itemDictionary[l];
             inventoryStr += item.name + "\n";
         }
         return inventoryStr;

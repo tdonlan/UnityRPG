@@ -15,32 +15,50 @@ namespace UnityRPG
         {
             if (index <= GameConstants.ITEMS_MAX_INDEX)
             {
-                return getItemFromItemData(gameDataSet.itemDataDictionary[index], gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
+                if (gameDataSet.itemDataDictionary.ContainsKey(index))
+                {
+                    return getItemFromItemData(gameDataSet.itemDataDictionary[index], gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
+                }
+               
             }
             else if (index <= GameConstants.USABLEITEMS_MAX_INDEX)
             {
-                return getUsableItemFromData(gameDataSet.usableItemDataDictionary[index], gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
+                if (gameDataSet.usableItemDataDictionary.ContainsKey(index))
+                {
+                    return getUsableItemFromData(gameDataSet.usableItemDataDictionary[index], gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
+                }
             }
             else if (index <= GameConstants.WEAPONS_MAX_INDEX)
             {
-                return getWeaponFromWeaponData(gameDataSet.weaponDataDictionary[index], gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
+                if (gameDataSet.weaponDataDictionary.ContainsKey(index))
+                {
+                    return getWeaponFromWeaponData(gameDataSet.weaponDataDictionary[index], gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
+                }
             }
             else if (index <= GameConstants.RANGEDWEAPONS_MAX_INDEX)
             {
-                return getRangedWeaponFromRangedWeaponData(gameDataSet.rangedWeaponDataDictionary[index], gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
+                if (gameDataSet.rangedWeaponDataDictionary.ContainsKey(index))
+                {
+                    return getRangedWeaponFromRangedWeaponData(gameDataSet.rangedWeaponDataDictionary[index], gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
+                }
             }
             else if (index <= GameConstants.AMMO_MAX_INDEX)
             {
-                return getAmmoFromAmmoData(gameDataSet.ammoDataDictionary[index], gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
+                if (gameDataSet.ammoDataDictionary.ContainsKey(index))
+                {
+                    return getAmmoFromAmmoData(gameDataSet.ammoDataDictionary[index], gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
+                }
             }
             else if (index <= GameConstants.ARMOR_MAX_INDEX)
             {
-                return getArmorFromArmorData(gameDataSet.armorDataDictionary[index], gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
+                if (gameDataSet.armorDataDictionary.ContainsKey(index))
+                {
+                    return getArmorFromArmorData(gameDataSet.armorDataDictionary[index], gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
+                }
             }
-            else
-            {
+            
                 return null;
-            }
+            
         }
 
         public static Item getItemFromItemData(ItemData data, Dictionary<long, AbilityData> abilityDataDictionary, Dictionary<long, EffectData> effectDataDictionary)

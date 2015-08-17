@@ -10,17 +10,15 @@ public class GameDataObject : MonoBehaviour
 {
     public TreeStore treeStore { get; set; }
     public string testText { get; set; }
-    public Dictionary<long, Item> itemDictionary;
 
     public GameCharacter playerGameCharacter;
-    public List<long> playerInventory = new List<long>();
+
 
     //Loaded Data
     public GameDataSet gameDataSet { get; set; }
 
     //Battle Scene Data
 
-    public Dictionary<string, BoardData> BoardDataDictionary { get; set; }
     public AssetLibrary assetLibrary { get; set; }
     public List<GameCharacter> gameCharacterList { get; set; }
     public Board gameBoard { get; set; }
@@ -30,10 +28,9 @@ public class GameDataObject : MonoBehaviour
     {
         loadTreeStore();
         this.testText = "Hello World";
-        loadItemList();
+
         loadGameData();
         loadPlayerGameCharacter();
-        LoadBoardDataDictionary();
 
         DontDestroyOnLoad(this);
     }
@@ -44,15 +41,12 @@ public class GameDataObject : MonoBehaviour
         playerGameCharacter = CharacterFactory.getGameCharacterFromGameCharacterData(gameDataSet.gameCharacterDataDictionary[80001], gameDataSet);
     }
 
-    private void loadItemList()
-    {
-        itemDictionary = ItemFactory.getItemDictionary();
-    }
+ 
 
     public void loadGameData()
     {
         gameDataSet = new GameDataSet();
-
+        gameDataSet.itemDataDictionary = getDataObjectDictionary("Data/Items", typeof(ItemData)).ToDictionary(x => x.Key, x => (ItemData)x.Value);
         gameDataSet.usableItemDataDictionary = getDataObjectDictionary("Data/UsableItems", typeof(UsableItemData)).ToDictionary(x => x.Key, x => (UsableItemData)x.Value);
         gameDataSet.weaponDataDictionary = getDataObjectDictionary("Data/Weapons", typeof(WeaponData)).ToDictionary(x => x.Key, x => (WeaponData)x.Value);
         gameDataSet.rangedWeaponDataDictionary = getDataObjectDictionary("Data/RangedWeapons", typeof(RangedWeaponData)).ToDictionary(x => x.Key, x => (RangedWeaponData)x.Value);
@@ -76,13 +70,6 @@ public class GameDataObject : MonoBehaviour
         this.treeStore = SimpleTreeParser.LoadTreeStoreFromSimpleManifest(manifestTextAsset.text);
     }
 
-    //Testing - hardcoded battle map
-    public void LoadBoardDataDictionary()
-    {
-        BoardDataDictionary = new Dictionary<string, BoardData>();
-        BoardDataDictionary.Add("Board1", new BoardData("Map1", "Dungeon", "Board1", null));
-    }
-
     public void runActions(List<TreeNodeAction> actionList)
     {
         foreach (var action in actionList)
@@ -104,22 +91,21 @@ public class GameDataObject : MonoBehaviour
 
     public void removeItem(long itemIndex)
     {
-        if (itemDictionary.ContainsKey(itemIndex))
+        var item = ItemFactory.getItemFromIndex(itemIndex, gameDataSet);
+        if (item != null)
         {
-            var item = playerInventory.Find(x => x == itemIndex);
-            playerInventory.Remove(item);
+            playerGameCharacter.inventory.Remove(item);
         }
     }
 
     public void addItem(long itemIndex)
     {
-        if (itemDictionary.ContainsKey(itemIndex))
+        var item = ItemFactory.getItemFromIndex(itemIndex, gameDataSet);
+        if (item != null)
         {
-            playerInventory.Add(itemIndex);
+            playerGameCharacter.inventory.Add(item);
         }
-
     }
-
 
 }
 

@@ -2,6 +2,6 @@
 Chest
 1;Chest;Info;Chest;Iron Bound Chest
 {ForestChest;QuestRat4}
-{AddItem;4;Red Gem;1}
+{AddItem;20004;Red Gem;1}
 --
 ----

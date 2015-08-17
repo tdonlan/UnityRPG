@@ -120,12 +120,14 @@ public enum PlayerDecideState
 
     public enum ItemType
     {
+        Money,
         Weapon,
         Potion,
         Armor,
         Thrown,
         Wand,
         Ammo,
+        Quest
     }
 
     public enum WeaponType

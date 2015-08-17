@@ -661,9 +661,11 @@ public class BattleSceneControllerScript : MonoBehaviour
             if (!checkPointOnUI(Input.mousePosition))
             {
                 var mouseTilePt = getTileLocationFromVectorPos(mouseWorldPosition);
-                this.clickPoint = new Point(mouseTilePt.x, -mouseTilePt.y);
-                //this.clickPoint = getBoardPointFromLocation(mouseWorldPosition.x, -mouseWorldPosition.y);
+                if (mouseTilePt != null)
+                {
+                    this.clickPoint = new Point(mouseTilePt.x, -mouseTilePt.y);
 
+                }
                 if (clickPoint != null)
                 {
                     SelectTile();

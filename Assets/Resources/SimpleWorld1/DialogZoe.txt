@@ -43,7 +43,7 @@ Stuff
 Buy
 1;Zoe;Zoe;Yep, you can buy and sell goods at the blacksmith.  He's right down the way.  Here's some money!
 {}
-{AddItem;1;Gold;10}
+{AddItem;20001;Gold;10},{AddItem;40001;Longsword;1}
 --
 3:What's the name of this town?
 4:What's there to do here?
@@ -69,13 +69,13 @@ Goodbye
 RatsKilled
 1;Zoe;Zoe;Thanks for killing rats, this is my pa's old tooth! Thanks for finding it.  Here's his old key, see if it opens the chest in the woods.
 {QuestRat3}
-{AddItem;3;Old Key;1}
+{AddItem;20003;Old Key;1}
 --
 ----
 9
 RatsKilled
 1;Zoe;Zoe;You found the red gem! horay!  Here's 100 gold.  Thanks again!
 {QuestRat5}
-{AddItem;1;Gold;100}
+{AddItem;20001;Gold;100}
 --
 ----
