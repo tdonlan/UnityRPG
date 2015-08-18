@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using UnityRPG;
   
     public class WorldTree : ITree
     {
@@ -455,6 +456,117 @@ using System.Text;
            return true;
          }
      }
+
+
+     public class StoreTree : ITree
+     {
+         public string treeName { get; set; }
+         public long treeIndex { get; set; }
+         public long currentIndex { get; set; }
+         public TreeType treeType { get; set; }
+
+         public Dictionary<long, StoreTreeNode> treeNodeDictionary { get; set; }
+
+         public GlobalFlags globalFlags { get; set; }
+
+         public StoreTree(GlobalFlags globalFlags, TreeType treeType)
+         {
+             currentIndex = 0;
+             treeNodeDictionary = new Dictionary<long, StoreTreeNode>();
+             this.globalFlags = globalFlags;
+             this.treeType = treeType;
+         }
+
+         public ITreeNode getNode(long index)
+         {
+             if (treeNodeDictionary.ContainsKey(index))
+             {
+                 return treeNodeDictionary[index];
+             }
+             return null;
+         }
+
+         public void SelectNode(long index)
+         {
+             this.currentIndex = index;
+
+             treeNodeDictionary[currentIndex].SelectNode(this);
+
+         }
+
+         public bool checkNode(long index)
+         {
+             return treeNodeDictionary.ContainsKey(index);
+         }
+
+         public bool validateTreeLinks()
+         {
+             return true;
+         }
+
+         //given a gameDataSet, and global flags, return the list of items (and prices) sold
+         public List<StoreItem> getSellList(GameDataSet gameDataSet, Random r)
+         {
+             List<StoreItem> storeList = new List<StoreItem>();
+
+             var infoNode = treeNodeDictionary[1];
+             foreach (var branch in infoNode.getBranchList(this))
+             {
+                 StoreTreeNode storeNode = (StoreTreeNode)this.getNode(branch.linkIndex);
+                 if (storeNode.content.nodeType == StoreNodeType.ItemClass)
+                 {
+                     storeList.AddRange(getSellItemTypeList(storeNode.content.itemType, storeNode.content.sellPrice, storeNode.content.count, storeNode.content.linkIndex, gameDataSet, r));
+                 }
+                 else if (storeNode.content.nodeType == StoreNodeType.ItemIndex)
+                 {
+                     storeList.Add(getSellItem(storeNode.content.linkIndex, storeNode.content.sellPrice, storeNode.content.count, gameDataSet));
+                 }
+             }
+             return storeList;
+         }
+
+         private StoreItem getSellItem(long itemID, float priceAdjustment, int count, GameDataSet gameDataSet)
+         {
+             StoreItem storeItem = null;
+             Item i = ItemFactory.getItemFromIndex(itemID, gameDataSet);
+             if (i != null)
+             {
+                 storeItem = new StoreItem();
+                 storeItem.item = i;
+                 storeItem.count = count;
+                 storeItem.price = (long)Math.Round(i.price  * priceAdjustment);
+                 return storeItem;
+             }
+             return storeItem;
+         }
+
+         //returning a random list of items of type at less than rarityIndex (price)
+         private List<StoreItem> getSellItemTypeList(ItemType type, float priceAdjustment, int count, long rarityIndex, GameDataSet gameDataSet, Random r)
+         {
+             List<StoreItem> storeItemList = new List<StoreItem>();
+             var itemCount = r.Next(9)+1;
+             switch(type){
+                 case ItemType.Weapon:
+                     var itemTypeIDList = gameDataSet.weaponDataDictionary.Where(x=>x.Value.price <= rarityIndex).Select(x=>x.Value).ToList();
+                     var itemSubList = itemTypeIDList.OrderBy(x=>r.Next()).Take(itemCount);
+                     foreach (var itemData in itemSubList)
+                     {
+                         StoreItem tempStoreItem = new StoreItem();
+                         tempStoreItem.item = ItemFactory.getWeaponFromWeaponData(itemData, gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
+                         tempStoreItem.count = count;
+                         tempStoreItem.price = (long)Math.Round( itemData.price * priceAdjustment);
+
+                         storeItemList.Add(tempStoreItem);
+                     }
+                     break;
+                 default:
+                     break;
+             }
+
+             return storeItemList ;
+         }
+     }
+
 
     public class TreeBranchCondition
     {

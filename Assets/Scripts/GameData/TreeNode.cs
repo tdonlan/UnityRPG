@@ -229,6 +229,26 @@ using System.Text;
 
     }
 
+    public class StoreTreeNode : TreeNode, ITreeNode
+    {
+        public StoreNodeContent content { get; set; }
+        public StoreTreeNode(long index, string name, List<TreeBranch> branchList, List<TreeNodeFlagSet> flagSetList, StoreNodeContent content)
+        {
+            this.content = content;
+            this.index = index;
+            this.name = name;
+
+            this.branchList = branchList;
+            this.flagSetList = flagSetList;
+        }
+
+        public override string ToString()
+        {
+            string retval = string.Format("{0}.{1}: {2}\n", index, name, content);
+            return retval;
+        }
+    }
+
     #endregion
 
 
@@ -291,6 +311,24 @@ using System.Text;
         public string nodeName { get; set; }
         public string text { get; set; }
         public long linkIndex { get; set; }
+    }
+
+    public class StoreNodeContent : ITreeNodeContent
+    {
+        public StoreNodeType nodeType { get; set; }
+        public long linkIndex { get; set; }
+
+        public string storeName { get; set; }
+        public string storePortrait { get; set; }
+        public string storeDialog { get; set; }
+
+        public ItemType itemType { get; set; }
+
+        public float buyPrice { get; set; }
+        public float sellPrice { get; set; }
+
+        public int count { get; set; }
+
     }
 
 #endregion

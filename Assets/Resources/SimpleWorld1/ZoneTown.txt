@@ -24,7 +24,7 @@ Alley
 ----
 4
 Blacksmith
-99;Blacksmith;Store;A brawny man with soot-stained bulging forearms;BlacksmithSprite;-200;100
+10;Blacksmith;Store;A brawny man with soot-stained bulging forearms;BlacksmithSprite;-200;100
 --
 1:Town Square
 2:Zoe

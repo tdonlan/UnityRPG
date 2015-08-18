@@ -89,12 +89,20 @@ using UnityEngine;
                     infoTree.currentIndex = treeNodeList[0].index;
                     t = infoTree;
                     break;
+                case TreeType.Store:
+                    StoreTree storeTree = new StoreTree(gf, treeType);
+                    treeNodeList = getTreeNodeListFromString(data, treeType);
+                    storeTree.treeNodeDictionary = getStoreTreeNodeFromList(treeNodeList);
+                    storeTree.currentIndex = treeNodeList[0].index;
+                    t = storeTree;
+                    break;
                 default:
                     break;
             }
             return t;
         }
 
+        //DEPRECATED
         public static ITree getTreeFromFile(string path,TreeType treeType,  GlobalFlags gf)
         {
             ITree t = null;
@@ -149,6 +157,7 @@ using UnityEngine;
             return treeNodeList;
         }
 
+        //DEPRECATED
         private static List<ITreeNode> getTreeNodeListFromFile(string path, TreeType treeType)
         {
             List<ITreeNode> treeNodeList = new List<ITreeNode>();
@@ -209,6 +218,10 @@ using UnityEngine;
                      var infoTreeNode = new InfoTreeNode(Int64.Parse(dataList[0]), dataList[1], null, null, (InfoNodeContent)getTreeNodeContentFromStr(dataList[2], treeType));
                    node = infoTreeNode;
                     break;
+                case TreeType.Store:
+                    var storeTreeNode = new StoreTreeNode(Int64.Parse(dataList[0]), dataList[1], null, null, (StoreNodeContent)getTreeNodeContentFromStr(dataList[2], treeType));
+                    node = storeTreeNode;
+                    break;
                 default: break;
             }
 
@@ -241,6 +254,8 @@ using UnityEngine;
                     return getBattleNodeContentFromStr(contentStr);
                 case TreeType.Info:
                     return getInfoNodeContentFromStr(contentStr);
+                case TreeType.Store:
+                    return getStoreNodeContentFromStr(contentStr);
                 default:
                     return null;
             }
@@ -278,6 +293,22 @@ using UnityEngine;
             }
         }
 
+        public static StoreNodeContent getStoreNodeContentFromStr(string contentStr)
+        {
+            var contentList = ParseHelper.getSplitList(contentStr, ";");
+            StoreNodeType storeNodeType = getStoreNodeTypeFromStr(contentList[1]);
+            switch (storeNodeType)
+            {
+                case StoreNodeType.Info:
+                    return new StoreNodeContent() { linkIndex = Int64.Parse(contentList[0]), nodeType = storeNodeType, storeName = contentList[2], storePortrait = contentList[3], storeDialog = contentList[4]};
+                case StoreNodeType.ItemClass:
+                    return new StoreNodeContent() { linkIndex = Int64.Parse(contentList[0]), nodeType = storeNodeType, itemType = getItemTypeFromStr(contentList[2]), buyPrice = float.Parse(contentList[3]), sellPrice = float.Parse(contentList[4]), count = Int32.Parse(contentList[5]) };
+                case StoreNodeType.ItemIndex:
+                    return new StoreNodeContent() { linkIndex = Int64.Parse(contentList[0]), nodeType = storeNodeType, itemType = getItemTypeFromStr(contentList[2]), buyPrice = float.Parse(contentList[3]), sellPrice = float.Parse(contentList[4]), count = Int32.Parse(contentList[5]) };
+                default: return null;
+            }
+        }
+
         private static ZoneNodeType getZoneNodeTypeFromStr(string zoneTypeStr)
         {
             return (from data in Enum.GetValues(typeof(ZoneNodeType)).Cast<ZoneNodeType>().ToList()
@@ -292,10 +323,24 @@ using UnityEngine;
                     select data).FirstOrDefault();
         }
 
-        private static InfoNodeType getInfoNodeTypeFromStr(string battleTypeStr)
+        private static InfoNodeType getInfoNodeTypeFromStr(string infoTypeStr)
         {
             return (from data in Enum.GetValues(typeof(InfoNodeType)).Cast<InfoNodeType>().ToList()
-                    where data.ToString() == battleTypeStr
+                    where data.ToString() == infoTypeStr
+                    select data).FirstOrDefault();
+        }
+
+        private static StoreNodeType getStoreNodeTypeFromStr(string storeTypeStr)
+        {
+            return (from data in Enum.GetValues(typeof(StoreNodeType)).Cast<StoreNodeType>().ToList()
+                    where data.ToString() == storeTypeStr
+                    select data).FirstOrDefault();
+        }
+
+        private static ItemType getItemTypeFromStr(string itemtypeStr)
+        {
+            return (from data in Enum.GetValues(typeof(ItemType)).Cast<ItemType>().ToList()
+                    where data.ToString() == itemtypeStr
                     select data).FirstOrDefault();
         }
 
@@ -453,5 +498,16 @@ using UnityEngine;
             return treeNodeDict;
         }
 
+        public static Dictionary<long, StoreTreeNode> getStoreTreeNodeFromList(List<ITreeNode> treeNodeList)
+        {
+            Dictionary<long, StoreTreeNode> treeNodeDict = new Dictionary<long, StoreTreeNode>();
+            foreach (var node in treeNodeList)
+            {
+                StoreTreeNode wNode = (StoreTreeNode)node;
+                treeNodeDict.Add(wNode.index, wNode);
+            }
+
+            return treeNodeDict;
+        }
     }
 

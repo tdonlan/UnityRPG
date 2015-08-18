@@ -7,6 +7,13 @@ using System.Text;
 namespace UnityRPG
 {
 
+    public class StoreItem
+    {
+        public long price { get; set; }
+        public Item item { get; set; }
+        public int count { get; set; }
+    }
+
     public class ItemSet
     {
         public string itemName { get; set; }
@@ -52,6 +59,8 @@ namespace UnityRPG
 
         public string sheetname { get; set; }
         public int spriteindex { get; set; }
+
+        public long price;
 
         public string getEffects()
         {

@@ -69,7 +69,8 @@ namespace UnityRPG
                 name = data.name,
                 sheetname = data.sheetname,
                 spriteindex = data.spriteindex,
-                type = data.type
+                type = data.type,
+                price = data.price
             };
 
             if (data.activeEffects.Count > 0)
@@ -120,6 +121,7 @@ namespace UnityRPG
                 type = i.type,
                 uses = data.uses,
                 actionPoints = data.actionPoints,
+                price = data.price
 
             };
 
@@ -157,7 +159,8 @@ namespace UnityRPG
                 sheetname = i.sheetname,
                 spriteindex = i.spriteindex,
                 type = i.type,
-                weaponType = data.weaponType
+                weaponType = data.weaponType,
+                price = data.price
 
             };
           
@@ -183,7 +186,8 @@ namespace UnityRPG
                 weaponType = w.weaponType,
 
                 range = data.range,
-                ammoType = data.ammoType
+                ammoType = data.ammoType,
+                price = data.price
             };
 
             return rw;
@@ -202,7 +206,8 @@ namespace UnityRPG
                 passiveEffects = i.passiveEffects,
                 sheetname = i.sheetname,
                 spriteindex = i.spriteindex,
-                type = i.type
+                type = i.type,
+                price = data.price
             };
             
 
@@ -223,7 +228,8 @@ namespace UnityRPG
                 passiveEffects = i.passiveEffects,
                 sheetname = i.sheetname,
                 spriteindex = i.spriteindex,
-                type = i.type
+                type = i.type,
+                price = data.price
             };
            
             return a;
@@ -232,6 +238,7 @@ namespace UnityRPG
 
         #region DialogTestStuff
         //DIALOG TEST STUFF
+        //DEPRECATED
         //---------------------
 
         public static int itemCounter = 1;

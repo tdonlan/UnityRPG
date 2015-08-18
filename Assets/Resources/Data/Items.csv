@@ -1,5 +1,5 @@
-ID,Name,Type,ActiveEffects,PassiveEffects,SheetName,SpriteIndex
-20001,Gold,Money,,,Jewels,10
-20002,Gold Tooth,Quest,,,Jewels,10
-20003,Old Key,Quest,,,Jewels,10
-20004,Red Gem,Quest,,,Jewels,10
+ID,Name,Type,ActiveEffects,PassiveEffects,SheetName,SpriteIndex,Price
+20001,Gold,Money,,,Jewels,10,1
+20002,Gold Tooth,Quest,,,Jewels,10,0
+20003,Old Key,Quest,,,Jewels,10,0
+20004,Red Gem,Quest,,,Jewels,10,0

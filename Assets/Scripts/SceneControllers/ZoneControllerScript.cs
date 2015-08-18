@@ -312,6 +312,9 @@ public class ZoneControllerScript : MonoBehaviour {
                 case ZoneNodeType.Info:
                     ClickInfoNode(currentNode.content.linkIndex);
                     break;
+                case ZoneNodeType.Store:
+                    ClickStoreNode(currentNode.content.linkIndex);
+                    break;
                 default:
                     break;
 
@@ -355,6 +358,11 @@ public class ZoneControllerScript : MonoBehaviour {
     private void ClickBattleNode(long battleIndex)
     {
         Application.LoadLevel((int)UnitySceneIndex.Battle);
+    }
+
+    private void ClickStoreNode(long storeIndex)
+    {
+        Application.LoadLevel((int)UnitySceneIndex.Store);
     }
 
 

@@ -1,4 +1,4 @@
-ID,Name,Type,ActiveEffects,PassiveEffects,SheetName,SpriteIndex,AP,Uses,ItemAbility
-30001,Wand of Magic Missile,Wand,,,Wands,0,5,10,{2}
-30002,Healing Potion,Potion,{3},,Potions,18,5,1,
-30003,Grenade,Thrown,,,Weapons,54,5,1,{1}
+ID,Name,Type,ActiveEffects,PassiveEffects,SheetName,SpriteIndex,AP,Uses,ItemAbility,Price
+30001,Wand of Magic Missile,Wand,,,Wands,0,5,10,{2},1000
+30002,Healing Potion,Potion,{3},,Potions,18,5,1,,50
+30003,Grenade,Thrown,,,Weapons,54,5,1,{1},200

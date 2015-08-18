@@ -8,3 +8,4 @@ SimpleWorld1/ZoneDesert;1;BattleMap1;6
 SimpleWorld1/BattleRats;4;BattleMap1;7
 SimpleWorld1/InfoForestChest;5;InfoForestChest;8
 SimpleWorld1/QuestRat;3;QuestRat;9
+SimpleWorld1/StoreBlacksmith;6;StoreBlacksmith;10

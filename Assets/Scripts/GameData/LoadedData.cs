@@ -101,6 +101,8 @@ namespace UnityRPG
         public string sheetname { get; set; }
         public int spriteindex { get; set; }
 
+        public long price { get; set; }
+
     }
 
     public class UsableItemData : ItemData

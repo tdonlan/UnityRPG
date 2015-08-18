@@ -6,7 +6,8 @@ public enum UnitySceneIndex
     World = 1,
     Zone = 2,
     Dialog = 3,
-    Battle = 4
+    Battle = 4,
+    Store=5
 }
 
 public enum SpritesheetType
@@ -63,7 +64,8 @@ public enum PlayerDecideState
         Dialog=2,
         Quest=3,
         Battle=4,
-        Info=5
+        Info=5,
+        Store=6
 
     }
 
@@ -92,6 +94,13 @@ public enum PlayerDecideState
         Info,
         Loot,
         End
+    }
+
+    public enum StoreNodeType
+    {
+        Info,
+        ItemClass,
+        ItemIndex
     }
 
     public enum NodeActionType
