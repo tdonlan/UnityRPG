@@ -12,6 +12,7 @@ namespace UnityRPG
         public long price { get; set; }
         public Item item { get; set; }
         public int count { get; set; }
+        public int selected { get; set; }
     }
 
     public class ItemSet
@@ -31,7 +32,6 @@ namespace UnityRPG
                 if (this.itemID == itemSet2.itemID)
                 {
                     return true;
-
                 }
             }
             return false;

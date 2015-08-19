@@ -85,7 +85,7 @@ public class StoreControllerScript : MonoBehaviour {
     {
         playerItemList = new List<StoreItem>();
 
-        var itemList = gameDataObject.playerGameCharacter.inventory.Distinct();
+        var itemList = gameDataObject.playerGameCharacter.inventory.GroupBy(x => x.ID).Select(x=>x.First()).ToList();
     
         foreach (var item in itemList)
         {
@@ -93,6 +93,7 @@ public class StoreControllerScript : MonoBehaviour {
             tempStoreItem.item = item;
             tempStoreItem.price = storeTree.getBuyPrice(item, gameDataObject.gameDataSet);
             tempStoreItem.count = gameDataObject.playerGameCharacter.inventory.Count(x => x.ID == item.ID);
+            tempStoreItem.selected = 1;
 
             playerItemList.Add(tempStoreItem);
         }
@@ -140,13 +141,15 @@ public class StoreControllerScript : MonoBehaviour {
 
         StoreItem storeItem = storeItemList.Where(x => x.item.ID == itemID).FirstOrDefault();
 
-        if (storeItem != null && gameDataObject.playerGameCharacter.money >= storeItem.price)
-        {
-            gameDataObject.addItem(storeItem.item.ID, 1);
-            gameDataObject.removeItem(GameConstants.MONEY_INDEX, storeItem.price);
+        long cost = storeItem.price * storeItem.selected;
 
-            playerItemList.Add(storeItem);
-            storeItemList.Remove(storeItem);
+        if (storeItem != null && gameDataObject.playerGameCharacter.money >= cost)
+        {
+            gameDataObject.addItem(storeItem.item.ID, storeItem.selected);
+            gameDataObject.removeItem(GameConstants.MONEY_INDEX, cost);
+
+            addPlayerItemList(storeItem);
+            removeStoreItemList(storeItem);
 
             updateDisplay();
         }
@@ -157,18 +160,140 @@ public class StoreControllerScript : MonoBehaviour {
     {
         //check if we have enough gold.
         StoreItem playerItem = playerItemList.Where(x => x.item.ID == itemID).FirstOrDefault();
+
+        long sellCost = playerItem.price * playerItem.selected;
         if (playerItem != null)
         {
-            gameDataObject.removeItem(playerItem.item.ID, 1);
-            playerItemList.Remove(playerItem);
-            storeItemList.Add(playerItem);
+            gameDataObject.removeItem(playerItem.item.ID, playerItem.selected);
 
-            gameDataObject.addItem(GameConstants.MONEY_INDEX, playerItem.price);
+            removePlayerItemList(playerItem);
+            addStoreItemList(playerItem);
+
+            gameDataObject.addItem(GameConstants.MONEY_INDEX, sellCost);
 
             updateDisplay();
         }
      
     }
+
+    //helper to add storeItems to local player storeitem list
+    private void addPlayerItemList(StoreItem storeItem)
+    {
+        StoreItem matchingItem = playerItemList.Where(x => x.item.ID == storeItem.item.ID).FirstOrDefault();
+        if (matchingItem != null)
+        {
+            matchingItem.count += storeItem.count;
+            matchingItem.selected = 1;
+        }
+        else
+        {
+            playerItemList.Add(storeItem);
+        }
+    }
+
+    private void removePlayerItemList(StoreItem storeItem)
+    {
+        StoreItem matchingItem = playerItemList.Where(x => x.item.ID == storeItem.item.ID).FirstOrDefault();
+        if (matchingItem != null)
+        {
+            if (matchingItem.count > storeItem.selected)
+            {
+                matchingItem.count -= storeItem.selected;
+                matchingItem.selected = 1;
+            }
+            else
+            {
+                playerItemList.Remove(matchingItem);
+            }
+        }
+       
+    }
+
+    private void addStoreItemList(StoreItem storeItem)
+    {
+        StoreItem matchingItem = storeItemList.Where(x => x.item.ID == storeItem.item.ID).FirstOrDefault();
+        if (matchingItem != null)
+        {
+            matchingItem.count += storeItem.count;
+            matchingItem.selected = 1;
+        }
+        else
+        {
+            storeItemList.Add(storeItem);
+        }
+    }
+
+    private void removeStoreItemList(StoreItem storeItem)
+    {
+        StoreItem matchingItem = storeItemList.Where(x => x.item.ID == storeItem.item.ID).FirstOrDefault();
+        if (matchingItem != null)
+        {
+            if (matchingItem.count > storeItem.selected)
+            {
+                matchingItem.count -= storeItem.selected;
+                matchingItem.selected = 1;
+            }
+            else
+            {
+                storeItemList.Remove(matchingItem);
+            }
+        }
+    }
+
+    public void ItemSelectChange(bool isMore, bool isStore, long itemID )
+    {
+        StoreItem item = null;
+        Text itemCountText = null;
+        Text itemPriceText = null;
+        if (isStore)
+        {
+            item = storeItemList.Where(x => x.item.ID == itemID).FirstOrDefault();
+            var itemIndex = storeItemList.IndexOf(item);
+            var itemObject = storeItemObjectList[itemIndex];
+             itemCountText = UIHelper.getGameObjectWithName(itemObject, "ItemCount", typeof(Text)).GetComponent<Text>();
+             itemPriceText = UIHelper.getGameObjectWithName(itemObject, "ItemPrice", typeof(Text)).GetComponent<Text>();
+        }
+        else
+        {
+            item = playerItemList.Where(x => x.item.ID == itemID).FirstOrDefault();
+            var itemIndex = playerItemList.IndexOf(item);
+            var itemObject = playerItemObjectList[itemIndex];
+            itemCountText = UIHelper.getGameObjectWithName(itemObject, "ItemCount", typeof(Text)).GetComponent<Text>();
+            itemPriceText = UIHelper.getGameObjectWithName(itemObject, "ItemPrice", typeof(Text)).GetComponent<Text>();
+        }
+        if (item != null)
+        {
+            if (isMore)
+            {
+                item.selected++;
+                if (item.selected > item.count)
+                {
+                    item.selected = item.count;
+                }
+            }
+            else
+            {
+                item.selected--;
+                if (item.selected <= 0)
+                {
+                    item.selected = 1;
+                }
+            }
+
+            if (itemCountText != null)
+            {
+                itemCountText.text = item.selected + "/" + item.count;
+                long newPrice = item.selected * item.price;
+                itemPriceText.text = newPrice.ToString();
+                if (isStore && newPrice >= gameDataObject.playerGameCharacter.money)
+                {
+                    itemPriceText.color = Color.red;
+                }
+            }
+        }
+    }
+
+    
 
     private void UpdatePlayerInventory(){
         foreach (var playerItemObject in playerItemObjectList)
@@ -192,7 +317,6 @@ public class StoreControllerScript : MonoBehaviour {
         }
         storeItemObjectList.Clear();
      
-
         foreach (var item in storeItemList)
         {
             storeItemObjectList.Add(UpdateStoreItem(item,true));
@@ -216,20 +340,32 @@ public class StoreControllerScript : MonoBehaviour {
             priceText.color = Color.red;
         }
 
-        Button storeItemButton = storeItemObject.GetComponentInChildren<Button>();
+        Button buyButton = UIHelper.getGameObjectWithName(storeItemObject, "ButtonBuy", typeof(Button)).GetComponent<Button>();
 
         if (isStore)
         {
-            storeItemButton.onClick.AddListener(() => BuyItem(storeItem.item.ID));
+            buyButton.onClick.AddListener(() => BuyItem(storeItem.item.ID));
             storeItemObject.transform.SetParent(buyPanel.transform, true);
         }
         else
         {
-            storeItemButton.onClick.AddListener(() => SellItem(storeItem.item.ID));
-            UIHelper.UpdateTextComponent(storeItemButton.gameObject, "Text", "Sell");
+            buyButton.onClick.AddListener(() => SellItem(storeItem.item.ID));
+            UIHelper.UpdateTextComponent(buyButton.gameObject, "Text", "Sell");
             storeItemObject.transform.SetParent(sellPanel.transform, true);
         }
-      
+
+        storeItem.selected = 1;
+        if (storeItem.count > 1)
+        {
+             var itemCountText = UIHelper.getGameObjectWithName(storeItemObject, "ItemCount", typeof(Text)).GetComponent<Text>();
+            itemCountText.text = storeItem.selected + "/" + storeItem.count;
+
+            Button lessButton = UIHelper.getGameObjectWithName(storeItemObject, "ButtonCountLess", typeof(Button)).GetComponent<Button>();
+            lessButton.onClick.AddListener(() => ItemSelectChange(false, isStore, storeItem.item.ID));
+            Button moreButton = UIHelper.getGameObjectWithName(storeItemObject, "ButtonCountMore", typeof(Button)).GetComponent<Button>();
+            moreButton.onClick.AddListener(() => ItemSelectChange(true, isStore, storeItem.item.ID));
+        }
+
         return storeItemObject;
 
     }

@@ -574,6 +574,7 @@ using UnityRPG;
                  storeItem.item = i;
                  storeItem.count = count;
                  storeItem.price = (long)Math.Round(i.price  * priceAdjustment);
+                 storeItem.selected = 1;
                  return storeItem;
              }
              return storeItem;
@@ -583,7 +584,7 @@ using UnityRPG;
          private List<StoreItem> getSellItemTypeList(ItemType type, float priceAdjustment, int count, long rarityIndex, GameDataSet gameDataSet, Random r)
          {
              List<StoreItem> storeItemList = new List<StoreItem>();
-             var itemCount = r.Next(9)+1;
+             var itemCount = r.Next(9)+1; //TODO: Do we want this hardcoded here?
              switch(type){
                  case ItemType.Weapon:
                      var itemTypeIDList = gameDataSet.weaponDataDictionary.Where(x=>x.Value.price <= rarityIndex).Select(x=>x.Value).ToList();
@@ -596,6 +597,7 @@ using UnityRPG;
                              tempStoreItem.item = ItemFactory.getWeaponFromWeaponData(itemData, gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
                              tempStoreItem.count = count;
                              tempStoreItem.price = (long)Math.Round(itemData.price * priceAdjustment);
+                             tempStoreItem.selected = 1;
 
                              storeItemList.Add(tempStoreItem);
                          }

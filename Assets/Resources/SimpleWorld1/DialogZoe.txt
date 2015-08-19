@@ -43,7 +43,7 @@ Stuff
 Buy
 1;Zoe;Zoe;Yep, you can buy and sell goods at the blacksmith.  He's right down the way.  Here's some money!
 {}
-{AddItem;20001;Gold;10},{AddItem;40001;Longsword;1}
+{AddItem;20001;Gold;1000},{AddItem;40001;Longsword;1}
 --
 3:What's the name of this town?
 4:What's there to do here?
