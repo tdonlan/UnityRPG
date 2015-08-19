@@ -197,7 +197,7 @@ public class BattleSceneControllerScript : MonoBehaviour
         {
             var ac = battleGame.ActiveCharacter;
             var ActiveCharacterPanel = GameObject.FindGameObjectWithTag("ActiveCharacterPanel");
-            UIHelper.UpdateSpriteComponent(ActiveCharacterPanel, "ActiveCharacterPortrait", battleGameData.assetLibrary.getSprite(ac.portraitSpritesheetName,ac.portraitSpriteIndex));
+            UIHelper.UpdateSpriteComponent(ActiveCharacterPanel, "ActiveCharacterPortrait", gameDataObject.assetLibrary.getSprite(ac.portraitSpritesheetName,ac.portraitSpriteIndex));
             UIHelper.UpdateTextComponent(ActiveCharacterPanel, "ActiveCharacterName", ac.name);
             UIHelper.UpdateTextComponent(ActiveCharacterPanel,"ActiveCharacterAPText",string.Format("AP:{0}/{1}",ac.ap,ac.totalAP));
 
@@ -213,7 +213,7 @@ public class BattleSceneControllerScript : MonoBehaviour
     private GameObject LoadCharacter(GameCharacter character)
     {
         GameObject characterObject = (GameObject)Instantiate(CharacterPrefab2);
-        GameObjectHelper.UpdateSprite(characterObject, "CharacterSprite", battleGameData.assetLibrary.getSprite(character.characterSpritesheetName, character.characterSpriteIndex));
+        GameObjectHelper.UpdateSprite(characterObject, "CharacterSprite", gameDataObject.assetLibrary.getSprite(character.characterSpritesheetName, character.characterSpriteIndex));
 
         if (character.type == CharacterType.Player)
         {
@@ -998,11 +998,11 @@ public class BattleSceneControllerScript : MonoBehaviour
         {
             panelImg.color = Color.yellow;
 
-            panelImg.overrideSprite = battleGameData.assetLibrary.getSprite("InitBG2", 0);
+            panelImg.overrideSprite = gameDataObject.assetLibrary.getSprite("InitBG2", 0);
         }
 
 
-        UIHelper.UpdateSpriteComponent(charPortrait, "PortraitImage", battleGameData.assetLibrary.getSprite(character.portraitSpritesheetName, character.portraitSpriteIndex));
+        UIHelper.UpdateSpriteComponent(charPortrait, "PortraitImage", gameDataObject.assetLibrary.getSprite(character.portraitSpritesheetName, character.portraitSpriteIndex));
 
         UIHelper.UpdateTextComponent(charPortrait, "CharacterName", character.name.ToString());
 
@@ -1033,7 +1033,7 @@ public class BattleSceneControllerScript : MonoBehaviour
         foreach (var ab in usableAbilityList)
         {
             GameObject abilityItem = (GameObject)Instantiate(AbilityItemPrefab);
-            updateAbilityButton(abilityItem, battleGameData.assetLibrary.getSprite(ab.sheetname, ab.spriteindex), ab);
+            updateAbilityButton(abilityItem, gameDataObject.assetLibrary.getSprite(ab.sheetname, ab.spriteindex), ab);
             abilityItem = updateAbilityItem(abilityItem, ab);
             abilityItem.transform.SetParent(AbilityPanel, true);
         }
@@ -1062,7 +1062,7 @@ public class BattleSceneControllerScript : MonoBehaviour
 
             GameObject itemObject = (GameObject)Instantiate(ItemPrefab);
             UIHelper.UpdateTextComponent(itemObject, "ItemText", item.ToString());
-            UIHelper.UpdateSpriteComponent(itemObject, "ItemButtonImage", battleGameData.assetLibrary.getSprite(item.sheetname, item.spriteindex));
+            UIHelper.UpdateSpriteComponent(itemObject, "ItemButtonImage", gameDataObject.assetLibrary.getSprite(item.sheetname, item.spriteindex));
 
             Button buttonClick = itemObject.GetComponentInChildren<Button>();
             buttonClick.onClick.AddListener(() => PlayerItemStart(usableItem));
@@ -1183,8 +1183,8 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     public void StartTempParticles(string particleName, Vector3 pos)
     {
-        
-        var particleObj = battleGameData.assetLibrary.getPrefabGameObject(particleName);
+
+        var particleObj = gameDataObject.assetLibrary.getPrefabGameObject(particleName);
 
         var rend = particleObj.GetComponentInChildren<Renderer>();
         rend.sortingLayerName = "Foreground";
@@ -1223,7 +1223,7 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     public void StartTempText(Vector3 pos, Color c, string text)
     {
-        var textObj = battleGameData.assetLibrary.getPrefabGameObject("TextPopup");
+        var textObj = gameDataObject.assetLibrary.getPrefabGameObject("TextPopup");
         UpdateTextPopup(textObj, text, c);
 
         Vector3 endPos = new Vector3(pos.x,pos.y+.2f,pos.z);
@@ -1244,8 +1244,8 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     public void StartTempSprite(Vector3 pos, string spritesheetName, int spriteIndex)
     {
-        var sprite = battleGameData.assetLibrary.getSprite(spritesheetName, spriteIndex);
-        var spriteObj = battleGameData.assetLibrary.getPrefabGameObject("Sprite");
+        var sprite = gameDataObject.assetLibrary.getSprite(spritesheetName, spriteIndex);
+        var spriteObj = gameDataObject.assetLibrary.getPrefabGameObject("Sprite");
         GameObjectHelper.UpdateSprite(spriteObj, "Sprite", sprite);
 
         AddEffect(TempEffectType.Sprite, 1, pos, pos, spriteObj);

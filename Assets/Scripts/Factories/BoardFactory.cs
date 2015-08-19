@@ -86,29 +86,7 @@ namespace UnityRPG
             return b;
         }
 
-        //DEPRECATED
-        public static Board getBoardFromBoardData(BattleGameData gameData, BattleGame game, BoardData boardData)
-        {
-            var boardLayoutStr = gameData.assetLibrary.boardLayoutDictionary[boardData.boardLayoutName];
-            var tileLookupDict = gameData.assetLibrary.tileSpriteLibrary.getTileSpriteDictionary(boardData.tileLookupName);
-
-            char[,] boardCharArray = getCharArrayFromString(boardLayoutStr);
-            boardCharArray = flipBoardXAxis(boardCharArray);
-
-            Board b = new Board(game, boardCharArray.GetLength(0));
-
-            for (int i = 0; i < boardCharArray.GetLength(0); i++)
-            {
-                for (int j = 0; j < boardCharArray.GetLength(1); j++)
-                {
-                    var tileLookup = tileLookupDict[boardCharArray[i,j]];
-                    b.board[j,i] = getTileFromData(tileLookup, j,i);
-                }
-            }
-
-            return b;
-
-        }
+       
 
         //flip the board on the horizontal axis so it displays correctly in unity
         private static char[,] flipBoardXAxis(char[,] board1)
