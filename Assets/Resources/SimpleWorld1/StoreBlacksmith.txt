@@ -3,7 +3,7 @@ Blacksmith
 1;Info;Blacksmith;Blacksmith;Welcome to my shop!
 --
 2:Cheap Weapons
-3:BattleAxe
+3:BattleAxe {QuestRat}
 ----
 2
 Cheap Weapons

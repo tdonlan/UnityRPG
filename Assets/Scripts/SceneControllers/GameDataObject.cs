@@ -26,6 +26,7 @@ public class GameDataObject : MonoBehaviour
 
     void Start()
     {
+        assetLibrary = new AssetLibrary();
         loadTreeStore();
         this.testText = "Hello World";
 

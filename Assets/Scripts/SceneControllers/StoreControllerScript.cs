@@ -1,19 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Linq;
+
+using UnityRPG;
 
 public class StoreControllerScript : MonoBehaviour {
 
     public GameDataObject gameDataObject { get; set; }
+    private int playerGold;
 
     public long parentTreeLink;
     public StoreTree storeTree { get; set; }
+
+    private List<StoreItem> storeItemList = new List<StoreItem>();
+    private List<StoreItem> playerItemList = new List<StoreItem>();
+    
 
     public GameObject storeTextObject;
     public Text storeText;
 
     System.Random r;
 
+    //Prefabs
+    private List<GameObject> storeItemObjectList = new List<GameObject>();
+    private List<GameObject> playerItemObjectList = new List<GameObject>();
+    public GameObject StoreItemPrefab;
+
+    public GameObject buyPanel;
+    public GameObject sellPanel;
+
+    private bool wasUpdated = false;
 
 
     void OnLevelWasLoaded(int level)
@@ -33,6 +51,8 @@ public class StoreControllerScript : MonoBehaviour {
     {
         loadPrefabs();
         LoadTreeStore();
+        LoadStoreList();
+        LoadPlayerList();
 
         updateDisplay();
     }
@@ -57,21 +77,52 @@ public class StoreControllerScript : MonoBehaviour {
         storeTree = (StoreTree)gameDataObject.treeStore.getCurrentTree();
     }
 
+    private void LoadStoreList()
+    {
+        storeItemList = storeTree.getSellList(gameDataObject.gameDataSet, r);
+    }
+
+    private void LoadPlayerList()
+    {
+        playerItemList = new List<StoreItem>();
+
+        var itemList = gameDataObject.playerGameCharacter.inventory.Distinct();
+    
+        foreach (var item in itemList)
+        {
+            StoreItem tempStoreItem = new StoreItem();
+            tempStoreItem.item = item;
+            tempStoreItem.price = storeTree.getBuyPrice(item, gameDataObject.gameDataSet);
+            tempStoreItem.count = gameDataObject.playerGameCharacter.inventory.Count(x => x.ID == item.ID);
+
+            playerItemList.Add(tempStoreItem);
+        }
+    }
+
     private void updateDisplay()
     {
+        
         string storeDisplayText = "";
-        var storeSellList = storeTree.getSellList(gameDataObject.gameDataSet, r);
-        foreach (var item in storeSellList)
+      
+        foreach (var item in storeItemList)
         {
             storeDisplayText += item.item.name + " $" + item.price + " ct:" + item.count + "\n";
         }
         storeText.text = storeDisplayText;
 
+        UpdateStore();
+        UpdatePlayerInventory();
+
     }
 	
 	// Update is called once per frame
 	void Update () {
-	
+        //HACK - UI isn't updating when called from levelWasLoaded
+        if (!wasUpdated)
+        {
+            updateDisplay();
+            wasUpdated = true;
+        }
 	}
 
     public void ExitStore()
@@ -82,4 +133,112 @@ public class StoreControllerScript : MonoBehaviour {
         //go back to the zone view
         Application.LoadLevel((int)UnitySceneIndex.Zone);
     }
+
+    private void updatePlayerGold()
+    {
+
+    }
+
+    public void BuyItem(long itemID)
+    {
+        //check if we have enough gold.
+        StoreItem storeItem = storeItemList.Where(x => x.item.ID == itemID).FirstOrDefault();
+        if (storeItem != null)
+        {
+            gameDataObject.playerGameCharacter.inventory.Add(storeItem.item);
+            playerItemList.Add(storeItem);
+            storeItemList.Remove(storeItem);
+
+            UpdatePlayerInventory();
+            UpdateStore();
+        }
+       
+        
+    }
+
+    public void SellItem(long itemID)
+    {
+        //check if we have enough gold.
+        StoreItem playerItem = playerItemList.Where(x => x.item.ID == itemID).FirstOrDefault();
+        if (playerItem != null)
+        {
+            gameDataObject.playerGameCharacter.inventory.Remove(playerItem.item);
+            playerItemList.Remove(playerItem);
+            storeItemList.Add(playerItem);
+
+            UpdatePlayerInventory();
+            UpdateStore();
+        }
+     
+    }
+
+
+
+    private void UpdatePlayerInventory(){
+        foreach (var playerItemObject in playerItemObjectList)
+        {
+            Destroy(playerItemObject);
+        }
+        playerItemObjectList.Clear();
+
+        foreach (var item in playerItemList)
+        {
+            playerItemObjectList.Add(UpdateStoreItem(item, false));
+        }
+    }
+
+    private void UpdateStore(){
+        //clear store list.  re-add all items in store
+       
+        foreach (var storeItemObject in storeItemObjectList)
+        {
+            Destroy(storeItemObject);
+        }
+        storeItemObjectList.Clear();
+     
+
+        foreach (var item in storeItemList)
+        {
+            storeItemObjectList.Add(UpdateStoreItem(item,true));
+        }
+    }
+
+
+    private GameObject UpdateStoreItem(StoreItem storeItem, bool isStore) {
+        GameObject storeItemObject = (GameObject)Instantiate(StoreItemPrefab);
+
+        var itemSprite = gameDataObject.assetLibrary.getSprite(storeItem.item.sheetname,storeItem.item.spriteindex);
+
+        UIHelper.UpdateSpriteComponent(storeItemObject, "ItemImg", itemSprite);
+        UIHelper.UpdateTextComponent(storeItemObject, "ItemName", storeItem.item.name);
+        UIHelper.UpdateTextComponent(storeItemObject, "ItemStats", storeItem.item.ToString());
+
+        UIHelper.UpdateTextComponent(storeItemObject, "ItemPrice", storeItem.price.ToString());
+
+        Button storeItemButton = storeItemObject.GetComponentInChildren<Button>();
+
+        if (isStore)
+        {
+            storeItemButton.onClick.AddListener(() => BuyItem(storeItem.item.ID));
+            storeItemObject.transform.SetParent(buyPanel.transform, true);
+        }
+        else
+        {
+            storeItemButton.onClick.AddListener(() => SellItem(storeItem.item.ID));
+            UIHelper.UpdateTextComponent(storeItemButton.gameObject, "Text", "Sell");
+            storeItemObject.transform.SetParent(sellPanel.transform, true);
+        }
+      
+        return storeItemObject;
+
+    }
+
+    public void addItem()
+    {
+        updateDisplay();
+        //UpdateStore();
+        //UpdatePlayerInventory();
+        //var testItem = UpdateStoreItem(null);
+    }
+
 }

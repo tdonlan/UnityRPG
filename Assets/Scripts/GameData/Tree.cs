@@ -504,6 +504,45 @@ using UnityRPG;
              return true;
          }
 
+         //lookup the item in the store list and return the price, otherwise default to .5f
+         public long getBuyPrice(Item i, GameDataSet gameDataSet)
+         {
+             float buyPrice = 0.0f;
+
+             var infoNode = treeNodeDictionary[1];
+             List<StoreTreeNode> storeNodeList = new List<StoreTreeNode>();
+             foreach (var branch in infoNode.getBranchList(this))
+             {
+                 var storeNode = (StoreTreeNode)this.getNode(branch.linkIndex);
+
+                 if(storeNode.content.nodeType == StoreNodeType.ItemIndex){
+                     if(storeNode.content.linkIndex == i.ID){
+                         if(storeNode.content.buyPrice > buyPrice){
+                             buyPrice = storeNode.content.buyPrice;
+                         }
+                     }
+                 }
+                 else if(storeNode.content.nodeType == StoreNodeType.ItemClass){
+                     if (storeNode.content.itemType == i.type && storeNode.content.linkIndex <= i.price)
+                     {
+                         if (storeNode.content.buyPrice > buyPrice)
+                         {
+                             buyPrice = storeNode.content.buyPrice;
+                         }
+                     }
+                 }
+              
+             }
+
+             if (buyPrice < .5)
+             {
+                 buyPrice = .5f;
+             }
+
+             return (long)Math.Round( i.price * buyPrice);
+
+         }
+
          //given a gameDataSet, and global flags, return the list of items (and prices) sold
          public List<StoreItem> getSellList(GameDataSet gameDataSet, Random r)
          {
