@@ -31,24 +31,6 @@ namespace UnityRPG
         {
             this.size = size;
             this.game = game;
-            InitBoard(size);
-        }
-
-        private void InitBoard(int size)
-        {
-            board = new Tile[size, size];
-
-            for (int i = 0; i < size; i++)
-            {
-                for (int j = 0; j < size; j++)
-                {
-                    board[i, j] = new Tile(i, j);
-                }
-            }
-
-            this.ClearTempTiles();
-
-            game.battleLog.AddEntry("Board Initialized");
         }
 
         public Tile getAdjascentTile(Tile t, DirectionType dir)

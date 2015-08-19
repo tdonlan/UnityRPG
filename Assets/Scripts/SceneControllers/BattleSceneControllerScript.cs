@@ -54,8 +54,6 @@ public class BattleSceneControllerScript : MonoBehaviour
     BattleSceneCameraData cameraData { get; set; }
 
     //UI Prefabs
-
-
     public GameObject ItemPrefab { get; set; }
     public GameObject AbilityItemPrefab { get; set; }
     public GameObject HoverPrefab { get; set; }
@@ -705,9 +703,6 @@ public class BattleSceneControllerScript : MonoBehaviour
         int x = Mathf.RoundToInt(pos.x );
         int y = Mathf.RoundToInt(pos.y );
 
-        //int x = Mathf.RoundToInt(pos.x / Tile.TILE_SIZE);
-        //int y = Mathf.RoundToInt(pos.y / Tile.TILE_SIZE);
-
         Point retval = null;
 
         if (x >= 0 && x <= tileMapData.battleTileArray.GetLength(0) && y <= 0 && y >= -tileMapData.battleTileArray.GetLength(1))
@@ -720,7 +715,6 @@ public class BattleSceneControllerScript : MonoBehaviour
     private Vector3 getWorldPosFromTilePoint(Point p)
     {
         return new Vector3(p.x, p.y, 0);
-        //return new Vector3(p.x * Tile.TILE_SIZE, p.y * Tile.TILE_SIZE, 0);
     }
 
     private Point getBoardPointFromLocation(float x, float y)

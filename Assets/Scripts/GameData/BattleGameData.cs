@@ -17,7 +17,6 @@ namespace UnityRPG
 
         public BattleGameData()
         {
-
             gameCharacterList = new List<GameCharacter>();
         }
 

@@ -8,9 +8,7 @@ namespace UnityRPG
 {
     public class BattleGame
     {
-
         public BattleSceneControllerScript gameControllerScript;
-
 
         public BattleGameData gameData;
       
@@ -92,7 +90,6 @@ namespace UnityRPG
 
         private void SetBattleInitiative()
         { 
-            
             //randomize attack order 
         }
 

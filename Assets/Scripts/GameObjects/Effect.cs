@@ -33,10 +33,6 @@ namespace UnityRPG
 
         public int duration { get; set; }
 
-
-        //public string sheetname { get; set; }
-       // public int spriteindex { get; set; }
-
         public TempEffectType effectType { get; set; }
         public string effectName { get; set; }
         public int effectIndex { get; set; }
@@ -47,8 +43,6 @@ namespace UnityRPG
                 
         }
         
-
-
         public override string ToString()
         {
             return string.Format("{0} (Active): {1} {2}-{3} for {4} turns", name, statType.ToString(), minAmount, maxAmount, duration);
