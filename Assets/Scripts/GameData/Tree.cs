@@ -523,7 +523,7 @@ using UnityRPG;
                      }
                  }
                  else if(storeNode.content.nodeType == StoreNodeType.ItemClass){
-                     if (storeNode.content.itemType == i.type && storeNode.content.linkIndex <= i.price)
+                     if (storeNode.content.itemType == i.type && i.price <= storeNode.content.linkIndex)
                      {
                          if (storeNode.content.buyPrice > buyPrice)
                          {
@@ -531,7 +531,6 @@ using UnityRPG;
                          }
                      }
                  }
-              
              }
 
              if (buyPrice < .5)
@@ -544,6 +543,7 @@ using UnityRPG;
          }
 
          //given a gameDataSet, and global flags, return the list of items (and prices) sold
+         //dont return items with 0 price (specials, etc)
          public List<StoreItem> getSellList(GameDataSet gameDataSet, Random r)
          {
              List<StoreItem> storeList = new List<StoreItem>();
@@ -590,12 +590,16 @@ using UnityRPG;
                      var itemSubList = itemTypeIDList.OrderBy(x=>r.Next()).Take(itemCount);
                      foreach (var itemData in itemSubList)
                      {
-                         StoreItem tempStoreItem = new StoreItem();
-                         tempStoreItem.item = ItemFactory.getWeaponFromWeaponData(itemData, gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
-                         tempStoreItem.count = count;
-                         tempStoreItem.price = (long)Math.Round( itemData.price * priceAdjustment);
+                         if (itemData.price > 0)
+                         {
+                             StoreItem tempStoreItem = new StoreItem();
+                             tempStoreItem.item = ItemFactory.getWeaponFromWeaponData(itemData, gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
+                             tempStoreItem.count = count;
+                             tempStoreItem.price = (long)Math.Round(itemData.price * priceAdjustment);
 
-                         storeItemList.Add(tempStoreItem);
+                             storeItemList.Add(tempStoreItem);
+                         }
+
                      }
                      break;
                  default:

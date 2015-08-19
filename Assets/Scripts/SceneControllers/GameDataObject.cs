@@ -78,33 +78,61 @@ public class GameDataObject : MonoBehaviour
             switch (action.actionType)
             {
                 case NodeActionType.AddItem:
-                    addItem(action.index);
+                    addItem(action.index, action.count);
                     break;
                 case NodeActionType.RemoveItem:
-                    removeItem(action.index);
+                    removeItem(action.index, action.count);
                     break;
                 default:
                     break;
-
             }
         }
     }
 
-    public void removeItem(long itemIndex)
+    public void removeItem(long itemIndex, long count)
     {
         var item = ItemFactory.getItemFromIndex(itemIndex, gameDataSet);
         if (item != null)
         {
-            playerGameCharacter.inventory.Remove(item);
+            if (item.type == ItemType.Money)
+            {
+                if (playerGameCharacter.money >= count)
+                {
+                    playerGameCharacter.money -= count;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    var inventoryItem = playerGameCharacter.inventory.Where(x => x.ID == itemIndex).FirstOrDefault();
+                    if (inventoryItem != null)
+                    {
+                        playerGameCharacter.inventory.Remove(inventoryItem); 
+                    }
+                }
+            }
         }
     }
 
-    public void addItem(long itemIndex)
+    public void addItem(long itemIndex, long count)
     {
         var item = ItemFactory.getItemFromIndex(itemIndex, gameDataSet);
         if (item != null)
         {
-            playerGameCharacter.inventory.Add(item);
+            if (item.type == ItemType.Money)
+            {
+                playerGameCharacter.money += count;
+            }
+            else
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    playerGameCharacter.inventory.Add(item);
+                }
+                 
+            }
+            
         }
     }
 

@@ -9,7 +9,6 @@ using UnityRPG;
 public class StoreControllerScript : MonoBehaviour {
 
     public GameDataObject gameDataObject { get; set; }
-    private int playerGold;
 
     public long parentTreeLink;
     public StoreTree storeTree { get; set; }
@@ -17,9 +16,9 @@ public class StoreControllerScript : MonoBehaviour {
     private List<StoreItem> storeItemList = new List<StoreItem>();
     private List<StoreItem> playerItemList = new List<StoreItem>();
     
-
     public GameObject storeTextObject;
     public Text storeText;
+    public Text playerMoneyText;
 
     System.Random r;
 
@@ -113,6 +112,8 @@ public class StoreControllerScript : MonoBehaviour {
         UpdateStore();
         UpdatePlayerInventory();
 
+        playerMoneyText.text = gameDataObject.playerGameCharacter.money + " gold";
+
     }
 	
 	// Update is called once per frame
@@ -134,26 +135,22 @@ public class StoreControllerScript : MonoBehaviour {
         Application.LoadLevel((int)UnitySceneIndex.Zone);
     }
 
-    private void updatePlayerGold()
-    {
-
-    }
-
     public void BuyItem(long itemID)
     {
-        //check if we have enough gold.
+
         StoreItem storeItem = storeItemList.Where(x => x.item.ID == itemID).FirstOrDefault();
-        if (storeItem != null)
+
+        if (storeItem != null && gameDataObject.playerGameCharacter.money >= storeItem.price)
         {
-            gameDataObject.playerGameCharacter.inventory.Add(storeItem.item);
+            gameDataObject.addItem(storeItem.item.ID, 1);
+            gameDataObject.removeItem(GameConstants.MONEY_INDEX, storeItem.price);
+
             playerItemList.Add(storeItem);
             storeItemList.Remove(storeItem);
 
-            UpdatePlayerInventory();
-            UpdateStore();
+            updateDisplay();
         }
-       
-        
+
     }
 
     public void SellItem(long itemID)
@@ -162,17 +159,16 @@ public class StoreControllerScript : MonoBehaviour {
         StoreItem playerItem = playerItemList.Where(x => x.item.ID == itemID).FirstOrDefault();
         if (playerItem != null)
         {
-            gameDataObject.playerGameCharacter.inventory.Remove(playerItem.item);
+            gameDataObject.removeItem(playerItem.item.ID, 1);
             playerItemList.Remove(playerItem);
             storeItemList.Add(playerItem);
 
-            UpdatePlayerInventory();
-            UpdateStore();
+            gameDataObject.addItem(GameConstants.MONEY_INDEX, playerItem.price);
+
+            updateDisplay();
         }
      
     }
-
-
 
     private void UpdatePlayerInventory(){
         foreach (var playerItemObject in playerItemObjectList)
@@ -214,6 +210,11 @@ public class StoreControllerScript : MonoBehaviour {
         UIHelper.UpdateTextComponent(storeItemObject, "ItemStats", storeItem.item.ToString());
 
         UIHelper.UpdateTextComponent(storeItemObject, "ItemPrice", storeItem.price.ToString());
+        var priceText = UIHelper.getGameObjectWithName(storeItemObject, "ItemPrice", typeof(Text)).GetComponent<Text>();
+        if (isStore && storeItem.price > gameDataObject.playerGameCharacter.money)
+        {
+            priceText.color = Color.red;
+        }
 
         Button storeItemButton = storeItemObject.GetComponentInChildren<Button>();
 
@@ -236,9 +237,7 @@ public class StoreControllerScript : MonoBehaviour {
     public void addItem()
     {
         updateDisplay();
-        //UpdateStore();
-        //UpdatePlayerInventory();
-        //var testItem = UpdateStoreItem(null);
+
     }
 
 }

@@ -16,6 +16,8 @@ namespace UnityRPG
         public const int rangedAttackSpriteindex = 112;
 
         //--------------------
+        public const long MONEY_INDEX = 20001;
+
         public const long EFFECTS_MAX_INDEX = 9999;         //1001 - 9999
         public const long ABILITIES_MAX_INDEX = 19999;      //10001 - 19999
         public const long ITEMS_MAX_INDEX = 29999;           //20001 - 29999

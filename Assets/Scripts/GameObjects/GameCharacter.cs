@@ -51,12 +51,12 @@ namespace UnityRPG
         private int _totalAP ;
         public int totalAP { get { return _totalAP + CoreHelper.getEffectAmount(new Random(), activeEffects, passiveEffects, StatType.ActionPoints); } set { _totalAP = value; } }
 
+        public long money { get; set; }
         public List<Item> inventory { get; set; }
         public List<Armor> equippedArmor { get; set; }
         public Weapon weapon { get; set; }
 
         public ItemSet Ammo { get; set; }
-
 
         public List<ActiveEffect> activeEffects { get; set; }
         public List<PassiveEffect> passiveEffects { get; set; }
