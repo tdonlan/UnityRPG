@@ -587,6 +587,11 @@ using UnityRPG;
              var itemCount = r.Next(9)+1; //TODO: Do we want this hardcoded here?
              switch(type){
                  case ItemType.Weapon:
+                      List<long> weaponIdList = gameDataSet.weaponDataDictionary.Where(x=>x.Value.price <= rarityIndex).Select(x=>x.Key).OrderBy(x => r.Next()).Take(itemCount).ToList();
+                      storeItemList.AddRange(getStoreItemListFromItemIdList(weaponIdList, gameDataSet, count, priceAdjustment));
+                     break;
+
+                     /*
                      var itemTypeIDList = gameDataSet.weaponDataDictionary.Where(x=>x.Value.price <= rarityIndex).Select(x=>x.Value).ToList();
                      var itemSubList = itemTypeIDList.OrderBy(x=>r.Next()).Take(itemCount);
                      foreach (var itemData in itemSubList)
@@ -601,14 +606,57 @@ using UnityRPG;
 
                              storeItemList.Add(tempStoreItem);
                          }
-
                      }
+                     break;
+                      * */
+                 case ItemType.Ammo:
+                     List<long> ammoIdList = gameDataSet.ammoDataDictionary.Where(x=>x.Value.price <= rarityIndex).Select(x=>x.Key).OrderBy(x => r.Next()).Take(itemCount).ToList();
+                     storeItemList.AddRange(getStoreItemListFromItemIdList(ammoIdList, gameDataSet, count, priceAdjustment));
+                     break;
+                 case ItemType.Armor:
+                     List<long> armorIdList = gameDataSet.armorDataDictionary.Where(x => x.Value.price <= rarityIndex).Select(x => x.Key).OrderBy(x => r.Next()).Take(itemCount).ToList();
+                     storeItemList.AddRange(getStoreItemListFromItemIdList(armorIdList, gameDataSet, count, priceAdjustment));
+                     break;
+                 case ItemType.Potion:
+                     List<long> potionIdList = gameDataSet.usableItemDataDictionary.Where(x => x.Value.price <= rarityIndex && x.Value.type == ItemType.Potion).Select(x => x.Key).OrderBy(x => r.Next()).Take(itemCount).ToList();
+                     storeItemList.AddRange(getStoreItemListFromItemIdList(potionIdList, gameDataSet, count, priceAdjustment));
+                     break;
+                 case ItemType.Thrown:
+                      List<long> thrownIdList = gameDataSet.usableItemDataDictionary.Where(x => x.Value.price <= rarityIndex && x.Value.type == ItemType.Thrown).Select(x => x.Key).OrderBy(x => r.Next()).Take(itemCount).ToList();
+                      storeItemList.AddRange(getStoreItemListFromItemIdList(thrownIdList, gameDataSet, count, priceAdjustment));
+                     break;
+                 case ItemType.Wand:
+                      List<long> wandIdList = gameDataSet.usableItemDataDictionary.Where(x => x.Value.price <= rarityIndex && x.Value.type == ItemType.Wand).Select(x => x.Key).OrderBy(x => r.Next()).Take(itemCount).ToList();
+                      storeItemList.AddRange(getStoreItemListFromItemIdList(wandIdList, gameDataSet, count, priceAdjustment));
                      break;
                  default:
                      break;
              }
 
-             return storeItemList ;
+             return storeItemList;
+         }
+
+         private List<StoreItem> getStoreItemListFromItemIdList(List<long> itemIdList, GameDataSet gameDataSet, int count, float priceAdjustment)
+         {
+             List<StoreItem> storeItemList = new List<StoreItem>(); 
+             foreach(long id in itemIdList){
+                 var item = ItemFactory.getItemFromIndex(id, gameDataSet);
+                 if (item.price > 0)
+                 {
+                     StoreItem tempStoreItem = new StoreItem();
+                     tempStoreItem.item = item;
+                     tempStoreItem.count = count;
+                     tempStoreItem.price = (long)Math.Round(tempStoreItem.item.price * priceAdjustment);
+                     tempStoreItem.selected = 1;
+
+                     storeItemList.Add(tempStoreItem);
+                 }
+              
+             }
+
+             return storeItemList;
+
+             
          }
      }
 

@@ -4,6 +4,7 @@ Blacksmith
 --
 2:Cheap Weapons
 3:BattleAxe {QuestRat}
+4:Armor
 ----
 2
 Cheap Weapons
@@ -13,5 +14,10 @@ Cheap Weapons
 3
 BattleAxe
 40003;ItemIndex;Weapon;.5;1;1
+--
+----
+4
+Armor
+500;ItemClass;Armor;.7;1;1
 --
 ----
