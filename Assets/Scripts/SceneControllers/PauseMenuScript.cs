@@ -14,6 +14,11 @@ public class PauseMenuScript : MonoBehaviour {
     public GameObject InventoryTextGameObject;
     public Text InventoryText;
 
+    //XP Stuff
+    public Text TextXP;
+    public Text TextLevel;
+    public Text TextLevelCounter;
+    
 	// Use this for initialization
 	void Start () {
         initRefs();
@@ -42,6 +47,13 @@ public class PauseMenuScript : MonoBehaviour {
         //GlobalFlagsText.text = getGlobalFlags();
         GlobalFlagsText.text = getQuestView();
         InventoryText.text = getInventory();
+    }
+
+    private void UpdateXP()
+    {
+        TextLevel.text = gameDataObject.playerGameCharacter.level.ToString();
+        TextXP.text = gameDataObject.playerGameCharacter.xp.ToString() + " / " + gameDataObject.playerGameCharacter.xpToLevel.ToString() ;
+        TextLevelCounter.text = gameDataObject.playerGameCharacter.levelCounter.ToString();
     }
 
     public void CloseMenu()
@@ -96,5 +108,12 @@ public class PauseMenuScript : MonoBehaviour {
             inventoryStr += item.name + "\n";
         }
         return inventoryStr;
+    }
+
+    public void getXP()
+    {
+        gameDataObject.playerGameCharacter.getXP(25);
+
+        UpdateXP();
     }
 }

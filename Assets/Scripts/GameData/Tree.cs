@@ -590,25 +590,6 @@ using UnityRPG;
                       List<long> weaponIdList = gameDataSet.weaponDataDictionary.Where(x=>x.Value.price <= rarityIndex).Select(x=>x.Key).OrderBy(x => r.Next()).Take(itemCount).ToList();
                       storeItemList.AddRange(getStoreItemListFromItemIdList(weaponIdList, gameDataSet, count, priceAdjustment));
                      break;
-
-                     /*
-                     var itemTypeIDList = gameDataSet.weaponDataDictionary.Where(x=>x.Value.price <= rarityIndex).Select(x=>x.Value).ToList();
-                     var itemSubList = itemTypeIDList.OrderBy(x=>r.Next()).Take(itemCount);
-                     foreach (var itemData in itemSubList)
-                     {
-                         if (itemData.price > 0)
-                         {
-                             StoreItem tempStoreItem = new StoreItem();
-                             tempStoreItem.item = ItemFactory.getWeaponFromWeaponData(itemData, gameDataSet.abilityDataDictionary, gameDataSet.effectDataDictionary);
-                             tempStoreItem.count = count;
-                             tempStoreItem.price = (long)Math.Round(itemData.price * priceAdjustment);
-                             tempStoreItem.selected = 1;
-
-                             storeItemList.Add(tempStoreItem);
-                         }
-                     }
-                     break;
-                      * */
                  case ItemType.Ammo:
                      List<long> ammoIdList = gameDataSet.ammoDataDictionary.Where(x=>x.Value.price <= rarityIndex).Select(x=>x.Key).OrderBy(x => r.Next()).Take(itemCount).ToList();
                      storeItemList.AddRange(getStoreItemListFromItemIdList(ammoIdList, gameDataSet, count, priceAdjustment));

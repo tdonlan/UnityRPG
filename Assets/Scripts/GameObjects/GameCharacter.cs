@@ -63,6 +63,11 @@ namespace UnityRPG
 
         public List<Ability> abilityList { get; set; }
 
+        public long xp { get; set; }
+        public long xpToLevel { get{ return ExperienceHelper.getXPNextLevel(level,xp);} }
+        public int level { get; set; }
+        public int levelCounter { get; set; } //used to levelUp
+
         public GameCharacter()
         {
             inventory = new List<Item>();
@@ -332,6 +337,16 @@ namespace UnityRPG
             this.Ammo = null;
         }
 
+        public void getXP(long addXP)
+        {
+            this.levelCounter = ExperienceHelper.getLevelUpCounter(level, xp, addXP);
+            if (levelCounter > 0)
+            {
+                level += levelCounter;
+            }
+            this.xp += addXP;
+
+        }
 
         public override string ToString()
         {

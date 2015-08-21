@@ -40,6 +40,8 @@ public class GameDataObject : MonoBehaviour
     {
         //load this from a save game.  If we are starting a new game, then get this from the masterlist
         playerGameCharacter = CharacterFactory.getGameCharacterFromGameCharacterData(gameDataSet.gameCharacterDataDictionary[80001], gameDataSet);
+        playerGameCharacter.level = 1;
+
     }
 
  

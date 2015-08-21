@@ -57,6 +57,15 @@ namespace UnityRPG
         public int spriteindex { get; set; }
     }
 
+    public class TalentTreeData
+    {
+        public long ID { get; set; }
+        public long AbilityID { get; set; }
+        public int tier { get; set; }
+        public int levelReq {get;set;}
+        public List<long> abilityReqs { get; set; }
+    }
+
     public class GameCharacterData
     {
         public long ID { get; set; }
