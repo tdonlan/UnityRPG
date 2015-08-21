@@ -182,31 +182,30 @@ public class StoreControllerScript : MonoBehaviour {
         StoreItem matchingItem = playerItemList.Where(x => x.item.ID == storeItem.item.ID).FirstOrDefault();
         if (matchingItem != null)
         {
-            matchingItem.count += storeItem.count;
+            matchingItem.count += storeItem.selected;
             matchingItem.selected = 1;
         }
         else
         {
-            playerItemList.Add(storeItem);
+            playerItemList.Add(copyStoreItem( storeItem));
         }
     }
 
     private void removePlayerItemList(StoreItem storeItem)
     {
-        StoreItem matchingItem = playerItemList.Where(x => x.item.ID == storeItem.item.ID).FirstOrDefault();
-        if (matchingItem != null)
+        if (storeItem != null)
         {
-            if (matchingItem.count > storeItem.selected)
+            if (storeItem.count > storeItem.selected)
             {
-                matchingItem.count -= storeItem.selected;
-                matchingItem.selected = 1;
+                storeItem.count -= storeItem.selected;
+                storeItem.selected = 1;
             }
             else
             {
-                playerItemList.Remove(matchingItem);
+                playerItemList.Remove(storeItem);
             }
         }
-       
+
     }
 
     private void addStoreItemList(StoreItem storeItem)
@@ -214,30 +213,44 @@ public class StoreControllerScript : MonoBehaviour {
         StoreItem matchingItem = storeItemList.Where(x => x.item.ID == storeItem.item.ID).FirstOrDefault();
         if (matchingItem != null)
         {
-            matchingItem.count += storeItem.count;
+            matchingItem.count += storeItem.selected;
             matchingItem.selected = 1;
         }
         else
         {
-            storeItemList.Add(storeItem);
+           
+            storeItemList.Add(copyStoreItem(storeItem));
         }
     }
 
     private void removeStoreItemList(StoreItem storeItem)
     {
-        StoreItem matchingItem = storeItemList.Where(x => x.item.ID == storeItem.item.ID).FirstOrDefault();
-        if (matchingItem != null)
+        if (storeItem != null)
         {
-            if (matchingItem.count > storeItem.selected)
+            if (storeItem.count > storeItem.selected)
             {
-                matchingItem.count -= storeItem.selected;
-                matchingItem.selected = 1;
+                storeItem.count -= storeItem.selected;
+                storeItem.selected = 1;
             }
             else
             {
-                storeItemList.Remove(matchingItem);
+                storeItemList.Remove(storeItem);
             }
         }
+
+    }
+
+    private StoreItem copyStoreItem(StoreItem oldStoreItem)
+    {
+        StoreItem newStoreItem = new StoreItem()
+        {
+            item = ItemFactory.getItemFromIndex(oldStoreItem.item.ID, gameDataObject.gameDataSet),
+            count = oldStoreItem.selected,
+            price = oldStoreItem.price,
+            selected = 1
+
+        };
+        return newStoreItem;
     }
 
     public void ItemSelectChange(bool isMore, bool isStore, long itemID )
