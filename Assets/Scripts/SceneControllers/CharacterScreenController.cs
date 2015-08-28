@@ -62,5 +62,49 @@ public class CharacterScreenController : MonoBehaviour {
         UpdateUI();
     }
 
+    public void addStat(int statType)
+    {
+        switch ((StatType)statType)
+        {
+            case StatType.Strength:
+               gameDataObject.playerGameCharacter.strength++; 
+                break;
+            case StatType.Agility:
+              gameDataObject.playerGameCharacter.agility++; 
+                break;
+            case StatType.Endurance:
+               gameDataObject.playerGameCharacter.endurance++; 
+                break;
+            case StatType.Spirit:
+             gameDataObject.playerGameCharacter.spirit++; 
+                break;
+            default:
+                break;
+        }
+        UpdateUI();
+    }
+
+    public void minusStat(int statType)
+    {
+        switch ((StatType)statType)
+        {
+            case StatType.Strength:
+                 gameDataObject.playerGameCharacter.strength--; 
+                break;
+            case StatType.Agility:
+             gameDataObject.playerGameCharacter.agility--; 
+                break;
+            case StatType.Endurance:
+              gameDataObject.playerGameCharacter.endurance--; 
+                break;
+            case StatType.Spirit:
+              gameDataObject.playerGameCharacter.spirit--; 
+                break;
+            default:
+                break;
+        }
+        UpdateUI();
+
+    }
     
 }
