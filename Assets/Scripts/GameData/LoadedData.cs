@@ -89,6 +89,11 @@ namespace UnityRPG
 
         public int ap { get; set; }
 
+        public int strength { get; set; }
+        public int agility { get; set; }
+        public int endurance { get; set; }
+        public int spirit { get; set; }
+
         public List<long> inventory { get; set; } //list of Item IDs
         public List<long> equippedArmor { get; set; } //list of ArmorIds
         public long weapon { get; set; } //weaponId (Ranged or Melee)

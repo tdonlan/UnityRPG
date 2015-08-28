@@ -8,6 +8,8 @@ namespace UnityRPG
 {
     public class GameCharacter
     {
+        private System.Random r = new System.Random();
+
         public string name { get; set; }
         public char displayChar { get; set; }
         public CharacterType type { get; set; }
@@ -23,7 +25,7 @@ namespace UnityRPG
         private int _ac;
         public int ac
         {
-            get { return _ac + CoreHelper.getArmorAmount(equippedArmor) + CoreHelper.getEffectAmount(new Random(), activeEffects, passiveEffects, StatType.Armor); }
+            get { return _ac + CoreHelper.getArmorAmount(equippedArmor) + CoreHelper.getEffectAmount(r, activeEffects, passiveEffects, StatType.Armor); }
             set { _ac = value; }
         }
 
@@ -32,7 +34,7 @@ namespace UnityRPG
         {
             get
             {
-                return _totalHP + CoreHelper.getEffectAmount(new Random(), activeEffects, passiveEffects, StatType.HitPoints);
+                return _totalHP + CoreHelper.getEffectAmount(r, activeEffects, passiveEffects, StatType.HitPoints);
             }
             set
             {
@@ -43,13 +45,25 @@ namespace UnityRPG
         public int hp { get; set; }
 
         private int _attack;
-        public int attack { get { return _attack + CoreHelper.getEffectAmount(new Random(), activeEffects, passiveEffects, StatType.Attack); } set { _attack = value; } }
+        public int attack { get { return _attack + CoreHelper.getEffectAmount(r, activeEffects, passiveEffects, StatType.Attack); } set { _attack = value; } }
 
        
         public int ap {get;set;}
 
         private int _totalAP ;
         public int totalAP { get { return _totalAP + CoreHelper.getEffectAmount(new Random(), activeEffects, passiveEffects, StatType.ActionPoints); } set { _totalAP = value; } }
+
+        private int _strength;
+        public int strength { get { return _strength + CoreHelper.getEffectAmount(r, activeEffects, passiveEffects, StatType.Strength); } set { _strength = value; } }
+
+        private int _agility;
+        public int agility { get { return _agility + CoreHelper.getEffectAmount(r, activeEffects, passiveEffects, StatType.Agility); } set { _agility = value; } }
+
+        private int _endurance;
+        public int endurance { get { return _endurance + CoreHelper.getEffectAmount(r, activeEffects, passiveEffects, StatType.Agility); } set { _endurance = value; } }
+
+        private int _spirit;
+        public int spirit { get { return _spirit + CoreHelper.getEffectAmount(r, activeEffects, passiveEffects, StatType.Spirit); } set { _spirit = value; } }
 
         public long money { get; set; }
         public List<Item> inventory { get; set; }

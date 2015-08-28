@@ -32,4 +32,10 @@ public class StartControllerScript : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    //Testing
+    public void LoadCharacterScreen()
+    {
+        Application.LoadLevel((int)UnitySceneIndex.CharacterScreen);
+    }
 }

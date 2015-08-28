@@ -26,7 +26,11 @@ namespace UnityRPG
                 totalHP = data.hp,
                 type = data.type,
                 x = 0,
-                y = 0
+                y = 0,
+                strength = data.strength,
+                agility = data.agility,
+                endurance = data.endurance,
+                spirit = data.spirit
 
             };
 
@@ -142,7 +146,12 @@ namespace UnityRPG
                 type = CharacterType.Enemy,
                 weapon = gameChar.weapon,
                 x = gameChar.x,
-                y = gameChar.y
+                y = gameChar.y,
+                strength = gameChar.strength,
+                agility = gameChar.agility,
+                endurance = gameChar.endurance,
+                spirit = gameChar.spirit
+          
             };
 
             return enemyChar;

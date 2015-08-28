@@ -7,7 +7,8 @@ public enum UnitySceneIndex
     Zone = 2,
     Dialog = 3,
     Battle = 4,
-    Store=5
+    Store=5,
+    CharacterScreen=6
 }
 
 public enum SpritesheetType
@@ -167,6 +168,10 @@ public enum PlayerDecideState
 
     public enum StatType
     {
+        Strength,
+        Agility,
+        Endurance,
+        Spirit,
         ActionPoints,
         Armor,
         Damage,
