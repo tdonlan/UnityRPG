@@ -1,2 +1,2 @@
 ID,Name,Type,ActiveEffects,PassiveEffects,SheetName,SpriteIndex,BonusDamage,AmmoType
-60001,Poison Arrow,Ammo,{9},,Weapons,82,5,Arrows
+60001,Poison Arrow,Ammo,{1009},,Weapons,82,5,Arrows

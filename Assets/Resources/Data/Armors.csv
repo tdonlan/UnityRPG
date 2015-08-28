@@ -3,5 +3,5 @@ ID,Name,Type,ActiveEffects,PassiveEffects,SheetName,SpriteIndex,Armor,ArmorType,
 70002,Leather Chest,Armor,,,Armor,38,5,Chest,250
 70003,Great Helm,Armor,,,Armor,14,5,Head,250
 70004,Leather Cap,Armor,,,Armor,10,1,Head,50
-70005,Regeneration Ring,Armor,{5},,Jewels,23,0,Ring,1500
-70006,Attack Ring,Armor,,{6},Jewels,5,0,Ring,1500
+70005,Regeneration Ring,Armor,{1005},,Jewels,23,0,Ring,1500
+70006,Attack Ring,Armor,,{1006},Jewels,5,0,Ring,1500

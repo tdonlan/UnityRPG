@@ -8,3 +8,20 @@ ID,Name,StatType,MinAmount,MaxAmount,Duration,SheetName,SpriteIndex
 1007,Flame,Damage,5,10,2,Particles,68
 1008,Stun,Stun,0,0,2,Particles,1
 1009,Weak Poison,Damage,1,2,3,Particles,1
+1010,Teleport,Teleport,0,0,1,Particles,104
+1011,Knockback,Knockback,1,1,1,Particles,56
+1012,Charge,Teleport,5,5,1,Particles,56
+1013,ChargeDamage,Damage,10,20,1,Particles,102
+1014,Fire,Damage,5,10,1,Particles,68
+1015,Explode,Explode,2,3,1,Particles,55
+1016,Haste,ActionPoints,5,5,3,Particles,27
+1017,Shield,HitPoints,10,10,5,Particles,98
+1018,Shield Heal,Heal,999,999,1,Particles,97
+1019,Rage,Attack,5,5,2,Particles,102
+1020,Web,Stuck,0,0,5,Particles,94
+1021,Dispell,Dispell,1,1,1,Particles,107
+1022,Slow,ActionPoints,-5,-5,2,Particles,100
+1023,Poison,Damage,10,10,5,Particles,49
+1024,Mana Wave,Damage,5,10,1,Particles,107
+1025,Strength Like Ox,Strength,5,5,5,Particles,1
+1026,Fleet Like Fox,Agility,5,5,5,Particles,1

@@ -59,6 +59,8 @@ public class GameDataObject : MonoBehaviour
         gameDataSet.effectDataDictionary = getDataObjectDictionary("Data/Effects", typeof(EffectData)).ToDictionary(x => x.Key, x => (EffectData)x.Value);
         gameDataSet.abilityDataDictionary = getDataObjectDictionary("Data/Abilities", typeof(AbilityData)).ToDictionary(x => x.Key, x => (AbilityData)x.Value);
         gameDataSet.gameCharacterDataDictionary = getDataObjectDictionary("Data/GameCharacters", typeof(GameCharacterData)).ToDictionary(x => x.Key, x => (GameCharacterData)x.Value);
+
+        gameDataSet.talentTreeDataDictionary = getDataObjectDictionary("Data/TalentTree", typeof(TalentTreeData)).ToDictionary(x => x.Key, x => (TalentTreeData)x.Value);
     }
 
     private Dictionary<long, object> getDataObjectDictionary(string assetName, Type dataType)

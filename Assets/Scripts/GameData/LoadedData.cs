@@ -19,7 +19,7 @@ namespace UnityRPG
         public Dictionary<long, AbilityData> abilityDataDictionary { get; set; }
 
         public Dictionary<long, GameCharacterData> gameCharacterDataDictionary { get; set; }
-        public Dictionary<long, TalentTreeData> talenTreeDataDictionary { get; set; }
+        public Dictionary<long, TalentTreeData> talentTreeDataDictionary { get; set; }
     }
 
     public class EffectData
