@@ -13,6 +13,9 @@ public class CharacterScreenController : MonoBehaviour {
     public Text EnduranceStatText;
     public Text SpiritStatText;
 
+    public Slider HPSlider;
+    public Slider XPSlider;
+
     public Text XPText;
     public Text HPText;
 
@@ -40,6 +43,8 @@ public class CharacterScreenController : MonoBehaviour {
     private void UpdateUI()
     {
 
+        var player = gameDataObject.playerGameCharacter;
+
         LevelText.text = gameDataObject.playerGameCharacter.level.ToString();
 
         StrengthStatText.text = gameDataObject.playerGameCharacter.strength.ToString();
@@ -52,6 +57,10 @@ public class CharacterScreenController : MonoBehaviour {
 
         ACText.text = gameDataObject.playerGameCharacter.ac.ToString();
         APText.text = gameDataObject.playerGameCharacter.ap.ToString();
+
+        HPSlider.value = (float)player.hp / (float)player.totalHP;
+
+        XPSlider.value = player.xpLevelPercent;
 
     }
 

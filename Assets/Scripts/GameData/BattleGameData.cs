@@ -9,7 +9,6 @@ namespace UnityRPG
 {
     public class BattleGameData
     {
-
         public List<GameCharacter> gameCharacterList { get; set; }
         public TileMapData tileMapData { get; set; }
 

@@ -41,8 +41,11 @@ namespace UnityRPG
 
         public static float getLevelProgressPercent(int level, long currentXP)
         {
-            //TODO: IMPLEMENT ME
-            return 0.0f;
+            var prevLevel = level-1;
+            if(prevLevel <0) prevLevel = 0;
+            var prevLevelXP = xpTable[prevLevel];
+            var nextLevelXP = xpTable[level];
+            return (float)(currentXP - prevLevelXP) / (float)(nextLevelXP - prevLevelXP);
         }
 
         //give counters for each level gained with the xp

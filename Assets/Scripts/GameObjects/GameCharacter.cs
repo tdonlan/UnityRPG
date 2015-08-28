@@ -77,11 +77,12 @@ namespace UnityRPG
 
         public List<Ability> abilityList { get; set; }
 
-        public long xp { get; set; }
-        public long xpToLevel { get{ return ExperienceHelper.getXPNextLevel(level,xp);} }
         public int level { get; set; }
         public int levelCounter { get; set; } //used to levelUp
-
+        public long xp { get; set; }
+        public long xpToLevel { get{ return ExperienceHelper.getXPNextLevel(level,xp);} }
+        public float xpLevelPercent { get { return ExperienceHelper.getLevelProgressPercent(level, xp); } }
+            
         public GameCharacter()
         {
             inventory = new List<Item>();
