@@ -19,6 +19,7 @@ namespace UnityRPG
         public Dictionary<long, AbilityData> abilityDataDictionary { get; set; }
 
         public Dictionary<long, GameCharacterData> gameCharacterDataDictionary { get; set; }
+        public Dictionary<long, TalentTreeData> talenTreeDataDictionary { get; set; }
     }
 
     public class EffectData
@@ -62,6 +63,7 @@ namespace UnityRPG
         public long ID { get; set; }
         public long AbilityID { get; set; }
         public int tier { get; set; }
+        public string tag { get; set; }
         public int levelReq {get;set;}
         public List<long> abilityReqs { get; set; }
     }

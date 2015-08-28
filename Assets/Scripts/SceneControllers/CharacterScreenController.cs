@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class CharacterScreenController : MonoBehaviour {
 
+    Camera mainCamera;
+
     public GameDataObject gameDataObject;
 
     public Text LevelText;
@@ -22,10 +24,20 @@ public class CharacterScreenController : MonoBehaviour {
     public Text ACText;
     public Text APText;
 
+    public Text StatPointText;
+    public Text TalentPointText;
+
+    //Prefab
+    public GameObject hoverPopupPrefab;
+
+    private GameObject hoverPopup;
+
 	// Use this for initialization
 	void Start () {
 
         loadGameData();
+        InitPrefabs();
+
         UpdateUI();
 
 	}
@@ -33,6 +45,12 @@ public class CharacterScreenController : MonoBehaviour {
     private void loadGameData()
     {
         gameDataObject = GameObject.FindObjectOfType<GameDataObject>();
+    }
+
+    private void InitPrefabs()
+    {
+        mainCamera = GameObject.FindObjectOfType<Camera>().GetComponent<Camera>();
+        hoverPopupPrefab = Resources.Load<GameObject>("Prefabs/HoverPopupPrefab");
     }
 	
 	// Update is called once per frame
@@ -62,6 +80,9 @@ public class CharacterScreenController : MonoBehaviour {
 
         XPSlider.value = player.xpLevelPercent;
 
+        StatPointText.text = player.statPoints.ToString();
+        TalentPointText.text = player.talentPoints.ToString();
+
     }
 
     public void addXP()
@@ -73,22 +94,30 @@ public class CharacterScreenController : MonoBehaviour {
 
     public void addStat(int statType)
     {
-        switch ((StatType)statType)
+        var player = gameDataObject.playerGameCharacter;
+        if (player.statPoints > 0)
         {
-            case StatType.Strength:
-               gameDataObject.playerGameCharacter.strength++; 
-                break;
-            case StatType.Agility:
-              gameDataObject.playerGameCharacter.agility++; 
-                break;
-            case StatType.Endurance:
-               gameDataObject.playerGameCharacter.endurance++; 
-                break;
-            case StatType.Spirit:
-             gameDataObject.playerGameCharacter.spirit++; 
-                break;
-            default:
-                break;
+            switch ((StatType)statType)
+            {
+                case StatType.Strength:
+                    gameDataObject.playerGameCharacter.strength++;
+                    player.statPoints--;
+                    break;
+                case StatType.Agility:
+                    gameDataObject.playerGameCharacter.agility++;
+                    player.statPoints--;
+                    break;
+                case StatType.Endurance:
+                    gameDataObject.playerGameCharacter.endurance++;
+                    player.statPoints--;
+                    break;
+                case StatType.Spirit:
+                    gameDataObject.playerGameCharacter.spirit++;
+                    player.statPoints--;
+                    break;
+                default:
+                    break;
+            }
         }
         UpdateUI();
     }
@@ -115,5 +144,23 @@ public class CharacterScreenController : MonoBehaviour {
         UpdateUI();
 
     }
-    
+
+    public void HoverTalentTree(int index)
+    {
+        if (hoverPopup == null)
+        {
+            hoverPopup = Instantiate(hoverPopupPrefab);
+            hoverPopup.transform.SetParent(gameObject.transform);
+        }
+        hoverPopup.transform.position = new Vector3(Input.mousePosition.x-.1f, Input.mousePosition.y-.1f, 0);
+    }
+
+    public void RemoveHoverTalentTree()
+    {
+        if (hoverPopup != null)
+        {
+            Destroy(hoverPopup);
+            hoverPopup = null;
+        }
+    }
 }

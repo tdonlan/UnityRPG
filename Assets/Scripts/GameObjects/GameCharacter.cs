@@ -78,7 +78,8 @@ namespace UnityRPG
         public List<Ability> abilityList { get; set; }
 
         public int level { get; set; }
-        public int levelCounter { get; set; } //used to levelUp
+        public int talentPoints { get; set; }
+        public int statPoints { get; set; }
         public long xp { get; set; }
         public long xpToLevel { get{ return ExperienceHelper.getXPNextLevel(level,xp);} }
         public float xpLevelPercent { get { return ExperienceHelper.getLevelProgressPercent(level, xp); } }
@@ -354,10 +355,12 @@ namespace UnityRPG
 
         public void getXP(long addXP)
         {
-            this.levelCounter = ExperienceHelper.getLevelUpCounter(level, xp, addXP);
+            var levelCounter =  ExperienceHelper.getLevelUpCounter(level, xp, addXP);
             if (levelCounter > 0)
             {
                 level += levelCounter;
+                talentPoints += levelCounter;
+                statPoints += levelCounter;
             }
             this.xp += addXP;
 

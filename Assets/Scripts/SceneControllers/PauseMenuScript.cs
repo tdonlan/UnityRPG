@@ -53,7 +53,6 @@ public class PauseMenuScript : MonoBehaviour {
     {
         TextLevel.text = gameDataObject.playerGameCharacter.level.ToString();
         TextXP.text = gameDataObject.playerGameCharacter.xp.ToString() + " / " + gameDataObject.playerGameCharacter.xpToLevel.ToString() ;
-        TextLevelCounter.text = gameDataObject.playerGameCharacter.levelCounter.ToString();
     }
 
     public void CloseMenu()
