@@ -58,6 +58,29 @@ namespace UnityRPG
         public int spriteindex { get; set; }
     }
 
+    //View Model object used for displaying the talen tree - combines talent Tree, ability data, and player's owned abilities
+    public class TalentTreeDisplayData
+    {
+        public long ID { get; set; }
+        public long AbilityID { get; set; }
+        public string AbilityName { get; set; }
+        public string AbilityDescription { get; set; }
+        public int AP { get; set; }
+        public int uses { get; set; }
+        public int range { get; set; }
+        public AbilityTargetType targetType { get; set; }
+        public TilePatternType tilePatternType { get; set; }
+        public List<string> effectDescriptionList { get; set; }
+
+        public bool unlocked { get; set; }
+        public bool owned { get; set; }
+
+        public int tier { get; set; }
+        public string tag { get; set; }
+        public int levelReq { get; set; }
+        public List<string> abilityReqNameList { get; set; }
+    }
+
     public class TalentTreeData
     {
         public long ID { get; set; }

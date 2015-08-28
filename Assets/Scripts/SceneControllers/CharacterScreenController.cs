@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
+
+using UnityRPG;
 
 public class CharacterScreenController : MonoBehaviour {
 
@@ -27,6 +30,8 @@ public class CharacterScreenController : MonoBehaviour {
     public Text StatPointText;
     public Text TalentPointText;
 
+    public List<TalentTreeDisplayData> talentTreeDisplayDataList;
+
     //Prefab
     public GameObject hoverPopupPrefab;
 
@@ -45,6 +50,7 @@ public class CharacterScreenController : MonoBehaviour {
     private void loadGameData()
     {
         gameDataObject = GameObject.FindObjectOfType<GameDataObject>();
+        talentTreeDisplayDataList = gameDataObject.getTalentTreeDisplayData();
     }
 
     private void InitPrefabs()
@@ -52,7 +58,7 @@ public class CharacterScreenController : MonoBehaviour {
         mainCamera = GameObject.FindObjectOfType<Camera>().GetComponent<Camera>();
         hoverPopupPrefab = Resources.Load<GameObject>("Prefabs/HoverPopupPrefab");
     }
-	
+
 	// Update is called once per frame
 	void Update () {
       
@@ -84,6 +90,8 @@ public class CharacterScreenController : MonoBehaviour {
         TalentPointText.text = player.talentPoints.ToString();
 
     }
+
+  
 
     public void addXP()
     {
@@ -122,6 +130,7 @@ public class CharacterScreenController : MonoBehaviour {
         UpdateUI();
     }
 
+    //Currently unused - need to keep track of spent points, only refund what we used for this level.
     public void minusStat(int statType)
     {
         switch ((StatType)statType)

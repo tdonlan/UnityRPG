@@ -134,11 +134,98 @@ public class GameDataObject : MonoBehaviour
                 {
                     playerGameCharacter.inventory.Add(item);
                 }
-                 
             }
-            
         }
     }
 
+    //TODO: pass in the character to use to construct player ownership
+    public List<TalentTreeDisplayData> getTalentTreeDisplayData()
+    {
+        List<TalentTreeDisplayData> talentTreeDisplayList = new List<TalentTreeDisplayData>();
+
+        foreach (var talentData in gameDataSet.talentTreeDataDictionary.Values) {
+            var abilityData = gameDataSet.abilityDataDictionary[talentData.AbilityID];
+            bool playerOwned = (playerGameCharacter.abilityList.Where(x => x.ID == abilityData.ID).Count() > 0 )? true : false;
+            TalentTreeDisplayData tempTT = new TalentTreeDisplayData() { 
+                ID = talentData.ID,
+                AbilityID = abilityData.ID,
+                AbilityDescription = abilityData.description,
+                AbilityName = abilityData.name,
+                AP = abilityData.ap,
+                levelReq = talentData.levelReq,
+                owned = playerOwned,
+                unlocked = getPlayerUnlocked(playerGameCharacter,talentData.levelReq,talentData.abilityReqs),
+                range = abilityData.range,
+                tag = talentData.tag,
+                targetType = abilityData.targetType,
+                tier = talentData.tier,
+                uses = abilityData.uses,
+                tilePatternType = abilityData.tilePatternType,
+                abilityReqNameList = getAbilityNameList(talentData.abilityReqs),
+                effectDescriptionList = getEffectsDescriptionList(abilityData.passiveEffects,abilityData.activeEffects)
+            };
+
+            talentTreeDisplayList.Add(tempTT);
+        
+        }
+        return talentTreeDisplayList;
+    }
+
+    private bool getPlayerUnlocked(GameCharacter playerCharacter, int levelReq, List<long> abilityReq)
+    {
+        bool retval = true;
+        if (playerCharacter.level < levelReq)
+        {
+            retval = false;
+        }
+
+        foreach (var abilityID in abilityReq)
+        {
+            if (playerCharacter.abilityList.Where(x => x.ID == abilityID).Count() == 0)
+            {
+                retval = false;
+            }
+        }
+
+        return retval;
+    }
+
+    private List<string> getAbilityNameList(List<long> abilityIDList)
+    {
+        List<string> abilityNameList = new List<string>();
+        foreach (var id in abilityIDList)
+        {
+            var abilityData = gameDataSet.abilityDataDictionary[id];
+            if(abilityData != null){
+                abilityNameList.Add(abilityData.name);
+            }
+        }
+        return abilityNameList;
+    }
+
+    private List<string> getEffectsDescriptionList(List<long> passiveEffects, List<long> activeEffects)
+    {
+        List<string> effectsDescriptionList = new List<string>();
+        foreach (var ID in passiveEffects)
+        {
+            EffectData efData = gameDataSet.effectDataDictionary[ID];
+            if (efData != null)
+            {
+               
+                string tempStr = string.Format("{0}: {1}-{2}",efData.statType.ToString(),efData.minAmount.ToString(),efData.maxAmount.ToString());
+            }
+        }
+
+        foreach (var ID in activeEffects)
+        {
+            EffectData efData = gameDataSet.effectDataDictionary[ID];
+            if (efData != null)
+            {
+                string tempStr = string.Format("{0}: {1}-{2} for {3} rnds.", efData.statType.ToString(), efData.minAmount.ToString(), efData.maxAmount.ToString(),efData.duration.ToString());
+            }
+        }
+
+         return effectsDescriptionList;
+    }
 }
 
