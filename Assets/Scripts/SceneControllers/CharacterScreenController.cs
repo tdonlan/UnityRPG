@@ -52,7 +52,7 @@ public class CharacterScreenController : MonoBehaviour {
 	void Start () {
 
         loadGameData();
-        sortTalentTreeDisplayList();
+        loadTalentTreeData();
         InitPrefabs();
 
         UpdateUI();
@@ -63,13 +63,18 @@ public class CharacterScreenController : MonoBehaviour {
     private void loadGameData()
     {
         gameDataObject = GameObject.FindObjectOfType<GameDataObject>();
+    }
 
+    private void loadTalentTreeData()
+    {
         talentTreeDisplayDataList = gameDataObject.getTalentTreeDisplayData();
         talentTagList = talentTreeDisplayDataList.Select(x => x.tag).Distinct().ToList();
-        if (talentTagList.Count > 0)
+        if (selectedTag == null && talentTagList.Count > 0)
         {
-            selectedTag = talentTagList[0];
+                selectedTag = talentTagList[0];
         }
+        
+        sortedTalentTreeDisplayDataList = talentTreeDisplayDataList.Where(x => x.tag.Equals(selectedTag)).ToList();
     }
 
     private void InitPrefabs()
@@ -83,12 +88,31 @@ public class CharacterScreenController : MonoBehaviour {
       
     }
 
+    public void SelectTalentIcon(object talentTreeDataObject)
+    {
+        TalentTreeDisplayData tt = (TalentTreeDisplayData)talentTreeDataObject;
+        if (tt.unlocked && !tt.owned)
+        {
+            if (gameDataObject.playerGameCharacter.talentPoints > 0)
+            {
+                var abilityData = gameDataObject.gameDataSet.abilityDataDictionary[tt.AbilityID];
+                gameDataObject.playerGameCharacter.abilityList.Add(AbilityFactory.getAbilityFromAbilityData(abilityData, gameDataObject.gameDataSet.effectDataDictionary));
+                gameDataObject.playerGameCharacter.talentPoints--;
+
+                loadTalentTreeData();
+                UpdateUI();
+                UpdateTalentTree();
+            }
+        }
+    }
+
     public void SelectTalentTag(string tagName)
     {
         selectedTag = tagName;
         sortTalentTreeDisplayList();
         UpdateTalentTree();
     }
+
 
     private void sortTalentTreeDisplayList()
     {
@@ -176,7 +200,21 @@ public class CharacterScreenController : MonoBehaviour {
             UIHelper.AddClickToGameObject(talentTreeIcon, HoverTalentTree, EventTriggerType.PointerEnter, (object)tt);
             UIHelper.AddClickToGameObject(talentTreeIcon, RemoveHoverTalentTree, EventTriggerType.PointerExit);
 
-     
+            UIHelper.AddClickToGameObject(talentTreeIcon, SelectTalentIcon, EventTriggerType.PointerClick, (object)tt);
+
+            var panelImage = talentTreeIcon.GetComponent<Image>();
+            
+            if(tt.owned){
+                panelImage.color = Color.green;
+            }
+            else if (tt.unlocked)
+            {
+                panelImage.color = Color.blue;
+            }
+            else
+            {
+                panelImage.color = Color.gray;
+            }
 
             if(tt.tier <=6 && tt.tier >= 1){
              
