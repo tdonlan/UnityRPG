@@ -151,6 +151,8 @@ public class GameDataObject : MonoBehaviour
                 AbilityID = abilityData.ID,
                 AbilityDescription = abilityData.description,
                 AbilityName = abilityData.name,
+                SpriteSheetName = abilityData.sheetname,
+                SpriteSheetIndex = abilityData.spriteindex,
                 AP = abilityData.ap,
                 levelReq = talentData.levelReq,
                 owned = playerOwned,

@@ -65,6 +65,9 @@ namespace UnityRPG
         public long AbilityID { get; set; }
         public string AbilityName { get; set; }
         public string AbilityDescription { get; set; }
+        public string SpriteSheetName { get; set; }
+        public int SpriteSheetIndex { get; set; }
+        
         public int AP { get; set; }
         public int uses { get; set; }
         public int range { get; set; }
