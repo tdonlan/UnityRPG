@@ -15,6 +15,10 @@ using System.Linq;
 public class EquipmentControllerScript : MonoBehaviour {
 
 
+    public GameObject CharacterScreen;
+    public GameObject InfoScreen;
+    public GameObject EquipmentScreen;
+
     public GameDataObject gameDataObject { get; set; }
 
     public AssetLibrary assetLibrary { get; set; } 
@@ -26,6 +30,7 @@ public class EquipmentControllerScript : MonoBehaviour {
 	void Start () {
 
         loadGameData();
+        initScreens();
 
         this.assetLibrary = gameDataObject.assetLibrary;
 
@@ -37,6 +42,13 @@ public class EquipmentControllerScript : MonoBehaviour {
     private void loadGameData()
     {
         gameDataObject = GameObject.FindObjectOfType<GameDataObject>();
+    }
+
+    private void initScreens()
+    {
+        CharacterScreen = GameObject.FindGameObjectWithTag("CharacterScreen");
+        InfoScreen = GameObject.FindGameObjectWithTag("PauseMenu");
+        EquipmentScreen = this.gameObject;
     }
 
     public void RefreshEquipment()
@@ -294,6 +306,28 @@ public class EquipmentControllerScript : MonoBehaviour {
 
         LoadCharacterStats();
         LoadDisplayArmor((int)armor.armorType);
+    }
+
+
+    public void ShowInfoScreen()
+    {
+        InfoScreen.transform.localPosition = new Vector3(0, 0, 0);
+        CharacterScreen.transform.localPosition = new Vector3(10000, 10000, 0);
+        EquipmentScreen.transform.localPosition = new Vector3(10000, 10000, 0);
+    }
+
+    public void ShowEquipmentScreen()
+    {
+        EquipmentScreen.transform.localPosition = new Vector3(0, 0, 0);
+        CharacterScreen.transform.localPosition = new Vector3(10000, 10000, 0);
+        InfoScreen.transform.localPosition = new Vector3(10000, 10000, 0);
+    }
+
+    public void ShowCharacterScreen()
+    {
+        CharacterScreen.transform.localPosition = new Vector3(0, 0, 0);
+        EquipmentScreen.transform.localPosition = new Vector3(10000, 10000, 0);
+        InfoScreen.transform.localPosition = new Vector3(10000, 10000, 0);
     }
 
    

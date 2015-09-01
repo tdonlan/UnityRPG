@@ -11,6 +11,11 @@ public class CharacterScreenController : MonoBehaviour {
 
     Camera mainCamera;
 
+    public GameObject CharacterScreen;
+    public GameObject InfoScreen;
+    public GameObject EquipmentScreen;
+
+
     public GameDataObject gameDataObject;
 
     public Text LevelText;
@@ -54,6 +59,7 @@ public class CharacterScreenController : MonoBehaviour {
         loadGameData();
         loadTalentTreeData();
         InitPrefabs();
+        initScreens();
 
         UpdateUI();
         UpdateTalentTags();
@@ -86,6 +92,15 @@ public class CharacterScreenController : MonoBehaviour {
 
         TalentDisplayPanelList.AddRange( GameObject.FindGameObjectsWithTag("TalentDisplayPanel"));
         TalentDisplayPanelList = TalentDisplayPanelList.OrderBy(x => x.name).ToList();
+
+       
+    }
+
+    private void initScreens()
+    {
+        CharacterScreen = this.gameObject;
+        InfoScreen = GameObject.FindGameObjectWithTag("PauseMenu");
+        EquipmentScreen = GameObject.FindGameObjectWithTag("EquipPanel");
     }
 
     public void SelectTalentIcon(object talentTreeDataObject)
@@ -322,5 +337,26 @@ public class CharacterScreenController : MonoBehaviour {
             Destroy(hoverPopup);
             hoverPopup = null;
         }
+    }
+
+    public void ShowInfoScreen()
+    {
+        InfoScreen.transform.localPosition = new Vector3(0, 0, 0);
+        CharacterScreen.transform.localPosition = new Vector3(10000, 10000, 0);
+        EquipmentScreen.transform.localPosition = new Vector3(10000, 10000, 0);
+    }
+
+    public void ShowEquipmentScreen()
+    {
+        EquipmentScreen.transform.localPosition = new Vector3(0, 0, 0);
+        CharacterScreen.transform.localPosition = new Vector3(10000, 10000, 0);
+        InfoScreen.transform.localPosition = new Vector3(10000, 10000, 0);
+    }
+
+    public void ShowCharacterScreen()
+    {
+        CharacterScreen.transform.localPosition = new Vector3(0, 0, 0);
+        EquipmentScreen.transform.localPosition = new Vector3(10000, 10000, 0);
+        InfoScreen.transform.localPosition = new Vector3(10000, 10000, 0);
     }
 }

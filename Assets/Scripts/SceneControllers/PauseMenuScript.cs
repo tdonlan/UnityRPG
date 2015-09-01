@@ -6,6 +6,11 @@ using System.Collections.Generic;
 
 public class PauseMenuScript : MonoBehaviour {
 
+
+    public GameObject CharacterScreen;
+    public GameObject InfoScreen;
+    public GameObject EquipmentScreen;
+
     public GameDataObject gameDataObject;
     public RectTransform panelRectTransform;
     public Text ZoneInfoText;
@@ -22,6 +27,7 @@ public class PauseMenuScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         initRefs();
+        initScreens();
 	}
 
     private void initRefs()
@@ -34,6 +40,14 @@ public class PauseMenuScript : MonoBehaviour {
 
         panelRectTransform = gameObject.GetComponent<RectTransform>();
 
+    }
+
+
+    private void initScreens()
+    {
+        CharacterScreen = GameObject.FindGameObjectWithTag("CharacterScreen");
+        InfoScreen = this.gameObject;
+        EquipmentScreen = GameObject.FindGameObjectWithTag("EquipPanel");
     }
 
 	// Update is called once per frame
@@ -114,5 +128,26 @@ public class PauseMenuScript : MonoBehaviour {
         gameDataObject.playerGameCharacter.getXP(25);
 
         UpdateXP();
+    }
+
+    public void ShowInfoScreen()
+    {
+        InfoScreen.transform.localPosition = new Vector3(0, 0, 0);
+        CharacterScreen.transform.localPosition = new Vector3(10000, 10000, 0);
+        EquipmentScreen.transform.localPosition = new Vector3(10000, 10000, 0);
+    }
+
+    public void ShowEquipmentScreen()
+    {
+        EquipmentScreen.transform.localPosition = new Vector3(0, 0, 0);
+        CharacterScreen.transform.localPosition = new Vector3(10000, 10000, 0);
+        InfoScreen.transform.localPosition = new Vector3(10000, 10000, 0);
+    }
+
+    public void ShowCharacterScreen()
+    {
+        CharacterScreen.transform.localPosition = new Vector3(0, 0, 0);
+        EquipmentScreen.transform.localPosition = new Vector3(10000, 10000, 0);
+        InfoScreen.transform.localPosition = new Vector3(10000, 10000, 0);
     }
 }
