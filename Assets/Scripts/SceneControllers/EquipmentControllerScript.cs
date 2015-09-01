@@ -15,27 +15,31 @@ using System.Linq;
 public class EquipmentControllerScript : MonoBehaviour {
 
 
-    public GameObject gameController;
-    private BattleSceneControllerScript gameControllerScript;
+    public GameDataObject gameDataObject { get; set; }
 
     public AssetLibrary assetLibrary { get; set; } 
 
-    public BattleGame battleGame { get; set; }
 
     List<GameObject> displayEquipList { get; set; }
 
 	// Use this for initialization
 	void Start () {
 
-        this.gameControllerScript = (BattleSceneControllerScript)gameController.GetComponent<BattleSceneControllerScript>();
+        loadGameData();
 
-        this.assetLibrary = gameControllerScript.gameDataObject.assetLibrary;
 
-        this.battleGame = gameControllerScript.battleGame;
+        this.assetLibrary = gameDataObject.assetLibrary;
+
 
         LoadCharacterStats();
         ClearCurrentEquip();
 	}
+
+
+    private void loadGameData()
+    {
+        gameDataObject = GameObject.FindObjectOfType<GameDataObject>();
+    }
 
     public void RefreshEquipment()
     {
@@ -46,16 +50,16 @@ public class EquipmentControllerScript : MonoBehaviour {
 
     public void LoadCharacterStats()
     {
-        if (battleGame.ActiveCharacter != null)
+        if (gameDataObject.playerGameCharacter != null)
         {
 
-            var ac = battleGame.ActiveCharacter;
+            var ac = gameDataObject.playerGameCharacter;
 
             var charPanel = GameObject.FindGameObjectWithTag("CharacterPanel");
 
             UIHelper.UpdateSpriteComponent(charPanel, "CharImage", assetLibrary.getSprite(ac.characterSpritesheetName, ac.characterSpriteIndex));
-            UIHelper.UpdateTextComponent(charPanel, "CharNameText", battleGame.ActiveCharacter.name);
-            UIHelper.UpdateTextComponent(charPanel, "CharStats", battleGame.ActiveCharacter.ToString());
+            UIHelper.UpdateTextComponent(charPanel, "CharNameText", gameDataObject.playerGameCharacter.name);
+            UIHelper.UpdateTextComponent(charPanel, "CharStats", gameDataObject.playerGameCharacter.ToString());
         }
     
     }
@@ -79,11 +83,11 @@ public class EquipmentControllerScript : MonoBehaviour {
     {
         var currentEquipPanel = GameObject.FindGameObjectWithTag("EquipLeftPanel");
 
-        
-        if (battleGame.ActiveCharacter.weapon != null)
+
+        if (gameDataObject.playerGameCharacter.weapon != null)
         {
 
-            var wep = battleGame.ActiveCharacter.weapon;
+            var wep = gameDataObject.playerGameCharacter.weapon;
             UIHelper.UpdateTextComponent(currentEquipPanel, "EquipName", wep.name);
             UIHelper.UpdateTextComponent(currentEquipPanel, "EquipType", wep.weaponType.ToString());
             UIHelper.UpdateTextComponent(currentEquipPanel, "EquipStats", wep.ToString());
@@ -98,10 +102,10 @@ public class EquipmentControllerScript : MonoBehaviour {
     public void LoadCurrentAmmo()
     {
         var currentEquipPanel = GameObject.FindGameObjectWithTag("EquipLeftPanel");
-        if (battleGame.ActiveCharacter.Ammo != null)
+        if (gameDataObject.playerGameCharacter.Ammo != null)
         {
 
-            var item = battleGame.ActiveCharacter.getInventoryItembyItemID(battleGame.ActiveCharacter.Ammo.itemID);
+            var item = gameDataObject.playerGameCharacter.getInventoryItembyItemID(gameDataObject.playerGameCharacter.Ammo.itemID);
             var itemAmmo = (Ammo)item;
             UIHelper.UpdateTextComponent(currentEquipPanel, "EquipName", item.name);
             UIHelper.UpdateTextComponent(currentEquipPanel, "EquipType", itemAmmo.ammoType.ToString());
@@ -118,7 +122,7 @@ public class EquipmentControllerScript : MonoBehaviour {
     {
         var currentEquipPanel = GameObject.FindGameObjectWithTag("EquipLeftPanel");
 
-        var armor = battleGame.ActiveCharacter.getArmorInSlot(armorType);
+        var armor = gameDataObject.playerGameCharacter.getArmorInSlot(armorType);
         if (armor != null)
         {
             UIHelper.UpdateTextComponent(currentEquipPanel, "EquipName", armor.name);
@@ -144,7 +148,7 @@ public class EquipmentControllerScript : MonoBehaviour {
         GameObject rightEquipPanel = GameObject.FindGameObjectWithTag("EquipRightPanelContent");
         UIHelper.DestroyAllChildren(rightEquipPanel.transform);
 
-        var armorList = from data in battleGame.ActiveCharacter.inventory
+        var armorList = from data in gameDataObject.playerGameCharacter.inventory
                         where data.type == ItemType.Armor
                         select data;
 
@@ -176,7 +180,7 @@ public class EquipmentControllerScript : MonoBehaviour {
 
         UIHelper.DestroyAllChildren(rightEquipPanel.transform);
 
-        var weaponList = from data in battleGame.ActiveCharacter.inventory
+        var weaponList = from data in gameDataObject.playerGameCharacter.inventory
                         where data.type == ItemType.Weapon
                         select data;
 
@@ -203,13 +207,13 @@ public class EquipmentControllerScript : MonoBehaviour {
         GameObject rightEquipPanel = GameObject.FindGameObjectWithTag("EquipRightPanelContent");
         UIHelper.DestroyAllChildren(rightEquipPanel.transform);
 
-        var ammoList = from data in battleGame.ActiveCharacter.inventory
+        var ammoList = from data in gameDataObject.playerGameCharacter.inventory
                          where data.type == ItemType.Ammo
                          select data;
 
         foreach (var a in ammoList)
         {
-            ItemSet ammoSet = ItemHelper.getItemSet(battleGame.ActiveCharacter.inventory,a);
+            ItemSet ammoSet = ItemHelper.getItemSet(gameDataObject.playerGameCharacter.inventory, a);
             GameObject tempObj = (GameObject)Instantiate(equipPrefab);
             updateAmmoGameObject(tempObj, ammoSet);
             UIHelper.AddClickToGameObject(tempObj, SelectAmmo, EventTriggerType.PointerClick, a);
@@ -265,8 +269,8 @@ public class EquipmentControllerScript : MonoBehaviour {
     public void SelectWeapon(System.Object wepObj)
     {
         Weapon w = (Weapon)wepObj;
-        battleGame.ActiveCharacter.RemoveWeapon(battleGame.ActiveCharacter.weapon);
-        battleGame.ActiveCharacter.EquipWeapon(w);
+        gameDataObject.playerGameCharacter.RemoveWeapon(gameDataObject.playerGameCharacter.weapon);
+        gameDataObject.playerGameCharacter.EquipWeapon(w);
 
 
         LoadCharacterStats();
@@ -277,8 +281,8 @@ public class EquipmentControllerScript : MonoBehaviour {
     {
         Ammo a = (Ammo)ammoObj;
 
-        battleGame.ActiveCharacter.RemoveAmmo();
-        battleGame.ActiveCharacter.EquipAmmo(a);
+        gameDataObject.playerGameCharacter.RemoveAmmo();
+        gameDataObject.playerGameCharacter.EquipAmmo(a);
 
         LoadCharacterStats();
         LoadDisplayAmmo();
@@ -288,8 +292,8 @@ public class EquipmentControllerScript : MonoBehaviour {
     {
         Armor armor = (Armor)armorObj;
 
-        battleGame.ActiveCharacter.RemoveArmorInSlot(armor.armorType);
-        battleGame.ActiveCharacter.EquipArmor(armor);
+        gameDataObject.playerGameCharacter.RemoveArmorInSlot(armor.armorType);
+        gameDataObject.playerGameCharacter.EquipArmor(armor);
 
 
         LoadCharacterStats();
