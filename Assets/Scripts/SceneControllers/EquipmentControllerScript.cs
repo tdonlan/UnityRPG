@@ -139,7 +139,7 @@ public class EquipmentControllerScript : MonoBehaviour {
         LoadCurrentArmor((ArmorType)armorType);
 
         displayEquipList = new List<GameObject>();
-        GameObject equipPrefab = Resources.Load<GameObject>("Prefab/EquipPrefab");
+        GameObject equipPrefab = Resources.Load<GameObject>("PrefabUI/EquipPrefab");
 
         GameObject rightEquipPanel = GameObject.FindGameObjectWithTag("EquipRightPanelContent");
         UIHelper.DestroyAllChildren(rightEquipPanel.transform);
@@ -170,7 +170,7 @@ public class EquipmentControllerScript : MonoBehaviour {
 
         displayEquipList = new List<GameObject>();
 
-        GameObject equipPrefab = Resources.Load<GameObject>("Prefab/EquipPrefab");
+        GameObject equipPrefab = Resources.Load<GameObject>("PrefabUI/EquipPrefab");
 
         GameObject rightEquipPanel = GameObject.FindGameObjectWithTag("EquipRightPanelContent");
 
@@ -198,7 +198,7 @@ public class EquipmentControllerScript : MonoBehaviour {
         LoadCurrentAmmo();
 
         displayEquipList = new List<GameObject>();
-        GameObject equipPrefab = Resources.Load<GameObject>("Prefab/EquipPrefab");
+        GameObject equipPrefab = Resources.Load<GameObject>("PrefabUI/EquipPrefab");
 
         GameObject rightEquipPanel = GameObject.FindGameObjectWithTag("EquipRightPanelContent");
         UIHelper.DestroyAllChildren(rightEquipPanel.transform);

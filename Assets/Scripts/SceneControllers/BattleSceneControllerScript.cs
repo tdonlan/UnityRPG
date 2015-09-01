@@ -115,8 +115,7 @@ public class BattleSceneControllerScript : MonoBehaviour
                     SelectedTile.transform.position = pos;
 
                     renderer.sprite = Resources.Load<Sprite>("Sprites/highlightTile 1");
-                }
-                       
+                }   
             }
         }
     }
@@ -157,13 +156,13 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     private void LoadPrefabs()
     {
-        ItemPrefab = Resources.Load<GameObject>("Prefab/ItemPrefab");
-        AbilityItemPrefab = Resources.Load<GameObject>("Prefab/AbilityPrefab");
-        InitPrefab = Resources.Load<GameObject>("Prefab/BattleInitiativePanelPrefab");
-        HoverPrefab = Resources.Load<GameObject>("Prefab/HoverPrefab");
+        ItemPrefab = Resources.Load<GameObject>("PrefabUI/BattleItemPrefab");
+        AbilityItemPrefab = Resources.Load<GameObject>("PrefabUI/BattleAbilityPrefab");
+        InitPrefab = Resources.Load<GameObject>("PrefabUI/BattleInitiativePanelPrefab");
+        HoverPrefab = Resources.Load<GameObject>("PrefabUI/BattleHoverPrefab");
 
-        CharacterPrefab = Resources.Load<GameObject>("Prefab/CharacterPrefab");
-        CharacterPrefab2 = Resources.Load<GameObject>("Prefab/CharacterPrefab2");
+        //CharacterPrefab = Resources.Load<GameObject>("Prefab/CharacterPrefab");
+        CharacterPrefab2 = Resources.Load<GameObject>("PrefabGame/CharacterPrefab2");
 
         InitiativePanel = GameObject.FindGameObjectWithTag("InitiativePanel");
 

@@ -71,7 +71,7 @@ public class GameDataObject : MonoBehaviour
 
     private void loadTreeStore()
     {
-        TextAsset manifestTextAsset = Resources.Load<TextAsset>("SimpleWorld1/manifestSimple");
+        TextAsset manifestTextAsset = Resources.Load<TextAsset>("Data/SimpleWorld1/manifestSimple");
         this.treeStore = SimpleTreeParser.LoadTreeStoreFromSimpleManifest(manifestTextAsset.text);
     }
 

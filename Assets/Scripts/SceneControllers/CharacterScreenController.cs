@@ -80,9 +80,9 @@ public class CharacterScreenController : MonoBehaviour {
     private void InitPrefabs()
     {
         mainCamera = GameObject.FindObjectOfType<Camera>().GetComponent<Camera>();
-        hoverPopupPrefab = Resources.Load<GameObject>("Prefabs/HoverPopupPrefab");
-        talentTreeIconPrefab = Resources.Load<GameObject>("Prefabs/TalentTreePrefab");
-        talentTagPrefab = Resources.Load<GameObject>("Prefabs/TalentTagPrefab");
+        hoverPopupPrefab = Resources.Load<GameObject>("PrefabUI/HoverPopupPrefab");
+        talentTreeIconPrefab = Resources.Load<GameObject>("PrefabUI/TalentTreePrefab");
+        talentTagPrefab = Resources.Load<GameObject>("PrefabUI/TalentTagPrefab");
 
         TalentDisplayPanelList.AddRange( GameObject.FindGameObjectsWithTag("TalentDisplayPanel"));
         TalentDisplayPanelList = TalentDisplayPanelList.OrderBy(x => x.name).ToList();

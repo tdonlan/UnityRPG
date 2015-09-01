@@ -98,13 +98,13 @@ public class ZoneControllerScript : MonoBehaviour {
         debugText = GameObject.FindGameObjectWithTag("debugText").GetComponent<Text>();
         panelText = GameObject.FindGameObjectWithTag("PanelText").GetComponent<Text>();
         panelButton = GameObject.FindGameObjectWithTag("PanelButton").GetComponent<Button>();
-        
-        tileSelectPrefab = Resources.Load<GameObject>("Prefabs/TileSelectPrefab");
 
-        spritePrefab = Resources.Load<GameObject>("Prefabs/SpritePrefab");
+        tileSelectPrefab = Resources.Load<GameObject>("PrefabGame/TileSelectPrefab");
 
-        pauseButtonPrefab = Resources.Load<GameObject>("Prefabs/PauseButtonPrefab");
-        pauseMenuPrefab = Resources.Load<GameObject>("Prefabs/PauseMenuPrefab");
+        spritePrefab = Resources.Load<GameObject>("PrefabGame/SpritePrefab");
+
+        pauseButtonPrefab = Resources.Load<GameObject>("PrefabUI/PauseButtonPrefab");
+        pauseMenuPrefab = Resources.Load<GameObject>("PrefabUI/PauseMenuPrefab");
         canvasRectTransform = GameObject.FindObjectOfType<Canvas>().GetComponent<RectTransform>();
 
         treeInfoPanelRectTransform = TreeInfoPanel.GetComponent<RectTransform>();
@@ -148,12 +148,14 @@ public class ZoneControllerScript : MonoBehaviour {
     {
         GameObject spriteObject = null;
         var spriteResource = Resources.Load<Sprite>("ZoneImage/"+spriteName);
-        if(spriteResource != null){
-               spriteObject = Instantiate(spritePrefab);
-              spriteObject.transform.position = pos;
+        if (spriteResource != null)
+        {
+            spriteObject = Instantiate(spritePrefab);
+            spriteObject.transform.position = pos;
             var spriteObjectSprite = spriteObject.GetComponent<SpriteRenderer>();
             spriteObjectSprite.sprite = spriteResource;
         }
+
         return spriteObject;
 
     }

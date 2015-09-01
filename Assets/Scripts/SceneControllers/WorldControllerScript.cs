@@ -57,7 +57,7 @@ public class WorldControllerScript : MonoBehaviour {
     private void initPrefabs()
     {
         uiCanvas = (Canvas)GameObject.FindObjectOfType<Canvas>();
-        worldButtonPrefab = (GameObject)Resources.Load<GameObject>("Prefabs/WorldButtonPrefab");
+        worldButtonPrefab = (GameObject)Resources.Load<GameObject>("PrefabUI/WorldButtonPrefab");
 
         navigationPanel = GameObject.FindGameObjectWithTag("WorldNavigationPanel");
         detailZoneName = GameObject.FindGameObjectWithTag("WorldDetailZoneName");

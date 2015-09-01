@@ -52,7 +52,7 @@ public class DialogControllerScript : MonoBehaviour {
         speakerBox = GameObject.FindGameObjectWithTag("SpeakerText");
         speakerName = GameObject.FindGameObjectWithTag("SpeakerName");
         speakerPortrait = GameObject.FindGameObjectWithTag("SpeakerPortrait");
-        responseButtonPrefab = (GameObject)Resources.Load<GameObject>("Prefabs/ResponseButtonPrefab");
+        responseButtonPrefab = (GameObject)Resources.Load<GameObject>("PrefabUI/ResponseButtonPrefab");
 
         debugText = GameObject.FindGameObjectWithTag("DebugText").GetComponent<Text>();
 
