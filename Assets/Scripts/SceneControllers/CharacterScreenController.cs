@@ -85,7 +85,7 @@ public class CharacterScreenController : MonoBehaviour {
         talentTagPrefab = Resources.Load<GameObject>("Prefabs/TalentTagPrefab");
 
         TalentDisplayPanelList.AddRange( GameObject.FindGameObjectsWithTag("TalentDisplayPanel"));
-      
+        TalentDisplayPanelList = TalentDisplayPanelList.OrderBy(x => x.name).ToList();
     }
 
     public void SelectTalentIcon(object talentTreeDataObject)
@@ -303,7 +303,14 @@ public class CharacterScreenController : MonoBehaviour {
 
             TalentTreeDisplayData tt = (TalentTreeDisplayData)talentTreeDataObject;
             UIHelper.UpdateTextComponent(hoverPopup, "Name", tt.AbilityName);
-            UIHelper.UpdateTextComponent(hoverPopup, "Text1", tt.AbilityDescription);
+            UIHelper.UpdateTextComponent(hoverPopup, "Text1", tt.getDescription());
+            if (!tt.unlocked)
+            {
+                var text2 = hoverPopup.GetComponentsInChildren<Text>()[1];
+                text2.color = Color.red;
+                text2.text = tt.getRequirements();
+               
+            }
         }
         hoverPopup.transform.position = new Vector3(Input.mousePosition.x-.1f, Input.mousePosition.y-.1f, 0);
     }

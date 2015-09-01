@@ -82,6 +82,38 @@ namespace UnityRPG
         public string tag { get; set; }
         public int levelReq { get; set; }
         public List<string> abilityReqNameList { get; set; }
+
+        public string getDescription()
+        {
+            string desc = "";
+            desc += AbilityDescription + "\n";
+            desc += "AP: " + AP + ", Uses: " + uses;
+            if (range > 1)
+            {
+                desc += ", range: " + range;
+            }
+            desc += ", Target: " + targetType.ToString() + ", Pattern: " + tilePatternType;
+
+            return desc;
+        }
+
+        public string getRequirements()
+        {
+            string req = "";
+            if (!unlocked)
+            {
+                req += "Lvl: " + levelReq + "\n";
+                if(abilityReqNameList.Count > 0){
+                    req += "Req: ";
+                    foreach (var a in abilityReqNameList)
+                    {
+                        req += a + ", ";
+                    }
+                }
+            }
+            return req;
+
+        }
     }
 
     public class TalentTreeData
@@ -92,6 +124,8 @@ namespace UnityRPG
         public string tag { get; set; }
         public int levelReq {get;set;}
         public List<long> abilityReqs { get; set; }
+
+       
     }
 
     public class GameCharacterData
