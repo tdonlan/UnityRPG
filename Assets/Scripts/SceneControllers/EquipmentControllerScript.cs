@@ -27,9 +27,7 @@ public class EquipmentControllerScript : MonoBehaviour {
 
         loadGameData();
 
-
         this.assetLibrary = gameDataObject.assetLibrary;
-
 
         LoadCharacterStats();
         ClearCurrentEquip();
@@ -52,7 +50,6 @@ public class EquipmentControllerScript : MonoBehaviour {
     {
         if (gameDataObject.playerGameCharacter != null)
         {
-
             var ac = gameDataObject.playerGameCharacter;
 
             var charPanel = GameObject.FindGameObjectWithTag("CharacterPanel");
@@ -164,7 +161,6 @@ public class EquipmentControllerScript : MonoBehaviour {
             UIHelper.AddClickToGameObject(tempObj, SelectArmor, EventTriggerType.PointerClick, a);
             displayEquipList.Add(tempObj);
         }
-
 
     }
 

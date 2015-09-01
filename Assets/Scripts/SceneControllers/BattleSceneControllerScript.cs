@@ -921,11 +921,9 @@ public class BattleSceneControllerScript : MonoBehaviour
         {
            
             var equipPanel = GameObject.FindGameObjectWithTag("EquipPanel");
-
-            var equipControllerObject = GameObject.FindGameObjectWithTag("EquipmentController");
-            var equipScript = equipControllerObject.GetComponent<EquipmentControllerScript>();
-            equipScript.RefreshEquipment();
-
+            
+            var equipControllerObject = equipPanel.GetComponent<EquipmentControllerScript>();
+            equipControllerObject.RefreshEquipment();
 
             UIHelper.MoveUIObject(equipPanel, GameConfig.EquipPanelDisplayLocation);
         }
