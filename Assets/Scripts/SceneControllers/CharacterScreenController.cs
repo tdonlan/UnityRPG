@@ -359,4 +359,9 @@ public class CharacterScreenController : MonoBehaviour {
         EquipmentScreen.transform.localPosition = new Vector3(10000, 10000, 0);
         InfoScreen.transform.localPosition = new Vector3(10000, 10000, 0);
     }
+
+    public void CloseScreen()
+    {
+        gameObject.transform.localPosition = new Vector3(10000, 10000, 0);
+    }
 }

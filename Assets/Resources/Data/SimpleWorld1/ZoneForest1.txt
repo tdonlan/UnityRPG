@@ -3,7 +3,7 @@ Edge of Forest
 0;Edge of Forest;Link;The edge of forest;Forest;-300;-100
 --
 2:Deeper Into the Forest
-3: Howling Wolves!
+3: Howling Wolves!{!WolvesKilled}
 4: A Strange Hermit
 ----
 2
@@ -13,7 +13,7 @@ Deeper into the Forest
 ----
 3
 Howling Wolves!
-99;Howling Wolves!;Battle;A pack of snarling wolves leaps from the trees.;WolfSprite;-300;-100
+11;Howling Wolves!;Battle;A pack of snarling wolves leaps from the trees.;WolfSprite;-300;-100
 --
 ----
 4

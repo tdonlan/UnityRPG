@@ -20,6 +20,9 @@ public class StartControllerScript : MonoBehaviour {
 
     public void LoadBattle(int battleIndex)
     {
+        //select the parent tree link:
+
+        gameDataObject.treeStore.SelectTree(1);
         Application.LoadLevel((int)UnitySceneIndex.Battle);
     }
 

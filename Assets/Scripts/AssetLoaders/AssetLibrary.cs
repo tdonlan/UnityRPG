@@ -48,7 +48,7 @@ namespace UnityRPG
         {
             LoadSpritesheets();
             LoadPrefabs();
-            LoadBoards();
+            //LoadBoards();
 
             tileSpriteLibrary = new TileSpriteLibrary();
         }

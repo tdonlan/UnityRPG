@@ -9,3 +9,5 @@ Data/SimpleWorld1/BattleRats;4;BattleMap1;7
 Data/SimpleWorld1/InfoForestChest;5;InfoForestChest;8
 Data/SimpleWorld1/QuestRat;3;QuestRat;9
 Data/SimpleWorld1/StoreBlacksmith;6;StoreBlacksmith;10
+Data/SimpleWorld1/BattleWolves;4;BattleMap1;11
+Data/SimpleWorld1/BattleSkeletons;4;BattleMap1;12

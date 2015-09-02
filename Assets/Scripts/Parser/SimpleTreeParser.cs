@@ -16,6 +16,7 @@ using UnityEngine;
         {
 
             TreeStore ts = new TreeStore();
+            string curFileName = "";
             try
             {
                 string[] lineArray = manifestSimple.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
@@ -23,8 +24,9 @@ using UnityEngine;
                 foreach (var line in lineArray.ToList<String>())
                 {
                     string[] treeArray = line.Split(';');
-
+                    curFileName = treeArray[0];
                     TextAsset treeText = Resources.Load<TextAsset>(treeArray[0]);
+
 
                     ITree tempTree = SimpleTreeParser.getTreeFromString(treeText.text, (TreeType)Int32.Parse(treeArray[1]), ts.globalFlags);
                     tempTree.treeName = treeArray[2];
@@ -34,6 +36,7 @@ using UnityEngine;
 
             catch (Exception ex)
             {
+                Debug.Log(curFileName + ex.Message + ex.StackTrace);
                 string error = ex.Message + ex.StackTrace;
                 return null;
             }
