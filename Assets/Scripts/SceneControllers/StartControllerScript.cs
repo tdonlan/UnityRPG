@@ -20,9 +20,29 @@ public class StartControllerScript : MonoBehaviour {
 
     public void LoadBattle(int battleIndex)
     {
+        int treeIndex = 1;
+        int nodeIndex = 1;
         //select the parent tree link:
+        switch (battleIndex)
+        {
+            case 1:
+                nodeIndex = 3;
+                break;
+            case 2:
+                treeIndex = 3;
+                nodeIndex = 3;
+                break;
+            case 3:
+                treeIndex = 4;
+                nodeIndex = 2;
+                break;
+            default:
+                break;
+        }
 
-        gameDataObject.treeStore.SelectTree(1);
+        gameDataObject.treeStore.SelectTree(treeIndex);
+        ZoneTree curTree = (ZoneTree)gameDataObject.treeStore.getTree(gameDataObject.treeStore.currentTreeIndex);
+        curTree.SelectNode(nodeIndex);
         Application.LoadLevel((int)UnitySceneIndex.Battle);
     }
 

@@ -143,7 +143,7 @@ public class BattleSceneControllerScript : MonoBehaviour
     {
         tileMapPrefab = Resources.Load<GameObject>(battleTree.treeName);
         tileMapObject = (GameObject)Instantiate(tileMapPrefab);
-        tileMapObject.tag = "tileMap";
+        //tileMapObject.tag = "tileMap";
         tileMapData = new TileMapData(tileMapObject);
 
     }
