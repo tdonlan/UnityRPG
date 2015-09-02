@@ -95,6 +95,9 @@ public class WorldControllerScript : MonoBehaviour {
         GameObject worldNodeButton = (GameObject)Instantiate(worldButtonPrefab);
         worldNodeButton.transform.SetParent(uiCanvas.transform, false);
 
+        int index = worldNodeButton.transform.GetSiblingIndex();
+        worldNodeButton.transform.SetSiblingIndex(index - 3); //move before other menus in heirarchy
+
         var rect = worldNodeButton.GetComponent<RectTransform>();
         rect.anchoredPosition = new Vector3(node.content.x, node.content.y);
   
@@ -103,6 +106,8 @@ public class WorldControllerScript : MonoBehaviour {
 
         return worldNodeButton;
     }
+
+   
 
 
     //clicking an icon on the map
