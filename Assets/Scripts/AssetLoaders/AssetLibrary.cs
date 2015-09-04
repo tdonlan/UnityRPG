@@ -82,10 +82,10 @@ namespace UnityRPG
             prefabList.Add(new Prefab("Cyclone", "Elementals/Prefab/Wind/Cyclone"));
 
             //Text
-            prefabList.Add(new Prefab("TextPopup", "Prefabs/TextPopupPrefab"));
+            prefabList.Add(new Prefab("TextPopup", "PrefabGame/TextPopupPrefab"));
 
             //sprite
-            prefabList.Add(new Prefab("Sprite", "Prefabs/SpritePrefab"));
+            prefabList.Add(new Prefab("Sprite", "PrefabGame/SpritePrefab"));
 
         }
 

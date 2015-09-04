@@ -61,7 +61,6 @@ public class BattleSceneControllerScript : MonoBehaviour
     private GameObject InitPrefab { get; set; }
 
     private GameObject CharacterPrefab { get; set; }
-    private GameObject CharacterPrefab2 { get; set; }
 
 
     void OnLevelWasLoaded(int level)
@@ -161,8 +160,8 @@ public class BattleSceneControllerScript : MonoBehaviour
         InitPrefab = Resources.Load<GameObject>("PrefabUI/BattleInitiativePanelPrefab");
         HoverPrefab = Resources.Load<GameObject>("PrefabUI/BattleHoverPrefab");
 
-        //CharacterPrefab = Resources.Load<GameObject>("Prefab/CharacterPrefab");
-        CharacterPrefab2 = Resources.Load<GameObject>("PrefabGame/CharacterPrefab2");
+
+        CharacterPrefab = Resources.Load<GameObject>("PrefabGame/CharacterPrefab");
 
         InitiativePanel = GameObject.FindGameObjectWithTag("InitiativePanel");
 
@@ -198,7 +197,6 @@ public class BattleSceneControllerScript : MonoBehaviour
             UIHelper.UpdateTextComponent(ActiveCharacterPanel, "ActiveCharacterName", ac.name);
             UIHelper.UpdateTextComponent(ActiveCharacterPanel,"ActiveCharacterAPText",string.Format("AP:{0}/{1}",ac.ap,ac.totalAP));
 
-            //hardcoded to 10
             UIHelper.UpdateSliderValue(ActiveCharacterPanel,"ActiveCharacterAPSlider",ac.ap);
 
             UIHelper.UpdateSliderValue(ActiveCharacterPanel, "ActiveCharacterHPSlider", (float)ac.hp / (float)ac.totalHP);
@@ -209,7 +207,7 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     private GameObject LoadCharacter(GameCharacter character)
     {
-        GameObject characterObject = (GameObject)Instantiate(CharacterPrefab2);
+        GameObject characterObject = (GameObject)Instantiate(CharacterPrefab);
         GameObjectHelper.UpdateSprite(characterObject, "CharacterSprite", gameDataObject.assetLibrary.getSprite(character.characterSpritesheetName, character.characterSpriteIndex));
 
         if (character.type == CharacterType.Player)
@@ -302,6 +300,8 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     public void LoseBattle()
     {
+        //Go back to Start Scene / Reload
+        //Or show a game over popup from this screen, not a new scene.
         battleStatus = BattleStatusType.GameOver;
         Application.LoadLevel("GameOverScene");
     }
@@ -953,6 +953,10 @@ public class BattleSceneControllerScript : MonoBehaviour
     {
         var battleLogContent = GameObject.FindGameObjectWithTag("BattleLogContent");
         UIHelper.UpdateTextComponent(battleLogContent, "BattleLogText", battleGame.battleLog.ToString());
+
+        var battleLogScrollRect = GameObject.FindGameObjectWithTag("BattleLogScrollRect").GetComponent<ScrollRect>();
+        battleLogScrollRect.verticalNormalizedPosition = 0;
+
     }
 
     private void LoadInitiative()
@@ -1209,7 +1213,6 @@ public class BattleSceneControllerScript : MonoBehaviour
         Vector3 charPos = new Vector3(gameCharacter.x, gameCharacter.y, -2);
         StartTempParticles(particleName, charPos);
     }
-
 
 
     public void StartTempText(Vector3 pos, Color c, string text)
