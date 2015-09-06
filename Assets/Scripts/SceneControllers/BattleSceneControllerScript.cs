@@ -1171,10 +1171,7 @@ public class BattleSceneControllerScript : MonoBehaviour
         tempEffectList.Add(te);
     }
 
-    public void TestParticle()
-    {
-        StartTempParticles("Fire_01", new Vector3(3, 3, -2));
-    }
+
 
     public void StartTempParticles(string particleName, Vector3 pos)
     {
@@ -1196,21 +1193,22 @@ public class BattleSceneControllerScript : MonoBehaviour
             c = Color.red;
         }
 
-        Vector3 charPos = new Vector3(gameCharacter.x,gameCharacter.y+0.5f,-2);
+        Vector3 charPos = new Vector3(gameCharacter.x-0.5f, -gameCharacter.y+0.5f, 0);
+        battleGame.battleLog.AddEntry(charPos.ToString());
 
         StartTempText(charPos, c, amount.ToString());
     }
 
     public void StartTempSpriteOnChar(GameCharacter gameCharacter, string spritesheet, int spriteindex)
     {
-         Vector3 charPos = new Vector3(gameCharacter.x,gameCharacter.y,-2);
+         Vector3 charPos = new Vector3(gameCharacter.x,-gameCharacter.y,0);
          StartTempSprite(charPos, spritesheet, spriteindex);
 
     }
 
     public void StartTempParticleOnChar(GameCharacter gameCharacter, string particleName)
     {
-        Vector3 charPos = new Vector3(gameCharacter.x, gameCharacter.y, -2);
+        Vector3 charPos = new Vector3(gameCharacter.x, -gameCharacter.y, 0);
         StartTempParticles(particleName, charPos);
     }
 
@@ -1219,9 +1217,10 @@ public class BattleSceneControllerScript : MonoBehaviour
     {
         var textObj = gameDataObject.assetLibrary.getPrefabGameObject("TextPopup");
         UpdateTextPopup(textObj, text, c);
+        textObj.transform.position = pos;
 
         Vector3 endPos = new Vector3(pos.x,pos.y+.2f,pos.z);
-
+       
         AddEffect(TempEffectType.Text, 1, pos, endPos, textObj);
     }
 
@@ -1240,6 +1239,7 @@ public class BattleSceneControllerScript : MonoBehaviour
     {
         var sprite = gameDataObject.assetLibrary.getSprite(spritesheetName, spriteIndex);
         var spriteObj = gameDataObject.assetLibrary.getPrefabGameObject("Sprite");
+        spriteObj.transform.position = pos;
         GameObjectHelper.UpdateSprite(spriteObj, "Sprite", sprite);
 
         AddEffect(TempEffectType.Sprite, 1, pos, pos, spriteObj);
@@ -1260,6 +1260,25 @@ public class BattleSceneControllerScript : MonoBehaviour
         //go back to the zone view
         Application.LoadLevel((int)UnitySceneIndex.Zone);
 
+    }
+
+    public void TestButton()
+    {
+        /*
+        TestParticle();
+        //spawn text at the player loc
+        var textPrefab = Resources.Load("PrefabGame/TextPopupPrefab");
+        StartTempTextOnChar(battleGame.ActiveCharacter, 5000, true);
+
+        StartTempSprite(new Vector3(4,0, 0), "Particles", 5);
+        StartTempText(new Vector3(4,-8, 0), Color.green, "HELLO WORLD!");
+        StartTempText(new Vector3(4, -9, 0), Color.blue, "HELLO WORLD BLUE!");
+        */
+    }
+
+    public void TestParticle()
+    {
+        StartTempParticles("Fire_01", new Vector3(0, 0, 0));
     }
 
 
