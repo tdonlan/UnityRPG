@@ -18,3 +18,4 @@ ID,Name,Description,AP,Uses,Range,TargetType,TilePatternType,ActiveEffects,Passi
 10017,Mana Blast,Shoot an explosing blast of mana at a group of targets,5,5,20,LOSTarget,NineSquare,{1024},,Particles,107
 10018,Strength Like Ox,Boost strength temporarily,5,5,1,SingleFriend,Single,{1025},,Particles,1
 10019,Fleet Like Fox,Boost agility temporarily,5,5,1,SingleFriend,Single,{1026},,Particles,1
+10020,Throwing Knife,Throw a Knife,1,1,15,LOSTarget,Single,{1027},,Particles,1

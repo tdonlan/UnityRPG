@@ -1,5 +1,11 @@
 ID,Name,Type,CharacterSpritesheetName,CharacterSpriteIndex,PortraitSpritesheetName,PortraitSpriteIndex,AC,HP,Attack,AP,Inventory,EquippedArmor,Weapon,ActiveEffects,PassiveEffects,AbilityList,EnemyType,Strength,Agility,Endurance,Spirit
 80001,Player,Player,Characters,13,Portraits,0,10,50,20,10,,,40000,,,,None,1,1,1,1
-80002,Rat,Enemy,Characters,79,Portraits,121,5,10,10,10,,,40006,,,,Warrior,1,1,1,1
-80003,Wolf,Enemy,Characters,79,Portraits,121,10,25,20,10,,,40007,,,,Warrior,2,2,1,1
-80004,Skeleton,Enemy,Characters,19,Portraits,77,15,50,25,10,,,40001,,,,Warrior,2,2,2,2
+80002,Rat,Enemy,Monsters1,26,Portraits,121,5,10,10,10,,,40006,,,,Warrior,1,1,1,1
+80003,Wolf,Enemy,Monsters3,74,Portraits,121,10,25,20,10,,,40007,,,,Warrior,2,2,1,1
+80004,Skeleton,Enemy,Monsters6,37,Portraits,77,15,50,25,10,,,40001,,,,Warrior,3,3,3,1
+80005,Scorpion,Enemy,Monsters3,53,Portraits,114,10,50,25,10,,,,,,,Warrior,4,3,3,1
+80006,Dervish,Enemy,Monsters1,18,Portraits,89,20,50,30,10,,,,,,,Warrior,3,4,2,1
+80007,The Beast,Enemy,Dragons,43,Portraits,152,20,250,40,10,,,,,,,Warrior,10,2,10,1
+80008,Beast Handler,Enemy,Monsters1,22,Portraits,97,15,25,30,10,,,,,,,Warrior,2,2,3,1
+80009,Death Knight,Enemy,Monsters6,43,Portraits,159,25,100,50,10,,,,,,,Warrior,6,6,6,6
+80010,King of Skulls,Enemy,Monsters7,78,Portraits,157,25,200,55,15,,,,,,,Warrior,8,8,8,10

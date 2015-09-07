@@ -105,6 +105,14 @@ namespace UnityRPG
             spritesheetList.Add(getSpritesheet("Potions", "Sprites/dg_potions32"));
             spritesheetList.Add(getSpritesheet("Dragons", "Sprites/dg_dragon32Edit"));
 
+            spritesheetList.Add(getSpritesheet("Monsters1", "Sprites/monsters1"));
+            spritesheetList.Add(getSpritesheet("Monsters2", "Sprites/monsters2"));
+            spritesheetList.Add(getSpritesheet("Monsters3", "Sprites/monsters3"));
+            spritesheetList.Add(getSpritesheet("Monsters4", "Sprites/monsters4"));
+            spritesheetList.Add(getSpritesheet("Monsters5", "Sprites/monsters5"));
+            spritesheetList.Add(getSpritesheet("Monsters6", "Sprites/monsters6"));
+            spritesheetList.Add(getSpritesheet("Monsters7", "Sprites/monsters7"));
+
             spritesheetList.Add(getSpritesheet("Blank", "Sprites/blankItem"));
             spritesheetList.Add(getSpritesheet("InitBG1", "Sprites/InitBG1"));
             spritesheetList.Add(getSpritesheet("InitBG2", "Sprites/InitBG2"));

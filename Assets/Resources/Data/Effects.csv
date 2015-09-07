@@ -4,7 +4,7 @@ ID,Name,StatType,MinAmount,MaxAmount,Duration,SheetName,SpriteIndex
 1003,Heal,Heal,5,10,1,Particles,97
 1004,Group Heal,Heal,10,20,1,Particles,97
 1005,Regeneration,Heal,1,1,5,Particles,1
-1006,Attack Boost,Attack,5,5,-1,Particles,1
+1006,Attack Boost,Attack,5,5,1,Particles,1
 1007,Flame,Damage,5,10,2,Particles,68
 1008,Stun,Stun,0,0,2,Particles,1
 1009,Weak Poison,Damage,1,2,3,Particles,1
@@ -25,3 +25,4 @@ ID,Name,StatType,MinAmount,MaxAmount,Duration,SheetName,SpriteIndex
 1024,Mana Wave,Damage,5,10,1,Particles,107
 1025,Strength Like Ox,Strength,5,5,5,Particles,1
 1026,Fleet Like Fox,Agility,5,5,5,Particles,1
+1027,Knife Wound,Damage,2,5,1,Particles,1
