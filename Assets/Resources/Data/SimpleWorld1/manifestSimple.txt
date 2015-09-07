@@ -11,3 +11,4 @@ Data/SimpleWorld1/QuestRat;3;QuestRat;9
 Data/SimpleWorld1/StoreBlacksmith;6;StoreBlacksmith;10
 Data/SimpleWorld1/BattleWolves;4;ZoneForest1;11
 Data/SimpleWorld1/BattleSkeletons;4;ZoneForest2;12
+Data/SimpleWorld1/ZoneEvilCastle;1;ZoneDungeon2;13

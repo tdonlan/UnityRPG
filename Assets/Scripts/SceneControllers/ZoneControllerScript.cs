@@ -115,7 +115,7 @@ public class ZoneControllerScript : MonoBehaviour {
         //get name of prefab of this map - match same name of tree?
         tileMapPrefab = Resources.Load<GameObject>(zoneTree.treeName);
         tileMapObject = (GameObject)Instantiate(tileMapPrefab);
-        tileMapObject.tag = "tileMap";
+       // tileMapObject.tag = "tileMap";
     }
 
     private void loadTileMapData()

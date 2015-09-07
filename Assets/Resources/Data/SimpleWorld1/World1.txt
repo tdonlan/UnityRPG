@@ -20,7 +20,7 @@ Desert
 ----
 4
 Evil Castle
-99;ZoneEvilCastle;A crumbling fortress of dark stone and dank passageways, infested with horrors;EvilCastle;150;200
+13;ZoneEvilCastle;A crumbling fortress of dark stone and dank passageways, infested with horrors;EvilCastle;150;200
 --
 3:Desert
 ----

@@ -1,0 +1,15 @@
+﻿1
+Evil Castle
+0;Castle Entrance;Link;A crumbling gatehouse leads back to the desert;Desert;-300;-100
+--
+----
+2
+Deeper into the Forest
+4;Deeper into the Forest;Link;The forest grows dark and forboding;Forest;-300;-100
+--
+----
+3
+Howling Wolves!
+99;Howling Wolves!;Battle;A pack of snarling wolves leaps from the trees.;Wolves;-300;-100
+--
+----
