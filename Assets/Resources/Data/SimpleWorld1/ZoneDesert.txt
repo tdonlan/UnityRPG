@@ -1,20 +1,17 @@
 1
-Edge of Forest
-0;Edge of Forest;Link;The edge of forest;Forest;-300;-100
+Crumbling Rocks
+0;Crumbling Rocks;Link;A crack in the rocks leads south out of the desert;Desert;-300;-100
 --
+2:Swirling Sands!{!ScorpionsKilled}
+3:A crack in the cliff {ScorpionsKilled}
 ----
 2
-Deeper into the Forest
-4;Deeper into the Forest;Link;The forest grows dark and forboding;Forest;-300;-100
+Swirling Sands
+14;Swirling Sands;Battle;Rising from the sands come chattering claws and spinning robes;SkeletonSprite;-300;-100
 --
 ----
 3
-Howling Wolves!
-99;Howling Wolves!;Battle;A pack of snarling wolves leaps from the trees.;Wolves;-300;-100
---
-----
-4
-A Strange Hermit
-5;A Strange Hermit;Dialog;A strange unkempt hermit emerges from the trees, smoking a pipe.;Forest;-300;-100
+A crack in the cliff
+13;A crack in the cliff!;Link;A narrow crack in the cliff leads deeper into a dark passage;Desert;-300;-100
 --
 ----

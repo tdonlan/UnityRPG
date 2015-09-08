@@ -77,20 +77,24 @@ public class GameDataObject : MonoBehaviour
 
     public void runActions(List<TreeNodeAction> actionList)
     {
-        foreach (var action in actionList)
+        if (actionList != null)
         {
-            switch (action.actionType)
+            foreach (var action in actionList)
             {
-                case NodeActionType.AddItem:
-                    addItem(action.index, action.count);
-                    break;
-                case NodeActionType.RemoveItem:
-                    removeItem(action.index, action.count);
-                    break;
-                default:
-                    break;
+                switch (action.actionType)
+                {
+                    case NodeActionType.AddItem:
+                        addItem(action.index, action.count);
+                        break;
+                    case NodeActionType.RemoveItem:
+                        removeItem(action.index, action.count);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
+
     }
 
     public void removeItem(long itemIndex, long count)

@@ -1254,6 +1254,7 @@ public class BattleSceneControllerScript : MonoBehaviour
         var winNode = battleTree.getWinNode();
         winNode.SelectNode(battleTree);
 
+
         gameDataObject.runActions(winNode.actionList);
         //switch back to parent tree link
         gameDataObject.treeStore.SelectTree(parentTreeLink);

@@ -2,14 +2,16 @@
 Evil Castle
 0;Castle Entrance;Link;A crumbling gatehouse leads back to the desert;Desert;-300;-100
 --
+2:A Horrible Ritual{!KingKilled}
+3:The Lair of the Beast{!BeastKilled}
 ----
 2
-Deeper into the Forest
-4;Deeper into the Forest;Link;The forest grows dark and forboding;Forest;-300;-100
+A Horrible Ritual
+16;A horrible ritual;Battle;The evil king prepares to open a rift between worlds;Skeleton;-300;-100
 --
 ----
 3
-Howling Wolves!
-99;Howling Wolves!;Battle;A pack of snarling wolves leaps from the trees.;Wolves;-300;-100
+The Lair of the Beast
+15;Deeper into the Forest;Battle;The forest grows dark and forboding;Beast;-300;-100
 --
 ----

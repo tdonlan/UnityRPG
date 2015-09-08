@@ -1,0 +1,36 @@
+﻿1
+The King of Skulls
+1;ZoneEvilCastle2;Info;The King of Skulls prepares his evil ritual.;EvilCastle;
+--
+2:Death Knight
+3:Death Knight
+4:Death Knight
+5:King of Skulls
+6:Win
+----
+2
+Death Knight
+80009;Death Knight;Enemy;Clad in pitch black armor, weilding a glowing greatsword and enemating otherworldly cold.;Death Knight;0;0
+--
+----
+3
+Death Knight
+80009;Death Knight;Enemy;Clad in pitch black armor, weilding a glowing greatsword and enemating otherworldly cold.;Death Knight;0;0
+--
+----
+4
+Death Knight
+80009;Death Knight;Enemy;Clad in pitch black armor, weilding a glowing greatsword and enemating otherworldly cold.;Death Knight;0;0
+--
+----
+5
+King of Skulls
+80010;Death Knight;Enemy;The ruler of this castle, robed in the night, adorned in bone.;Death Knight;0;0
+--
+----
+6
+Win
+1;WinScreen;Win;With a scream, the evil king is banished to another realm.;WinScreen
+{KingKilled}
+--
+----

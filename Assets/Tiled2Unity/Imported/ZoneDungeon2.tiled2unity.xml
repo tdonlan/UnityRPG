@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 9/7/2015 2:27:08 PM-->
+<!--Last exported: 9/8/2015 12:28:12 PM-->
 <Tiled2Unity version="0.9.11.2">
   <AssignMaterial mesh="mesh_[00]_[00]" material="evilcastle_A4" sortingLayerName="" sortingOrder="0" />
   <Prefab name="ZoneDungeon2" numTilesWide="50" numTilesHigh="50" tileWidth="16" tileHeight="16" exportScale="1" mapWidthInPixels="800" mapHeightInPixels="800" scale="0.03125" resource="True" tag="tileSize">
@@ -55,6 +55,37 @@
       </GameObject>
       <GameObject name="treasure" x="608" y="-144" rotation="0">
         <BoxCollider2D width="112" height="96" />
+      </GameObject>
+    </GameObject>
+    <GameObject name="PlayerStart">
+      <GameObject name="RectangleObject" x="560" y="-608" rotation="0">
+        <BoxCollider2D width="32" height="32" />
+      </GameObject>
+      <GameObject name="RectangleObject" x="608" y="-608" rotation="0">
+        <BoxCollider2D width="32" height="32" />
+      </GameObject>
+      <GameObject name="RectangleObject" x="672" y="-608" rotation="0">
+        <BoxCollider2D width="32" height="32" />
+      </GameObject>
+    </GameObject>
+    <GameObject name="EnemyStart">
+      <GameObject name="RectangleObject" x="560" y="-480" rotation="0">
+        <BoxCollider2D width="32" height="32" />
+      </GameObject>
+      <GameObject name="RectangleObject" x="608" y="-480" rotation="0">
+        <BoxCollider2D width="32" height="32" />
+      </GameObject>
+      <GameObject name="RectangleObject" x="656" y="-480" rotation="0">
+        <BoxCollider2D width="32" height="32" />
+      </GameObject>
+      <GameObject name="RectangleObject" x="560" y="-528" rotation="0">
+        <BoxCollider2D width="32" height="32" />
+      </GameObject>
+      <GameObject name="RectangleObject" x="608" y="-528" rotation="0">
+        <BoxCollider2D width="32" height="32" />
+      </GameObject>
+      <GameObject name="RectangleObject" x="656" y="-528" rotation="0">
+        <BoxCollider2D width="32" height="32" />
       </GameObject>
     </GameObject>
   </Prefab>

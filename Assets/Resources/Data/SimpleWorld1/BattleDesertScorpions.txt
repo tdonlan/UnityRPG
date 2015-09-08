@@ -1,0 +1,48 @@
+1
+Scorpion Battle
+1;ZoneDesert;Info;Rising from the sands come chattering claws and spinning robes!;Desert;
+--
+2:Enemy
+3:Enemy
+4:Enemy
+5:Enemy
+6:Enemy
+7:Enemy
+8:Win
+----
+2
+Scorpion
+80005;Scorpion;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Scorpion;0;0
+--
+----
+3
+Scorpion
+80005;Scorpion;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Scorpion;0;0
+--
+----
+4
+Scorpion
+80005;Scorpion;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Scorpion;0;0
+--
+----
+5
+Dervish
+80006;Dervish;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Dervish;0;0
+--
+----
+6
+Dervish
+80006;Dervish;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Dervish;0;0
+--
+----
+7
+Dervish
+80006;Dervish;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Dervish;0;0
+--
+----
+8
+Win
+1;WinScreen;Win;The desert is once again calm;WinScreen
+{ScorpionsKilled}
+--
+----
