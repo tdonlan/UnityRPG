@@ -4,6 +4,7 @@ Evil Castle
 --
 2:A Horrible Ritual{!KingKilled}
 3:The Lair of the Beast{!BeastKilled}
+4:Treasure!{!CastleChest}
 ----
 2
 A Horrible Ritual
@@ -13,5 +14,10 @@ A Horrible Ritual
 3
 The Lair of the Beast
 15;Deeper into the Forest;Battle;The forest grows dark and forboding;Beast;-300;-100
+--
+----
+4
+Treasure!
+17;Treasure!;Info;A huge gold chest full of treasure;TreasureChestSprite;-300;-100
 --
 ----
