@@ -58,7 +58,7 @@ public class StoreControllerScript : MonoBehaviour {
 
     private void loadPrefabs()
     {
-        storeText = storeTextObject.GetComponent<Text>();
+        //storeText = storeTextObject.GetComponent<Text>();
 
     }
 
@@ -108,7 +108,7 @@ public class StoreControllerScript : MonoBehaviour {
         {
             storeDisplayText += item.item.name + " $" + item.price + " ct:" + item.count + "\n";
         }
-        storeText.text = storeDisplayText;
+        //storeText.text = storeDisplayText;
 
         UpdateStore();
         UpdatePlayerInventory();
