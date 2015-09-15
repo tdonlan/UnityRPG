@@ -61,4 +61,9 @@ public class StartControllerScript : MonoBehaviour {
     {
         Application.LoadLevel((int)UnitySceneIndex.CharacterScreen);
     }
+
+    public void CreateCharacter()
+    {
+        Application.LoadLevel((int)UnitySceneIndex.CharacterCreationScreen);
+    }
 }

@@ -8,7 +8,8 @@ public enum UnitySceneIndex
     Dialog = 3,
     Battle = 4,
     Store=5,
-    CharacterScreen=6
+    CharacterScreen=6,
+    CharacterCreationScreen=7
 }
 
 public enum SpritesheetType
