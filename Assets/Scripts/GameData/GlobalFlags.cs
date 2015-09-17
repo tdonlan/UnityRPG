@@ -24,6 +24,7 @@ using System.Text;
         Subset
     }
 
+[Serializable]
     public class GlobalFlag
     {
         public string name { get; set; }
@@ -137,6 +138,7 @@ using System.Text;
 
     }
 
+[Serializable]
     public class GlobalFlags
     {
         public List<GlobalFlag> globalFlagList { get; set; }

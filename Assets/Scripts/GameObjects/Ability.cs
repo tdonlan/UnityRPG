@@ -6,6 +6,7 @@ using System.Text;
 
 namespace UnityRPG
 {
+    [Serializable]
     public class Ability
     {
         public long ID { get; set; }

@@ -257,6 +257,17 @@ public class GameDataObject : MonoBehaviour
          return effectsDescriptionList;
     }
 
+    public SaveGameData getSaveGameData()
+    {
+        SaveGameData saveGameData = new SaveGameData();
+        saveGameData.globalFlags = treeStore.globalFlags;
+        saveGameData.playerGameCharacter = this.playerGameCharacter;
+        saveGameData.partyList = this.partyList;
+        saveGameData.treeLink = treeStore.currentTreeIndex;
+
+        return saveGameData;
+    }
+
    
 }
 

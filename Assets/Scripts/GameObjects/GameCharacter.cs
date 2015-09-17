@@ -6,6 +6,7 @@ using System.Text;
 
 namespace UnityRPG
 {
+    [Serializable]
     public class GameCharacter
     {
         private System.Random r = new System.Random();

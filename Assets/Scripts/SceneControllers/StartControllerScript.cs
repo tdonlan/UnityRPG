@@ -66,4 +66,24 @@ public class StartControllerScript : MonoBehaviour {
     {
         Application.LoadLevel((int)UnitySceneIndex.CharacterCreationScreen);
     }
+
+    public void LoadGame()
+    {
+        SaveGameData loadedGameData = SaveGameLoader.LoadGame("Save1");
+        this.gameDataObject.playerGameCharacter = loadedGameData.playerGameCharacter;
+        this.gameDataObject.partyList = loadedGameData.partyList;
+        this.gameDataObject.treeStore.globalFlags = loadedGameData.globalFlags;
+        this.gameDataObject.treeStore.SelectTree(loadedGameData.treeLink);
+
+        ITree curTree = this.gameDataObject.treeStore.getCurrentTree();
+        switch (curTree.treeType)
+        {
+            case TreeType.World:
+                Application.LoadLevel((int)UnitySceneIndex.World);
+                break;
+            case TreeType.Zone:
+                Application.LoadLevel((int)UnitySceneIndex.Zone);
+                break;
+        }
+    }
 }

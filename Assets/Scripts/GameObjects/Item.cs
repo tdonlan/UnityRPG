@@ -15,6 +15,7 @@ namespace UnityRPG
         public int selected { get; set; }
     }
 
+     [Serializable]
     public class ItemSet
     {
         public string itemName { get; set; }
@@ -49,6 +50,7 @@ namespace UnityRPG
         
     }
 
+    [Serializable]
     public class Item
     {
         public long ID { get; set; }
@@ -80,6 +82,7 @@ namespace UnityRPG
 
     }
 
+     [Serializable]
     public class UsableItem : Item
     {
         public int actionPoints { get; set; }
@@ -92,6 +95,7 @@ namespace UnityRPG
         }
     }
 
+     [Serializable]
     public class Weapon : Item
     {
         public int minDamage { get; set; }
@@ -107,6 +111,7 @@ namespace UnityRPG
 
     }
 
+     [Serializable]
     public class RangedWeapon : Weapon
     {
         public int range { get; set; }
@@ -118,6 +123,7 @@ namespace UnityRPG
         }
     }
 
+     [Serializable]
     public class Ammo : Item
     {
         
@@ -130,6 +136,7 @@ namespace UnityRPG
         }
     }
 
+     [Serializable]
     public class Armor : Item
     {
         public int armor { get; set; }
@@ -141,6 +148,4 @@ namespace UnityRPG
         }
     }
 
-   
-    
 }

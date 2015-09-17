@@ -155,4 +155,10 @@ public class PauseMenuScript : MonoBehaviour {
     {
         gameObject.transform.localPosition = new Vector3(10000, 10000, 0);
     }
+
+    public void SaveGame()
+    {
+        SaveGameLoader.SaveGame(gameDataObject.getSaveGameData(),"Save1");
+        Debug.Log("Saved to Save1");
+    }
 }

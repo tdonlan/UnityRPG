@@ -6,6 +6,7 @@ using System.Text;
 
 namespace UnityRPG
 {
+    [Serializable]
     public class PassiveEffect
     {
         public string name { get; set; }
@@ -23,6 +24,7 @@ namespace UnityRPG
 
     }
 
+    [Serializable]
     public class ActiveEffect
     {
         public string name { get; set; }
