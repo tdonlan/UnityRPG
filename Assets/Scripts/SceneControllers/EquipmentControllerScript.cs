@@ -69,6 +69,7 @@ public class EquipmentControllerScript : MonoBehaviour {
             UIHelper.UpdateSpriteComponent(charPanel, "CharImage", assetLibrary.getSprite(ac.characterSpritesheetName, ac.characterSpriteIndex));
             UIHelper.UpdateTextComponent(charPanel, "CharNameText", gameDataObject.playerGameCharacter.name);
             UIHelper.UpdateTextComponent(charPanel, "CharStats", gameDataObject.playerGameCharacter.ToString());
+            UIHelper.UpdateTextComponent(charPanel, "GoldText", "Gold: " + gameDataObject.playerGameCharacter.money.ToString());
         }
     
     }

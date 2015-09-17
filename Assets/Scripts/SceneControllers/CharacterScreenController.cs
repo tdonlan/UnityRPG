@@ -18,6 +18,9 @@ public class CharacterScreenController : MonoBehaviour {
 
     public GameDataObject gameDataObject;
 
+    public Text CharacterNameText;
+    public Image CharacterPortraitImage;
+
     public Text LevelText;
 
     public Text StrengthStatText;
@@ -146,6 +149,9 @@ public class CharacterScreenController : MonoBehaviour {
     {
 
         var player = gameDataObject.playerGameCharacter;
+
+        CharacterNameText.text = player.name;
+        CharacterPortraitImage.sprite = gameDataObject.assetLibrary.getSprite(player.portraitSpritesheetName, player.portraitSpriteIndex);
 
         LevelText.text = gameDataObject.playerGameCharacter.level.ToString();
 

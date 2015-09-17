@@ -149,7 +149,7 @@ namespace UnityRPG
 
             Weapon w = new Weapon()
             {
-                actionPoints = data.actionPoints,
+                actionPoints = data.AP,
                 activeEffects = i.activeEffects,
                 ID = i.ID,
                 maxDamage = data.maxDamage,

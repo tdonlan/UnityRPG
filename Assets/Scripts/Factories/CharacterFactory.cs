@@ -30,7 +30,11 @@ namespace UnityRPG
                 strength = data.strength,
                 agility = data.agility,
                 endurance = data.endurance,
-                spirit = data.spirit
+                spirit = data.spirit,
+                level = 1,
+                xp = 0,
+                talentPoints = 0,
+                statPoints = 0
 
             };
 

@@ -218,6 +218,7 @@ public class CharacterCreationControllerScript : MonoBehaviour {
         {
             GameCharacterData playerData = gameDataObject.gameDataSet.gameCharacterDataDictionary[80001]; //hardcoded to player data, store this somewhere?
             playerData.name = CharName.text;
+            
             playerData.portraitSpriteIndex = portraitIndexList[curPortraitIndex];
             playerData.characterSpriteIndex = spriteIndexList[curSpriteIndex];
             playerData.strength = str;

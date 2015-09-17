@@ -193,7 +193,7 @@ namespace UnityRPG
     {
         public int minDamage { get; set; }
         public int maxDamage { get; set; }
-        public int actionPoints { get; set; }
+        public int AP { get; set; }
         public WeaponType weaponType { get; set; }
     }
 
