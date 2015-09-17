@@ -10,7 +10,7 @@ namespace UnityRPG
     public class BattleFactory
     {
 
-        public static BattleGameData getBattleGameDataFromZoneTree(GameCharacter playerCharacter, BattleTree battleTree, GameDataSet gameDataSet, TileMapData tileMapData)
+        public static BattleGameData getBattleGameDataFromZoneTree(List<GameCharacter> playerCharacterList, BattleTree battleTree, GameDataSet gameDataSet, TileMapData tileMapData)
         {
             BattleGameData retval = new BattleGameData();
 
@@ -18,7 +18,7 @@ namespace UnityRPG
 
             //load player
 
-            retval.gameCharacterList.Add(playerCharacter);
+            retval.gameCharacterList.AddRange(playerCharacterList);
 
             //load enemies
             foreach (var enemyNode in battleTree.getEnemyNodeList())

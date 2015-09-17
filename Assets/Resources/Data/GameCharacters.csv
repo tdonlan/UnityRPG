@@ -9,3 +9,4 @@ ID,Name,Type,CharacterSpritesheetName,CharacterSpriteIndex,PortraitSpritesheetNa
 80008,Beast Handler,Enemy,Monsters1,22,Portraits,97,15,25,30,10,,,40011,,,,Warrior,2,2,3,1
 80009,Death Knight,Enemy,Monsters6,43,Portraits,159,25,100,50,10,,,40012,,,,Warrior,6,6,6,6
 80010,King of Skulls,Enemy,Monsters7,78,Portraits,157,25,200,55,15,,,40013,,,,Warrior,8,8,8,10
+80011,Bo,Player,Characters,19,Portraits,19,10,25,11,10,,,40000,,,,Warrior,2,2,2,2

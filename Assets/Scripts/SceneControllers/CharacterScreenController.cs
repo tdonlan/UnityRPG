@@ -56,6 +56,8 @@ public class CharacterScreenController : MonoBehaviour {
 
     private GameObject hoverPopup;
 
+    private GameCharacter curGameCharacter;
+
 	// Use this for initialization
 	void Start () {
 
@@ -64,9 +66,13 @@ public class CharacterScreenController : MonoBehaviour {
         InitPrefabs();
         initScreens();
 
+        curGameCharacter = gameDataObject.playerGameCharacter;
+
         UpdateUI();
         UpdateTalentTags();
         UpdateTalentTree();
+
+       
 	}
 
     private void loadGameData()
@@ -111,11 +117,11 @@ public class CharacterScreenController : MonoBehaviour {
         TalentTreeDisplayData tt = (TalentTreeDisplayData)talentTreeDataObject;
         if (tt.unlocked && !tt.owned)
         {
-            if (gameDataObject.playerGameCharacter.talentPoints > 0)
+            if (curGameCharacter.talentPoints > 0)
             {
                 var abilityData = gameDataObject.gameDataSet.abilityDataDictionary[tt.AbilityID];
-                gameDataObject.playerGameCharacter.abilityList.Add(AbilityFactory.getAbilityFromAbilityData(abilityData, gameDataObject.gameDataSet.effectDataDictionary));
-                gameDataObject.playerGameCharacter.talentPoints--;
+                curGameCharacter.abilityList.Add(AbilityFactory.getAbilityFromAbilityData(abilityData, gameDataObject.gameDataSet.effectDataDictionary));
+                curGameCharacter.talentPoints--;
 
                 loadTalentTreeData();
                 UpdateUI();
@@ -147,31 +153,28 @@ public class CharacterScreenController : MonoBehaviour {
 
     private void UpdateUI()
     {
+        CharacterNameText.text = curGameCharacter.name;
+        CharacterPortraitImage.sprite = gameDataObject.assetLibrary.getSprite(curGameCharacter.portraitSpritesheetName, curGameCharacter.portraitSpriteIndex);
 
-        var player = gameDataObject.playerGameCharacter;
+        LevelText.text = curGameCharacter.level.ToString();
 
-        CharacterNameText.text = player.name;
-        CharacterPortraitImage.sprite = gameDataObject.assetLibrary.getSprite(player.portraitSpritesheetName, player.portraitSpriteIndex);
+        StrengthStatText.text = curGameCharacter.strength.ToString();
+        AgilityStatText.text = curGameCharacter.agility.ToString();
+        EnduranceStatText.text = curGameCharacter.endurance.ToString();
+        SpiritStatText.text = curGameCharacter.spirit.ToString();
 
-        LevelText.text = gameDataObject.playerGameCharacter.level.ToString();
+        XPText.text = curGameCharacter.xp.ToString();
+        HPText.text = curGameCharacter.hp.ToString() + "/" + curGameCharacter.totalHP.ToString();
 
-        StrengthStatText.text = gameDataObject.playerGameCharacter.strength.ToString();
-        AgilityStatText.text = gameDataObject.playerGameCharacter.agility.ToString();
-        EnduranceStatText.text = gameDataObject.playerGameCharacter.endurance.ToString();
-        SpiritStatText.text = gameDataObject.playerGameCharacter.spirit.ToString();
+        ACText.text = curGameCharacter.ac.ToString();
+        APText.text = curGameCharacter.ap.ToString();
 
-        XPText.text = gameDataObject.playerGameCharacter.xp.ToString();
-        HPText.text = gameDataObject.playerGameCharacter.hp.ToString() + "/" + gameDataObject.playerGameCharacter.totalHP.ToString();
+        HPSlider.value = (float)curGameCharacter.hp / (float)curGameCharacter.totalHP;
 
-        ACText.text = gameDataObject.playerGameCharacter.ac.ToString();
-        APText.text = gameDataObject.playerGameCharacter.ap.ToString();
+        XPSlider.value = curGameCharacter.xpLevelPercent;
 
-        HPSlider.value = (float)player.hp / (float)player.totalHP;
-
-        XPSlider.value = player.xpLevelPercent;
-
-        StatPointText.text = player.statPoints.ToString();
-        TalentPointText.text = player.talentPoints.ToString();
+        StatPointText.text = curGameCharacter.statPoints.ToString();
+        TalentPointText.text = curGameCharacter.talentPoints.ToString();
 
     }
 
@@ -256,33 +259,33 @@ public class CharacterScreenController : MonoBehaviour {
 
     public void addXP()
     {
-        gameDataObject.playerGameCharacter.getXP(25);
+        curGameCharacter.getXP(25);
 
         UpdateUI();
     }
 
     public void addStat(int statType)
     {
-        var player = gameDataObject.playerGameCharacter;
-        if (player.statPoints > 0)
+
+        if (curGameCharacter.statPoints > 0)
         {
             switch ((StatType)statType)
             {
                 case StatType.Strength:
-                    gameDataObject.playerGameCharacter.strength++;
-                    player.statPoints--;
+                    curGameCharacter.strength++;
+                    curGameCharacter.statPoints--;
                     break;
                 case StatType.Agility:
-                    gameDataObject.playerGameCharacter.agility++;
-                    player.statPoints--;
+                    curGameCharacter.agility++;
+                    curGameCharacter.statPoints--;
                     break;
                 case StatType.Endurance:
-                    gameDataObject.playerGameCharacter.endurance++;
-                    player.statPoints--;
+                    curGameCharacter.endurance++;
+                    curGameCharacter.statPoints--;
                     break;
                 case StatType.Spirit:
-                    gameDataObject.playerGameCharacter.spirit++;
-                    player.statPoints--;
+                    curGameCharacter.spirit++;
+                    curGameCharacter.statPoints--;
                     break;
                 default:
                     break;
@@ -297,16 +300,16 @@ public class CharacterScreenController : MonoBehaviour {
         switch ((StatType)statType)
         {
             case StatType.Strength:
-                 gameDataObject.playerGameCharacter.strength--; 
+                curGameCharacter.strength--; 
                 break;
             case StatType.Agility:
-             gameDataObject.playerGameCharacter.agility--; 
+                curGameCharacter.agility--; 
                 break;
             case StatType.Endurance:
-              gameDataObject.playerGameCharacter.endurance--; 
+                curGameCharacter.endurance--; 
                 break;
             case StatType.Spirit:
-              gameDataObject.playerGameCharacter.spirit--; 
+                curGameCharacter.spirit--; 
                 break;
             default:
                 break;
@@ -369,5 +372,32 @@ public class CharacterScreenController : MonoBehaviour {
     public void CloseScreen()
     {
         gameObject.transform.localPosition = new Vector3(10000, 10000, 0);
+    }
+
+    public void NextGameCharacter()
+    {
+        if (gameDataObject.partyList.Count > 0)
+        {
+            if (curGameCharacter.Equals(gameDataObject.playerGameCharacter))
+            {
+                curGameCharacter = gameDataObject.partyList[0];
+            }
+            else
+            {
+                var partyIndex = gameDataObject.partyList.IndexOf(curGameCharacter);
+                partyIndex++;
+                if (partyIndex >= gameDataObject.partyList.Count) {
+                    curGameCharacter = gameDataObject.playerGameCharacter;
+                
+                }
+                else
+                {
+                    curGameCharacter = gameDataObject.partyList[partyIndex];
+                }
+            }
+
+            UpdateUI();
+        }
+      
     }
 }

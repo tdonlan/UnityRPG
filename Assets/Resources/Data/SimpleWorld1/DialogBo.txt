@@ -1,0 +1,27 @@
+1
+Hi
+1;Bo;Bo;Sup, I'm Bo.
+--
+2:Nice to meet you.  What do you do here?
+4:Goodbye
+----
+2
+Who
+1;Bo;Bo;I'm a warrior for hire.  Want me to join you?
+
+--
+3:Sure
+4:No Thanks
+----
+3
+Hire
+1;Bo;Bo;Together we will conquer!
+{BoJoined}
+{AddCharacter;80011;Bo;1}
+--
+----
+4
+Bye
+1;Bo;Bo;Ok, talk to you later
+--
+----

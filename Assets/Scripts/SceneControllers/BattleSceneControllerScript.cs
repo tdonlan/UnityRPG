@@ -79,7 +79,10 @@ public class BattleSceneControllerScript : MonoBehaviour
 
         this.uiState = UIStateType.NewTurn;
 
-        this.battleGameData = BattleFactory.getBattleGameDataFromZoneTree(gameDataObject.playerGameCharacter, battleTree, gameDataObject.gameDataSet, tileMapData);
+        List<GameCharacter> playerCharacterList = new List<GameCharacter>() { gameDataObject.playerGameCharacter};
+        playerCharacterList.AddRange(gameDataObject.partyList);
+
+        this.battleGameData = BattleFactory.getBattleGameDataFromZoneTree(playerCharacterList, battleTree, gameDataObject.gameDataSet, tileMapData);
 
         this.battleGame = new BattleGame(battleGameData, r, this);
 

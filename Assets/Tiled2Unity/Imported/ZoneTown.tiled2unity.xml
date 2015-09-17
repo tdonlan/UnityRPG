@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 9/6/2015 4:19:56 PM-->
+<!--Last exported: 9/16/2015 11:31:59 PM-->
 <Tiled2Unity version="0.9.11.2">
   <AssignMaterial mesh="mesh_[00]_[00]" material="TileA2" sortingLayerName="" sortingOrder="0" />
   <AssignMaterial mesh="mesh_[01]_[06]" material="TileC_exterior_1" sortingLayerName="" sortingOrder="1" />
@@ -113,6 +113,9 @@
       </GameObject>
       <GameObject name="blacksmith" x="576" y="-576" rotation="0">
         <BoxCollider2D width="48" height="64" />
+      </GameObject>
+      <GameObject name="bo" x="128" y="-272" rotation="0">
+        <BoxCollider2D width="64" height="64" />
       </GameObject>
     </GameObject>
     <GameObject name="PlayerStart">

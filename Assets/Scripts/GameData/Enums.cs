@@ -112,7 +112,9 @@ public enum PlayerDecideState
         AddItem,
         RemoveItem,
         AddEffect,
-        RemoveEffect
+        RemoveEffect,
+        AddCharacter,
+        RemoveCharacter,
     }
 
     public enum CharacterType

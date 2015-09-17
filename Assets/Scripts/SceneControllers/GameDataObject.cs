@@ -13,6 +13,8 @@ public class GameDataObject : MonoBehaviour
 
     public GameCharacter playerGameCharacter;
 
+    public List<GameCharacter> partyList = new List<GameCharacter>();
+
 
     //Loaded Data
     public GameDataSet gameDataSet { get; set; }
@@ -89,6 +91,10 @@ public class GameDataObject : MonoBehaviour
                     case NodeActionType.RemoveItem:
                         removeItem(action.index, action.count);
                         break;
+                    case NodeActionType.AddCharacter:
+                        addCharacter(action.index);
+                        break;
+                        
                     default:
                         break;
                 }
@@ -138,6 +144,23 @@ public class GameDataObject : MonoBehaviour
                 {
                     playerGameCharacter.inventory.Add(item);
                 }
+            }
+        }
+    }
+
+    //need to store the character's current stats, in case we kick them from party
+    //max 3 others - need a check for the dialog
+    private void addCharacter(long characterIndex)
+    {
+        if (partyList.Count < 3)
+        {
+            if (gameDataSet.gameCharacterDataDictionary.ContainsKey(characterIndex))
+            {
+                var charData = gameDataSet.gameCharacterDataDictionary[characterIndex];
+                GameCharacter newCharacter = CharacterFactory.getGameCharacterFromGameCharacterData(charData, gameDataSet);
+                partyList.Add(newCharacter);
+
+                Debug.Log("Added character" + newCharacter.name);
             }
         }
     }
@@ -233,5 +256,7 @@ public class GameDataObject : MonoBehaviour
 
          return effectsDescriptionList;
     }
+
+   
 }
 

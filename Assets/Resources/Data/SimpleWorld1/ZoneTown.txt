@@ -5,27 +5,24 @@ Town Square
 2:Zoe
 3:Alley{!QuestRat2}
 4:Blacksmith
+5:Bo{!BoJoined}
 ----
 2
 Zoe
 2;Zoe;Dialog;A perky girl with red hair and freckles.  Talkative;ZoeSprite;0;0
 --
-1:Town Square
-3:Alley
-4:Blacksmith
 ----
 3
 Alley
 7;Alley;Battle;A garbage strewn alley way, with rats swarming out of the garbage heap;RatSprite;100;100
 --
-1:Town Square
-2:Zoe
-4:Blacksmith
 ----
 4
 Blacksmith
 10;Blacksmith;Store;A brawny man with soot-stained bulging forearms;BlacksmithSprite;-200;100
 --
-1:Town Square
-2:Zoe
-3:Alley
+----
+5
+Bo
+18;Bo;Dialog;A fierce warrior looks bored;BoSprite;0;0
+--
