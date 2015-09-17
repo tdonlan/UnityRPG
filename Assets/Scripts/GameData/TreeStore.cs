@@ -15,7 +15,24 @@ using System.IO;
     public class TreeStore
     {
         public Dictionary<long, ITree> treeDictionary { get; set; }
-        public GlobalFlags globalFlags {get;set;}
+
+        private GlobalFlags _globalFlags;
+        public GlobalFlags globalFlags
+        {
+            get { return _globalFlags; }
+            set
+            {
+                _globalFlags = value;
+                if (treeDictionary != null)
+                {
+                    foreach (var tree in treeDictionary.Values)
+                    {
+                        tree.globalFlags = value;
+                    }
+                }
+            }
+        }
+
         public long currentTreeIndex { get; set; }
 
         public TreeStore()
@@ -69,6 +86,8 @@ using System.IO;
 
             return questStrLists;
         }
+
+        
 
 
     }
