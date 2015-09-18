@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 76acf05f13f7e704a99dcb85ce1bfb50
-timeCreated: 1442545368
+timeCreated: 1442593602
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -77,250 +77,250 @@ TextureImporter:
     - name: dg_wands32_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 136
-        width: 15
-        height: 15
+        x: 0
+        y: 128
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_1
       rect:
         serializedVersion: 2
-        x: 40
-        y: 136
-        width: 15
-        height: 15
+        x: 32
+        y: 128
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_2
       rect:
         serializedVersion: 2
-        x: 72
-        y: 136
-        width: 15
-        height: 15
+        x: 64
+        y: 128
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_3
       rect:
         serializedVersion: 2
-        x: 104
-        y: 136
-        width: 15
-        height: 15
+        x: 96
+        y: 128
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_4
       rect:
         serializedVersion: 2
-        x: 136
-        y: 136
-        width: 15
-        height: 15
+        x: 128
+        y: 128
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_5
       rect:
         serializedVersion: 2
-        x: 8
-        y: 104
-        width: 15
-        height: 15
+        x: 0
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_6
       rect:
         serializedVersion: 2
-        x: 40
-        y: 104
-        width: 15
-        height: 15
+        x: 32
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_7
       rect:
         serializedVersion: 2
-        x: 72
-        y: 104
-        width: 15
-        height: 15
+        x: 64
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_8
       rect:
         serializedVersion: 2
-        x: 104
-        y: 104
-        width: 15
-        height: 15
+        x: 96
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_9
       rect:
         serializedVersion: 2
-        x: 138
-        y: 100
-        width: 14
-        height: 24
+        x: 128
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_10
       rect:
         serializedVersion: 2
-        x: 8
-        y: 68
-        width: 14
-        height: 24
+        x: 0
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_11
       rect:
         serializedVersion: 2
-        x: 40
-        y: 68
-        width: 14
-        height: 24
+        x: 32
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_12
       rect:
         serializedVersion: 2
-        x: 72
-        y: 68
-        width: 14
-        height: 24
+        x: 64
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_13
       rect:
         serializedVersion: 2
-        x: 104
-        y: 68
-        width: 14
-        height: 24
+        x: 96
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_14
       rect:
         serializedVersion: 2
-        x: 136
-        y: 68
-        width: 14
-        height: 24
+        x: 128
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_15
       rect:
         serializedVersion: 2
-        x: 8
-        y: 36
-        width: 14
-        height: 24
+        x: 0
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_16
       rect:
         serializedVersion: 2
-        x: 40
-        y: 36
-        width: 14
-        height: 24
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_17
       rect:
         serializedVersion: 2
-        x: 72
-        y: 36
-        width: 14
-        height: 24
+        x: 64
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_18
       rect:
         serializedVersion: 2
-        x: 98
-        y: 35
-        width: 27
-        height: 27
+        x: 96
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_19
       rect:
         serializedVersion: 2
-        x: 130
-        y: 35
-        width: 27
-        height: 27
+        x: 128
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_20
       rect:
         serializedVersion: 2
-        x: 2
-        y: 3
-        width: 27
-        height: 27
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_21
       rect:
         serializedVersion: 2
-        x: 34
-        y: 3
-        width: 27
-        height: 27
+        x: 32
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_22
       rect:
         serializedVersion: 2
-        x: 66
-        y: 3
-        width: 27
-        height: 27
+        x: 64
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_23
       rect:
         serializedVersion: 2
-        x: 98
-        y: 3
-        width: 27
-        height: 27
+        x: 96
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_wands32_24
       rect:
         serializedVersion: 2
-        x: 130
-        y: 3
-        width: 27
-        height: 27
+        x: 128
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -46,8 +46,8 @@ public class CharacterCreationControllerScript : MonoBehaviour {
 	}
     private void InitData()
     {
-        portraitIndexList = new List<int>() { 0, 1, 2, 3, 7, 8, 17, 27 };
-        spriteIndexList = new List<int>() { 0, 3, 4, 6, 22, 31 };
+        portraitIndexList = new List<int>() { 0,1,2,3,4,5,6,7,8,9,10 };
+        spriteIndexList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         maxStatPoints = 5;
         usedStatPoints = 0;
         str = 1;
@@ -75,11 +75,11 @@ public class CharacterCreationControllerScript : MonoBehaviour {
     private void UpdateUI()
     {
         var spriteIndex = spriteIndexList[curSpriteIndex];
-        SpriteImage.sprite =  gameDataObject.assetLibrary.getSprite("Characters", spriteIndex);
+        SpriteImage.sprite =  gameDataObject.assetLibrary.getSprite("PlayerSprites", spriteIndex);
 
 
         var portraitIndex = portraitIndexList[curPortraitIndex];
-        PortraitImage.sprite = gameDataObject.assetLibrary.getSprite("Portraits", portraitIndex);
+        PortraitImage.sprite = gameDataObject.assetLibrary.getSprite("PlayerPortraits", portraitIndex);
 
         var curStatPoints = maxStatPoints - usedStatPoints;
         statPointText.text = curStatPoints + " pts";
@@ -218,7 +218,8 @@ public class CharacterCreationControllerScript : MonoBehaviour {
         {
             GameCharacterData playerData = gameDataObject.gameDataSet.gameCharacterDataDictionary[80001]; //hardcoded to player data, store this somewhere?
             playerData.name = CharName.text;
-            
+            playerData.portraitSpritesheetName = "PlayerPortraits";
+            playerData.characterSpritesheetName = "PlayerSprites";
             playerData.portraitSpriteIndex = portraitIndexList[curPortraitIndex];
             playerData.characterSpriteIndex = spriteIndexList[curSpriteIndex];
             playerData.strength = str;

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 9a88859d505deaa41b1fd76df440b492
-timeCreated: 1442545482
+guid: 70cc02e297040e14b94bac1100704ac5
+timeCreated: 1442590192
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -63,110 +63,110 @@ TextureImporter:
     - name: PlayerSprites_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 193
-        width: 58
-        height: 51
+        x: 0
+        y: 4
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PlayerSprites_1
       rect:
         serializedVersion: 2
-        x: 82
-        y: 190
-        width: 39
-        height: 58
+        x: 60
+        y: 4
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PlayerSprites_2
       rect:
         serializedVersion: 2
-        x: 144
-        y: 191
-        width: 39
-        height: 52
+        x: 120
+        y: 4
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PlayerSprites_3
       rect:
         serializedVersion: 2
-        x: 206
-        y: 192
-        width: 39
-        height: 55
+        x: 180
+        y: 4
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PlayerSprites_4
       rect:
         serializedVersion: 2
-        x: 21
-        y: 130
-        width: 39
-        height: 56
+        x: 240
+        y: 4
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PlayerSprites_5
       rect:
         serializedVersion: 2
-        x: 81
-        y: 129
-        width: 40
-        height: 57
+        x: 300
+        y: 4
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PlayerSprites_6
       rect:
         serializedVersion: 2
-        x: 143
-        y: 129
-        width: 40
-        height: 57
+        x: 360
+        y: 4
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PlayerSprites_7
       rect:
         serializedVersion: 2
-        x: 20
-        y: 68
-        width: 39
-        height: 56
+        x: 420
+        y: 4
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PlayerSprites_8
       rect:
         serializedVersion: 2
-        x: 81
-        y: 67
-        width: 40
-        height: 57
+        x: 480
+        y: 4
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PlayerSprites_9
       rect:
         serializedVersion: 2
-        x: 20
+        x: 540
         y: 4
-        width: 24
-        height: 58
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PlayerSprites_10
       rect:
         serializedVersion: 2
-        x: 81
-        y: 5
-        width: 40
-        height: 57
+        x: 600
+        y: 4
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

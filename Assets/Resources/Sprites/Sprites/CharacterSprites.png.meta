@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 7e7cd853c8a0a904a8ebae67c914eb88
-timeCreated: 1442545466
+guid: 9d8fd0999f05bff4dba42ea399f043a5
+timeCreated: 1442590623
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: CharacterSprites1_0
-    21300002: CharacterSprites1_1
-    21300004: CharacterSprites1_2
-    21300006: CharacterSprites1_3
-    21300008: CharacterSprites1_4
-    21300010: CharacterSprites1_5
+    21300000: CharacterSprites_0
+    21300002: CharacterSprites_1
+    21300004: CharacterSprites_2
+    21300006: CharacterSprites_3
+    21300008: CharacterSprites_4
+    21300010: CharacterSprites_5
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -55,63 +55,63 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: CharacterSprites1_0
+    - name: CharacterSprites_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 130
-        width: 38
-        height: 51
+        x: 0
+        y: 0
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: CharacterSprites1_1
+    - name: CharacterSprites_1
       rect:
         serializedVersion: 2
-        x: 82
-        y: 130
-        width: 39
-        height: 56
+        x: 60
+        y: 0
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: CharacterSprites1_2
+    - name: CharacterSprites_2
       rect:
         serializedVersion: 2
-        x: 140
-        y: 129
-        width: 43
-        height: 57
+        x: 120
+        y: 0
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: CharacterSprites1_3
+    - name: CharacterSprites_3
       rect:
         serializedVersion: 2
-        x: 21
-        y: 67
-        width: 38
-        height: 53
+        x: 180
+        y: 0
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: CharacterSprites1_4
+    - name: CharacterSprites_4
       rect:
         serializedVersion: 2
-        x: 81
-        y: 66
-        width: 40
-        height: 58
+        x: 240
+        y: 0
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: CharacterSprites1_5
+    - name: CharacterSprites_5
       rect:
         serializedVersion: 2
-        x: 20
-        y: 7
-        width: 39
-        height: 51
+        x: 300
+        y: 0
+        width: 60
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

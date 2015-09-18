@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 1e576945bf3b71647ada869d02a5b0de
-timeCreated: 1442545342
+timeCreated: 1442593581
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -115,630 +115,630 @@ TextureImporter:
     - name: dg_magic32_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 196
-        width: 23
-        height: 20
+        x: 0
+        y: 192
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_1
       rect:
         serializedVersion: 2
-        x: 35
-        y: 196
-        width: 23
-        height: 20
+        x: 32
+        y: 192
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_2
       rect:
         serializedVersion: 2
-        x: 67
-        y: 196
-        width: 23
-        height: 20
+        x: 64
+        y: 192
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_3
       rect:
         serializedVersion: 2
-        x: 99
-        y: 196
-        width: 23
-        height: 20
+        x: 96
+        y: 192
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_4
       rect:
         serializedVersion: 2
-        x: 129
-        y: 194
-        width: 30
-        height: 29
+        x: 128
+        y: 192
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_5
       rect:
         serializedVersion: 2
-        x: 161
-        y: 194
-        width: 30
-        height: 29
+        x: 160
+        y: 192
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_6
       rect:
         serializedVersion: 2
-        x: 193
-        y: 194
-        width: 30
-        height: 29
+        x: 192
+        y: 192
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_7
       rect:
         serializedVersion: 2
-        x: 225
-        y: 194
-        width: 30
-        height: 29
+        x: 224
+        y: 192
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_8
       rect:
         serializedVersion: 2
-        x: 257
-        y: 194
-        width: 30
-        height: 29
+        x: 256
+        y: 192
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_9
       rect:
         serializedVersion: 2
-        x: 3
-        y: 164
-        width: 23
-        height: 20
+        x: 0
+        y: 160
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_10
       rect:
         serializedVersion: 2
-        x: 35
-        y: 164
-        width: 23
-        height: 20
+        x: 32
+        y: 160
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_11
       rect:
         serializedVersion: 2
-        x: 67
-        y: 164
-        width: 23
-        height: 20
+        x: 64
+        y: 160
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_12
       rect:
         serializedVersion: 2
-        x: 99
-        y: 164
-        width: 23
-        height: 20
+        x: 96
+        y: 160
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_13
       rect:
         serializedVersion: 2
-        x: 129
-        y: 162
-        width: 30
-        height: 29
+        x: 128
+        y: 160
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_14
       rect:
         serializedVersion: 2
-        x: 161
-        y: 162
-        width: 30
-        height: 29
+        x: 160
+        y: 160
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_15
       rect:
         serializedVersion: 2
-        x: 193
-        y: 162
-        width: 30
-        height: 29
+        x: 192
+        y: 160
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_16
       rect:
         serializedVersion: 2
-        x: 225
-        y: 162
-        width: 30
-        height: 29
+        x: 224
+        y: 160
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_17
       rect:
         serializedVersion: 2
-        x: 257
-        y: 162
-        width: 30
-        height: 29
+        x: 256
+        y: 160
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_18
       rect:
         serializedVersion: 2
-        x: 3
-        y: 132
-        width: 23
-        height: 20
+        x: 0
+        y: 128
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_19
       rect:
         serializedVersion: 2
-        x: 35
-        y: 132
-        width: 23
-        height: 20
+        x: 32
+        y: 128
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_20
       rect:
         serializedVersion: 2
-        x: 67
-        y: 132
-        width: 23
-        height: 20
+        x: 64
+        y: 128
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_21
       rect:
         serializedVersion: 2
-        x: 99
-        y: 132
-        width: 23
-        height: 20
+        x: 96
+        y: 128
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_22
       rect:
         serializedVersion: 2
-        x: 129
-        y: 130
-        width: 30
-        height: 29
+        x: 128
+        y: 128
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_23
       rect:
         serializedVersion: 2
-        x: 161
-        y: 130
-        width: 30
-        height: 29
+        x: 160
+        y: 128
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_24
       rect:
         serializedVersion: 2
-        x: 193
-        y: 130
-        width: 30
-        height: 29
+        x: 192
+        y: 128
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_25
       rect:
         serializedVersion: 2
-        x: 225
-        y: 130
-        width: 30
-        height: 29
+        x: 224
+        y: 128
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_26
       rect:
         serializedVersion: 2
-        x: 257
-        y: 130
-        width: 30
-        height: 29
+        x: 256
+        y: 128
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_27
       rect:
         serializedVersion: 2
-        x: 3
-        y: 100
-        width: 23
-        height: 20
+        x: 0
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_28
       rect:
         serializedVersion: 2
-        x: 35
-        y: 100
-        width: 23
-        height: 20
+        x: 32
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_29
       rect:
         serializedVersion: 2
-        x: 67
-        y: 100
-        width: 23
-        height: 20
+        x: 64
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_30
       rect:
         serializedVersion: 2
-        x: 99
-        y: 100
-        width: 23
-        height: 20
+        x: 96
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_31
       rect:
         serializedVersion: 2
-        x: 129
-        y: 98
-        width: 30
-        height: 29
+        x: 128
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_32
       rect:
         serializedVersion: 2
-        x: 161
-        y: 98
-        width: 30
-        height: 29
+        x: 160
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_33
       rect:
         serializedVersion: 2
-        x: 193
-        y: 98
-        width: 30
-        height: 29
+        x: 192
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_34
       rect:
         serializedVersion: 2
-        x: 225
-        y: 98
-        width: 30
-        height: 29
+        x: 224
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_35
       rect:
         serializedVersion: 2
-        x: 257
-        y: 98
-        width: 30
-        height: 29
+        x: 256
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_36
       rect:
         serializedVersion: 2
-        x: 3
-        y: 68
-        width: 23
-        height: 20
+        x: 0
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_37
       rect:
         serializedVersion: 2
-        x: 35
-        y: 68
-        width: 23
-        height: 20
+        x: 32
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_38
       rect:
         serializedVersion: 2
-        x: 67
-        y: 68
-        width: 23
-        height: 20
+        x: 64
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_39
       rect:
         serializedVersion: 2
-        x: 99
-        y: 68
-        width: 23
-        height: 20
+        x: 96
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_40
       rect:
         serializedVersion: 2
-        x: 129
-        y: 66
-        width: 30
-        height: 29
+        x: 128
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_41
       rect:
         serializedVersion: 2
-        x: 161
-        y: 66
-        width: 30
-        height: 29
+        x: 160
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_42
       rect:
         serializedVersion: 2
-        x: 193
-        y: 66
-        width: 30
-        height: 29
+        x: 192
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_43
       rect:
         serializedVersion: 2
-        x: 225
-        y: 66
-        width: 30
-        height: 29
+        x: 224
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_44
       rect:
         serializedVersion: 2
-        x: 257
-        y: 66
-        width: 30
-        height: 29
+        x: 256
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_45
       rect:
         serializedVersion: 2
-        x: 3
-        y: 36
-        width: 23
-        height: 20
+        x: 0
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_46
       rect:
         serializedVersion: 2
-        x: 35
-        y: 36
-        width: 23
-        height: 20
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_47
       rect:
         serializedVersion: 2
-        x: 67
-        y: 36
-        width: 23
-        height: 20
+        x: 64
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_48
       rect:
         serializedVersion: 2
-        x: 99
-        y: 36
-        width: 23
-        height: 20
+        x: 96
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_49
       rect:
         serializedVersion: 2
-        x: 129
-        y: 34
-        width: 30
-        height: 29
+        x: 128
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_50
       rect:
         serializedVersion: 2
-        x: 161
-        y: 34
-        width: 30
-        height: 29
+        x: 160
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_51
       rect:
         serializedVersion: 2
-        x: 193
-        y: 34
-        width: 30
-        height: 29
+        x: 192
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_52
       rect:
         serializedVersion: 2
-        x: 225
-        y: 34
-        width: 30
-        height: 29
+        x: 224
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_53
       rect:
         serializedVersion: 2
-        x: 257
-        y: 34
-        width: 30
-        height: 29
+        x: 256
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_54
       rect:
         serializedVersion: 2
-        x: 3
-        y: 4
-        width: 23
-        height: 20
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_55
       rect:
         serializedVersion: 2
-        x: 35
-        y: 4
-        width: 23
-        height: 20
+        x: 32
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_56
       rect:
         serializedVersion: 2
-        x: 67
-        y: 4
-        width: 23
-        height: 20
+        x: 64
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_57
       rect:
         serializedVersion: 2
-        x: 99
-        y: 4
-        width: 23
-        height: 20
+        x: 96
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_58
       rect:
         serializedVersion: 2
-        x: 129
-        y: 2
-        width: 30
-        height: 29
+        x: 128
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_59
       rect:
         serializedVersion: 2
-        x: 161
-        y: 2
-        width: 30
-        height: 29
+        x: 160
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_60
       rect:
         serializedVersion: 2
-        x: 193
-        y: 2
-        width: 30
-        height: 29
+        x: 192
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_61
       rect:
         serializedVersion: 2
-        x: 225
-        y: 2
-        width: 30
-        height: 29
+        x: 224
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: dg_magic32_62
       rect:
         serializedVersion: 2
-        x: 257
-        y: 2
-        width: 30
-        height: 29
+        x: 256
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
