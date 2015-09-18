@@ -7,10 +7,19 @@ using System.Text;
 namespace UnityRPG
 {
 
+    public class StoreItem
+    {
+        public long price { get; set; }
+        public Item item { get; set; }
+        public int count { get; set; }
+        public int selected { get; set; }
+    }
+
+     [Serializable]
     public class ItemSet
     {
         public string itemName { get; set; }
-        public int itemID { get; set; }
+        public long itemID { get; set; }
         public int count { get; set; }
 
         public string sheetname { get; set; }
@@ -24,7 +33,6 @@ namespace UnityRPG
                 if (this.itemID == itemSet2.itemID)
                 {
                     return true;
-
                 }
             }
             return false;
@@ -42,9 +50,10 @@ namespace UnityRPG
         
     }
 
+    [Serializable]
     public class Item
     {
-        public int ID { get; set; }
+        public long ID { get; set; }
         public string name { get; set; }
         public ItemType type { get; set; }
         public List<PassiveEffect> passiveEffects { get; set; }
@@ -52,6 +61,8 @@ namespace UnityRPG
 
         public string sheetname { get; set; }
         public int spriteindex { get; set; }
+
+        public long price;
 
         public string getEffects()
         {
@@ -71,6 +82,7 @@ namespace UnityRPG
 
     }
 
+     [Serializable]
     public class UsableItem : Item
     {
         public int actionPoints { get; set; }
@@ -83,6 +95,7 @@ namespace UnityRPG
         }
     }
 
+     [Serializable]
     public class Weapon : Item
     {
         public int minDamage { get; set; }
@@ -98,6 +111,7 @@ namespace UnityRPG
 
     }
 
+     [Serializable]
     public class RangedWeapon : Weapon
     {
         public int range { get; set; }
@@ -109,6 +123,7 @@ namespace UnityRPG
         }
     }
 
+     [Serializable]
     public class Ammo : Item
     {
         
@@ -121,6 +136,7 @@ namespace UnityRPG
         }
     }
 
+     [Serializable]
     public class Armor : Item
     {
         public int armor { get; set; }
@@ -132,6 +148,4 @@ namespace UnityRPG
         }
     }
 
-   
-    
 }

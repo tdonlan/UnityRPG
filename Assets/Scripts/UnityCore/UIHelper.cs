@@ -157,7 +157,7 @@ using System.Linq;
             getButton(canvas, "AttackButton").interactable = flag;
             getButton(canvas, "AbilitiesButton").interactable = flag;
             getButton(canvas, "ItemButton").interactable = flag;
-            getButton(canvas, "EquipmentButton").interactable = flag;
+            //getButton(canvas, "EquipmentButton").interactable = flag;
         }
 
         public static void SetButton(string buttonName, bool flag)

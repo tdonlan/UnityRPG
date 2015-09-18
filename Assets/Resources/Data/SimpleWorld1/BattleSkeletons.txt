@@ -1,0 +1,31 @@
+﻿1
+SkeletonBattle
+1;ZoneForest2;Info;The skeletons rise from the ground, wielding longswords!;Forest;
+--
+2:Enemy
+3:Enemy
+4:Enemy
+5:Win
+----
+2
+Skeleton
+80004;Skeleton;Enemy;Dry bone and angry magic;Skeleton;0;0
+--
+----
+3
+Skeleton
+80004;Skeleton;Enemy;Dry bone and angry magic;Skeleton;0;0
+--
+----
+4
+Skeleton
+80004;Skeleton;Enemy;Dry bone and angry magic;Skeleton;0;0
+--
+----
+5
+Win
+1;WinScreen;Win;The bones clatter to the ground and lie still;WinScreen
+{SkeletonsKilled}
+{AddItem;20001;Gold;500}
+--
+----

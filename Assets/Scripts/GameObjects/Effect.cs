@@ -6,6 +6,7 @@ using System.Text;
 
 namespace UnityRPG
 {
+    [Serializable]
     public class PassiveEffect
     {
         public string name { get; set; }
@@ -23,6 +24,7 @@ namespace UnityRPG
 
     }
 
+    [Serializable]
     public class ActiveEffect
     {
         public string name { get; set; }
@@ -32,10 +34,6 @@ namespace UnityRPG
         public int maxAmount { get; set; }
 
         public int duration { get; set; }
-
-
-        //public string sheetname { get; set; }
-       // public int spriteindex { get; set; }
 
         public TempEffectType effectType { get; set; }
         public string effectName { get; set; }
@@ -47,8 +45,6 @@ namespace UnityRPG
                 
         }
         
-
-
         public override string ToString()
         {
             return string.Format("{0} (Active): {1} {2}-{3} for {4} turns", name, statType.ToString(), minAmount, maxAmount, duration);

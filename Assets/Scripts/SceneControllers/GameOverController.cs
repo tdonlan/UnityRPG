@@ -3,10 +3,10 @@ using System.Collections;
 
 public class GameOverController : MonoBehaviour {
 
-    GameControllerScript gameControllerScript { get; set; }
+    BattleSceneControllerScript gameControllerScript { get; set; }
 	// Use this for initialization
 	void Start () {
-        this.gameControllerScript = GameObject.FindObjectOfType<GameControllerScript>();
+        this.gameControllerScript = GameObject.FindObjectOfType<BattleSceneControllerScript>();
 
         LoadBattleLog();
 	}

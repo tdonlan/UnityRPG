@@ -38,7 +38,7 @@ namespace UnityRPG
             return new ItemSet() { itemName = i.name, itemID = i.ID, count = count,sheetname=i.sheetname,spriteindex=i.spriteindex };
         }
 
-        public static Item getFirstItemWithID(List<Item> inventory, int ID)
+        public static Item getFirstItemWithID(List<Item> inventory, long ID)
         {
             var item = (from data in inventory
                         where data.ID == ID

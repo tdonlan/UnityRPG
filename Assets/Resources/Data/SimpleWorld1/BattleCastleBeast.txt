@@ -1,0 +1,30 @@
+﻿1
+The Beast
+1;ZoneEvilCastle;Info;A hideous beast roars from the shadows of its lair.;EvilCastle;
+--
+2:Enemy
+3:Enemy
+4:Enemy
+5:Win
+----
+2
+The Beast
+80007;The Beast;Enemy;A ferocious beast, intent on only destruction;Beast;0;0
+--
+----
+3
+Beast Handler
+80008;Beast Keeper;Enemy;Carries a whip and a net;Beast Keeper;0;0
+--
+----
+4
+Beast Handler
+80008;Beast Keeper;Enemy;Carries a whip and a net;Beast Keeper;0;0
+--
+----
+5
+Win
+1;WinScreen;Win;The beast lies in a puddle of blood;WinScreen
+{BeastKilled}
+--
+----

@@ -15,8 +15,5 @@ namespace UnityRPG
         public BattleActionType actionType { get; set; }
         public Ability ability { get; set; }
         public UsableItem item {get;set;}
-
-
-
     }
 }

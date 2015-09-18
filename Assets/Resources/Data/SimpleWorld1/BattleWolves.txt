@@ -1,0 +1,31 @@
+﻿1
+Wolf Battle
+1;ZoneForest1;Info;The wolves leap from the trees, growling!;Forest;
+--
+2:Enemy
+3:Enemy
+4:Enemy
+5:Win
+----
+2
+Wolf
+80003;Wolf;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Wolf;0;0
+--
+----
+3
+Rat
+80003;Wolf;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Wolf;0;0
+--
+----
+4
+Rat
+80003;Wolf;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Wolf;0;0
+--
+----
+5
+Win
+1;WinScreen;Win;You kill the wolves and they lie in a bloody heap;WinScreen
+{WolvesKilled}
+{AddItem;20001;Gold;100}
+--
+----

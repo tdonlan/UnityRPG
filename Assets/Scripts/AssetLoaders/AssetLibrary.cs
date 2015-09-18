@@ -43,12 +43,11 @@ namespace UnityRPG
 
         public Dictionary<string, string> boardLayoutDictionary { get; set; }
    
-
         public AssetLibrary()
         {
             LoadSpritesheets();
             LoadPrefabs();
-            LoadBoards();
+            //LoadBoards();
 
             tileSpriteLibrary = new TileSpriteLibrary();
         }
@@ -82,10 +81,10 @@ namespace UnityRPG
             prefabList.Add(new Prefab("Cyclone", "Elementals/Prefab/Wind/Cyclone"));
 
             //Text
-            prefabList.Add(new Prefab("TextPopup", "Prefab/TextPopupPrefab"));
+            prefabList.Add(new Prefab("TextPopup", "PrefabGame/TextPopupPrefab"));
 
             //sprite
-            prefabList.Add(new Prefab("Sprite", "Prefab/SpritePrefab"));
+            prefabList.Add(new Prefab("Sprite", "PrefabGame/SpritePrefab"));
 
         }
 
@@ -94,6 +93,41 @@ namespace UnityRPG
             //get the manifest from some external file
 
             spritesheetList = new List<Spritesheet>();
+
+
+            spritesheetList.Add(getSpritesheet("DamageEffects", "Sprites/Effects/DamageFX"));
+            spritesheetList.Add(getSpritesheet("SpellEffects", "Sprites/Effects/dg_effects32"));
+            spritesheetList.Add(getSpritesheet("SpellIcons", "Sprites/Effects/Spells"));
+
+            spritesheetList.Add(getSpritesheet("Icons1", "Sprites/Icons/Icon1"));
+            spritesheetList.Add(getSpritesheet("Icons2", "Sprites/Icons/Icon1"));
+            spritesheetList.Add(getSpritesheet("Icons3", "Sprites/Icons/Icon1"));
+            spritesheetList.Add(getSpritesheet("Icons4", "Sprites/Icons/Icon1"));
+            spritesheetList.Add(getSpritesheet("Icons5", "Sprites/Icons/Icon1"));
+            spritesheetList.Add(getSpritesheet("Icons6", "Sprites/Icons/Icon1"));
+            spritesheetList.Add(getSpritesheet("Icons7", "Sprites/Icons/Icon1"));
+            spritesheetList.Add(getSpritesheet("Icons8", "Sprites/Icons/Icon1"));
+
+            spritesheetList.Add(getSpritesheet("Armor", "Sprites/Items/dg_armor32"));
+            spritesheetList.Add(getSpritesheet("Food", "Sprites/Items/dg_food32"));
+            spritesheetList.Add(getSpritesheet("Jewels", "Sprites/Items/dg_jewls32"));
+            spritesheetList.Add(getSpritesheet("Spellbooks", "Sprites/Items/dg_magic32"));
+            spritesheetList.Add(getSpritesheet("Potions", "Sprites/Items/dg_potions32"));
+            spritesheetList.Add(getSpritesheet("Wands", "Sprites/Items/dg_wands32"));
+            spritesheetList.Add(getSpritesheet("Weapons", "Sprites/Items/dg_weapons32"));
+            spritesheetList.Add(getSpritesheet("MiscItems1", "Sprites/Items/dg_misc32"));
+            spritesheetList.Add(getSpritesheet("MiscItems2", "Sprites/Items/townactions"));
+
+            spritesheetList.Add(getSpritesheet("CharacterPortraits", "Sprites/Portraits/CharacterPortraits1"));
+            spritesheetList.Add(getSpritesheet("MonsterPortraits", "Sprites/Portraits/MonsterPortraits"));
+            spritesheetList.Add(getSpritesheet("PlayerPortraits", "Sprites/Portraits/PlayerPortraits"));
+
+            spritesheetList.Add(getSpritesheet("CharacterSprites", "Sprites/Sprites/CharacterSprites"));
+            spritesheetList.Add(getSpritesheet("MonsterSprites", "Sprites/Sprites/MonsterSprites"));
+            spritesheetList.Add(getSpritesheet("PlayerSprites", "Sprites/Sprites/PlayerSprites"));
+            //---------------------------------------------
+
+            /* Old spritesheets
             spritesheetList.Add(getSpritesheet("Tiles", "Sprites/dg_dungeon32"));
             spritesheetList.Add(getSpritesheet("Characters", "Sprites/dg_classm32Edit"));
             spritesheetList.Add(getSpritesheet("Portraits", "Sprites/portraitsEdit"));
@@ -105,10 +139,20 @@ namespace UnityRPG
             spritesheetList.Add(getSpritesheet("Potions", "Sprites/dg_potions32"));
             spritesheetList.Add(getSpritesheet("Dragons", "Sprites/dg_dragon32Edit"));
 
-            spritesheetList.Add(getSpritesheet("Blank", "Sprites/blankItem"));
-            spritesheetList.Add(getSpritesheet("InitBG1", "Sprites/InitBG1"));
-            spritesheetList.Add(getSpritesheet("InitBG2", "Sprites/InitBG2"));
-            spritesheetList.Add(getSpritesheet("HighlightTile", "Sprites/highlightTile"));
+            spritesheetList.Add(getSpritesheet("Monsters1", "Sprites/monsters1"));
+            spritesheetList.Add(getSpritesheet("Monsters2", "Sprites/monsters2"));
+            spritesheetList.Add(getSpritesheet("Monsters3", "Sprites/monsters3"));
+            spritesheetList.Add(getSpritesheet("Monsters4", "Sprites/monsters4"));
+            spritesheetList.Add(getSpritesheet("Monsters5", "Sprites/monsters5"));
+            spritesheetList.Add(getSpritesheet("Monsters6", "Sprites/monsters6"));
+            spritesheetList.Add(getSpritesheet("Monsters7", "Sprites/monsters7"));
+             * 
+             * */
+
+            spritesheetList.Add(getSpritesheet("Blank", "Sprites/Misc/blankItem"));
+            spritesheetList.Add(getSpritesheet("InitBG1", "Sprites/Misc/InitBG1"));
+            spritesheetList.Add(getSpritesheet("InitBG2", "Sprites/Misc/InitBG2"));
+            spritesheetList.Add(getSpritesheet("HighlightTile", "Sprites/Misc/highlightTile"));
 
         }
 

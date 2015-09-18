@@ -119,7 +119,7 @@ namespace UnityRPG
 
             game.battleLog.AddEntry(string.Format("{0} hit {1} for {2} damage.", attacker.name, defender.name, dmg));
             game.gameControllerScript.StartTempTextOnChar(defender, dmg, true);
-            game.gameControllerScript.StartTempSpriteOnChar(defender, "Particles", 48);
+            game.gameControllerScript.StartTempSpriteOnChar(defender, "DamageEffects", 1);
 
             if(attacker.weapon.activeEffects != null)
             {
