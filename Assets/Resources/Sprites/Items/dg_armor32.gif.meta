@@ -1,0 +1,1155 @@
+fileFormatVersion: 2
+guid: 8004d3c655e1a434c94611f7585f3cdc
+timeCreated: 1442545315
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: dg_armor32_0
+    21300002: dg_armor32_1
+    21300004: dg_armor32_2
+    21300006: dg_armor32_3
+    21300008: dg_armor32_4
+    21300010: dg_armor32_5
+    21300012: dg_armor32_6
+    21300014: dg_armor32_7
+    21300016: dg_armor32_8
+    21300018: dg_armor32_9
+    21300020: dg_armor32_10
+    21300022: dg_armor32_11
+    21300024: dg_armor32_12
+    21300026: dg_armor32_13
+    21300028: dg_armor32_14
+    21300030: dg_armor32_15
+    21300032: dg_armor32_16
+    21300034: dg_armor32_17
+    21300036: dg_armor32_18
+    21300038: dg_armor32_19
+    21300040: dg_armor32_20
+    21300042: dg_armor32_21
+    21300044: dg_armor32_22
+    21300046: dg_armor32_23
+    21300048: dg_armor32_24
+    21300050: dg_armor32_25
+    21300052: dg_armor32_26
+    21300054: dg_armor32_27
+    21300056: dg_armor32_28
+    21300058: dg_armor32_29
+    21300060: dg_armor32_30
+    21300062: dg_armor32_31
+    21300064: dg_armor32_32
+    21300066: dg_armor32_33
+    21300068: dg_armor32_34
+    21300070: dg_armor32_35
+    21300072: dg_armor32_36
+    21300074: dg_armor32_37
+    21300076: dg_armor32_38
+    21300078: dg_armor32_39
+    21300080: dg_armor32_40
+    21300082: dg_armor32_41
+    21300084: dg_armor32_42
+    21300086: dg_armor32_43
+    21300088: dg_armor32_44
+    21300090: dg_armor32_45
+    21300092: dg_armor32_46
+    21300094: dg_armor32_47
+    21300096: dg_armor32_48
+    21300098: dg_armor32_49
+    21300100: dg_armor32_50
+    21300102: dg_armor32_51
+    21300104: dg_armor32_52
+    21300106: dg_armor32_53
+    21300108: dg_armor32_54
+    21300110: dg_armor32_55
+    21300112: dg_armor32_56
+    21300114: dg_armor32_57
+    21300116: dg_armor32_58
+    21300118: dg_armor32_59
+    21300120: dg_armor32_60
+    21300122: dg_armor32_61
+    21300124: dg_armor32_62
+    21300126: dg_armor32_63
+    21300128: dg_armor32_64
+    21300130: dg_armor32_65
+    21300132: dg_armor32_66
+    21300134: dg_armor32_67
+    21300136: dg_armor32_68
+    21300138: dg_armor32_69
+    21300140: dg_armor32_70
+    21300142: dg_armor32_71
+    21300144: dg_armor32_72
+    21300146: dg_armor32_73
+    21300148: dg_armor32_74
+    21300150: dg_armor32_75
+    21300152: dg_armor32_76
+    21300154: dg_armor32_77
+    21300156: dg_armor32_78
+    21300158: dg_armor32_79
+    21300160: dg_armor32_80
+    21300162: dg_armor32_81
+    21300164: dg_armor32_82
+    21300166: dg_armor32_83
+    21300168: dg_armor32_84
+    21300170: dg_armor32_85
+    21300172: dg_armor32_86
+    21300174: dg_armor32_87
+    21300176: dg_armor32_88
+    21300178: dg_armor32_89
+    21300180: dg_armor32_90
+    21300182: dg_armor32_91
+    21300184: dg_armor32_92
+    21300186: dg_armor32_93
+    21300188: dg_armor32_94
+    21300190: dg_armor32_95
+    21300192: dg_armor32_96
+    21300194: dg_armor32_97
+    21300196: dg_armor32_98
+    21300198: dg_armor32_99
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 32
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: dg_armor32_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 290
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_1
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 290
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_2
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 290
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_3
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 290
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_4
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 290
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_5
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 290
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_6
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 290
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_7
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 290
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_8
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 290
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_9
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 296
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_10
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 264
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_11
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 264
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_12
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 265
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_13
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 264
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_14
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 262
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_15
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 264
+        width: 21
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_16
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 264
+        width: 21
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_17
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 264
+        width: 21
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_18
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 261
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_19
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 262
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_20
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 230
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_21
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 230
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_22
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 230
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_23
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 229
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_24
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 229
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_25
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 229
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_26
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 227
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_27
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 227
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_28
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 228
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_29
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 225
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_30
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 199
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_31
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 194
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_32
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 194
+        width: 26
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_33
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 196
+        width: 18
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_34
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 194
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_35
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 194
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_36
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 194
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_37
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 194
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_38
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 198
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_39
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 198
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_40
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 166
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_41
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 166
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_42
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 163
+        width: 27
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_43
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 163
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_44
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 163
+        width: 27
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_45
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 163
+        width: 27
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_46
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 163
+        width: 27
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_47
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 163
+        width: 27
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_48
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 163
+        width: 27
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_49
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 164
+        width: 23
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_50
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 134
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_51
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 130
+        width: 27
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_52
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 132
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_53
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 132
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_54
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 131
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_55
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 132
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_56
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 129
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_57
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 129
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_58
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 129
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_59
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 129
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_60
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 97
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_61
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 97
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_62
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 97
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_63
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 97
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_64
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 97
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_65
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 97
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_66
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 97
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_67
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 97
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_68
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 97
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_69
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 97
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_70
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 73
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_71
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 71
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_72
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 67
+        width: 27
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_73
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 67
+        width: 27
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_74
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 70
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_75
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 69
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_76
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 67
+        width: 27
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_77
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 67
+        width: 27
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_78
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 68
+        width: 27
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_79
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 68
+        width: 27
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_80
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 36
+        width: 27
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_81
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 36
+        width: 27
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_82
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 36
+        width: 27
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_83
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 36
+        width: 27
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_84
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 35
+        width: 22
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_85
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 36
+        width: 19
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_86
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 35
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_87
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 35
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_88
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 35
+        width: 19
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_89
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 33
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_90
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 3
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_91
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 3
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_92
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 3
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_93
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 3
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_94
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 4
+        width: 19
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_95
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 3
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_96
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 3
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_97
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 3
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_98
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 3
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dg_armor32_99
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 3
+        width: 19
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
