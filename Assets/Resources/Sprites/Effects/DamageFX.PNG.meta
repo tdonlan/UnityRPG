@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7d99c4445f14d3e4e95847fe14cce3c8
-timeCreated: 1442544781
+timeCreated: 1442605028
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -102,500 +102,300 @@ TextureImporter:
     - name: DamageFX_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 296
-        width: 16
-        height: 17
+        x: 0
+        y: 288
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_1
       rect:
         serializedVersion: 2
-        x: 37
-        y: 294
-        width: 22
-        height: 22
+        x: 32
+        y: 288
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_2
       rect:
         serializedVersion: 2
-        x: 66
-        y: 290
-        width: 28
-        height: 28
+        x: 64
+        y: 288
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_3
       rect:
         serializedVersion: 2
-        x: 8
-        y: 264
-        width: 16
-        height: 17
+        x: 0
+        y: 256
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_4
       rect:
         serializedVersion: 2
-        x: 37
-        y: 262
-        width: 22
-        height: 22
+        x: 32
+        y: 256
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_5
       rect:
         serializedVersion: 2
-        x: 66
-        y: 258
-        width: 28
-        height: 28
+        x: 64
+        y: 256
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_6
       rect:
         serializedVersion: 2
-        x: 8
-        y: 232
-        width: 16
-        height: 17
+        x: 0
+        y: 224
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_7
       rect:
         serializedVersion: 2
-        x: 38
-        y: 229
-        width: 22
-        height: 22
+        x: 32
+        y: 224
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_8
       rect:
         serializedVersion: 2
-        x: 66
-        y: 226
-        width: 28
-        height: 28
+        x: 64
+        y: 224
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_9
       rect:
         serializedVersion: 2
-        x: 8
-        y: 200
-        width: 17
-        height: 16
+        x: 0
+        y: 192
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_10
       rect:
         serializedVersion: 2
-        x: 37
-        y: 197
-        width: 22
-        height: 22
+        x: 32
+        y: 192
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_11
       rect:
         serializedVersion: 2
-        x: 66
-        y: 194
-        width: 28
-        height: 28
+        x: 64
+        y: 192
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_12
       rect:
         serializedVersion: 2
-        x: 6
-        y: 176
-        width: 8
-        height: 9
+        x: 0
+        y: 160
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_13
       rect:
         serializedVersion: 2
-        x: 16
-        y: 174
-        width: 10
-        height: 6
+        x: 32
+        y: 160
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_14
       rect:
         serializedVersion: 2
-        x: 36
-        y: 174
-        width: 10
-        height: 6
+        x: 64
+        y: 160
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_15
       rect:
         serializedVersion: 2
-        x: 48
-        y: 176
-        width: 8
-        height: 9
+        x: 0
+        y: 128
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_16
       rect:
         serializedVersion: 2
-        x: 70
-        y: 177
-        width: 8
-        height: 9
+        x: 32
+        y: 128
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_17
       rect:
         serializedVersion: 2
-        x: 80
-        y: 178
-        width: 8
-        height: 9
+        x: 64
+        y: 128
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_18
       rect:
         serializedVersion: 2
-        x: 81
-        y: 173
-        width: 10
-        height: 6
+        x: 0
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_19
       rect:
         serializedVersion: 2
-        x: 12
-        y: 164
-        width: 5
-        height: 11
+        x: 32
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_20
       rect:
         serializedVersion: 2
-        x: 39
-        y: 166
-        width: 8
-        height: 9
+        x: 64
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_21
       rect:
         serializedVersion: 2
-        x: 49
-        y: 166
-        width: 8
-        height: 9
+        x: 0
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_22
       rect:
         serializedVersion: 2
-        x: 70
-        y: 167
-        width: 8
-        height: 9
+        x: 32
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_23
       rect:
         serializedVersion: 2
-        x: 77
-        y: 164
-        width: 5
-        height: 11
+        x: 64
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_24
       rect:
         serializedVersion: 2
-        x: 6
-        y: 135
-        width: 19
-        height: 19
+        x: 0
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_25
       rect:
         serializedVersion: 2
-        x: 34
-        y: 131
-        width: 27
-        height: 27
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_26
       rect:
         serializedVersion: 2
-        x: 66
-        y: 131
-        width: 27
-        height: 27
+        x: 64
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_27
       rect:
         serializedVersion: 2
-        x: 7
-        y: 103
-        width: 17
-        height: 15
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_28
       rect:
         serializedVersion: 2
-        x: 36
-        y: 103
-        width: 23
-        height: 19
+        x: 32
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: DamageFX_29
       rect:
         serializedVersion: 2
-        x: 66
-        y: 99
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: DamageFX_30
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 71
-        width: 17
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: DamageFX_31
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 70
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: DamageFX_32
-      rect:
-        serializedVersion: 2
-        x: 68
-        y: 67
-        width: 26
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: DamageFX_33
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 44
-        width: 5
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: DamageFX_34
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 50
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: DamageFX_35
-      rect:
-        serializedVersion: 2
-        x: 37
-        y: 43
-        width: 8
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: DamageFX_36
-      rect:
-        serializedVersion: 2
-        x: 43
-        y: 51
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: DamageFX_37
-      rect:
-        serializedVersion: 2
-        x: 51
-        y: 43
-        width: 8
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: DamageFX_38
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 35
-        width: 11
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: DamageFX_39
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 41
-        width: 7
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: DamageFX_40
-      rect:
-        serializedVersion: 2
-        x: 81
-        y: 41
-        width: 7
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: DamageFX_41
-      rect:
-        serializedVersion: 2
-        x: 83
-        y: 35
-        width: 11
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: DamageFX_42
-      rect:
-        serializedVersion: 2
-        x: 14
-        y: 46
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: DamageFX_43
-      rect:
-        serializedVersion: 2
-        x: 46
-        y: 46
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: DamageFX_44
-      rect:
-        serializedVersion: 2
-        x: 78
-        y: 46
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: DamageFX_45
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 40
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: DamageFX_46
-      rect:
-        serializedVersion: 2
-        x: 43
-        y: 37
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: DamageFX_47
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 8
-        width: 17
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: DamageFX_48
-      rect:
-        serializedVersion: 2
-        x: 37
-        y: 5
-        width: 22
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: DamageFX_49
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 2
-        width: 28
-        height: 28
+        x: 64
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
