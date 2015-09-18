@@ -1,5 +1,5 @@
 ID,Name,Type,ActiveEffects,PassiveEffects,SheetName,SpriteIndex,AP,Uses,ItemAbility,Price
 30001,Wand of Magic Missile,Wand,,,Wands,0,5,10,{10002},1000
-30002,Healing Potion,Potion,{1003},,Potions,18,5,1,,50
-30003,Grenade,Thrown,,,Weapons,54,5,1,{10008},200
-30004,Throwing Knife,Thrown,,,Weapons,6,2,1,{10020},10
+30002,Healing Potion,Potion,{1003},,Potions,10,5,1,,50
+30003,Grenade,Thrown,,,MiscItems2,9,5,1,{10008},200
+30004,Throwing Knife,Thrown,,,Weapons,4,2,1,{10020},10
