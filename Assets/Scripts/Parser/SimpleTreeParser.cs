@@ -251,7 +251,7 @@ using UnityEngine;
                     return getZoneNodeContentFromStr(contentStr);
                     //return new ZoneNodeContent() { linkIndex = Int64.Parse(contentList[0]), nodeName = contentList[1], nodeType = getZoneNodeTypeFromStr(contentList[2]), description = contentList[3], icon = contentList[4], x = Int32.Parse(contentList[5]), y = Int32.Parse(contentList[6]) };
                 case TreeType.Dialog:
-                    return new DialogNodeContent() {linkIndex = Int64.Parse(contentList[0]), speaker=contentList[1],portrait=contentList[2], text=contentList[3] };
+                    return new DialogNodeContent() {linkIndex = Int64.Parse(contentList[0]), speaker=contentList[1],portraitSpritesheetName=contentList[2],portraitSpritesheeteIndex=Int32.Parse(contentList[3]), text=contentList[4] };
                 case TreeType.Quest:
                     return new QuestNodeContent() { flagName = contentList[0], description = contentList[1] };
                 case TreeType.Battle:
@@ -290,6 +290,8 @@ using UnityEngine;
                 spritesheetIndex = spritesheetIndex
             };
         }
+
+
 
         //Parsing of BattleNodeContent, helper for getTreeNodeContentFromStr
         private static BattleNodeContent getBattleNodeContentFromStr(string contentStr)

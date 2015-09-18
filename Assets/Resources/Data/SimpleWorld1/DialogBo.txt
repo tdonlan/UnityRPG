@@ -1,13 +1,13 @@
 1
 Hi
-1;Bo;Bo;Sup, I'm Bo.
+1;Bo;CharacterPortraits;5;Sup, I'm Bo.
 --
 2:Nice to meet you.  What do you do here?
 4:Goodbye
 ----
 2
 Who
-1;Bo;Bo;I'm a warrior for hire.  Want me to join you?
+1;Bo;CharacterPortraits;5;I'm a warrior for hire.  Want me to join you?
 
 --
 3:Sure
@@ -15,13 +15,13 @@ Who
 ----
 3
 Hire
-1;Bo;Bo;Together we will conquer!
+1;Bo;CharacterPortraits;5;Together we will conquer!
 {BoJoined}
 {AddCharacter;80011;Bo;1}
 --
 ----
 4
 Bye
-1;Bo;Bo;Ok, talk to you later
+1;Bo;CharacterPortraits;5;Ok, talk to you later
 --
 ----

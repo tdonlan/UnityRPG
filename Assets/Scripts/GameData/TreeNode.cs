@@ -284,11 +284,13 @@ using System.Text;
 
     public class DialogNodeContent : ITreeNodeContent
     {
-        public string portrait { get; set; }
-        public string speaker { get; set; }
-        public string text { get; set; }
         public long linkIndex { get; set; }
+        public string speaker { get; set; }
 
+        public string portraitSpritesheetName { get; set; }
+        public int portraitSpritesheeteIndex { get; set; }
+
+        public string text { get; set; }
     }
 
     public class QuestNodeContent : ITreeNodeContent

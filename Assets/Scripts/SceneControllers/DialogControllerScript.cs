@@ -103,7 +103,8 @@ public class DialogControllerScript : MonoBehaviour {
 
         var speakerPortraitImg = speakerPortrait.GetComponent<Image>();
 
-        var speakerSprite = Resources.Load<Sprite>("Portraits/" + currentNode.content.portrait);
+        //var speakerSprite = Resources.Load<Sprite>("Portraits/" + currentNode.content.portrait);
+        var speakerSprite = gameDataObject.assetLibrary.getSprite(currentNode.content.portraitSpritesheetName, currentNode.content.portraitSpritesheeteIndex);
 
         speakerPortraitImg.sprite = speakerSprite;
 

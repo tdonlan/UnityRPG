@@ -1,6 +1,6 @@
 1
 Hi
-1;Zoe;Zoe;Hi! My name's Zoe!
+1;Zoe;CharacterPortraits;3;Hi! My name's Zoe!
 --
 2:Nice to meet you.  What do you do here?
 3:What's the name of this town?
@@ -13,7 +13,7 @@ Hi
 ----
 2
 Who
-1;Zoe;Zoe;I'm the town crier! I cry out what's going on.
+1;Zoe;CharacterPortraits;3;I'm the town crier! I cry out what's going on.
 --
 3:What's the name of this town?
 4:What's there to do here?
@@ -23,7 +23,7 @@ Who
 ----
 3
 Town
-1;Zoe;Zoe;This town is called Townville!  Original name huh?
+1;Zoe;CharacterPortraits;3;This town is called Townville!  Original name huh?
 --
 4:What's there to do here?
 5:Anywhere to buy things?
@@ -32,7 +32,7 @@ Town
 ----
 4
 Stuff
-1;Zoe;Zoe;There's plenty of things to do in Townville. You can buy and sell stuff, kill rats in the ally, or talk to me!
+1;Zoe;CharacterPortraits;3;There's plenty of things to do in Townville. You can buy and sell stuff, kill rats in the ally, or talk to me!
 --
 3:What's the name of this town?
 5:Anywhere to buy things?
@@ -41,7 +41,7 @@ Stuff
 ----
 5
 Buy
-1;Zoe;Zoe;Yep, you can buy and sell goods at the blacksmith.  He's right down the way.  Here's some money!
+1;Zoe;CharacterPortraits;3;Yep, you can buy and sell goods at the blacksmith.  He's right down the way.  Here's some money!
 {}
 {AddItem;20001;Gold;1000},{AddItem;40001;Longsword;1}
 --
@@ -52,7 +52,7 @@ Buy
 ----
 6
 Danger
-1;Zoe;Zoe;Well, the alley has been infested with rats for as long as I can remember.  Can you kill them?
+1;Zoe;CharacterPortraits;3;Well, the alley has been infested with rats for as long as I can remember.  Can you kill them?
 {QuestRat}
 --
 3:What's the name of this town?
@@ -62,19 +62,19 @@ Danger
 ----
 7
 Goodbye
-1;Zoe;Zoe;See ya!
+1;Zoe;CharacterPortraits;3;See ya!
 --
 ----
 8
 RatsKilled
-1;Zoe;Zoe;Thanks for killing rats, this is my pa's old tooth! Thanks for finding it.  Here's his old key, see if it opens the chest in the woods.
+1;Zoe;CharacterPortraits;3;Thanks for killing rats, this is my pa's old tooth! Thanks for finding it.  Here's his old key, see if it opens the chest in the woods.
 {QuestRat3}
 {AddItem;20003;Old Key;1}
 --
 ----
 9
 RatsKilled
-1;Zoe;Zoe;You found the red gem! horay!  Here's 100 gold.  Thanks again!
+1;Zoe;CharacterPortraits;3;You found the red gem! horay!  Here's 100 gold.  Thanks again!
 {QuestRat5}
 {AddItem;20001;Gold;100}
 --
