@@ -81,6 +81,8 @@ public class ZoneControllerScript : MonoBehaviour {
         
         loadTileMapData();
         loadTileSprites();
+
+        setPlayerSprite();
         setPlayerStart();
     }
 
@@ -139,15 +141,16 @@ public class ZoneControllerScript : MonoBehaviour {
             ZoneTreeNode node = (ZoneTreeNode)zoneTree.getNodeCheckingRootBranchList(i+1);
             if (node != null)
             {
-                objectSpriteList.Add(loadTileSprite(node.content.icon, tileMapData.objectBounds[i].center));
+                objectSpriteList.Add(loadTileSprite(node.content.spritesheetName,node.content.spritesheetIndex, tileMapData.objectBounds[i].center));
             }
         }
     }
 
-    private GameObject loadTileSprite(string spriteName, Vector3 pos)
+    private GameObject loadTileSprite(string spritesheetName, int spriteIndex, Vector3 pos)
     {
         GameObject spriteObject = null;
-        var spriteResource = Resources.Load<Sprite>("ZoneImage/"+spriteName);
+       // var spriteResource = Resources.Load<Sprite>("ZoneImage/"+spriteName);
+        var spriteResource = gameDataObject.assetLibrary.getSprite(spritesheetName, spriteIndex);
         if (spriteResource != null)
         {
             spriteObject = Instantiate(spritePrefab);
@@ -157,6 +160,13 @@ public class ZoneControllerScript : MonoBehaviour {
         }
 
         return spriteObject;
+
+    }
+
+    private void setPlayerSprite()
+    {
+        var playerSprite = player.GetComponent<SpriteRenderer>();
+        playerSprite.sprite = gameDataObject.assetLibrary.getSprite(gameDataObject.playerGameCharacter.characterSpritesheetName, gameDataObject.playerGameCharacter.characterSpriteIndex);
 
     }
 

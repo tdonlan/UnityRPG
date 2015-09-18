@@ -268,13 +268,18 @@ using System.Text;
 
     public class ZoneNodeContent : ITreeNodeContent
     {
-        public ZoneNodeType nodeType { get; set; }
-        public string nodeName { get; set; }
         public long linkIndex { get; set; }
-        public string icon { get; set; }
-        public string description { get;set;}
-        public int x {get;set;}
-        public int y{get;set;}
+        public string nodeName { get; set; }
+        public ZoneNodeType nodeType { get; set; }
+        public string description { get; set; }
+
+        public string iconSpritesheetName { get; set; }
+        public int iconSpritesheetIndex { get; set; }
+        public string spritesheetName { get; set; }
+        public int spritesheetIndex { get; set; }
+
+        //public int x {get;set;}
+        //public int y{get;set;}
     }
 
     public class DialogNodeContent : ITreeNodeContent

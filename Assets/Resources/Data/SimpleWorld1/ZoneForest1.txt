@@ -1,6 +1,6 @@
 1
 Edge of Forest
-0;Edge of Forest;Link;The edge of forest;Forest;-300;-100
+0;Edge of Forest;Link;The edge of forest;Icons2;37;Blank;0
 --
 2:Deeper Into the Forest
 3: Howling Wolves!{!WolvesKilled}
@@ -8,16 +8,16 @@ Edge of Forest
 ----
 2
 Deeper into the Forest
-4;Deeper into the Forest;Link;The forest grows dark and forboding;Forest;-300;-100
+4;Deeper into the Forest;Link;The forest grows dark and forboding;Icons2;37;Blank;0
 --
 ----
 3
 Howling Wolves!
-11;Howling Wolves!;Battle;A pack of snarling wolves leaps from the trees.;WolfSprite;-300;-100
+11;Howling Wolves!;Battle;A pack of snarling wolves leaps from the trees.;Icons1;37;Blank;0
 --
 ----
 4
 A Strange Hermit
-5;A Strange Hermit;Dialog;A strange unkempt hermit emerges from the trees, smoking a pipe.;HermitSprite;-300;-100
+5;A Strange Hermit;Dialog;A strange unkempt hermit emerges from the trees, smoking a pipe.;Icons1;95;CharacterSprites;4
 --
 ----

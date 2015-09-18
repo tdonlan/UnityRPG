@@ -122,7 +122,7 @@ namespace UnityRPG
             spritesheetList.Add(getSpritesheet("MonsterPortraits", "Sprites/Portraits/MonsterPortraits"));
             spritesheetList.Add(getSpritesheet("PlayerPortraits", "Sprites/Portraits/PlayerPortraits"));
 
-            spritesheetList.Add(getSpritesheet("CharacterSprites", "Sprites/Sprites/CharacterSprites1"));
+            spritesheetList.Add(getSpritesheet("CharacterSprites", "Sprites/Sprites/CharacterSprites"));
             spritesheetList.Add(getSpritesheet("MonsterSprites", "Sprites/Sprites/MonsterSprites"));
             spritesheetList.Add(getSpritesheet("PlayerSprites", "Sprites/Sprites/PlayerSprites"));
             //---------------------------------------------

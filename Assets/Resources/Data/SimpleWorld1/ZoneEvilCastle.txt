@@ -1,6 +1,6 @@
 ﻿1
 Evil Castle
-0;Castle Entrance;Link;A crumbling gatehouse leads back to the desert;Desert;-300;-100
+0;Castle Entrance;Link;A crumbling gatehouse leads back to the desert;Icons2;37;Blank;0
 --
 2:A Horrible Ritual{!KingKilled}
 3:The Lair of the Beast{!BeastKilled}
@@ -8,16 +8,16 @@ Evil Castle
 ----
 2
 A Horrible Ritual
-16;A horrible ritual;Battle;The evil king prepares to open a rift between worlds;Skeleton;-300;-100
+16;A horrible ritual;Battle;The evil king prepares to open a rift between worlds;Icons1;37;Blank;0
 --
 ----
 3
 The Lair of the Beast
-15;Deeper into the Forest;Battle;The forest grows dark and forboding;Beast;-300;-100
+15;Deeper into the Forest;Battle;The forest grows dark and forboding;Icons1;37;Blank;0
 --
 ----
 4
 Treasure!
-17;Treasure!;Info;A huge gold chest full of treasure;TreasureChestSprite;-300;-100
+17;Treasure!;Info;A huge gold chest full of treasure;Icons1;80;MiscItems1;5
 --
 ----

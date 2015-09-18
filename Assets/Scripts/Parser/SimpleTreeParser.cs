@@ -248,7 +248,8 @@ using UnityEngine;
                 case TreeType.World:
                     return new WorldNodeContent() {linkIndex=Int64.Parse(contentList[0]), zoneName=contentList[1], description=contentList[2],avatar=contentList[3],x=Int32.Parse(contentList[4]),y=Int32.Parse(contentList[5]) };
                 case TreeType.Zone:
-                    return new ZoneNodeContent() { linkIndex = Int64.Parse(contentList[0]), nodeName = contentList[1], nodeType = getZoneNodeTypeFromStr(contentList[2]), description = contentList[3], icon = contentList[4], x = Int32.Parse(contentList[5]), y = Int32.Parse(contentList[6]) };
+                    return getZoneNodeContentFromStr(contentStr);
+                    //return new ZoneNodeContent() { linkIndex = Int64.Parse(contentList[0]), nodeName = contentList[1], nodeType = getZoneNodeTypeFromStr(contentList[2]), description = contentList[3], icon = contentList[4], x = Int32.Parse(contentList[5]), y = Int32.Parse(contentList[6]) };
                 case TreeType.Dialog:
                     return new DialogNodeContent() {linkIndex = Int64.Parse(contentList[0]), speaker=contentList[1],portrait=contentList[2], text=contentList[3] };
                 case TreeType.Quest:
@@ -262,6 +263,32 @@ using UnityEngine;
                 default:
                     return null;
             }
+        }
+
+        private static ZoneNodeContent getZoneNodeContentFromStr(string contentStr)
+        {
+            var contentList = ParseHelper.getSplitList(contentStr, ";");
+            long linkIndex = Int64.Parse(contentList[0]);
+            string nodeName = nodeName = contentList[1];
+            ZoneNodeType nodeType = getZoneNodeTypeFromStr(contentList[2]);
+
+            string description = contentList[3];
+            string iconSpritesheetName = contentList[4];
+            int iconSpritesheetIndex = Int32.Parse(contentList[5]);
+            string spritesheetName = contentList[6];
+            int spritesheetIndex = Int32.Parse(contentList[7]);
+
+            return new ZoneNodeContent()
+            {
+                linkIndex = linkIndex,
+                nodeName = nodeName,
+                nodeType = nodeType,
+                description = description,
+                iconSpritesheetName = iconSpritesheetName,
+                iconSpritesheetIndex = iconSpritesheetIndex,
+                spritesheetName = spritesheetName,
+                spritesheetIndex = spritesheetIndex
+            };
         }
 
         //Parsing of BattleNodeContent, helper for getTreeNodeContentFromStr
