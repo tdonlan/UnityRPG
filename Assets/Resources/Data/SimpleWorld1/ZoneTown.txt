@@ -1,0 +1,28 @@
+1
+Town Square
+0;Town Square;Link;A quaint little town nested in the foothills;Icons2;37;Blank;0
+--
+2:Zoe
+3:Alley{!QuestRat2}
+4:Blacksmith
+5:Bo{!BoJoined}
+----
+2
+Zoe
+2;Zoe;Dialog;A perky girl with red hair and freckles.  Talkative;Icons1;95;CharacterSprites;3
+--
+----
+3
+Alley
+7;Alley;Battle;A garbage strewn alley way, with rats swarming out of the garbage heap;Icons1;37;Blank;0
+--
+----
+4
+Blacksmith
+10;Blacksmith;Store;A brawny man with soot-stained bulging forearms;Icons1;13;CharacterSprites;2
+--
+----
+5
+Bo
+18;Bo;Dialog;A fierce warrior looks bored;Icons1;95;CharacterSprites;5
+--

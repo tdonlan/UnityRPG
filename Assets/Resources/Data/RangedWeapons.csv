@@ -1,0 +1,5 @@
+ID,Name,Type,ActiveEffects,PassiveEffects,SheetName,SpriteIndex,MinDamage,MaxDamage,AP,WeaponType,Range,AmmoType,Price
+50001,Stun Bow,Weapon,{1008},,Weapons,64,5,5,5,TwoHandRanged,15,Arrows,1000
+50002,Rotten Bow,Weapon,,,Weapons,47,2,5,5,TwoHandRanged,15,Arrows,15
+50003,Yew Bow,Weapon,,,Weapons,64,5,10,5,TwoHandRanged,30,Arrows,100
+50004,Hand Crossbow,Weapon,,,Weapons,48,5,5,3,OneHandRanged,20,Bolts,250

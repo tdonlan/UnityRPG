@@ -69,13 +69,13 @@ namespace UnityRPG
                 switch (ae.effectType)
                 {
                     case TempEffectType.Particle:
-                        game.gameControllerScript.StartTempParticles(ae.effectName, new UnityEngine.Vector3(target.x, target.y));
+                        game.gameControllerScript.StartTempParticles(ae.effectName, new UnityEngine.Vector3(target.x, -target.y));
                         break;
                     case TempEffectType.Sprite:
-                        game.gameControllerScript.StartTempSprite(new UnityEngine.Vector3(target.x, target.y), ae.effectName, ae.effectIndex);
+                        game.gameControllerScript.StartTempSprite(new UnityEngine.Vector3(target.x, -target.y), ae.effectName, ae.effectIndex);
                         break;
                     case TempEffectType.Text:
-                        game.gameControllerScript.StartTempText(new UnityEngine.Vector3(target.x, target.y), UnityEngine.Color.grey, ability.name);
+                        game.gameControllerScript.StartTempText(new UnityEngine.Vector3(target.x, -target.y), UnityEngine.Color.grey, ability.name);
                         break;
                 }
             }

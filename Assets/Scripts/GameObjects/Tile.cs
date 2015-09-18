@@ -8,6 +8,9 @@ namespace UnityRPG
 {
     public class Tile
     {
+
+        public static float TILE_SIZE = 0.5f;
+
         public char TileChar { get; set; }
         public char TempChar { get; set; }
 
@@ -32,6 +35,13 @@ namespace UnityRPG
             this.y = y;
             TileChar = '.';
             empty = true;
+        }
+
+        public Tile(int x, int y, bool empty)
+        {
+            this.x = x;
+            this.y = y;
+            this.empty = empty;
         }
 
         public override string ToString()

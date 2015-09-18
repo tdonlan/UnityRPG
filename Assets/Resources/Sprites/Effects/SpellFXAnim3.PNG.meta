@@ -1,0 +1,1672 @@
+fileFormatVersion: 2
+guid: 98f9ab0323efc454caa2604168510a0e
+timeCreated: 1442544963
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: SpellFXAnim3_0
+    21300002: SpellFXAnim3_1
+    21300004: SpellFXAnim3_2
+    21300006: SpellFXAnim3_3
+    21300008: SpellFXAnim3_4
+    21300010: SpellFXAnim3_5
+    21300012: SpellFXAnim3_6
+    21300014: SpellFXAnim3_7
+    21300016: SpellFXAnim3_8
+    21300018: SpellFXAnim3_9
+    21300020: SpellFXAnim3_10
+    21300022: SpellFXAnim3_11
+    21300024: SpellFXAnim3_12
+    21300026: SpellFXAnim3_13
+    21300028: SpellFXAnim3_14
+    21300030: SpellFXAnim3_15
+    21300032: SpellFXAnim3_16
+    21300034: SpellFXAnim3_17
+    21300036: SpellFXAnim3_18
+    21300038: SpellFXAnim3_19
+    21300040: SpellFXAnim3_20
+    21300042: SpellFXAnim3_21
+    21300044: SpellFXAnim3_22
+    21300046: SpellFXAnim3_23
+    21300048: SpellFXAnim3_24
+    21300050: SpellFXAnim3_25
+    21300052: SpellFXAnim3_26
+    21300054: SpellFXAnim3_27
+    21300056: SpellFXAnim3_28
+    21300058: SpellFXAnim3_29
+    21300060: SpellFXAnim3_30
+    21300062: SpellFXAnim3_31
+    21300064: SpellFXAnim3_32
+    21300066: SpellFXAnim3_33
+    21300068: SpellFXAnim3_34
+    21300070: SpellFXAnim3_35
+    21300072: SpellFXAnim3_36
+    21300074: SpellFXAnim3_37
+    21300076: SpellFXAnim3_38
+    21300078: SpellFXAnim3_39
+    21300080: SpellFXAnim3_40
+    21300082: SpellFXAnim3_41
+    21300084: SpellFXAnim3_42
+    21300086: SpellFXAnim3_43
+    21300088: SpellFXAnim3_44
+    21300090: SpellFXAnim3_45
+    21300092: SpellFXAnim3_46
+    21300094: SpellFXAnim3_47
+    21300096: SpellFXAnim3_48
+    21300098: SpellFXAnim3_49
+    21300100: SpellFXAnim3_50
+    21300102: SpellFXAnim3_51
+    21300104: SpellFXAnim3_52
+    21300106: SpellFXAnim3_53
+    21300108: SpellFXAnim3_54
+    21300110: SpellFXAnim3_55
+    21300112: SpellFXAnim3_56
+    21300114: SpellFXAnim3_57
+    21300116: SpellFXAnim3_58
+    21300118: SpellFXAnim3_59
+    21300120: SpellFXAnim3_60
+    21300122: SpellFXAnim3_61
+    21300124: SpellFXAnim3_62
+    21300126: SpellFXAnim3_63
+    21300128: SpellFXAnim3_64
+    21300130: SpellFXAnim3_65
+    21300132: SpellFXAnim3_66
+    21300134: SpellFXAnim3_67
+    21300136: SpellFXAnim3_68
+    21300138: SpellFXAnim3_69
+    21300140: SpellFXAnim3_70
+    21300142: SpellFXAnim3_71
+    21300144: SpellFXAnim3_72
+    21300146: SpellFXAnim3_73
+    21300148: SpellFXAnim3_74
+    21300150: SpellFXAnim3_75
+    21300152: SpellFXAnim3_76
+    21300154: SpellFXAnim3_77
+    21300156: SpellFXAnim3_78
+    21300158: SpellFXAnim3_79
+    21300160: SpellFXAnim3_80
+    21300162: SpellFXAnim3_81
+    21300164: SpellFXAnim3_82
+    21300166: SpellFXAnim3_83
+    21300168: SpellFXAnim3_84
+    21300170: SpellFXAnim3_85
+    21300172: SpellFXAnim3_86
+    21300174: SpellFXAnim3_87
+    21300176: SpellFXAnim3_88
+    21300178: SpellFXAnim3_89
+    21300180: SpellFXAnim3_90
+    21300182: SpellFXAnim3_91
+    21300184: SpellFXAnim3_92
+    21300186: SpellFXAnim3_93
+    21300188: SpellFXAnim3_94
+    21300190: SpellFXAnim3_95
+    21300192: SpellFXAnim3_96
+    21300194: SpellFXAnim3_97
+    21300196: SpellFXAnim3_98
+    21300198: SpellFXAnim3_99
+    21300200: SpellFXAnim3_100
+    21300202: SpellFXAnim3_101
+    21300204: SpellFXAnim3_102
+    21300206: SpellFXAnim3_103
+    21300208: SpellFXAnim3_104
+    21300210: SpellFXAnim3_105
+    21300212: SpellFXAnim3_106
+    21300214: SpellFXAnim3_107
+    21300216: SpellFXAnim3_108
+    21300218: SpellFXAnim3_109
+    21300220: SpellFXAnim3_110
+    21300222: SpellFXAnim3_111
+    21300224: SpellFXAnim3_112
+    21300226: SpellFXAnim3_113
+    21300228: SpellFXAnim3_114
+    21300230: SpellFXAnim3_115
+    21300232: SpellFXAnim3_116
+    21300234: SpellFXAnim3_117
+    21300236: SpellFXAnim3_118
+    21300238: SpellFXAnim3_119
+    21300240: SpellFXAnim3_120
+    21300242: SpellFXAnim3_121
+    21300244: SpellFXAnim3_122
+    21300246: SpellFXAnim3_123
+    21300248: SpellFXAnim3_124
+    21300250: SpellFXAnim3_125
+    21300252: SpellFXAnim3_126
+    21300254: SpellFXAnim3_127
+    21300256: SpellFXAnim3_128
+    21300258: SpellFXAnim3_129
+    21300260: SpellFXAnim3_130
+    21300262: SpellFXAnim3_131
+    21300264: SpellFXAnim3_132
+    21300266: SpellFXAnim3_133
+    21300268: SpellFXAnim3_134
+    21300270: SpellFXAnim3_135
+    21300272: SpellFXAnim3_136
+    21300274: SpellFXAnim3_137
+    21300276: SpellFXAnim3_138
+    21300278: SpellFXAnim3_139
+    21300280: SpellFXAnim3_140
+    21300282: SpellFXAnim3_141
+    21300284: SpellFXAnim3_142
+    21300286: SpellFXAnim3_143
+    21300288: SpellFXAnim3_144
+    21300290: SpellFXAnim3_145
+    21300292: SpellFXAnim3_146
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 32
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: SpellFXAnim3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 621
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 621
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 621
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 621
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 621
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 621
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 621
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 591
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_8
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 591
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 591
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_10
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 591
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_11
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 591
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_12
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 591
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_13
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 591
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 561
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_15
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 561
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_16
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 561
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_17
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 561
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_18
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 561
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_19
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 561
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_20
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 561
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 531
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_22
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 531
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_23
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 531
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_24
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 531
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_25
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 531
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_26
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 531
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_27
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 531
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 501
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_29
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 501
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_30
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 501
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_31
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 501
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_32
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 501
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_33
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 501
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_34
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 501
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 471
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_36
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 471
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_37
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 471
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_38
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 471
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_39
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 471
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_40
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 471
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_41
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 471
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 441
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_43
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 441
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_44
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 441
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_45
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 441
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_46
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 441
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_47
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 441
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_48
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 441
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_49
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 411
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_50
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 411
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_51
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 411
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_52
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 411
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_53
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 411
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_54
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 411
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_55
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 411
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 381
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_57
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 381
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_58
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 381
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_59
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 381
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_60
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 381
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_61
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 381
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_62
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 381
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 351
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_64
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 351
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_65
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 351
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_66
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 351
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_67
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 351
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_68
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 351
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_69
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 351
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_70
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 321
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_71
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 321
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_72
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 321
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_73
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 321
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_74
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 321
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_75
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 321
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_76
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 321
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_77
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 291
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_78
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 291
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_79
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 291
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_80
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 291
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_81
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 291
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_82
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 291
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_83
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 291
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_84
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 261
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_85
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 261
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_86
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 261
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_87
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 261
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_88
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 261
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_89
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 261
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_90
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 261
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_91
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 231
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_92
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 231
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_93
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 231
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_94
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 231
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_95
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 231
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_96
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 231
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_97
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 231
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_98
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 201
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_99
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 201
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_100
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 201
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_101
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 201
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_102
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 201
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_103
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 201
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_104
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 201
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_105
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 171
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_106
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 171
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_107
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 171
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_108
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 171
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_109
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 171
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_110
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 171
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_111
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 171
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_112
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 141
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_113
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 141
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_114
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 141
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_115
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 141
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_116
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 141
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_117
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 141
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_118
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 141
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_119
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 111
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_120
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 111
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_121
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 111
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_122
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 111
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_123
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 111
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_124
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 111
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_125
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 111
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_126
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 81
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_127
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 81
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_128
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 81
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_129
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 81
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_130
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 81
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_131
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 81
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_132
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 81
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_133
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 51
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_134
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 51
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_135
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 51
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_136
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 51
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_137
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 51
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_138
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 51
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_139
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 51
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_140
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 21
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_141
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 21
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_142
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 21
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_143
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 21
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_144
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 21
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_145
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 21
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpellFXAnim3_146
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 21
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

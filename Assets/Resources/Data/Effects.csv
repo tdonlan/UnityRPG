@@ -1,0 +1,28 @@
+ID,Name,StatType,MinAmount,MaxAmount,Duration,spritesheetName,spritesheetIndex,effectType
+1001,Fireball,Damage,100,200,1,SpellEffects,68,Sprite
+1002,Magic Missile,Damage,1,6,1,SpellEffects,33,Sprite
+1003,Heal,Heal,5,10,1,SpellEffects,97,Sprite
+1004,Group Heal,Heal,10,20,1,SpellEffects,97,Sprite
+1005,Regeneration,Heal,1,1,5,SpellEffects,1,Sprite
+1006,Attack Boost,Attack,5,5,1,SpellEffects,1,Sprite
+1007,Flame,Damage,5,10,2,SpellEffects,68,Sprite
+1008,Stun,Stun,0,0,2,SpellEffects,1,Sprite
+1009,Weak Poison,Damage,1,2,3,SpellEffects,1,Sprite
+1010,Teleport,Teleport,0,0,1,SpellEffects,104,Sprite
+1011,Knockback,Knockback,1,1,1,SpellEffects,56,Sprite
+1012,Charge,Teleport,5,5,1,SpellEffects,56,Sprite
+1013,ChargeDamage,Damage,10,20,1,SpellEffects,102,Sprite
+1014,Fire,Damage,5,10,1,SpellEffects,68,Sprite
+1015,Explode,Explode,2,3,1,SpellEffects,55,Sprite
+1016,Haste,ActionPoints,5,5,3,SpellEffects,27,Sprite
+1017,Shield,HitPoints,10,10,5,SpellEffects,98,Sprite
+1018,Shield Heal,Heal,999,999,1,SpellEffects,97,Sprite
+1019,Rage,Attack,5,5,2,SpellEffects,102,Sprite
+1020,Web,Stuck,0,0,5,SpellEffects,94,Sprite
+1021,Dispell,Dispell,1,1,1,SpellEffects,107,Sprite
+1022,Slow,ActionPoints,-5,-5,2,SpellEffects,100,Sprite
+1023,Poison,Damage,10,10,5,SpellEffects,49,Sprite
+1024,Mana Wave,Damage,5,10,1,SpellEffects,107,Sprite
+1025,Strength Like Ox,Strength,5,5,5,SpellEffects,1,Sprite
+1026,Fleet Like Fox,Agility,5,5,5,SpellEffects,1,Sprite
+1027,Knife Wound,Damage,2,5,1,SpellEffects,1,Sprite

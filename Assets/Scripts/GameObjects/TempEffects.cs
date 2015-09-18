@@ -49,7 +49,7 @@ namespace UnityRPG
             float newX = Mathf.Lerp(position.x, destination.x, ratio);
             float newY = Mathf.Lerp(position.y,destination.y,ratio);
 
-            gameObject.transform.position = new Vector3(newX, newY, position.y);
+            gameObject.transform.position = new Vector3(newX, newY, position.z);
  
         }
 
@@ -102,7 +102,7 @@ namespace UnityRPG
             this.TempEffectList = new List<TempEffect>();
         }
 
-        public void Update(GameControllerScript gameController, float delta)
+        public void Update(BattleSceneControllerScript gameController, float delta)
         {
             foreach(var te in TempEffectList)
             {

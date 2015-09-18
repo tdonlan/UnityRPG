@@ -1,0 +1,7 @@
+﻿1
+Chest
+1;Chest;Info;Chest;Huge Gold Chest
+{CastleChest}
+{AddItem;20001;Gold;1000},{AddItem;40005;Dragon Claw;1}
+--
+----

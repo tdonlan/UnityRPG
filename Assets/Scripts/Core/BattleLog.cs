@@ -65,10 +65,12 @@ namespace UnityRPG
         {
             string retval = "";
             int index = 0;
+            /*
             if(log.Count > 4)
             {
                 index = log.Count - 4;
-            }
+            }*/
+
             for(int i=index;i<log.Count;i++)
             {
                 retval += string.Format("{0}. {1}\n", i, log[i]);

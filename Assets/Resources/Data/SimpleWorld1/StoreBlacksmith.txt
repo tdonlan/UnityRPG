@@ -1,0 +1,23 @@
+1
+Blacksmith
+1;Info;Blacksmith;Blacksmith;Welcome to my shop!
+--
+2:Cheap Weapons
+3:BattleAxe {QuestRat}
+4:Armor
+----
+2
+Cheap Weapons
+200;ItemClass;Weapon;.6;1.1;1
+--
+----
+3
+BattleAxe
+40003;ItemIndex;Weapon;.5;1;1
+--
+----
+4
+Armor
+500;ItemClass;Armor;.7;1;1
+--
+----

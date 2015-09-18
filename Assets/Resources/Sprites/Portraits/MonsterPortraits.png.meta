@@ -1,0 +1,231 @@
+fileFormatVersion: 2
+guid: 4b0ec3d2165aaae4e94f41607cdae133
+timeCreated: 1442545421
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: MonsterPortraits_0
+    21300002: MonsterPortraits_1
+    21300004: MonsterPortraits_2
+    21300006: MonsterPortraits_3
+    21300008: MonsterPortraits_4
+    21300010: MonsterPortraits_5
+    21300012: MonsterPortraits_6
+    21300014: MonsterPortraits_7
+    21300016: MonsterPortraits_8
+    21300018: MonsterPortraits_9
+    21300020: MonsterPortraits_10
+    21300022: MonsterPortraits_11
+    21300024: MonsterPortraits_12
+    21300026: MonsterPortraits_13
+    21300028: MonsterPortraits_14
+    21300030: MonsterPortraits_15
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: MonsterPortraits_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 296
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MonsterPortraits_1
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 296
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MonsterPortraits_2
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 296
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MonsterPortraits_3
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 296
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MonsterPortraits_4
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 202
+        width: 96
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MonsterPortraits_5
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 198
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MonsterPortraits_6
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 198
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MonsterPortraits_7
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 198
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MonsterPortraits_8
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 100
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MonsterPortraits_9
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 100
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MonsterPortraits_10
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 100
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MonsterPortraits_11
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 100
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MonsterPortraits_12
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 2
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MonsterPortraits_13
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 2
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MonsterPortraits_14
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 2
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MonsterPortraits_15
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 2
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,24 @@
+1
+Hi
+1;Hermit;CharacterPortraits;4;Heh, what ya doin out here in the woods?
+--
+2:Um, exploring.  What do you care?
+4:What is the secret?{HermitSecret}
+----
+2
+Exploring
+1;Hermit;CharacterPortraits;4;I'm a hermit!  That's why! Talk to me again and I'll tell  you a secret!
+{HermitSecret}
+--
+3:Ok. Goodbye crazy.
+----
+3
+Goodbye
+1;Hermit;CharacterPortraits;4;Good Riddance!
+--
+----
+4
+Secret
+1;Hermit;CharacterPortraits;4;The secret is 42!
+--
+----

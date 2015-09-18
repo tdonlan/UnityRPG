@@ -1,0 +1,1221 @@
+fileFormatVersion: 2
+guid: b72a075f0ae0c594fb7f453ab997f3c6
+timeCreated: 1442545165
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Spells_0
+    21300002: Spells_1
+    21300004: Spells_2
+    21300006: Spells_3
+    21300008: Spells_4
+    21300010: Spells_5
+    21300012: Spells_6
+    21300014: Spells_7
+    21300016: Spells_8
+    21300018: Spells_9
+    21300020: Spells_10
+    21300022: Spells_11
+    21300024: Spells_12
+    21300026: Spells_13
+    21300028: Spells_14
+    21300030: Spells_15
+    21300032: Spells_16
+    21300034: Spells_17
+    21300036: Spells_18
+    21300038: Spells_19
+    21300040: Spells_20
+    21300042: Spells_21
+    21300044: Spells_22
+    21300046: Spells_23
+    21300048: Spells_24
+    21300050: Spells_25
+    21300052: Spells_26
+    21300054: Spells_27
+    21300056: Spells_28
+    21300058: Spells_29
+    21300060: Spells_30
+    21300062: Spells_31
+    21300064: Spells_32
+    21300066: Spells_33
+    21300068: Spells_34
+    21300070: Spells_35
+    21300072: Spells_36
+    21300074: Spells_37
+    21300076: Spells_38
+    21300078: Spells_39
+    21300080: Spells_40
+    21300082: Spells_41
+    21300084: Spells_42
+    21300086: Spells_43
+    21300088: Spells_44
+    21300090: Spells_45
+    21300092: Spells_46
+    21300094: Spells_47
+    21300096: Spells_48
+    21300098: Spells_49
+    21300100: Spells_50
+    21300102: Spells_51
+    21300104: Spells_52
+    21300106: Spells_53
+    21300108: Spells_54
+    21300110: Spells_55
+    21300112: Spells_56
+    21300114: Spells_57
+    21300116: Spells_58
+    21300118: Spells_59
+    21300120: Spells_60
+    21300122: Spells_61
+    21300124: Spells_62
+    21300126: Spells_63
+    21300128: Spells_64
+    21300130: Spells_65
+    21300132: Spells_66
+    21300134: Spells_67
+    21300136: Spells_68
+    21300138: Spells_69
+    21300140: Spells_70
+    21300142: Spells_71
+    21300144: Spells_72
+    21300146: Spells_73
+    21300148: Spells_74
+    21300150: Spells_75
+    21300152: Spells_76
+    21300154: Spells_77
+    21300156: Spells_78
+    21300158: Spells_79
+    21300160: Spells_80
+    21300162: Spells_81
+    21300164: Spells_82
+    21300166: Spells_83
+    21300168: Spells_84
+    21300170: Spells_85
+    21300172: Spells_86
+    21300174: Spells_87
+    21300176: Spells_88
+    21300178: Spells_89
+    21300180: Spells_90
+    21300182: Spells_91
+    21300184: Spells_92
+    21300186: Spells_93
+    21300188: Spells_94
+    21300190: Spells_95
+    21300192: Spells_96
+    21300194: Spells_97
+    21300196: Spells_98
+    21300198: Spells_99
+    21300200: Spells_100
+    21300202: Spells_101
+    21300204: Spells_102
+    21300206: Spells_103
+    21300208: Spells_104
+    21300210: Spells_105
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 32
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Spells_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 429
+        width: 28
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_1
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 422
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_2
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 422
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 422
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_4
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 422
+        width: 30
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_5
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 422
+        width: 30
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_6
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 425
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_7
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 422
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_8
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 422
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_9
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 422
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_10
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 422
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_11
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 422
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_12
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 429
+        width: 29
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_13
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 422
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_14
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 424
+        width: 30
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_15
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 421
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_16
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 424
+        width: 27
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_17
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 421
+        width: 33
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_18
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 388
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_19
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 392
+        width: 31
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_20
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 383
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_21
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 387
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_22
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 386
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_23
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 384
+        width: 25
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_24
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 384
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_25
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 387
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_26
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 387
+        width: 29
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_27
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 383
+        width: 30
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_28
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 393
+        width: 30
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_29
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 392
+        width: 31
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_30
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 387
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_31
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 386
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_32
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 387
+        width: 25
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_33
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 386
+        width: 13
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_34
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 384
+        width: 30
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_35
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 385
+        width: 25
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_36
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 384
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_37
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 387
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_38
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 388
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_39
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 386
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_40
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 346
+        width: 30
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_41
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 355
+        width: 30
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_42
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 356
+        width: 31
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_43
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 348
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_44
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 349
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_45
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 348
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_46
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 345
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_47
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 349
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_48
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 355
+        width: 30
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_49
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 357
+        width: 26
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_50
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 349
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_51
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 348
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_52
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 347
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_53
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 347
+        width: 15
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_54
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 350
+        width: 30
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_55
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 346
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_56
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 350
+        width: 25
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_57
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 348
+        width: 17
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_58
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 346
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_59
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 346
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_60
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 309
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_61
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 309
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_62
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 310
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_63
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 310
+        width: 24
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_64
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 314
+        width: 27
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_65
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 309
+        width: 21
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_66
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 312
+        width: 26
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_67
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 309
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_68
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 314
+        width: 24
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_69
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 314
+        width: 25
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_70
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 312
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_71
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 310
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_72
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 308
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_73
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 308
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_74
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 310
+        width: 20
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_75
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 308
+        width: 27
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_76
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 308
+        width: 30
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_77
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 308
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_78
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 269
+        width: 30
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_79
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 270
+        width: 30
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_80
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 273
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_81
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 279
+        width: 30
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_82
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 273
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_83
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 272
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_84
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 274
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_85
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 271
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_86
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 266
+        width: 418
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_87
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 233
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_88
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 234
+        width: 24
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_89
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 232
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_90
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 233
+        width: 24
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_91
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 231
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_92
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 231
+        width: 31
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_93
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 231
+        width: 31
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_94
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 232
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_95
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 231
+        width: 30
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_96
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 231
+        width: 30
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_97
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 231
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_98
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 232
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_99
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 231
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_100
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 231
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_101
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 231
+        width: 27
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_102
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 231
+        width: 25
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_103
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 231
+        width: 30
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_104
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 231
+        width: 27
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spells_105
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 180
+        width: 684
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

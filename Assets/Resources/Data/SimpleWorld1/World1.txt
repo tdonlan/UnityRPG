@@ -1,0 +1,26 @@
+1
+Town
+1;ZoneTown;A quaint little town nested in the foothills;Town;-100;-100
+--
+2:Forest
+----
+2
+Forest
+3;ZoneForest;A dark and forboding forest full of ancient trees;Forest;0;0
+--
+1:Town
+3:Desert
+----
+3
+Desert
+6;ZoneDesert;A vast and desolate desert where the wind blows without end;Desert;45;45
+--
+2:Forest
+4:Evil Castle
+----
+4
+Evil Castle
+13;ZoneEvilCastle;A crumbling fortress of dark stone and dank passageways, infested with horrors;EvilCastle;150;200
+--
+3:Desert
+----
