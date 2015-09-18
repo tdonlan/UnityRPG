@@ -21,8 +21,8 @@ namespace UnityRPG
                 maxAmount = data.maxAmount,
                 minAmount = data.minAmount,
                 name = data.name,
-                sheetname = data.effectName,
-                spriteindex = data.effectIndex
+                sheetname = data.spritesheetName,
+                spriteindex = data.spritesheetIndex
             };
             return pe;
         }
@@ -32,8 +32,8 @@ namespace UnityRPG
             return new ActiveEffect()
             {
                 duration = data.duration,
-                effectIndex = data.effectIndex,
-                effectName = data.effectName,
+                effectIndex = data.spritesheetIndex,
+                effectName = data.spritesheetName,
                 effectType = data.effectType,
                 maxAmount = data.maxAmount,
                 minAmount = data.minAmount,

@@ -34,8 +34,8 @@ namespace UnityRPG
         public int duration { get; set; } // -1 for passive effect
 
         public TempEffectType effectType { get; set; }
-        public string effectName { get; set; }
-        public int effectIndex { get; set; }
+        public string spritesheetName { get; set; }
+        public int spritesheetIndex { get; set; }
     }
 
     public class AbilityData
