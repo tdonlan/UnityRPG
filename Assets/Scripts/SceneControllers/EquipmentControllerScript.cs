@@ -16,13 +16,19 @@ public class EquipmentControllerScript : MonoBehaviour {
 
 
     public GameObject CharacterScreen;
+    public CharacterScreenController characterScreenController;
+
     public GameObject InfoScreen;
+    public PauseMenuScript pauseScreenController;
+
     public GameObject EquipmentScreen;
+
 
     public GameDataObject gameDataObject { get; set; }
 
-    public AssetLibrary assetLibrary { get; set; } 
+    public AssetLibrary assetLibrary { get; set; }
 
+    public GameCharacter curGameCharacter;
 
     List<GameObject> displayEquipList { get; set; }
 
@@ -30,6 +36,9 @@ public class EquipmentControllerScript : MonoBehaviour {
 	void Start () {
 
         loadGameData();
+
+        curGameCharacter = gameDataObject.playerGameCharacter;
+
         initScreens();
 
         this.assetLibrary = gameDataObject.assetLibrary;
@@ -49,6 +58,9 @@ public class EquipmentControllerScript : MonoBehaviour {
         CharacterScreen = GameObject.FindGameObjectWithTag("CharacterScreen");
         InfoScreen = GameObject.FindGameObjectWithTag("PauseMenu");
         EquipmentScreen = this.gameObject;
+
+        characterScreenController = CharacterScreen.GetComponent<CharacterScreenController>();
+        pauseScreenController = InfoScreen.GetComponent<PauseMenuScript>();
     }
 
     public void RefreshEquipment()
@@ -60,16 +72,15 @@ public class EquipmentControllerScript : MonoBehaviour {
 
     public void LoadCharacterStats()
     {
-        if (gameDataObject.playerGameCharacter != null)
+        if (curGameCharacter != null)
         {
-            var ac = gameDataObject.playerGameCharacter;
 
             var charPanel = GameObject.FindGameObjectWithTag("CharacterPanel");
 
-            UIHelper.UpdateSpriteComponent(charPanel, "CharImage", assetLibrary.getSprite(ac.characterSpritesheetName, ac.characterSpriteIndex));
-            UIHelper.UpdateTextComponent(charPanel, "CharNameText", gameDataObject.playerGameCharacter.name);
-            UIHelper.UpdateTextComponent(charPanel, "CharStats", gameDataObject.playerGameCharacter.ToString());
-            UIHelper.UpdateTextComponent(charPanel, "GoldText", "Gold: " + gameDataObject.playerGameCharacter.money.ToString());
+            UIHelper.UpdateSpriteComponent(charPanel, "CharImage", assetLibrary.getSprite(curGameCharacter.characterSpritesheetName, curGameCharacter.characterSpriteIndex));
+            UIHelper.UpdateTextComponent(charPanel, "CharNameText", curGameCharacter.name);
+            UIHelper.UpdateTextComponent(charPanel, "CharStats", curGameCharacter.ToString());
+            UIHelper.UpdateTextComponent(charPanel, "GoldText", "Gold: " + gameDataObject.playerGameCharacter.money.ToString()); //only the player stores money
         }
     
     }
@@ -78,6 +89,17 @@ public class EquipmentControllerScript : MonoBehaviour {
 	void Update () {
 	    
 	}
+
+    public void UpdateUI()
+    {
+        curGameCharacter = gameDataObject.getSelectedCharacter();
+        if (curGameCharacter == null)
+        {
+            curGameCharacter = gameDataObject.playerGameCharacter;
+        }
+
+        RefreshEquipment();
+    }
 
     //called to clear out current equiped if nothing in slot
     public void ClearCurrentEquip()
@@ -94,10 +116,10 @@ public class EquipmentControllerScript : MonoBehaviour {
         var currentEquipPanel = GameObject.FindGameObjectWithTag("EquipLeftPanel");
 
 
-        if (gameDataObject.playerGameCharacter.weapon != null)
+        if (curGameCharacter.weapon != null)
         {
 
-            var wep = gameDataObject.playerGameCharacter.weapon;
+            var wep = curGameCharacter.weapon;
             UIHelper.UpdateTextComponent(currentEquipPanel, "EquipName", wep.name);
             UIHelper.UpdateTextComponent(currentEquipPanel, "EquipType", wep.weaponType.ToString());
             UIHelper.UpdateTextComponent(currentEquipPanel, "EquipStats", wep.ToString());
@@ -112,10 +134,10 @@ public class EquipmentControllerScript : MonoBehaviour {
     public void LoadCurrentAmmo()
     {
         var currentEquipPanel = GameObject.FindGameObjectWithTag("EquipLeftPanel");
-        if (gameDataObject.playerGameCharacter.Ammo != null)
+        if (curGameCharacter.Ammo != null)
         {
 
-            var item = gameDataObject.playerGameCharacter.getInventoryItembyItemID(gameDataObject.playerGameCharacter.Ammo.itemID);
+            var item = curGameCharacter.getInventoryItembyItemID(curGameCharacter.Ammo.itemID);
             var itemAmmo = (Ammo)item;
             UIHelper.UpdateTextComponent(currentEquipPanel, "EquipName", item.name);
             UIHelper.UpdateTextComponent(currentEquipPanel, "EquipType", itemAmmo.ammoType.ToString());
@@ -132,7 +154,7 @@ public class EquipmentControllerScript : MonoBehaviour {
     {
         var currentEquipPanel = GameObject.FindGameObjectWithTag("EquipLeftPanel");
 
-        var armor = gameDataObject.playerGameCharacter.getArmorInSlot(armorType);
+        var armor = curGameCharacter.getArmorInSlot(armorType);
         if (armor != null)
         {
             UIHelper.UpdateTextComponent(currentEquipPanel, "EquipName", armor.name);
@@ -290,8 +312,8 @@ public class EquipmentControllerScript : MonoBehaviour {
     {
         Ammo a = (Ammo)ammoObj;
 
-        gameDataObject.playerGameCharacter.RemoveAmmo();
-        gameDataObject.playerGameCharacter.EquipAmmo(a);
+        curGameCharacter.RemoveAmmo();
+        curGameCharacter.EquipAmmo(a);
 
         LoadCharacterStats();
         LoadDisplayAmmo();
@@ -301,14 +323,12 @@ public class EquipmentControllerScript : MonoBehaviour {
     {
         Armor armor = (Armor)armorObj;
 
-        gameDataObject.playerGameCharacter.RemoveArmorInSlot(armor.armorType);
-        gameDataObject.playerGameCharacter.EquipArmor(armor);
-
+        curGameCharacter.RemoveArmorInSlot(armor.armorType);
+        curGameCharacter.EquipArmor(armor);
 
         LoadCharacterStats();
         LoadDisplayArmor((int)armor.armorType);
     }
-
 
     public void ShowInfoScreen()
     {
@@ -326,6 +346,7 @@ public class EquipmentControllerScript : MonoBehaviour {
 
     public void ShowCharacterScreen()
     {
+        characterScreenController.UpdateUI();
         CharacterScreen.transform.localPosition = new Vector3(0, 0, 0);
         EquipmentScreen.transform.localPosition = new Vector3(10000, 10000, 0);
         InfoScreen.transform.localPosition = new Vector3(10000, 10000, 0);
@@ -335,5 +356,32 @@ public class EquipmentControllerScript : MonoBehaviour {
     {
         gameObject.transform.localPosition = new Vector3(10000, 10000, 0);
     }
-   
+
+    public void NextGameCharacter()
+    {
+        if (gameDataObject.partyList.Count > 0)
+        {
+            if (curGameCharacter.Equals(gameDataObject.playerGameCharacter))
+            {
+                curGameCharacter = gameDataObject.partyList[0];
+            }
+            else
+            {
+                var partyIndex = gameDataObject.partyList.IndexOf(curGameCharacter);
+                partyIndex++;
+                if (partyIndex >= gameDataObject.partyList.Count)
+                {
+                    curGameCharacter = gameDataObject.playerGameCharacter;
+
+                }
+                else
+                {
+                    curGameCharacter = gameDataObject.partyList[partyIndex];
+                }
+            }
+            gameDataObject.SelectCharacter(curGameCharacter);
+            UpdateUI();
+        }
+
+    }
 }

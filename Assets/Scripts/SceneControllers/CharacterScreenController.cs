@@ -13,7 +13,10 @@ public class CharacterScreenController : MonoBehaviour {
 
     public GameObject CharacterScreen;
     public GameObject InfoScreen;
+    public PauseMenuScript pauseScreenController;
+
     public GameObject EquipmentScreen;
+    public EquipmentControllerScript equipmentScreenController;
 
 
     public GameDataObject gameDataObject;
@@ -100,6 +103,7 @@ public class CharacterScreenController : MonoBehaviour {
         TalentDisplayPanelList.AddRange( GameObject.FindGameObjectsWithTag("TalentDisplayPanel"));
         TalentDisplayPanelList = TalentDisplayPanelList.OrderBy(x => x.name).ToList();
 
+
     }
 
     private void initScreens()
@@ -107,6 +111,9 @@ public class CharacterScreenController : MonoBehaviour {
         CharacterScreen = this.gameObject;
         InfoScreen = GameObject.FindGameObjectWithTag("PauseMenu");
         EquipmentScreen = GameObject.FindGameObjectWithTag("EquipPanel");
+
+        equipmentScreenController = EquipmentScreen.GetComponent<EquipmentControllerScript>();
+        pauseScreenController = InfoScreen.GetComponent<PauseMenuScript>();
     }
 
     public void SelectTalentIcon(object talentTreeDataObject)
@@ -361,6 +368,7 @@ public class CharacterScreenController : MonoBehaviour {
 
     public void ShowEquipmentScreen()
     {
+        equipmentScreenController.UpdateUI();
         EquipmentScreen.transform.localPosition = new Vector3(0, 0, 0);
         CharacterScreen.transform.localPosition = new Vector3(10000, 10000, 0);
         InfoScreen.transform.localPosition = new Vector3(10000, 10000, 0);
@@ -399,7 +407,7 @@ public class CharacterScreenController : MonoBehaviour {
                     curGameCharacter = gameDataObject.partyList[partyIndex];
                 }
             }
-
+            gameDataObject.SelectCharacter(curGameCharacter);
             UpdateUI();
         }
       

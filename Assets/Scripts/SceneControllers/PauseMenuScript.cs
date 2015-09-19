@@ -8,8 +8,11 @@ public class PauseMenuScript : MonoBehaviour {
 
 
     public GameObject CharacterScreen;
+    public CharacterScreenController characterScreenController;
     public GameObject InfoScreen;
+
     public GameObject EquipmentScreen;
+    public EquipmentControllerScript equipmentScreenController;
 
     public GameDataObject gameDataObject;
     public RectTransform panelRectTransform;
@@ -48,6 +51,10 @@ public class PauseMenuScript : MonoBehaviour {
         CharacterScreen = GameObject.FindGameObjectWithTag("CharacterScreen");
         InfoScreen = this.gameObject;
         EquipmentScreen = GameObject.FindGameObjectWithTag("EquipPanel");
+
+
+        equipmentScreenController = EquipmentScreen.GetComponent<EquipmentControllerScript>();
+        characterScreenController = CharacterScreen.GetComponent<CharacterScreenController>();
     }
 
 	// Update is called once per frame
@@ -58,7 +65,6 @@ public class PauseMenuScript : MonoBehaviour {
     public void UpdateData()
     {
         ZoneInfoText.text = getZoneInfo();
-        //GlobalFlagsText.text = getGlobalFlags();
         GlobalFlagsText.text = getQuestView();
         InventoryText.text = getInventory();
     }
@@ -139,6 +145,8 @@ public class PauseMenuScript : MonoBehaviour {
 
     public void ShowEquipmentScreen()
     {
+        equipmentScreenController.UpdateUI();
+
         EquipmentScreen.transform.localPosition = new Vector3(0, 0, 0);
         CharacterScreen.transform.localPosition = new Vector3(10000, 10000, 0);
         InfoScreen.transform.localPosition = new Vector3(10000, 10000, 0);
@@ -146,6 +154,9 @@ public class PauseMenuScript : MonoBehaviour {
 
     public void ShowCharacterScreen()
     {
+
+        characterScreenController.UpdateUI();
+
         CharacterScreen.transform.localPosition = new Vector3(0, 0, 0);
         EquipmentScreen.transform.localPosition = new Vector3(10000, 10000, 0);
         InfoScreen.transform.localPosition = new Vector3(10000, 10000, 0);
