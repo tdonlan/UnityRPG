@@ -100,13 +100,13 @@ namespace UnityRPG
             spritesheetList.Add(getSpritesheet("SpellIcons", "Sprites/Effects/Spells"));
 
             spritesheetList.Add(getSpritesheet("Icons1", "Sprites/Icons/Icon1"));
-            spritesheetList.Add(getSpritesheet("Icons2", "Sprites/Icons/Icon1"));
-            spritesheetList.Add(getSpritesheet("Icons3", "Sprites/Icons/Icon1"));
-            spritesheetList.Add(getSpritesheet("Icons4", "Sprites/Icons/Icon1"));
-            spritesheetList.Add(getSpritesheet("Icons5", "Sprites/Icons/Icon1"));
-            spritesheetList.Add(getSpritesheet("Icons6", "Sprites/Icons/Icon1"));
-            spritesheetList.Add(getSpritesheet("Icons7", "Sprites/Icons/Icon1"));
-            spritesheetList.Add(getSpritesheet("Icons8", "Sprites/Icons/Icon1"));
+            spritesheetList.Add(getSpritesheet("Icons2", "Sprites/Icons/Icon2"));
+            spritesheetList.Add(getSpritesheet("Icons3", "Sprites/Icons/Icon3"));
+            spritesheetList.Add(getSpritesheet("Icons4", "Sprites/Icons/Icon4"));
+            spritesheetList.Add(getSpritesheet("Icons5", "Sprites/Icons/Icon5"));
+            spritesheetList.Add(getSpritesheet("Icons6", "Sprites/Icons/Icon6"));
+            spritesheetList.Add(getSpritesheet("Icons7", "Sprites/Icons/Icon7"));
+            spritesheetList.Add(getSpritesheet("Icons8", "Sprites/Icons/Icon8"));
 
             spritesheetList.Add(getSpritesheet("Armor", "Sprites/Items/dg_armor32"));
             spritesheetList.Add(getSpritesheet("Food", "Sprites/Items/dg_food32"));

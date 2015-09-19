@@ -1,6 +1,6 @@
 ID,Name,Type,ActiveEffects,PassiveEffects,SheetName,SpriteIndex,MinDamage,MaxDamage,AP,WeaponType,Price
 40000,Bare Hands,Weapon,,,Armor,23,1,2,5,OneHandMelee,0
-40001,Longsword,Weapon,,,Weapons,151,5,10,5,OneHandMelee,100
+40001,Longsword,Weapon,,,Weapons,12,5,10,5,OneHandMelee,100
 40002,Dagger,Weapon,,,Weapons,7,1,2,1,OneHandMelee,25
 40003,Flaming Battle Axe,Weapon,{1007},,Weapons,72,10,20,5,TwoHandMelee,1500
 40004,Holy Mace,Weapon,,,Weapons,30,2,12,5,OneHandMelee,500

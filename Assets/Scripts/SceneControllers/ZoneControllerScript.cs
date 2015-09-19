@@ -40,6 +40,13 @@ public class ZoneControllerScript : MonoBehaviour {
     public GameObject player;
     public PlayerControllerScript playerScript;
 
+    private bool partyLoaded = false;
+    public GameObject partyListPanel;
+    public GameObject pcBoxPrefab;
+    public List<GameObject> partyList = new List<UnityEngine.GameObject>();
+
+    public GameObject CharacterHover;
+
     public GameObject spritePrefab;
 
     public List<GameObject> objectSpriteList = new List<GameObject>();
@@ -53,17 +60,15 @@ public class ZoneControllerScript : MonoBehaviour {
     public float moveTime = .05f;
 
 
+    void Start()
+    {
 
-	void Start () {
-     
-
-	}
+    }
 
     void OnLevelWasLoaded(int level)
     {
         loadGameData();
         initScene();
-
     }
 
     private void loadGameData()
@@ -71,7 +76,6 @@ public class ZoneControllerScript : MonoBehaviour {
         gameDataObject = GameObject.FindObjectOfType<GameDataObject>();
     }
 
-   
 
     private void initScene()
     {
@@ -84,6 +88,8 @@ public class ZoneControllerScript : MonoBehaviour {
 
         setPlayerSprite();
         setPlayerStart();
+
+        //loadPlayerCharacterList();
     }
 
     private void loadTree()
@@ -110,6 +116,8 @@ public class ZoneControllerScript : MonoBehaviour {
         canvasRectTransform = GameObject.FindObjectOfType<Canvas>().GetComponent<RectTransform>();
 
         treeInfoPanelRectTransform = TreeInfoPanel.GetComponent<RectTransform>();
+
+        pcBoxPrefab = Resources.Load<GameObject>("PrefabUI/ZonePartyCharacterPrefab");
     }
 
     private void loadTileMap()
@@ -178,6 +186,14 @@ public class ZoneControllerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        //hack - doesn't load in initScene
+        if (!partyLoaded)
+        {
+            partyLoaded = true;
+            loadPlayerCharacterList();
+        }
+
 	    //check for mouse click
         if (Input.GetMouseButtonDown(0))
         {
@@ -190,6 +206,41 @@ public class ZoneControllerScript : MonoBehaviour {
         UpdateMove();
 
 	}
+
+    private void loadPlayerCharacterList()
+    {
+        foreach (var p in partyList)
+        {
+            Destroy(p);
+        }
+        partyList.Clear();
+
+        GameObject playerBox = (GameObject)Instantiate(pcBoxPrefab);
+        playerBox.transform.SetParent(partyListPanel.transform, true);
+        UpdatePlayerCharacterBox(playerBox, gameDataObject.playerGameCharacter);
+      
+        partyList.Add(playerBox);
+
+        foreach (var c in gameDataObject.partyList)
+        {
+            playerBox = Instantiate(pcBoxPrefab);
+            playerBox.transform.SetParent(partyListPanel.transform, true);
+            UpdatePlayerCharacterBox(playerBox, c);
+            partyList.Add(playerBox);
+        }
+         
+    }
+
+    private void UpdatePlayerCharacterBox(GameObject pcBox, GameCharacter gameCharacter)
+    {
+        var portraitSprite = gameDataObject.assetLibrary.getSprite(gameCharacter.portraitSpritesheetName,gameCharacter.portraitSpriteIndex);
+        UIHelper.UpdateSpriteComponent(pcBox, "PortraitImage", portraitSprite);
+        float hpVal = (float)gameCharacter.hp / (float)gameCharacter.totalHP;
+        UIHelper.UpdateSliderValue(pcBox, "HPSlider", hpVal);
+
+        UIHelper.AddClickToGameObject(pcBox, ClickPCBox, EventTriggerType.PointerClick, gameCharacter as object);
+
+    }
 
     private void UpdateMove()
     {
@@ -303,6 +354,9 @@ public class ZoneControllerScript : MonoBehaviour {
        
     }
 
+
+
+
     
     public void ZoneNodeButtonClick()
     {
@@ -377,6 +431,20 @@ public class ZoneControllerScript : MonoBehaviour {
         Application.LoadLevel((int)UnitySceneIndex.Store);
     }
 
+    public void ClickPCBox(object gcObject)
+    {
+        GameCharacter gc = gcObject as GameCharacter;
+        UIHelper.UpdateSliderValue(CharacterHover, "HPSlider", (float)gc.hp / (float)gc.totalHP);
+        UIHelper.UpdateTextComponent(CharacterHover, "CharacterName", gc.name);
+        UIHelper.UpdateTextComponent(CharacterHover, "CharacterStats", gc.ToString());
+    }
 
+
+    public void TestAddPCBox()
+    {
+        loadPlayerCharacterList();
+        //GameObject playerBox = (GameObject)Instantiate(pcBoxPrefab);
+        //playerBox.transform.SetParent(partyListPanel.transform, true);
+    }
 
 }
