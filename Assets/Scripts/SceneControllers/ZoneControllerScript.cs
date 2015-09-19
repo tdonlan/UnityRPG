@@ -194,16 +194,19 @@ public class ZoneControllerScript : MonoBehaviour {
             loadPlayerCharacterList();
         }
 
-	    //check for mouse click
-        if (Input.GetMouseButtonDown(0))
+        if (!gameDataObject.isPaused)
         {
-            if (!EventSystem.current.IsPointerOverGameObject())
+            //check for mouse click
+            if (Input.GetMouseButtonDown(0))
             {
-                UpdateMouseClick();
+                if (!EventSystem.current.IsPointerOverGameObject())
+                {
+                    UpdateMouseClick();
+                }
+
             }
-          
+            UpdateMove();
         }
-        UpdateMove();
 
 	}
 

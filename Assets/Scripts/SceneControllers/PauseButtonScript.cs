@@ -3,13 +3,21 @@ using System.Collections;
 
 public class PauseButtonScript : MonoBehaviour {
 
+    public GameDataObject gameDataObject;
     public GameObject pauseMenuObject;
     public RectTransform pauseMenuRectTransform;
 
 	// Use this for initialization
 	void Start () {
+        loadGameData();
         initRefs();
 	}
+
+
+    private void loadGameData()
+    {
+        gameDataObject = GameObject.FindObjectOfType<GameDataObject>();
+    }
 
     private void initRefs()
     {
@@ -19,6 +27,8 @@ public class PauseButtonScript : MonoBehaviour {
 
     public void DisplayMenu()
     {
+        gameDataObject.isPaused = true;
+
         pauseMenuRectTransform.localPosition = new Vector3(0, 0, 0);
     }
 	

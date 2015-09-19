@@ -383,6 +383,7 @@ public class CharacterScreenController : MonoBehaviour {
 
     public void CloseScreen()
     {
+        gameDataObject.isPaused = false;
         gameObject.transform.localPosition = new Vector3(10000, 10000, 0);
     }
 

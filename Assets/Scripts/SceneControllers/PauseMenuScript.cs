@@ -75,10 +75,6 @@ public class PauseMenuScript : MonoBehaviour {
         TextXP.text = gameDataObject.playerGameCharacter.xp.ToString() + " / " + gameDataObject.playerGameCharacter.xpToLevel.ToString() ;
     }
 
-    public void CloseMenu()
-    {
-        panelRectTransform.localPosition = new Vector3(0, 1000, 0);
-    }
 
     private string getZoneInfo()
     {
@@ -164,6 +160,7 @@ public class PauseMenuScript : MonoBehaviour {
 
     public void CloseScreen()
     {
+        gameDataObject.isPaused = false;
         gameObject.transform.localPosition = new Vector3(10000, 10000, 0);
     }
 

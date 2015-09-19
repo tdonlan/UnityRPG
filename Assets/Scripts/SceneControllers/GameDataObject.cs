@@ -16,6 +16,8 @@ public class GameDataObject : MonoBehaviour
     public List<GameCharacter> partyList = new List<GameCharacter>();
     private int selectedIndex = -1; // index of character portrait selected in zone (Used for menus)
 
+    public bool isPaused = false; // menu is open on a screen
+
     //Loaded Data
     public GameDataSet gameDataSet { get; set; }
 
