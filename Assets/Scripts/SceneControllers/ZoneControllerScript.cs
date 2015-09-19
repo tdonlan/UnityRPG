@@ -215,9 +215,12 @@ public class ZoneControllerScript : MonoBehaviour {
         }
         partyList.Clear();
 
+        GameCharacter selectedChar = gameDataObject.getSelectedCharacter();
+       
+
         GameObject playerBox = (GameObject)Instantiate(pcBoxPrefab);
         playerBox.transform.SetParent(partyListPanel.transform, true);
-        UpdatePlayerCharacterBox(playerBox, gameDataObject.playerGameCharacter);
+        UpdatePlayerCharacterBox(playerBox, gameDataObject.playerGameCharacter, gameDataObject.playerGameCharacter.Equals(selectedChar));
       
         partyList.Add(playerBox);
 
@@ -225,21 +228,26 @@ public class ZoneControllerScript : MonoBehaviour {
         {
             playerBox = Instantiate(pcBoxPrefab);
             playerBox.transform.SetParent(partyListPanel.transform, true);
-            UpdatePlayerCharacterBox(playerBox, c);
+            UpdatePlayerCharacterBox(playerBox, c, c.Equals(selectedChar));
             partyList.Add(playerBox);
         }
          
     }
 
-    private void UpdatePlayerCharacterBox(GameObject pcBox, GameCharacter gameCharacter)
+    private void UpdatePlayerCharacterBox(GameObject pcBox, GameCharacter gameCharacter, bool isSelected)
     {
         var portraitSprite = gameDataObject.assetLibrary.getSprite(gameCharacter.portraitSpritesheetName,gameCharacter.portraitSpriteIndex);
         UIHelper.UpdateSpriteComponent(pcBox, "PortraitImage", portraitSprite);
         float hpVal = (float)gameCharacter.hp / (float)gameCharacter.totalHP;
         UIHelper.UpdateSliderValue(pcBox, "HPSlider", hpVal);
 
-        UIHelper.AddClickToGameObject(pcBox, ClickPCBox, EventTriggerType.PointerClick, gameCharacter as object);
+        if (isSelected)
+        {
+            var image = pcBox.GetComponent<Image>();
+            image.color = Color.yellow;
+        }
 
+        UIHelper.AddClickToGameObject(pcBox, ClickPCBox, EventTriggerType.PointerClick, gameCharacter as object);
     }
 
     private void UpdateMove()
@@ -433,10 +441,16 @@ public class ZoneControllerScript : MonoBehaviour {
 
     public void ClickPCBox(object gcObject)
     {
+      
+
         GameCharacter gc = gcObject as GameCharacter;
+
+        gameDataObject.SelectCharacter(gc);
         UIHelper.UpdateSliderValue(CharacterHover, "HPSlider", (float)gc.hp / (float)gc.totalHP);
         UIHelper.UpdateTextComponent(CharacterHover, "CharacterName", gc.name);
         UIHelper.UpdateTextComponent(CharacterHover, "CharacterStats", gc.ToString());
+
+        loadPlayerCharacterList();
     }
 
 

@@ -36,6 +36,17 @@ using System.Linq;
             }
         }
 
+        public static void UpdateSpriteColor(GameObject parent, string componentName, Color c)
+        {
+            foreach (var comp in parent.GetComponentsInChildren<Image>())
+            {
+                if (comp.name == componentName)
+                {
+                    comp.color = c;
+                }
+            }
+        }
+
         public static void UpdateSliderValue(GameObject parent, string componentName, float val)
         {
             foreach (var comp in parent.GetComponentsInChildren<Slider>())

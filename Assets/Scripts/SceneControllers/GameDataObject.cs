@@ -14,7 +14,7 @@ public class GameDataObject : MonoBehaviour
     public GameCharacter playerGameCharacter;
 
     public List<GameCharacter> partyList = new List<GameCharacter>();
-
+    private int selectedIndex = -1; // index of character portrait selected in zone (Used for menus)
 
     //Loaded Data
     public GameDataSet gameDataSet { get; set; }
@@ -267,6 +267,45 @@ public class GameDataObject : MonoBehaviour
 
         return saveGameData;
     }
+
+    //select with null param to unselect
+    public void SelectCharacter(GameCharacter character)
+    {
+        if (character.Equals(playerGameCharacter))
+        {
+            selectedIndex = 0;
+        }
+        else if (partyList.Contains(character))
+        {
+            selectedIndex = partyList.IndexOf(character) + 1;
+        }
+        else
+        {
+            selectedIndex = -1;
+        }
+    }
+
+    public GameCharacter getSelectedCharacter()
+    {
+        if (selectedIndex == -1)
+        {
+            return null;
+        }
+        else if (selectedIndex == 0)
+        {
+            return playerGameCharacter;
+        }
+        else if (partyList.Count > 0 && selectedIndex <= partyList.Count)
+        {
+            return partyList[selectedIndex - 1];
+        }
+        else
+        {
+            return null;
+        }
+
+    }
+    
 
    
 }

@@ -71,8 +71,6 @@ public class CharacterScreenController : MonoBehaviour {
         UpdateUI();
         UpdateTalentTags();
         UpdateTalentTree();
-
-       
 	}
 
     private void loadGameData()
@@ -102,7 +100,6 @@ public class CharacterScreenController : MonoBehaviour {
         TalentDisplayPanelList.AddRange( GameObject.FindGameObjectsWithTag("TalentDisplayPanel"));
         TalentDisplayPanelList = TalentDisplayPanelList.OrderBy(x => x.name).ToList();
 
-       
     }
 
     private void initScreens()
@@ -151,8 +148,15 @@ public class CharacterScreenController : MonoBehaviour {
     
 	}
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
+
+        curGameCharacter = gameDataObject.getSelectedCharacter();
+        if (curGameCharacter == null)
+        {
+            curGameCharacter = gameDataObject.playerGameCharacter;
+        }
+
         CharacterNameText.text = curGameCharacter.name;
         CharacterPortraitImage.sprite = gameDataObject.assetLibrary.getSprite(curGameCharacter.portraitSpritesheetName, curGameCharacter.portraitSpriteIndex);
 
