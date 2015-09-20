@@ -169,13 +169,13 @@ public class GameDataObject : MonoBehaviour
     }
 
     //TODO: pass in the character to use to construct player ownership
-    public List<TalentTreeDisplayData> getTalentTreeDisplayData()
+    public List<TalentTreeDisplayData> getTalentTreeDisplayData(GameCharacter gameCharacter)
     {
         List<TalentTreeDisplayData> talentTreeDisplayList = new List<TalentTreeDisplayData>();
 
         foreach (var talentData in gameDataSet.talentTreeDataDictionary.Values) {
             var abilityData = gameDataSet.abilityDataDictionary[talentData.AbilityID];
-            bool playerOwned = (playerGameCharacter.abilityList.Where(x => x.ID == abilityData.ID).Count() > 0 )? true : false;
+            bool playerOwned = (gameCharacter.abilityList.Where(x => x.ID == abilityData.ID).Count() > 0) ? true : false;
             TalentTreeDisplayData tempTT = new TalentTreeDisplayData() { 
                 ID = talentData.ID,
                 AbilityID = abilityData.ID,
@@ -186,7 +186,7 @@ public class GameDataObject : MonoBehaviour
                 AP = abilityData.ap,
                 levelReq = talentData.levelReq,
                 owned = playerOwned,
-                unlocked = getPlayerUnlocked(playerGameCharacter,talentData.levelReq,talentData.abilityReqs),
+                unlocked = getPlayerUnlocked(gameCharacter, talentData.levelReq, talentData.abilityReqs),
                 range = abilityData.range,
                 tag = talentData.tag,
                 targetType = abilityData.targetType,

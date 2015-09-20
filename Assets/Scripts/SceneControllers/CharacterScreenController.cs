@@ -65,7 +65,6 @@ public class CharacterScreenController : MonoBehaviour {
 	void Start () {
 
         loadGameData();
-        loadTalentTreeData();
         InitPrefabs();
         initScreens();
 
@@ -73,7 +72,6 @@ public class CharacterScreenController : MonoBehaviour {
 
         UpdateUI();
         UpdateTalentTags();
-        UpdateTalentTree();
 	}
 
     private void loadGameData()
@@ -83,7 +81,7 @@ public class CharacterScreenController : MonoBehaviour {
 
     private void loadTalentTreeData()
     {
-        talentTreeDisplayDataList = gameDataObject.getTalentTreeDisplayData();
+        talentTreeDisplayDataList = gameDataObject.getTalentTreeDisplayData(curGameCharacter);
         talentTagList = talentTreeDisplayDataList.Select(x => x.tag).Distinct().ToList();
         if (selectedTag == null && talentTagList.Count > 0)
         {
@@ -127,9 +125,7 @@ public class CharacterScreenController : MonoBehaviour {
                 curGameCharacter.abilityList.Add(AbilityFactory.getAbilityFromAbilityData(abilityData, gameDataObject.gameDataSet.effectDataDictionary));
                 curGameCharacter.talentPoints--;
 
-                loadTalentTreeData();
                 UpdateUI();
-                UpdateTalentTree();
             }
         }
     }
@@ -138,7 +134,8 @@ public class CharacterScreenController : MonoBehaviour {
     {
         selectedTag = tagName;
         sortTalentTreeDisplayList();
-        UpdateTalentTree();
+        UpdateUI();
+        //UpdateTalentTags();
     }
 
 
@@ -183,6 +180,9 @@ public class CharacterScreenController : MonoBehaviour {
             curGameCharacter = gameDataObject.playerGameCharacter;
         }
 
+        loadTalentTreeData();
+        UpdateTalentTree();
+
         CharacterNameText.text = curGameCharacter.name;
         CharacterPortraitImage.sprite = gameDataObject.assetLibrary.getSprite(curGameCharacter.portraitSpritesheetName, curGameCharacter.portraitSpriteIndex);
 
@@ -212,7 +212,6 @@ public class CharacterScreenController : MonoBehaviour {
     {
         foreach (string str in talentTagList)
         {
-
             string tempTag = str;
             
             GameObject talentTagButton = Instantiate(talentTagPrefab);
@@ -360,7 +359,7 @@ public class CharacterScreenController : MonoBehaviour {
             UIHelper.UpdateTextComponent(hoverPopup, "Text1", tt.getDescription());
             if (!tt.unlocked)
             {
-                var text2 = hoverPopup.GetComponentsInChildren<Text>()[1];
+                var text2 = hoverPopup.GetComponentsInChildren<Text>()[2];
                 text2.color = Color.red;
                 text2.text = tt.getRequirements();
                

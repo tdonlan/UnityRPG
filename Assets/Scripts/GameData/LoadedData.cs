@@ -102,7 +102,7 @@ namespace UnityRPG
             string req = "";
             if (!unlocked)
             {
-                req += "Lvl: " + levelReq + "\n";
+                req += "Lvl: " + levelReq + ". ";
                 if(abilityReqNameList.Count > 0){
                     req += "Req: ";
                     foreach (var a in abilityReqNameList)
