@@ -367,6 +367,13 @@ namespace UnityRPG
 
         }
 
+        //merge this characters inventory with the players, store refernce to players
+        public void mergeInventory(List<Item> inventory)
+        {
+            inventory.AddRange(this.inventory);
+            this.inventory = inventory;
+        }
+
         public override string ToString()
         {
             string retval = "";

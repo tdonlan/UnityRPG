@@ -300,8 +300,9 @@ public class EquipmentControllerScript : MonoBehaviour {
     public void SelectWeapon(System.Object wepObj)
     {
         Weapon w = (Weapon)wepObj;
-        gameDataObject.playerGameCharacter.RemoveWeapon(gameDataObject.playerGameCharacter.weapon);
-        gameDataObject.playerGameCharacter.EquipWeapon(w);
+
+        curGameCharacter.RemoveWeapon(curGameCharacter.weapon);
+        curGameCharacter.EquipWeapon(w);
 
 
         LoadCharacterStats();

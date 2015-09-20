@@ -160,6 +160,7 @@ public class GameDataObject : MonoBehaviour
             {
                 var charData = gameDataSet.gameCharacterDataDictionary[characterIndex];
                 GameCharacter newCharacter = CharacterFactory.getGameCharacterFromGameCharacterData(charData, gameDataSet);
+                newCharacter.mergeInventory(playerGameCharacter.inventory);
                 partyList.Add(newCharacter);
 
                 Debug.Log("Added character" + newCharacter.name);
