@@ -59,8 +59,30 @@ public class PauseMenuScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        UpdateData();
+        if (gameDataObject.isPaused)
+        {
+            UpdateData();
+            UpdateInput();
+        }
+       
 	}
+
+    private void UpdateInput()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            ShowEquipmentScreen();
+        }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            ShowCharacterScreen();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            //CloseScreen();
+        }
+    }
+
 
     public void UpdateData()
     {

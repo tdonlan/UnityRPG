@@ -87,8 +87,27 @@ public class EquipmentControllerScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-	    
+        if (gameDataObject.isPaused)
+        {
+            UpdateInput();
+        }
 	}
+
+    private void UpdateInput()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            //CloseScreen();
+        }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            ShowCharacterScreen();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            //CloseScreen();
+        }
+    }
 
     public void UpdateUI()
     {

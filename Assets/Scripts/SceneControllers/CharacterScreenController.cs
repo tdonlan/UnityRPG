@@ -152,8 +152,27 @@ public class CharacterScreenController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-    
+        if (gameDataObject.isPaused)
+        {
+            UpdateInput();
+        }
 	}
+
+    private void UpdateInput()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            ShowEquipmentScreen();
+        }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            //CloseScreen();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+           // CloseScreen();
+        }
+    }
 
     public void UpdateUI()
     {
