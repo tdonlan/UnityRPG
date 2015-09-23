@@ -67,15 +67,22 @@ namespace UnityRPG
         public string getEffects()
         {
             string retval = "";
-            foreach(var p in passiveEffects)
+            if (passiveEffects != null)
             {
-                retval+= p.ToString() + " ";
+                foreach (var p in passiveEffects)
+                {
+                    retval += p.ToString() + " ";
+                }
             }
 
-            foreach(var a in activeEffects)
+            if (activeEffects != null)
             {
-                retval += a.ToString() + " ";
+                foreach (var a in activeEffects)
+                {
+                    retval += a.ToString() + " ";
+                }
             }
+           
 
             return retval;
         }

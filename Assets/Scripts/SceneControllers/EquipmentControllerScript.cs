@@ -22,6 +22,15 @@ public class EquipmentControllerScript : MonoBehaviour {
     public PauseMenuScript pauseScreenController;
 
     public GameObject EquipmentScreen;
+    public GameObject RightPanelContent;
+    public GameObject EquipLeftPanel;
+    public GameObject EquipLeftPanelContent;
+    public GameObject CharacterPanel;
+
+
+    private GameObject EquipPrefab;
+
+    public Text ItemTypeText;
 
 
     public GameDataObject gameDataObject { get; set; }
@@ -32,6 +41,7 @@ public class EquipmentControllerScript : MonoBehaviour {
 
     List<GameObject> displayEquipList { get; set; }
 
+
 	// Use this for initialization
 	void Start () {
 
@@ -40,6 +50,7 @@ public class EquipmentControllerScript : MonoBehaviour {
         curGameCharacter = gameDataObject.playerGameCharacter;
 
         initScreens();
+        InitPrefabs();
 
         this.assetLibrary = gameDataObject.assetLibrary;
 
@@ -51,6 +62,20 @@ public class EquipmentControllerScript : MonoBehaviour {
     private void loadGameData()
     {
         gameDataObject = GameObject.FindObjectOfType<GameDataObject>();
+    }
+
+    private void InitPrefabs()
+    {
+       
+        EquipPrefab = Resources.Load<GameObject>("PrefabUI/EquipPrefab");
+
+        CharacterPanel = GameObject.FindGameObjectWithTag("CharacterPanel");
+
+        EquipLeftPanel = GameObject.FindGameObjectWithTag("EquipLeftPanel");
+        EquipLeftPanelContent = UIHelper.getChildObject(EquipLeftPanel, "CurrentEquipStatPanel");
+       // EquipLeftPanelContent = EquipLeftPanel.GetComponentsInChildren<GameObject>().Where(x=>x.name.Equals("CurrentEquipStatPanel")).FirstOrDefault();
+        RightPanelContent = GameObject.FindGameObjectWithTag("EquipRightPanelContent");
+        ItemTypeText = GameObject.FindGameObjectWithTag("EquipItemTypeText").GetComponent<Text>();
     }
 
     private void initScreens()
@@ -75,12 +100,10 @@ public class EquipmentControllerScript : MonoBehaviour {
         if (curGameCharacter != null)
         {
 
-            var charPanel = GameObject.FindGameObjectWithTag("CharacterPanel");
-
-            UIHelper.UpdateSpriteComponent(charPanel, "CharImage", assetLibrary.getSprite(curGameCharacter.characterSpritesheetName, curGameCharacter.characterSpriteIndex));
-            UIHelper.UpdateTextComponent(charPanel, "CharNameText", curGameCharacter.name);
-            UIHelper.UpdateTextComponent(charPanel, "CharStats", curGameCharacter.ToString());
-            UIHelper.UpdateTextComponent(charPanel, "GoldText", "Gold: " + gameDataObject.playerGameCharacter.money.ToString()); //only the player stores money
+            UIHelper.UpdateSpriteComponent(CharacterPanel, "CharImage", assetLibrary.getSprite(curGameCharacter.characterSpritesheetName, curGameCharacter.characterSpriteIndex));
+            UIHelper.UpdateTextComponent(CharacterPanel, "CharNameText", curGameCharacter.name);
+            UIHelper.UpdateTextComponent(CharacterPanel, "CharStats", curGameCharacter.ToString());
+            UIHelper.UpdateTextComponent(CharacterPanel, "GoldText", "Gold: " + gameDataObject.playerGameCharacter.money.ToString()); //only the player stores money
         }
     
     }
@@ -123,26 +146,26 @@ public class EquipmentControllerScript : MonoBehaviour {
     //called to clear out current equiped if nothing in slot
     public void ClearCurrentEquip()
     {
-        var currentEquipPanel = GameObject.FindGameObjectWithTag("EquipLeftPanel");
-        UIHelper.UpdateTextComponent(currentEquipPanel, "EquipName", "");
-        UIHelper.UpdateTextComponent(currentEquipPanel, "EquipType", "");
-        UIHelper.UpdateTextComponent(currentEquipPanel, "EquipStats", "");
-        UIHelper.UpdateSpriteComponent(currentEquipPanel, "EquipImage", assetLibrary.getSprite("Blank", 0));
+      
+        UIHelper.UpdateTextComponent(EquipLeftPanelContent, "EquipName", "");
+        UIHelper.UpdateTextComponent(EquipLeftPanelContent, "EquipType", "");
+        UIHelper.UpdateTextComponent(EquipLeftPanelContent, "EquipStats", "");
+        UIHelper.UpdateSpriteComponent(EquipLeftPanelContent, "EquipImage", assetLibrary.getSprite("Blank", 0));
     }
 
     public void LoadCurrentWeapon()
     {
-        var currentEquipPanel = GameObject.FindGameObjectWithTag("EquipLeftPanel");
 
+        ItemTypeText.text = "Weapons";
 
         if (curGameCharacter.weapon != null)
         {
 
             var wep = curGameCharacter.weapon;
-            UIHelper.UpdateTextComponent(currentEquipPanel, "EquipName", wep.name);
-            UIHelper.UpdateTextComponent(currentEquipPanel, "EquipType", wep.weaponType.ToString());
-            UIHelper.UpdateTextComponent(currentEquipPanel, "EquipStats", wep.ToString());
-            UIHelper.UpdateSpriteComponent(currentEquipPanel, "EquipImage", assetLibrary.getSprite(wep.sheetname, wep.spriteindex));
+            UIHelper.UpdateTextComponent(EquipLeftPanelContent, "EquipName", wep.name);
+            UIHelper.UpdateTextComponent(EquipLeftPanelContent, "EquipType", wep.weaponType.ToString());
+            UIHelper.UpdateTextComponent(EquipLeftPanelContent, "EquipStats", wep.ToString());
+            UIHelper.UpdateSpriteComponent(EquipLeftPanelContent, "EquipImage", assetLibrary.getSprite(wep.sheetname, wep.spriteindex));
         }
         else
         {
@@ -152,16 +175,19 @@ public class EquipmentControllerScript : MonoBehaviour {
 
     public void LoadCurrentAmmo()
     {
-        var currentEquipPanel = GameObject.FindGameObjectWithTag("EquipLeftPanel");
+
+        
+
         if (curGameCharacter.Ammo != null)
         {
 
+
             var item = curGameCharacter.getInventoryItembyItemID(curGameCharacter.Ammo.itemID);
             var itemAmmo = (Ammo)item;
-            UIHelper.UpdateTextComponent(currentEquipPanel, "EquipName", item.name);
-            UIHelper.UpdateTextComponent(currentEquipPanel, "EquipType", itemAmmo.ammoType.ToString());
-            UIHelper.UpdateTextComponent(currentEquipPanel, "EquipStats", itemAmmo.ToString());
-            UIHelper.UpdateSpriteComponent(currentEquipPanel, "EquipImage", assetLibrary.getSprite(itemAmmo.sheetname,itemAmmo.spriteindex));
+            UIHelper.UpdateTextComponent(EquipLeftPanelContent, "EquipName", item.name);
+            UIHelper.UpdateTextComponent(EquipLeftPanelContent, "EquipType", itemAmmo.ammoType.ToString());
+            UIHelper.UpdateTextComponent(EquipLeftPanelContent, "EquipStats", itemAmmo.ToString());
+            UIHelper.UpdateSpriteComponent(EquipLeftPanelContent, "EquipImage", assetLibrary.getSprite(itemAmmo.sheetname, itemAmmo.spriteindex));
         }
         else
         {
@@ -171,15 +197,14 @@ public class EquipmentControllerScript : MonoBehaviour {
 
     public void LoadCurrentArmor(ArmorType armorType)
     {
-        var currentEquipPanel = GameObject.FindGameObjectWithTag("EquipLeftPanel");
-
+       
         var armor = curGameCharacter.getArmorInSlot(armorType);
         if (armor != null)
         {
-            UIHelper.UpdateTextComponent(currentEquipPanel, "EquipName", armor.name);
-            UIHelper.UpdateTextComponent(currentEquipPanel, "EquipType", armorType.ToString());
-            UIHelper.UpdateTextComponent(currentEquipPanel, "EquipStats", armorType.ToString());
-            UIHelper.UpdateSpriteComponent(currentEquipPanel, "EquipImage", assetLibrary.getSprite(armor.sheetname,armor.spriteindex));
+            UIHelper.UpdateTextComponent(EquipLeftPanelContent, "EquipName", armor.name);
+            UIHelper.UpdateTextComponent(EquipLeftPanelContent, "EquipType", armorType.ToString());
+            UIHelper.UpdateTextComponent(EquipLeftPanelContent, "EquipStats", armorType.ToString());
+            UIHelper.UpdateSpriteComponent(EquipLeftPanelContent, "EquipImage", assetLibrary.getSprite(armor.sheetname, armor.spriteindex));
         }
         else
         {
@@ -190,14 +215,11 @@ public class EquipmentControllerScript : MonoBehaviour {
     //load the list of display equipment, give a type
     public void LoadDisplayArmor(int armorType)
     {
-
+        ItemTypeText.text = ((ArmorType)armorType).ToString();
         LoadCurrentArmor((ArmorType)armorType);
 
         displayEquipList = new List<GameObject>();
-        GameObject equipPrefab = Resources.Load<GameObject>("PrefabUI/EquipPrefab");
-
-        GameObject rightEquipPanel = GameObject.FindGameObjectWithTag("EquipRightPanelContent");
-        UIHelper.DestroyAllChildren(rightEquipPanel.transform);
+        UIHelper.DestroyAllChildren(RightPanelContent.transform);
 
         var armorList = from data in gameDataObject.playerGameCharacter.inventory
                         where data.type == ItemType.Armor
@@ -209,9 +231,9 @@ public class EquipmentControllerScript : MonoBehaviour {
 
         foreach (var a in armorTypeList)
         {
-            GameObject tempObj = (GameObject)Instantiate(equipPrefab);
+            GameObject tempObj = (GameObject)Instantiate(EquipPrefab);
             updateArmorGameObject(tempObj, a);
-            tempObj.transform.SetParent(rightEquipPanel.transform, true);
+            tempObj.transform.SetParent(RightPanelContent.transform, true);
             UIHelper.AddClickToGameObject(tempObj, SelectArmor, EventTriggerType.PointerClick, a);
             displayEquipList.Add(tempObj);
         }
@@ -220,15 +242,14 @@ public class EquipmentControllerScript : MonoBehaviour {
 
     public void LoadDisplayWeapon()
     {
+
+        ItemTypeText.text = "Weapons";
+
         LoadCurrentWeapon();
 
         displayEquipList = new List<GameObject>();
 
-        GameObject equipPrefab = Resources.Load<GameObject>("PrefabUI/EquipPrefab");
-
-        GameObject rightEquipPanel = GameObject.FindGameObjectWithTag("EquipRightPanelContent");
-
-        UIHelper.DestroyAllChildren(rightEquipPanel.transform);
+        UIHelper.DestroyAllChildren(RightPanelContent.transform);
 
         var weaponList = from data in gameDataObject.playerGameCharacter.inventory
                         where data.type == ItemType.Weapon
@@ -237,11 +258,11 @@ public class EquipmentControllerScript : MonoBehaviour {
         foreach (var w in weaponList)
         {
 
-            GameObject tempObj = (GameObject)Instantiate(equipPrefab);
+            GameObject tempObj = (GameObject)Instantiate(EquipPrefab);
             updateWeaponGameObject(tempObj, (Weapon)w);
             UIHelper.AddClickToGameObject(tempObj, SelectWeapon, EventTriggerType.PointerClick, w);
-            
-            tempObj.transform.SetParent(rightEquipPanel.transform, true);
+
+            tempObj.transform.SetParent(RightPanelContent.transform, true);
 
             displayEquipList.Add(tempObj);
         }
@@ -249,25 +270,48 @@ public class EquipmentControllerScript : MonoBehaviour {
 
     public void LoadDisplayAmmo()
     {
+        ItemTypeText.text = "Ammo";
         LoadCurrentAmmo();
 
         displayEquipList = new List<GameObject>();
-        GameObject equipPrefab = Resources.Load<GameObject>("PrefabUI/EquipPrefab");
 
-        GameObject rightEquipPanel = GameObject.FindGameObjectWithTag("EquipRightPanelContent");
-        UIHelper.DestroyAllChildren(rightEquipPanel.transform);
+        UIHelper.DestroyAllChildren(RightPanelContent.transform);
 
-        var ammoList = from data in gameDataObject.playerGameCharacter.inventory
+        var ammoList = from data in curGameCharacter.inventory
                          where data.type == ItemType.Ammo
                          select data;
 
         foreach (var a in ammoList)
         {
-            ItemSet ammoSet = ItemHelper.getItemSet(gameDataObject.playerGameCharacter.inventory, a);
-            GameObject tempObj = (GameObject)Instantiate(equipPrefab);
+            ItemSet ammoSet = ItemHelper.getItemSet(curGameCharacter.inventory, a);
+            GameObject tempObj = (GameObject)Instantiate(EquipPrefab);
             updateAmmoGameObject(tempObj, ammoSet);
             UIHelper.AddClickToGameObject(tempObj, SelectAmmo, EventTriggerType.PointerClick, a);
-            tempObj.transform.SetParent(rightEquipPanel.transform, true);
+            tempObj.transform.SetParent(RightPanelContent.transform, true);
+
+            displayEquipList.Add(tempObj);
+        }
+    }
+
+    public void LoadDisplayItems()
+    {
+
+        ItemTypeText.text = "Items";
+        displayEquipList = new List<GameObject>();
+
+
+        UIHelper.DestroyAllChildren(RightPanelContent.transform);
+
+        var itemList = from data in gameDataObject.playerGameCharacter.inventory
+                       where data.type == ItemType.Potion || data.type == ItemType.Quest || data.type == ItemType.Thrown || data.type == ItemType.Wand
+                       select data;
+
+        foreach (var i in itemList)
+        {
+            GameObject tempObj = (GameObject)Instantiate(EquipPrefab);
+            updateItemGameobject(tempObj, i);
+            //UIHelper.AddClickToGameObject(tempObj, SelectAmmo, EventTriggerType.PointerClick, a);
+            tempObj.transform.SetParent(RightPanelContent.transform, true);
 
             displayEquipList.Add(tempObj);
         }
@@ -280,6 +324,16 @@ public class EquipmentControllerScript : MonoBehaviour {
         UIHelper.UpdateSpriteComponent(equipTypePanel, "EquipImage", assetLibrary.getSprite("Blank",0));
 
         UIHelper.UpdateTextComponent(obj, "EquipStats", "Empty");
+        return obj;
+    }
+
+    private GameObject updateItemGameobject(GameObject obj, Item i)
+    {
+        var equipTypePanel = UIHelper.getChildObject(obj, "EquipTypePanel");
+        UIHelper.UpdateTextComponent(equipTypePanel, "EquipType", i.name);
+        UIHelper.UpdateSpriteComponent(equipTypePanel, "EquipImage", assetLibrary.getSprite(i.sheetname, i.spriteindex));
+
+        UIHelper.UpdateTextComponent(obj, "EquipStats", i.ToString());
         return obj;
     }
 
@@ -350,6 +404,22 @@ public class EquipmentControllerScript : MonoBehaviour {
         LoadDisplayArmor((int)armor.armorType);
     }
 
+    public void ShowEquipment()
+    {
+        ItemTypeText.text = "Equipment";
+        EquipLeftPanel.transform.localPosition = new Vector3(-297, -164.6f, 0);
+      
+    }
+
+    public void ShowInventory()
+    {
+        //hide equipment buttons
+        LoadDisplayItems();
+        ItemTypeText.text = "Items";
+        EquipLeftPanel.transform.localPosition = new Vector3(10000, 10000, 0);
+
+    }
+
     public void ShowInfoScreen()
     {
         InfoScreen.transform.localPosition = new Vector3(0, 0, 0);
@@ -405,4 +475,6 @@ public class EquipmentControllerScript : MonoBehaviour {
         }
 
     }
+
+
 }

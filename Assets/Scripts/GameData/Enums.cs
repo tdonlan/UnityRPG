@@ -163,7 +163,6 @@ public enum PlayerDecideState
         Head,
         Chest,
         Gloves,
-        Legs,
         Boots,
         Ring,
         Trinket,

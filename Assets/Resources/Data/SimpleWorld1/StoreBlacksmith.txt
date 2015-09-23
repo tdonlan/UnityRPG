@@ -5,6 +5,7 @@ Blacksmith
 2:Cheap Weapons
 3:BattleAxe {QuestRat}
 4:Armor
+5:Healing Potion
 ----
 2
 Cheap Weapons
@@ -19,5 +20,10 @@ BattleAxe
 4
 Armor
 500;ItemClass;Armor;.7;1;1
+--
+----
+5
+Healing Potion
+30002;ItemIndex;UsableItems;.7;1;1
 --
 ----
