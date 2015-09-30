@@ -73,6 +73,8 @@ namespace UnityRPG
 
         public ItemSet Ammo { get; set; }
 
+        public List<Item> usableItemList { get; set; }
+
         public List<ActiveEffect> activeEffects { get; set; }
         public List<PassiveEffect> passiveEffects { get; set; }
 
@@ -88,6 +90,7 @@ namespace UnityRPG
         public GameCharacter()
         {
             inventory = new List<Item>();
+            usableItemList = new List<Item>();
             equippedArmor = new List<Armor>();
             activeEffects = new List<ActiveEffect>();
             passiveEffects = new List<PassiveEffect>();
@@ -353,6 +356,35 @@ namespace UnityRPG
         {
             this.Ammo = null;
         }
+
+        //Adds item from shared inventory to character usable item list
+        public void addUsableItem(Item i)
+        {
+            if (inventory.Contains(i))
+            {
+                if (usableItemList.Contains(i))
+                {
+                    usableItemList.Add(i);
+                    inventory.Remove(i);
+                }
+                else if (usableItemList.Count < GameConstants.maxCharacterUsableItems)
+                {
+                    usableItemList.Add(i);
+                    inventory.Remove(i);
+                }
+            }
+            
+        }
+
+        //removes item from character usable item list, returns to shared inventory
+        public void removeUsableItem(Item i) {
+            if (usableItemList.Contains(i))
+            {
+                inventory.Add(i);
+                usableItemList.Remove(i);
+            }
+        }
+
 
         public void getXP(long addXP)
         {

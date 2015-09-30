@@ -15,6 +15,10 @@ namespace UnityRPG
         public const string rangedAttackSpritesheet = "Particles";
         public const int rangedAttackSpriteindex = 112;
 
+        //-----------------------
+
+        public const int maxCharacterUsableItems = 10; //max distinct usable items per character (after stacking)
+
         //--------------------
         public const long MONEY_INDEX = 20001;
 

@@ -25,7 +25,10 @@ public class EquipmentControllerScript : MonoBehaviour {
     public GameObject RightPanelContent;
     public GameObject EquipLeftPanel;
     public GameObject EquipLeftPanelContent;
+    public GameObject EquipLeftItemPanel;
     public GameObject CharacterPanel;
+
+    public GameObject usableItemStatPanel;
 
 
     private GameObject EquipPrefab;
@@ -40,6 +43,8 @@ public class EquipmentControllerScript : MonoBehaviour {
     public GameCharacter curGameCharacter;
 
     List<GameObject> displayEquipList { get; set; }
+
+    private int usableItemSlot = 0;
 
 
 	// Use this for initialization
@@ -73,6 +78,11 @@ public class EquipmentControllerScript : MonoBehaviour {
 
         EquipLeftPanel = GameObject.FindGameObjectWithTag("EquipLeftPanel");
         EquipLeftPanelContent = UIHelper.getChildObject(EquipLeftPanel, "CurrentEquipStatPanel");
+        
+        EquipLeftItemPanel = GameObject.FindGameObjectWithTag("EquipLeftItemPanel");
+        usableItemStatPanel = UIHelper.getChildObject(EquipLeftItemPanel, "SelectedItemStats");
+
+
        // EquipLeftPanelContent = EquipLeftPanel.GetComponentsInChildren<GameObject>().Where(x=>x.name.Equals("CurrentEquipStatPanel")).FirstOrDefault();
         RightPanelContent = GameObject.FindGameObjectWithTag("EquipRightPanelContent");
         ItemTypeText = GameObject.FindGameObjectWithTag("EquipItemTypeText").GetComponent<Text>();
@@ -310,7 +320,7 @@ public class EquipmentControllerScript : MonoBehaviour {
         {
             GameObject tempObj = (GameObject)Instantiate(EquipPrefab);
             updateItemGameobject(tempObj, i);
-            //UIHelper.AddClickToGameObject(tempObj, SelectAmmo, EventTriggerType.PointerClick, a);
+            UIHelper.AddClickToGameObject(tempObj, SelectUsableItem, EventTriggerType.PointerClick, i);
             tempObj.transform.SetParent(RightPanelContent.transform, true);
 
             displayEquipList.Add(tempObj);
@@ -408,7 +418,7 @@ public class EquipmentControllerScript : MonoBehaviour {
     {
         ItemTypeText.text = "Equipment";
         EquipLeftPanel.transform.localPosition = new Vector3(-297, -164.6f, 0);
-      
+        EquipLeftItemPanel.transform.localPosition = new Vector3(10000, 10000, 0);
     }
 
     public void ShowInventory()
@@ -416,8 +426,9 @@ public class EquipmentControllerScript : MonoBehaviour {
         //hide equipment buttons
         LoadDisplayItems();
         ItemTypeText.text = "Items";
+        EquipLeftItemPanel.transform.localPosition = new Vector3(-297, -164.6f, 0);
         EquipLeftPanel.transform.localPosition = new Vector3(10000, 10000, 0);
-
+        LoadCharacterUsableItems();
     }
 
     public void ShowInfoScreen()
@@ -474,6 +485,77 @@ public class EquipmentControllerScript : MonoBehaviour {
             UpdateUI();
         }
 
+    }
+
+    //----------------------
+
+    public void LoadCharacterUsableItems()
+    {
+        if (curGameCharacter.usableItemList.Count > 0)
+        {
+            var itemList = curGameCharacter.usableItemList.Distinct().ToList();
+            var itemSlotPanel = UIHelper.getChildObject(EquipLeftItemPanel, "ItemSlotPanel");
+            GameObject itemSlot = null;
+            for (int i = 0; i < itemList.Count; i++)
+            {
+                itemSlot = UIHelper.getChildObject(itemSlotPanel, "Item" + i);
+                itemSlot.GetComponent<Image>().sprite = gameDataObject.assetLibrary.getSprite(itemList[i].sheetname, itemList[i].spriteindex);
+            }
+        }
+
+    }
+
+    public void SelectUsableItemSlot(int slot)
+    {
+        usableItemSlot = slot;
+
+        if (curGameCharacter.usableItemList.Count > 0)
+        {
+            var itemList = curGameCharacter.usableItemList.Distinct().ToList();
+            if (itemList.Count > slot)
+            {
+                var item = itemList[slot];
+                if (item != null)
+                {
+                    var equipTypePanel = UIHelper.getChildObject(usableItemStatPanel, "EquipTypePanel");
+                    UIHelper.UpdateTextComponent(equipTypePanel, "EquipType", item.name);
+                    UIHelper.UpdateSpriteComponent(equipTypePanel, "EquipImage", assetLibrary.getSprite(item.sheetname, item.spriteindex));
+
+                    UIHelper.UpdateTextComponent(usableItemStatPanel, "EquipStats", item.ToString());
+                }
+            }
+        }
+    }
+
+    public void RemoveUsableItem()
+    {
+        if (usableItemSlot > -1 && curGameCharacter.usableItemList.Count > 0)
+        {
+            var itemList = curGameCharacter.usableItemList.Distinct().ToList();
+            if (itemList.Count > usableItemSlot)
+            {
+                var item = itemList[usableItemSlot];
+
+                curGameCharacter.removeUsableItem(item);
+
+                LoadCharacterUsableItems();
+                LoadDisplayItems();
+            }
+           
+        }
+    }
+
+    public void SelectUsableItem(System.Object itemObj)
+    {
+
+        Item i = (Item)itemObj;
+        //remove the item in the current slot
+        RemoveUsableItem();
+        //refresh the item ui
+        curGameCharacter.addUsableItem(i);
+
+        LoadCharacterUsableItems();
+        LoadDisplayItems();
     }
 
 
