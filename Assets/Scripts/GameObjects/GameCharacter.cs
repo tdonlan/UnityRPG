@@ -362,12 +362,14 @@ namespace UnityRPG
         {
             if (inventory.Contains(i))
             {
+                /*
                 if (usableItemList.Contains(i))
                 {
                     usableItemList.Add(i);
                     inventory.Remove(i);
                 }
-                else if (usableItemList.Count < GameConstants.maxCharacterUsableItems)
+                 */
+                if (usableItemList.Count < GameConstants.maxCharacterUsableItems)
                 {
                     usableItemList.Add(i);
                     inventory.Remove(i);

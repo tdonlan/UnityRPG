@@ -24,6 +24,6 @@ Armor
 ----
 5
 Healing Potion
-30002;ItemIndex;UsableItems;.7;1;1
+30002;ItemIndex;UsableItems;.7;1;99
 --
 ----

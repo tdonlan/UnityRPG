@@ -491,57 +491,95 @@ public class EquipmentControllerScript : MonoBehaviour {
 
     public void LoadCharacterUsableItems()
     {
-        if (curGameCharacter.usableItemList.Count > 0)
+        var itemSlotPanel = UIHelper.getChildObject(EquipLeftItemPanel, "ItemSlotPanel");
+        GameObject itemSlot = null;
+
+        for (int i = 0; i < 10; i++)
         {
-            var itemList = curGameCharacter.usableItemList.Distinct().ToList();
-            var itemSlotPanel = UIHelper.getChildObject(EquipLeftItemPanel, "ItemSlotPanel");
-            GameObject itemSlot = null;
+            itemSlot = UIHelper.getChildObject(itemSlotPanel, "Item" + i);
+            var itemSpriteObj = UIHelper.getChildObject(itemSlot, "Image");
+            itemSpriteObj.GetComponent<Image>().sprite = gameDataObject.assetLibrary.getSprite("Blank", 0);
+        }
+
+        var itemList = curGameCharacter.usableItemList;
+        if (itemList.Count > 0)
+        {
+
             for (int i = 0; i < itemList.Count; i++)
             {
                 itemSlot = UIHelper.getChildObject(itemSlotPanel, "Item" + i);
-                itemSlot.GetComponent<Image>().sprite = gameDataObject.assetLibrary.getSprite(itemList[i].sheetname, itemList[i].spriteindex);
+                var itemSpriteObj = UIHelper.getChildObject(itemSlot, "Image");
+                itemSpriteObj.GetComponent<Image>().sprite = gameDataObject.assetLibrary.getSprite(itemList[i].sheetname, itemList[i].spriteindex);
             }
         }
 
+    }
+
+    private void UpdateSelectedItemSlot(int slot)
+    {
+
+        GameObject itemSlotPanel = UIHelper.getChildObject(EquipLeftItemPanel, "ItemSlotPanel");
+        for (int i = 0; i < 10; i++)
+        {
+            Color c = Color.white;
+            if (i == slot)
+            {
+                c = Color.yellow;
+            }
+
+            UIHelper.UpdateSpriteColor(itemSlotPanel, "Item" + i, c);
+        }
     }
 
     public void SelectUsableItemSlot(int slot)
     {
-        usableItemSlot = slot;
-
-        if (curGameCharacter.usableItemList.Count > 0)
+        if (usableItemSlot == slot)
         {
-            var itemList = curGameCharacter.usableItemList.Distinct().ToList();
-            if (itemList.Count > slot)
-            {
-                var item = itemList[slot];
-                if (item != null)
-                {
-                    var equipTypePanel = UIHelper.getChildObject(usableItemStatPanel, "EquipTypePanel");
-                    UIHelper.UpdateTextComponent(equipTypePanel, "EquipType", item.name);
-                    UIHelper.UpdateSpriteComponent(equipTypePanel, "EquipImage", assetLibrary.getSprite(item.sheetname, item.spriteindex));
+            usableItemSlot = -1;
+        }
+        else
+        {
+            usableItemSlot = slot;
+        }
 
-                    UIHelper.UpdateTextComponent(usableItemStatPanel, "EquipStats", item.ToString());
-                }
+        UpdateSelectedItemSlot(usableItemSlot);
+
+        //Display Blank Item as default
+        GameObject equipTypePanel = UIHelper.getChildObject(usableItemStatPanel, "EquipTypePanel");
+        UIHelper.UpdateTextComponent(equipTypePanel, "EquipType", "");
+        UIHelper.UpdateSpriteComponent(equipTypePanel, "EquipImage", assetLibrary.getSprite("Blank", 0));
+        UIHelper.UpdateTextComponent(usableItemStatPanel, "EquipStats", "");
+
+
+        var itemList = curGameCharacter.usableItemList;
+
+        if (itemList.Count > 0 && itemList.Count > slot)
+        {
+            var item = itemList[slot];
+            if (item != null)
+            {
+                 equipTypePanel = UIHelper.getChildObject(usableItemStatPanel, "EquipTypePanel");
+                UIHelper.UpdateTextComponent(equipTypePanel, "EquipType", item.name);
+                UIHelper.UpdateSpriteComponent(equipTypePanel, "EquipImage", assetLibrary.getSprite(item.sheetname, item.spriteindex));
+
+                UIHelper.UpdateTextComponent(usableItemStatPanel, "EquipStats", item.ToString());
             }
         }
+       
     }
 
     public void RemoveUsableItem()
     {
-        if (usableItemSlot > -1 && curGameCharacter.usableItemList.Count > 0)
+
+        var itemList = curGameCharacter.usableItemList;
+        if (usableItemSlot > -1 && itemList.Count > 0 && itemList.Count > usableItemSlot)
         {
-            var itemList = curGameCharacter.usableItemList.Distinct().ToList();
-            if (itemList.Count > usableItemSlot)
-            {
-                var item = itemList[usableItemSlot];
+            var item = itemList[usableItemSlot];
 
-                curGameCharacter.removeUsableItem(item);
+            curGameCharacter.removeUsableItem(item);
 
-                LoadCharacterUsableItems();
-                LoadDisplayItems();
-            }
-           
+            LoadCharacterUsableItems();
+            LoadDisplayItems();
         }
     }
 
