@@ -378,7 +378,7 @@ public class BattleSceneControllerScript : MonoBehaviour
                 UpdateNewTurn();
                 break;
             case UIStateType.PlayerDecide:
-            
+                
                 UpdatePlayerDecide();
                 break;
             case UIStateType.PlayerExecute:
@@ -550,6 +550,35 @@ public class BattleSceneControllerScript : MonoBehaviour
         }
     }
 
+    //Determine if enemy was clicked on to attack, otherwise move to spot
+    public void PlayerSmartAttackOrMove()
+    {
+        if (clickPoint != null)
+        {
+            Tile clickTile = battleGame.board.getTileFromPoint(clickPoint);
+            GameCharacter enemyChar =  battleGame.getCharacterFromTile(clickTile);
+            if (enemyChar != null)
+            {
+                if (battleGame.ActiveCharacter.weapon != null)
+                {
+                    if (battleGame.ActiveCharacter.weapon.weaponType == WeaponType.OneHandRanged || battleGame.ActiveCharacter.weapon.weaponType == WeaponType.TwoHandRanged)
+                    {
+                        PlayerRangedAttackSelect();
+                    }
+                    else
+                    {
+                        PlayerAttackSelect();
+                    }
+
+                }
+            }
+            else
+            {
+                PlayerMoveSelect();
+            }
+        }
+    }
+
     public void PlayerAttackStart()
     {
 
@@ -709,6 +738,26 @@ public class BattleSceneControllerScript : MonoBehaviour
                 }
             }
 
+        }
+        else if(Input.GetMouseButtonDown(1)) //right click
+        {
+            if (uiState == UIStateType.PlayerDecide)
+            {
+                if (!checkPointOnUI(Input.mousePosition))
+                {
+                    var mouseTilePt = getTileLocationFromVectorPos(mouseWorldPosition);
+                    if (mouseTilePt != null)
+                    {
+                        this.clickPoint = new Point(mouseTilePt.x, -mouseTilePt.y);
+                    }
+                    if (clickPoint != null)
+                    {
+                        SelectTile();
+                        PlayerSmartAttackOrMove();
+                    }
+                }
+            }
+           
         }
     }
 

@@ -32,13 +32,13 @@ public class StartControllerScript : MonoBehaviour {
                 nodeIndex = 3;
                 break;
             case 2:
-                      gameDataObject.playerGameCharacter = getGameCharacterFromID(80012);
+                gameDataObject.playerGameCharacter = getGameCharacterFromID(80012);
                 gameDataObject.addCharacter(80011);
                 treeIndex = 3;
                 nodeIndex = 3;
                 break;
             case 3:
-                      gameDataObject.playerGameCharacter = getGameCharacterFromID(80012);
+                gameDataObject.playerGameCharacter = getGameCharacterFromID(80012);
                 gameDataObject.addCharacter(80011);
                 treeIndex = 4;
                 nodeIndex = 2;
