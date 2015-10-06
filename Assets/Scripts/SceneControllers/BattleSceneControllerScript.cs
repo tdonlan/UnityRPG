@@ -41,6 +41,9 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     public GameObject HoverStatsObject { get; set; }
     public GameObject CharacterHover { get; set; }
+    
+    public GameObject PendingActionHover { get; set; }
+
     public bool isStatsDisplay { get; set; }
 
     private float UITimer { get; set; }
@@ -58,11 +61,13 @@ public class BattleSceneControllerScript : MonoBehaviour
     private BattleSceneCameraData cameraData { get; set; }
 
     //UI Prefabs
+    public Canvas canvas { get; set; }
     public GameObject ItemPrefab { get; set; }
     public GameObject AbilityItemPrefab { get; set; }
     public GameObject HoverPrefab { get; set; }
     public GameObject InitiativePanel { get; set; }
     private GameObject InitPrefab { get; set; }
+    private GameObject PendingActionPrefab;
 
     private GameObject CharacterPrefab { get; set; }
 
@@ -148,7 +153,22 @@ public class BattleSceneControllerScript : MonoBehaviour
             mouseOverTile.transform.position = getWorldPosFromTilePoint(tilePoint);
             var tileSquareSprite = mouseOverTile.GetComponent<SpriteRenderer>();
             tileSquareSprite.sprite = gameDataObject.assetLibrary.getSprite("Tile64", 0);
-            tileSquareSprite.color = Color.blue;
+
+            if (uiState == UIStateType.PlayerDecide &&
+                (playerDecideState == PlayerDecideState.AbilityPendingClick ||
+                playerDecideState == PlayerDecideState.AttackPendingClick ||
+                playerDecideState == PlayerDecideState.ItemPendingClick ||
+                playerDecideState == PlayerDecideState.MovePendingClick ||
+                playerDecideState == PlayerDecideState.RangedAttackPendingClick))
+            {
+                tileSquareSprite.color = Color.cyan;
+            }
+            else
+            {
+                tileSquareSprite.color = Color.blue;
+            }
+
+
         }
 
     }
@@ -189,10 +209,14 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     private void LoadPrefabs()
     {
+  
+        canvas = GameObject.FindObjectOfType<Canvas>();
+             
         ItemPrefab = Resources.Load<GameObject>("PrefabUI/BattleItemPrefab");
         AbilityItemPrefab = Resources.Load<GameObject>("PrefabUI/BattleAbilityPrefab");
         InitPrefab = Resources.Load<GameObject>("PrefabUI/BattleInitiativePanelPrefab");
         HoverPrefab = Resources.Load<GameObject>("PrefabUI/BattleHoverPrefab");
+        PendingActionPrefab = Resources.Load<GameObject>("PrefabUI/BattlePendingActionPrefab");
 
 
         CharacterPrefab = Resources.Load<GameObject>("PrefabGame/CharacterPrefab");
@@ -531,6 +555,8 @@ public class BattleSceneControllerScript : MonoBehaviour
                 DebugText.text = string.Format("Select Destination");
                 clickPoint = null;
                 playerDecideState = PlayerDecideState.MovePendingClick;
+
+                DisplayPendingActionHover();
             }
             else
             {
@@ -547,6 +573,8 @@ public class BattleSceneControllerScript : MonoBehaviour
             playerDecideState = PlayerDecideState.Waiting;
             battleGame.actionQueue.AddRange(battleGame.GetMoveActionList(clickPoint.x, clickPoint.y));
             uiState = UIStateType.PlayerExecute;
+
+            RemovePendingAbilityHover();
         }
     }
 
@@ -611,6 +639,8 @@ public class BattleSceneControllerScript : MonoBehaviour
                 clickPoint = null;
                 playerDecideState = PlayerDecideState.AttackPendingClick;
 
+                DisplayPendingActionHover();
+
             }
             else
             {
@@ -628,6 +658,7 @@ public class BattleSceneControllerScript : MonoBehaviour
             playerDecideState = PlayerDecideState.Waiting;
             battleGame.actionQueue.AddRange(battleGame.getAttackActionList(clickPoint.x, clickPoint.y));
             uiState = UIStateType.PlayerExecute;
+            RemovePendingAbilityHover();
         }
     }
 
@@ -645,6 +676,7 @@ public class BattleSceneControllerScript : MonoBehaviour
                 DebugText.text = string.Format("Select Target");
                 clickPoint = null;
                 playerDecideState = PlayerDecideState.RangedAttackPendingClick;
+                DisplayPendingActionHover();
             }
 
             else
@@ -661,6 +693,7 @@ public class BattleSceneControllerScript : MonoBehaviour
             playerDecideState = PlayerDecideState.Waiting;
             battleGame.actionQueue.AddRange(battleGame.getRangedAttackActionList(clickPoint.x, clickPoint.y));
             uiState = UIStateType.PlayerExecute;
+            RemovePendingAbilityHover();
         }
     }
 
@@ -671,6 +704,8 @@ public class BattleSceneControllerScript : MonoBehaviour
                 clickPoint = null;
                 this.selectedItem = selectedItem;
                 playerDecideState = PlayerDecideState.ItemPendingClick;
+
+                DisplayPendingActionHover();
         }
     }
 
@@ -683,6 +718,8 @@ public class BattleSceneControllerScript : MonoBehaviour
             uiState = UIStateType.PlayerExecute;
             HidePanels();
             LoadItemList();
+
+            RemovePendingAbilityHover();
         }
     }
 
@@ -694,6 +731,7 @@ public class BattleSceneControllerScript : MonoBehaviour
             clickPoint = null;
             this.selectedAbility = selectedAbility;
             playerDecideState = PlayerDecideState.AbilityPendingClick;
+            DisplayPendingActionHover();
         }
     }
 
@@ -706,21 +744,79 @@ public class BattleSceneControllerScript : MonoBehaviour
             uiState = UIStateType.PlayerExecute;
             HidePanels();
             LoadAbilityList();
+
+            RemovePendingAbilityHover();
         }
     }
 
-  
+    public void DisplayPendingActionHover()
+    {
+        Sprite actionSprite;
+        switch (playerDecideState)
+        {
+            case PlayerDecideState.AbilityPendingClick:
+                PendingActionHover = Instantiate(PendingActionPrefab);
+                 actionSprite = gameDataObject.assetLibrary.getSprite(selectedAbility.sheetname,selectedAbility.spriteindex);
+                UpdatePendingActionHover(PendingActionHover, actionSprite, selectedAbility.name);
+                break;
+            case PlayerDecideState.AttackPendingClick:
+                 PendingActionHover = Instantiate(PendingActionPrefab);
+                 actionSprite = gameDataObject.assetLibrary.getSprite("Blank",0);
+                UpdatePendingActionHover(PendingActionHover, actionSprite, "Attack");
+                break;
+            case PlayerDecideState.ItemPendingClick:
+                 PendingActionHover = Instantiate(PendingActionPrefab);
+                 actionSprite = gameDataObject.assetLibrary.getSprite(selectedItem.sheetname, selectedItem.spriteindex);
+                UpdatePendingActionHover(PendingActionHover, actionSprite, selectedItem.name);
+                break;
+            case PlayerDecideState.MovePendingClick:
+                 PendingActionHover = Instantiate(PendingActionPrefab);
+                 actionSprite = gameDataObject.assetLibrary.getSprite("Blank",0);
+                UpdatePendingActionHover(PendingActionHover, actionSprite, "Move");
+                break;
+            case PlayerDecideState.RangedAttackPendingClick:
+                 PendingActionHover = Instantiate(PendingActionPrefab);
+                 actionSprite = gameDataObject.assetLibrary.getSprite("Blank",0);
+                UpdatePendingActionHover(PendingActionHover, actionSprite, "Ranged Attack");
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void UpdatePendingActionHover(GameObject hoverObject, Sprite image, string text)
+    {
+        UIHelper.UpdateSpriteComponent(hoverObject, "Image", image);
+        UIHelper.UpdateTextComponent(hoverObject, "PendingActionText", text);
+        Button b = hoverObject.GetComponentInChildren<Button>();
+        b.onClick.AddListener(CancelPendingAction);
+        hoverObject.transform.SetParent(canvas.transform, true);
+        hoverObject.transform.localPosition = new Vector3(0, 320, 0);
+    }
+
+    public void CancelPendingAction()
+    {
+        uiState = UIStateType.PlayerDecide;
+        playerDecideState = PlayerDecideState.Waiting;
+        RemovePendingAbilityHover();
+    }
+
+    public void RemovePendingAbilityHover()
+    {
+        Destroy(PendingActionHover);
+    }
 
     private void ClickTile()
     {
-        
+
         Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
         DebugText.text = mouseWorldPosition.ToString();
 
         if (Input.GetMouseButtonDown(0)) //left click
         {
-            if (!checkPointOnUI(Input.mousePosition))
+            if (!EventSystem.current.IsPointerOverGameObject())
+            //if (!checkPointOnUI(Input.mousePosition))
             {
                 var mouseTilePt = getTileLocationFromVectorPos(mouseWorldPosition);
                 if (mouseTilePt != null)
@@ -739,25 +835,38 @@ public class BattleSceneControllerScript : MonoBehaviour
             }
 
         }
-        else if(Input.GetMouseButtonDown(1)) //right click
+        else if (Input.GetMouseButtonDown(1)) //right click
         {
             if (uiState == UIStateType.PlayerDecide)
             {
-                if (!checkPointOnUI(Input.mousePosition))
+                if (!EventSystem.current.IsPointerOverGameObject())
                 {
-                    var mouseTilePt = getTileLocationFromVectorPos(mouseWorldPosition);
-                    if (mouseTilePt != null)
+                    if (playerDecideState == PlayerDecideState.AbilityPendingClick ||
+                       playerDecideState == PlayerDecideState.AttackPendingClick ||
+                        playerDecideState == PlayerDecideState.ItemPendingClick ||
+                       playerDecideState == PlayerDecideState.MovePendingClick ||
+                        playerDecideState == PlayerDecideState.RangedAttackPendingClick
+                       )
                     {
-                        this.clickPoint = new Point(mouseTilePt.x, -mouseTilePt.y);
+                        CancelPendingAction();
                     }
-                    if (clickPoint != null)
+                    else
                     {
-                        SelectTile();
-                        PlayerSmartAttackOrMove();
+                        var mouseTilePt = getTileLocationFromVectorPos(mouseWorldPosition);
+                        if (mouseTilePt != null)
+                        {
+                            this.clickPoint = new Point(mouseTilePt.x, -mouseTilePt.y);
+                        }
+                        if (clickPoint != null)
+                        {
+                            SelectTile();
+                            PlayerSmartAttackOrMove();
+                        }
                     }
+
                 }
             }
-           
+
         }
     }
 
