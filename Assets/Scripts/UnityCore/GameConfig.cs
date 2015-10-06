@@ -37,6 +37,9 @@ using System.Linq;
         public static readonly float MinZoom = 2.5f;
         public static readonly float MaxZoom = 10f;
 
+        public static Color transRed = new Color(.8f, 0, 0, .5f);
+        public static Color transWhite = new Color(1, 1, 1, .5f);
+        public static Color Gold = new Color(1, .78f, 0, 1f);
 
     }
 

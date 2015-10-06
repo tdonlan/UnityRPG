@@ -36,6 +36,8 @@ public class BattleSceneControllerScript : MonoBehaviour
     public Point clickPoint { get; set; }
     public List<GameObject> highlightTiles { get; set; }
     GameObject SelectedTile { get; set; }
+    
+    private GameObject mouseOverTile { get; set; }
 
     public GameObject HoverStatsObject { get; set; }
     public GameObject CharacterHover { get; set; }
@@ -51,7 +53,9 @@ public class BattleSceneControllerScript : MonoBehaviour
     public PlayerDecideState playerDecideState { get; set; }
 
     //Camera Pan / Zoom
-    BattleSceneCameraData cameraData { get; set; }
+    private GameObject cameraObject;
+    private Camera mainCamera;
+    private BattleSceneCameraData cameraData { get; set; }
 
     //UI Prefabs
     public GameObject ItemPrefab { get; set; }
@@ -61,6 +65,8 @@ public class BattleSceneControllerScript : MonoBehaviour
     private GameObject InitPrefab { get; set; }
 
     private GameObject CharacterPrefab { get; set; }
+
+    private GameObject SpritePrefab { get; set; }
 
 
     void OnLevelWasLoaded(int level)
@@ -95,31 +101,56 @@ public class BattleSceneControllerScript : MonoBehaviour
         SetCamera();
 
         //testing
-        //displayCollisionSprites();
+        displayCollisionSprites();
 
     }
 
     //testing
     private void displayCollisionSprites()
     {
+
+        
         for (int i = 0; i < battleGame.board.board.GetLength(0); i++)
         {
             for (int j = 0; j < battleGame.board.board.GetLength(1); j++)
             {
+                var tileSquare = Instantiate(SpritePrefab);
+                tileSquare.transform.position = getWorldPosFromTilePoint(new Point(i, -j));
+
+                var tileSquareSprite = tileSquare.GetComponent<SpriteRenderer>();
+                tileSquareSprite.sprite = gameDataObject.assetLibrary.getSprite("Tile64", 0);
 
                 if (!battleGame.board.board[i, j].empty)
                 {
-                    SelectedTile = new GameObject("SelectedTile");
-                    SpriteRenderer renderer = SelectedTile.AddComponent<SpriteRenderer>();
-                    renderer.sortingOrder = 1;
-                    renderer.color = Color.red;
-                    Vector3 pos = getWorldPosFromTilePoint(new Point(i, -j));
-                    SelectedTile.transform.position = pos;
 
-                    renderer.sprite = Resources.Load<Sprite>("Sprites/highlightTile 1");
-                }   
+                    tileSquareSprite.color = GameConfig.transRed;
+
+                }
+                else
+                {
+                    tileSquareSprite.color = GameConfig.transWhite;
+                }
             }
         }
+    }
+
+    private void DisplayMouseTile()
+    {
+        Destroy(mouseOverTile);
+
+        Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        var mouseTilePt = getTileLocationFromVectorPos(mouseWorldPosition);
+        if (mouseTilePt != null)
+        {
+            Point tilePoint = new Point(mouseTilePt.x, mouseTilePt.y);
+
+            mouseOverTile = Instantiate(SpritePrefab);
+            mouseOverTile.transform.position = getWorldPosFromTilePoint(tilePoint);
+            var tileSquareSprite = mouseOverTile.GetComponent<SpriteRenderer>();
+            tileSquareSprite.sprite = gameDataObject.assetLibrary.getSprite("Tile64", 0);
+            tileSquareSprite.color = Color.blue;
+        }
+
     }
 
     private void loadGameData()
@@ -169,6 +200,8 @@ public class BattleSceneControllerScript : MonoBehaviour
         InitiativePanel = GameObject.FindGameObjectWithTag("InitiativePanel");
 
         DebugText = GameObject.FindGameObjectWithTag("DebugText").GetComponent<Text>();
+
+        SpritePrefab = Resources.Load<GameObject>("PrefabGame/SpritePrefab");
     }
 
     private void LoadCharacters()
@@ -237,15 +270,16 @@ public class BattleSceneControllerScript : MonoBehaviour
     //Init the camera to middle of game board
     private void SetCamera()
     {
+
+        cameraObject = GameObject.FindGameObjectWithTag("MainCamera");
+        mainCamera = cameraObject.GetComponent<Camera>();
+
         int x = (int)Mathf.Round(battleGame.board.board.GetLength(0) / 2f);
         int y = -(int)Mathf.Round(battleGame.board.board.GetLength(1) / 2f);
 
-        var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        mainCamera.transform.position = new Vector3(x, y, -10);
+        cameraObject.transform.position = new Vector3(x, y, -10);
 
-        var cam = mainCamera.GetComponent<Camera>();
-
-        cameraData = new BattleSceneCameraData(x, y, cam.orthographicSize, GameConfig.PanLerp, GameConfig.ZoomLerp);
+        cameraData = new BattleSceneCameraData(x, y, mainCamera.orthographicSize, GameConfig.PanLerp, GameConfig.ZoomLerp);
 
     }
 
@@ -253,6 +287,9 @@ public class BattleSceneControllerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+        DisplayMouseTile();
 
         float delta = Time.deltaTime;
 
@@ -648,11 +685,7 @@ public class BattleSceneControllerScript : MonoBehaviour
     private void ClickTile()
     {
         
-        var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-
-        var camera = mainCamera.GetComponent<Camera>();
-
-        Vector3 mouseWorldPosition = camera.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
         DebugText.text = mouseWorldPosition.ToString();
 
@@ -702,8 +735,8 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     private Point getTileLocationFromVectorPos(Vector3 pos)
     {
-        int x = Mathf.RoundToInt(pos.x );
-        int y = Mathf.RoundToInt(pos.y );
+        int x = Mathf.RoundToInt(pos.x-.5f );
+        int y = Mathf.RoundToInt(pos.y+.5f );
 
         Point retval = null;
 
@@ -716,7 +749,7 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     private Vector3 getWorldPosFromTilePoint(Point p)
     {
-        return new Vector3(p.x, p.y, 0);
+        return new Vector3(p.x+0.5f, p.y-0.5f, 0);
     }
 
     private Point getBoardPointFromLocation(float x, float y)
@@ -889,13 +922,13 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     public void ShowItemPanel()
     {
+        LoadItemList();
         if (uiState == UIStateType.PlayerDecide)
         {
             if (playerDecideState == PlayerDecideState.Waiting)
             {
                 UIHelper.SetAllButtons(false);
                 UIHelper.SetButton("ItemButton", true);
-
 
                 HidePanels();
                 var itemPanel = GameObject.FindGameObjectWithTag("ItemPanel");
@@ -920,6 +953,7 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     public void ShowEquipPanel()
     {
+        
         if (uiState == UIStateType.PlayerDecide)
         {
            
@@ -1021,8 +1055,6 @@ public class BattleSceneControllerScript : MonoBehaviour
                                  where data.uses > 0
                                  select data).ToList();
 
-
-
         Transform AbilityPanel = GameObject.FindGameObjectWithTag("AbilityContentPanel").transform;
 
         //Clear existing abilities
@@ -1039,13 +1071,7 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     private void LoadItemList()
     {
-        
-        List<ItemSet> itemSetList = ItemHelper.getItemSetList(battleGame.ActiveCharacter.inventory);
-
-        var usableItemList = (from data in itemSetList
-                         where data.count > 0
-                         select data).ToList();
-                        
+           
  
 
         Transform ItemPanel = GameObject.FindGameObjectWithTag("ItemContentPanel").transform;
@@ -1053,10 +1079,10 @@ public class BattleSceneControllerScript : MonoBehaviour
         //Clear existing abilities
         UIHelper.DestroyAllChildren(ItemPanel);
 
+        var usableItemList = battleGame.ActiveCharacter.usableItemList;
         foreach (var item in usableItemList)
         {
-
-            var usableItem = (UsableItem)ItemHelper.getFirstItemWithID(battleGame.ActiveCharacter.inventory, item.itemID);
+            var usableItem = (UsableItem)item;
 
             GameObject itemObject = (GameObject)Instantiate(ItemPrefab);
             UIHelper.UpdateTextComponent(itemObject, "ItemText", item.ToString());
@@ -1270,6 +1296,8 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     public void TestButton()
     {
+        StartTempSpriteOnChar(battleGame.ActiveCharacter, "Tile64", 0);
+        //StartTempSprite(new Vector3(0, 0, 0), "HighlightTile", 0);
         
         TestParticle();
         //spawn text at the player loc
@@ -1278,7 +1306,7 @@ public class BattleSceneControllerScript : MonoBehaviour
 
         StartTempParticleOnChar(battleGame.ActiveCharacter, "Fire_01");
 
-        StartTempSpriteOnChar(battleGame.ActiveCharacter, "DamageEffects", 2);
+        //StartTempSpriteOnChar(battleGame.ActiveCharacter, "DamageEffects", 2);
 
         //StartTempSprite(new Vector3(4, 0, 0), "DamageEffects", 2);
         //StartTempText(new Vector3(4,-8, 0), Color.green, "HELLO WORLD!");

@@ -153,6 +153,7 @@ namespace UnityRPG
             spritesheetList.Add(getSpritesheet("InitBG1", "Sprites/Misc/InitBG1"));
             spritesheetList.Add(getSpritesheet("InitBG2", "Sprites/Misc/InitBG2"));
             spritesheetList.Add(getSpritesheet("HighlightTile", "Sprites/Misc/highlightTile"));
+            spritesheetList.Add(getSpritesheet("Tile64", "Sprites/Misc/tileSquare64"));
 
         }
 

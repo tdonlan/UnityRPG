@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 9d8fd0999f05bff4dba42ea399f043a5
-timeCreated: 1442590623
+timeCreated: 1444101173
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -62,8 +62,8 @@ TextureImporter:
         y: 0
         width: 60
         height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .486463606, y: .161590636}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: CharacterSprites_1
       rect:
@@ -72,8 +72,8 @@ TextureImporter:
         y: 0
         width: 60
         height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .493231833, y: .148054257}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: CharacterSprites_2
       rect:
@@ -82,8 +82,8 @@ TextureImporter:
         y: 0
         width: 60
         height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .493231952, y: .175127015}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: CharacterSprites_3
       rect:
@@ -92,8 +92,8 @@ TextureImporter:
         y: 0
         width: 60
         height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .148054257}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: CharacterSprites_4
       rect:
@@ -102,8 +102,8 @@ TextureImporter:
         y: 0
         width: 60
         height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .148054257}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: CharacterSprites_5
       rect:
@@ -112,8 +112,8 @@ TextureImporter:
         y: 0
         width: 60
         height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .486463428, y: .134517878}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

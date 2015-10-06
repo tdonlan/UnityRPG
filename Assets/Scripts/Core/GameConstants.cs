@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 
 
+
+
 namespace UnityRPG
 
 {
@@ -32,5 +34,8 @@ namespace UnityRPG
         public const long ARMOR_MAX_INDEX = 79999;           //70001 - 79999
         public const long CHARACTERS_MAX_INDEX = 89999;      //80001 - 89999
         public const long TALENT_TREE_MAX_INDEX = 99999;      //90001 - 99999
+
+        //--------------------
+
     }
 }

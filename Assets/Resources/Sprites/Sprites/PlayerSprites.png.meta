@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 70cc02e297040e14b94bac1100704ac5
-timeCreated: 1442590192
+timeCreated: 1444101255
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -67,8 +67,8 @@ TextureImporter:
         y: 4
         width: 60
         height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .519369721, y: .228822902}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PlayerSprites_1
       rect:
@@ -77,8 +77,8 @@ TextureImporter:
         y: 4
         width: 60
         height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .519369781, y: .151343733}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PlayerSprites_2
       rect:
@@ -87,8 +87,8 @@ TextureImporter:
         y: 4
         width: 60
         height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .136816368}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PlayerSprites_3
       rect:
@@ -97,8 +97,8 @@ TextureImporter:
         y: 4
         width: 60
         height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .49031499, y: .107761689}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PlayerSprites_4
       rect:
@@ -107,8 +107,8 @@ TextureImporter:
         y: 4
         width: 60
         height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .112604126}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PlayerSprites_5
       rect:
@@ -117,8 +117,8 @@ TextureImporter:
         y: 4
         width: 60
         height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .48547262, y: .131973922}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PlayerSprites_6
       rect:
@@ -127,8 +127,8 @@ TextureImporter:
         y: 4
         width: 60
         height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .490315259, y: .161028624}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PlayerSprites_7
       rect:
@@ -137,8 +137,8 @@ TextureImporter:
         y: 4
         width: 60
         height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .490314752, y: .151343733}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PlayerSprites_8
       rect:
@@ -147,8 +147,8 @@ TextureImporter:
         y: 4
         width: 60
         height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .495157868, y: .131973922}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PlayerSprites_9
       rect:
@@ -157,8 +157,8 @@ TextureImporter:
         y: 4
         width: 60
         height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .495156854, y: .131973922}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PlayerSprites_10
       rect:
@@ -167,8 +167,8 @@ TextureImporter:
         y: 4
         width: 60
         height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .504842103, y: .151343733}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

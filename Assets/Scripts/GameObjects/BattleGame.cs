@@ -475,7 +475,8 @@ namespace UnityRPG
                         //should this logic be here?
                         battleLog.AddEntry(string.Format("{0} has no more uses.", item.name));
 
-                        ActiveCharacter.inventory.Remove(item);
+                        ActiveCharacter.removeUsableItem(item);
+                        //ActiveCharacter.inventory.Remove(item);
                     }
                 }
                
