@@ -64,6 +64,7 @@ namespace UnityRPG
 
         private static void UseAbilityTempEffect( BattleGame game,GameCharacter character, Tile target, Ability ability)
         {
+
             foreach (var ae in ability.activeEffects)
             {
                 switch (ae.effectType)

@@ -143,6 +143,8 @@ namespace UnityRPG
         public string portraitSpritesheetName { get; set; }
         public int portraitSpriteIndex { get; set; }
 
+        public int level { get; set; }
+
         public int ac { get; set; }
 
         public int hp { get; set; }

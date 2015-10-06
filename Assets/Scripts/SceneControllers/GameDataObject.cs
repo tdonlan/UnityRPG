@@ -152,7 +152,7 @@ public class GameDataObject : MonoBehaviour
 
     //need to store the character's current stats, in case we kick them from party
     //max 3 others - need a check for the dialog
-    private void addCharacter(long characterIndex)
+    public void addCharacter(long characterIndex)
     {
         if (partyList.Count < 3)
         {

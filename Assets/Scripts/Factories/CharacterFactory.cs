@@ -12,6 +12,7 @@ namespace UnityRPG
         {
             GameCharacter character = new GameCharacter()
             {
+                level = data.level,
                 ac = data.ac,
                 ap = data.ap,
                 attack = data.attack,
@@ -31,8 +32,7 @@ namespace UnityRPG
                 agility = data.agility,
                 endurance = data.endurance,
                 spirit = data.spirit,
-                level = 1,
-                xp = 0,
+                xp = ExperienceHelper.getXPAtLevel(data.level),
                 talentPoints = 0,
                 statPoints = 0
 
@@ -51,6 +51,8 @@ namespace UnityRPG
                 character.abilityList = abilityList;
             }
 
+            
+
             if(data.inventory.Count > 0){
                 List<Item> itemList = new List<Item>();
                 foreach (var i in data.inventory)
@@ -63,7 +65,9 @@ namespace UnityRPG
                     
                 }
 
-                character.inventory = itemList;
+                character.usableItemList = itemList;
+
+                //character.inventory = itemList;
             }
 
             if (data.equippedArmor.Count > 0)

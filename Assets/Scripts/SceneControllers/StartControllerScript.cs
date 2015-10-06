@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityRPG;
 
 public class StartControllerScript : MonoBehaviour {
 
@@ -26,13 +27,19 @@ public class StartControllerScript : MonoBehaviour {
         switch (battleIndex)
         {
             case 1:
+                gameDataObject.playerGameCharacter = getGameCharacterFromID(80012);
+                gameDataObject.addCharacter(80011);
                 nodeIndex = 3;
                 break;
             case 2:
+                      gameDataObject.playerGameCharacter = getGameCharacterFromID(80012);
+                gameDataObject.addCharacter(80011);
                 treeIndex = 3;
                 nodeIndex = 3;
                 break;
             case 3:
+                      gameDataObject.playerGameCharacter = getGameCharacterFromID(80012);
+                gameDataObject.addCharacter(80011);
                 treeIndex = 4;
                 nodeIndex = 2;
                 break;
@@ -44,6 +51,11 @@ public class StartControllerScript : MonoBehaviour {
         ZoneTree curTree = (ZoneTree)gameDataObject.treeStore.getTree(gameDataObject.treeStore.currentTreeIndex);
         curTree.SelectNode(nodeIndex);
         Application.LoadLevel((int)UnitySceneIndex.Battle);
+    }
+
+    private GameCharacter getGameCharacterFromID(long ID)
+    {
+        return CharacterFactory.getGameCharacterFromGameCharacterData(gameDataObject.gameDataSet.gameCharacterDataDictionary[ID], gameDataObject.gameDataSet);
     }
 
     public void EnterWorld()

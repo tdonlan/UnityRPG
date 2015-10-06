@@ -752,6 +752,11 @@ public class BattleSceneControllerScript : MonoBehaviour
         return new Vector3(p.x+0.5f, p.y-0.5f, 0);
     }
 
+    private Vector3 getWorldPosOffset(Vector3 pos)
+    {
+        return new Vector3(pos.x+0.5f, pos.y-0.5f, pos.z);
+    }
+
     private Point getBoardPointFromLocation(float x, float y)
     {
         x = x + 0.5f;
@@ -832,7 +837,7 @@ public class BattleSceneControllerScript : MonoBehaviour
     {
         var camera = mainCameraObject.GetComponent<Camera>();
 
-        var newZoom = Input.GetAxis("Mouse ScrollWheel");
+        var newZoom = Input.GetAxis("Mouse ScrollWheel") * -1;
 
         cameraData.SetZoom(Mathf.Clamp(cameraData.Zoom + newZoom * GameConfig.ZoomFactor, GameConfig.MinZoom, GameConfig.MaxZoom));
 
@@ -1072,8 +1077,6 @@ public class BattleSceneControllerScript : MonoBehaviour
     private void LoadItemList()
     {
            
- 
-
         Transform ItemPanel = GameObject.FindGameObjectWithTag("ItemContentPanel").transform;
 
         //Clear existing abilities
@@ -1204,7 +1207,7 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     public void StartTempParticles(string particleName, Vector3 pos)
     {
-
+        pos = getWorldPosOffset(pos);
         var particleObj = gameDataObject.assetLibrary.getPrefabGameObject(particleName);
 
         var rend = particleObj.GetComponentInChildren<Renderer>();
@@ -1243,10 +1246,13 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     public void StartTempText(Vector3 pos, Color c, string text)
     {
+        pos = getWorldPosOffset(pos);
+
         var textObj = gameDataObject.assetLibrary.getPrefabGameObject("TextPopup");
         UpdateTextPopup(textObj, text, c);
         textObj.transform.position = pos;
 
+        
         Vector3 endPos = new Vector3(pos.x,pos.y+.2f,pos.z);
        
         AddEffect(TempEffectType.Text, 1, pos, endPos, textObj);
@@ -1265,6 +1271,8 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     public void StartTempSprite(Vector3 pos, string spritesheetName, int spriteIndex)
     {
+        pos = getWorldPosOffset(pos);
+
         var sprite = gameDataObject.assetLibrary.getSprite(spritesheetName, spriteIndex);
         var spriteObj = gameDataObject.assetLibrary.getPrefabGameObject("Sprite");
         spriteObj.transform.position = pos;

@@ -39,6 +39,15 @@ namespace UnityRPG
             return 0;
         }
 
+        public static long getXPAtLevel(int level)
+        {
+            if (level > 0)
+            {
+                return xpTable[level - 1];
+            }
+            return 0;
+        }
+
         public static float getLevelProgressPercent(int level, long currentXP)
         {
             var prevLevel = level-1;
