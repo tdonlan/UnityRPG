@@ -44,7 +44,7 @@ public class EquipmentControllerScript : MonoBehaviour {
 
     List<GameObject> displayEquipList { get; set; }
 
-    private int usableItemSlot = 0;
+    private int usableItemSlot = -1;
 
 
 	// Use this for initialization
@@ -104,6 +104,12 @@ public class EquipmentControllerScript : MonoBehaviour {
         ClearCurrentEquip();
     }
 
+    public void RefreshItems()
+    {
+        LoadCharacterUsableItems();
+        LoadDisplayItems();
+        UpdateSelectedItemSlot(usableItemSlot);
+    }
 
     public void LoadCharacterStats()
     {
@@ -151,6 +157,7 @@ public class EquipmentControllerScript : MonoBehaviour {
         }
 
         RefreshEquipment();
+        RefreshItems();
     }
 
     //called to clear out current equiped if nothing in slot
@@ -316,16 +323,22 @@ public class EquipmentControllerScript : MonoBehaviour {
                        where data.type == ItemType.Potion || data.type == ItemType.Quest || data.type == ItemType.Thrown || data.type == ItemType.Wand
                        select data;
 
-        foreach (var i in itemList)
+        var distinctItemList = itemList.Distinct().ToList();
+
+        foreach (var i in distinctItemList)
         {
             GameObject tempObj = (GameObject)Instantiate(EquipPrefab);
-            updateItemGameobject(tempObj, i);
+            int count = itemList.Count(x => x.name == i.name);
+            updateItemGameobject(tempObj, i, count);
             UIHelper.AddClickToGameObject(tempObj, SelectUsableItem, EventTriggerType.PointerClick, i);
             tempObj.transform.SetParent(RightPanelContent.transform, true);
 
             displayEquipList.Add(tempObj);
         }
     }
+
+
+
 
     private GameObject updateEmptyGameObject(GameObject obj, string type)
     {
@@ -337,10 +350,11 @@ public class EquipmentControllerScript : MonoBehaviour {
         return obj;
     }
 
-    private GameObject updateItemGameobject(GameObject obj, Item i)
+    private GameObject updateItemGameobject(GameObject obj, Item i, int count)
     {
         var equipTypePanel = UIHelper.getChildObject(obj, "EquipTypePanel");
-        UIHelper.UpdateTextComponent(equipTypePanel, "EquipType", i.name);
+        string itemName = string.Format("{0} ({1})",i.name,count);
+        UIHelper.UpdateTextComponent(equipTypePanel, "EquipType", itemName);
         UIHelper.UpdateSpriteComponent(equipTypePanel, "EquipImage", assetLibrary.getSprite(i.sheetname, i.spriteindex));
 
         UIHelper.UpdateTextComponent(obj, "EquipStats", i.ToString());
@@ -416,6 +430,7 @@ public class EquipmentControllerScript : MonoBehaviour {
 
     public void ShowEquipment()
     {
+        UIHelper.DestroyAllChildren(RightPanelContent.transform);
         ItemTypeText.text = "Equipment";
         EquipLeftPanel.transform.localPosition = new Vector3(-297, -164.6f, 0);
         EquipLeftItemPanel.transform.localPosition = new Vector3(10000, 10000, 0);
@@ -504,7 +519,6 @@ public class EquipmentControllerScript : MonoBehaviour {
         var itemList = curGameCharacter.usableItemList;
         if (itemList.Count > 0)
         {
-
             for (int i = 0; i < itemList.Count; i++)
             {
                 itemSlot = UIHelper.getChildObject(itemSlotPanel, "Item" + i);
@@ -529,6 +543,29 @@ public class EquipmentControllerScript : MonoBehaviour {
 
             UIHelper.UpdateSpriteColor(itemSlotPanel, "Item" + i, c);
         }
+
+
+        //Display Blank Item as default
+        GameObject equipTypePanel = UIHelper.getChildObject(usableItemStatPanel, "EquipTypePanel");
+        UIHelper.UpdateTextComponent(equipTypePanel, "EquipType", "");
+        UIHelper.UpdateSpriteComponent(equipTypePanel, "EquipImage", assetLibrary.getSprite("Blank", 0));
+        UIHelper.UpdateTextComponent(usableItemStatPanel, "EquipStats", "");
+
+
+        var itemList = curGameCharacter.usableItemList;
+
+        if (slot > -1 && itemList.Count > 0 && itemList.Count > slot)
+        {
+            var item = itemList[slot];
+            if (item != null)
+            {
+                equipTypePanel = UIHelper.getChildObject(usableItemStatPanel, "EquipTypePanel");
+                UIHelper.UpdateTextComponent(equipTypePanel, "EquipType", item.name);
+                UIHelper.UpdateSpriteComponent(equipTypePanel, "EquipImage", assetLibrary.getSprite(item.sheetname, item.spriteindex));
+
+                UIHelper.UpdateTextComponent(usableItemStatPanel, "EquipStats", item.ToString());
+            }
+        }
     }
 
     public void SelectUsableItemSlot(int slot)
@@ -544,28 +581,6 @@ public class EquipmentControllerScript : MonoBehaviour {
 
         UpdateSelectedItemSlot(usableItemSlot);
 
-        //Display Blank Item as default
-        GameObject equipTypePanel = UIHelper.getChildObject(usableItemStatPanel, "EquipTypePanel");
-        UIHelper.UpdateTextComponent(equipTypePanel, "EquipType", "");
-        UIHelper.UpdateSpriteComponent(equipTypePanel, "EquipImage", assetLibrary.getSprite("Blank", 0));
-        UIHelper.UpdateTextComponent(usableItemStatPanel, "EquipStats", "");
-
-
-        var itemList = curGameCharacter.usableItemList;
-
-        if (itemList.Count > 0 && itemList.Count > slot)
-        {
-            var item = itemList[slot];
-            if (item != null)
-            {
-                 equipTypePanel = UIHelper.getChildObject(usableItemStatPanel, "EquipTypePanel");
-                UIHelper.UpdateTextComponent(equipTypePanel, "EquipType", item.name);
-                UIHelper.UpdateSpriteComponent(equipTypePanel, "EquipImage", assetLibrary.getSprite(item.sheetname, item.spriteindex));
-
-                UIHelper.UpdateTextComponent(usableItemStatPanel, "EquipStats", item.ToString());
-            }
-        }
-       
     }
 
     public void RemoveUsableItem()
@@ -578,8 +593,7 @@ public class EquipmentControllerScript : MonoBehaviour {
 
             curGameCharacter.removeUsableItem(item);
 
-            LoadCharacterUsableItems();
-            LoadDisplayItems();
+            RefreshItems();
         }
     }
 
@@ -592,8 +606,7 @@ public class EquipmentControllerScript : MonoBehaviour {
         //refresh the item ui
         curGameCharacter.addUsableItem(i);
 
-        LoadCharacterUsableItems();
-        LoadDisplayItems();
+        RefreshItems();
     }
 
 

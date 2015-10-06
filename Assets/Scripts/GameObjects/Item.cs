@@ -87,6 +87,18 @@ namespace UnityRPG
             return retval;
         }
 
+        public override bool Equals(object obj)
+        {
+            Item obj2 = obj as Item;
+            if (obj2 == null) return false;
+            return this.ID == obj2.ID;
+        }
+
+        public override int GetHashCode()
+        {
+            return ID.GetHashCode();
+        }
+
     }
 
      [Serializable]
