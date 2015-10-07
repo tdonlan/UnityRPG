@@ -288,6 +288,17 @@ namespace UnityRPG
             return retvalList;
         }
 
+        public List<Point> getBoardLOSPointList(Tile origin, Tile destination)
+        {
+            List<Tile> tileList = getBoardLOS(origin, destination);
+            List<Point> pointList = new List<Point>();
+            foreach (var t in tileList)
+            {
+                pointList.Add(new Point(t.x, t.y));
+            }
+            return pointList;
+        }
+
         public List<Tile> getBoardLOS(Tile origin, Tile destination)
         {
             List<Point> pointList = PlotLine.GetPointsOnLine(origin.x, origin.y, destination.x, destination.y).ToList();

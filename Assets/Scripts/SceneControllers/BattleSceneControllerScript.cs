@@ -33,6 +33,7 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     public System.Random r { get; set; }
 
+    public Point hoverPoint { get; set; }
     public Point clickPoint { get; set; }
     public List<GameObject> highlightTiles { get; set; }
     GameObject SelectedTile { get; set; }
@@ -83,6 +84,7 @@ public class BattleSceneControllerScript : MonoBehaviour
 
         tileCharacterList = new List<GameObject>();
         tempEffectList = new List<TempEffect>();
+        highlightTiles = new List<GameObject>();
 
         this.r = new System.Random();
 
@@ -110,68 +112,8 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     }
 
-    //testing
-    private void displayCollisionSprites()
-    {
-
-        
-        for (int i = 0; i < battleGame.board.board.GetLength(0); i++)
-        {
-            for (int j = 0; j < battleGame.board.board.GetLength(1); j++)
-            {
-                var tileSquare = Instantiate(SpritePrefab);
-                tileSquare.transform.position = getWorldPosFromTilePoint(new Point(i, -j));
-
-                var tileSquareSprite = tileSquare.GetComponent<SpriteRenderer>();
-                tileSquareSprite.sprite = gameDataObject.assetLibrary.getSprite("Tile64", 0);
-
-                if (!battleGame.board.board[i, j].empty)
-                {
-
-                    tileSquareSprite.color = GameConfig.transRed;
-
-                }
-                else
-                {
-                    tileSquareSprite.color = GameConfig.transWhite;
-                }
-            }
-        }
-    }
-
-    private void DisplayMouseTile()
-    {
-        Destroy(mouseOverTile);
-
-        Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        var mouseTilePt = getTileLocationFromVectorPos(mouseWorldPosition);
-        if (mouseTilePt != null)
-        {
-            Point tilePoint = new Point(mouseTilePt.x, mouseTilePt.y);
-
-            mouseOverTile = Instantiate(SpritePrefab);
-            mouseOverTile.transform.position = getWorldPosFromTilePoint(tilePoint);
-            var tileSquareSprite = mouseOverTile.GetComponent<SpriteRenderer>();
-            tileSquareSprite.sprite = gameDataObject.assetLibrary.getSprite("Tile64", 0);
-
-            if (uiState == UIStateType.PlayerDecide &&
-                (playerDecideState == PlayerDecideState.AbilityPendingClick ||
-                playerDecideState == PlayerDecideState.AttackPendingClick ||
-                playerDecideState == PlayerDecideState.ItemPendingClick ||
-                playerDecideState == PlayerDecideState.MovePendingClick ||
-                playerDecideState == PlayerDecideState.RangedAttackPendingClick))
-            {
-                tileSquareSprite.color = Color.cyan;
-            }
-            else
-            {
-                tileSquareSprite.color = Color.blue;
-            }
-
-
-        }
-
-    }
+   
+    
 
     private void loadGameData()
     {
@@ -307,12 +249,196 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     }
 
+    //testing
+    private void displayCollisionSprites()
+    {
+
+
+        for (int i = 0; i < battleGame.board.board.GetLength(0); i++)
+        {
+            for (int j = 0; j < battleGame.board.board.GetLength(1); j++)
+            {
+                var tileSquare = Instantiate(SpritePrefab);
+                tileSquare.transform.position = getWorldPosFromTilePoint(new Point(i, -j));
+
+                var tileSquareSprite = tileSquare.GetComponent<SpriteRenderer>();
+                tileSquareSprite.sprite = gameDataObject.assetLibrary.getSprite("Tile64", 0);
+
+                if (!battleGame.board.board[i, j].empty)
+                {
+
+                    tileSquareSprite.color = GameConfig.transRed;
+
+                }
+                else
+                {
+                    tileSquareSprite.color = GameConfig.transWhite;
+                }
+            }
+        }
+    }
+
+    private void DisplayMouseTile()
+    {
+        Destroy(mouseOverTile);
+      
+
+        Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        var mouseTilePt = getTileLocationFromVectorPos(mouseWorldPosition);
+        if (mouseTilePt != null)
+        {
+            hoverPoint = new Point(mouseTilePt.x, mouseTilePt.y);
+
+            mouseOverTile = Instantiate(SpritePrefab);
+            mouseOverTile.transform.position = getWorldPosFromTilePoint(hoverPoint);
+            var tileSquareSprite = mouseOverTile.GetComponent<SpriteRenderer>();
+            tileSquareSprite.sprite = gameDataObject.assetLibrary.getSprite("Tile64", 0);
+
+            if (uiState == UIStateType.PlayerDecide &&
+                (playerDecideState == PlayerDecideState.AbilityPendingClick ||
+                playerDecideState == PlayerDecideState.AttackPendingClick ||
+                playerDecideState == PlayerDecideState.ItemPendingClick ||
+                playerDecideState == PlayerDecideState.MovePendingClick ||
+                playerDecideState == PlayerDecideState.RangedAttackPendingClick))
+            {
+                tileSquareSprite.color = Color.cyan;
+
+               
+            }
+            else
+            {
+                tileSquareSprite.color = Color.blue;
+            }
+
+        }
+
+        DisplayHighlightedTiles();
+
+    }
+
+    //when actions are pending, show the highlighted tiles this ability/item/action will take
+    //abstract the tileList stuff to battle game?
+    private void DisplayHighlightedTiles()
+    {
+        foreach (var t in highlightTiles)
+        {
+            Destroy(t);
+        }
+        highlightTiles.Clear();
+
+        List<Point> pathFind;
+
+        if (uiState == UIStateType.PlayerDecide)
+        {
+            switch (playerDecideState)
+            {
+                case PlayerDecideState.MovePendingClick:
+                    
+                    pathFind = PathFind.Pathfind(battleGame.board, battleGame.ActiveCharacter.x, battleGame.ActiveCharacter.y, hoverPoint.x, -hoverPoint.y);
+                    if (pathFind.Count > battleGame.ActiveCharacter.ap) {
+                        AddHighlightTiles(pathFind, Color.red);
+                    }
+                    else
+                    {
+                        AddHighlightTiles(pathFind, Color.green);
+                    }
+                    
+                    break;
+                case PlayerDecideState.AttackPendingClick:
+                    pathFind = PathFind.Pathfind(battleGame.board, battleGame.ActiveCharacter.x, battleGame.ActiveCharacter.y, hoverPoint.x, -hoverPoint.y);
+                    if (pathFind.Count + battleGame.ActiveCharacter.weapon.actionPoints > battleGame.ActiveCharacter.ap) {
+                        AddHighlightTiles(pathFind, Color.red);
+                    }
+                    else
+                    {
+                        AddHighlightTiles(pathFind, Color.green);
+                    }
+                    
+                    break;
+                case PlayerDecideState.AbilityPendingClick:
+                    DisplayHighlightTilesForAbility();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    private void DisplayHighlightTilesForAbility()
+    {
+        Point fixedHoverPoint = new Point(hoverPoint.x, -hoverPoint.y);
+        Tile origin;
+        Tile dest;
+        List<Point> pointList = new List<Point>();
+
+        switch (selectedAbility.targetType)
+        {
+            case AbilityTargetType.AllFoes:
+                break;
+            case AbilityTargetType.AllFriends:
+                break;
+            case AbilityTargetType.LOSEmpty:
+                origin = battleGame.board.getTileFromLocation(battleGame.ActiveCharacter.x, battleGame.ActiveCharacter.y);
+                dest = battleGame.board.getTileFromPoint(fixedHoverPoint);
+                pointList = battleGame.board.getBoardLOSPointList(origin, dest);
+                if (battleGame.board.checkLOS(origin, dest) && pointList.Count <= selectedAbility.range && selectedAbility.ap <= battleGame.ActiveCharacter.ap)
+                {
+                    AddHighlightTiles(pointList, Color.green);
+                }
+                else { AddHighlightTiles(pointList, Color.red); }
+                break;
+            case AbilityTargetType.LOSTarget:
+                //Also need to make sure destination is a game character
+                origin = battleGame.board.getTileFromLocation(battleGame.ActiveCharacter.x, battleGame.ActiveCharacter.y);
+                dest = battleGame.board.getTileFromPoint(fixedHoverPoint);
+                pointList = battleGame.board.getBoardLOSPointList(origin, dest);
+                if (battleGame.board.checkLOS(origin, dest) && pointList.Count <= selectedAbility.range && selectedAbility.ap <= battleGame.ActiveCharacter.ap)
+                {
+                    AddHighlightTiles(pointList, Color.green);
+                }
+                else { AddHighlightTiles(pointList, Color.red); }
+                break;
+
+            case AbilityTargetType.PointEmpty:
+                pointList.Add(fixedHoverPoint);
+                AddHighlightTiles(pointList, Color.green);
+                break;
+            case AbilityTargetType.PointTarget:
+                //verify target is character
+                pointList.Add(fixedHoverPoint);
+                AddHighlightTiles(pointList, Color.green);
+                break;
+            case AbilityTargetType.Self:
+                break;
+            case AbilityTargetType.SingleFoe:
+                break;
+            case AbilityTargetType.SingleFriend:
+                break;
+            default: break;
+        }
+    }
+
+    private void AddHighlightTiles(List<Point> tilePointList, Color c)
+    {
+        foreach (var t in tilePointList)
+        {
+            Point fixPoint = new Point(t.x, -t.y);
+            GameObject highlightTile = Instantiate(SpritePrefab);
+            highlightTile.transform.position = getWorldPosFromTilePoint(fixPoint);
+            SpriteRenderer tileSquareSprite = highlightTile.GetComponent<SpriteRenderer>();
+            tileSquareSprite.sprite = gameDataObject.assetLibrary.getSprite("Tile64", 0);
+            tileSquareSprite.color = c;
+
+            highlightTiles.Add(highlightTile);
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
     {
 
-
+        //Highlight the selected tile + pending action tiles
         DisplayMouseTile();
 
         float delta = Time.deltaTime;
