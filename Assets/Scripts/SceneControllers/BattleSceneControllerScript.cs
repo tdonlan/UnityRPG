@@ -112,9 +112,6 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     }
 
-   
-    
-
     private void loadGameData()
     {
         gameDataObject = GameObject.FindObjectOfType<GameDataObject>();
@@ -356,7 +353,10 @@ public class BattleSceneControllerScript : MonoBehaviour
                     
                     break;
                 case PlayerDecideState.AbilityPendingClick:
-                    DisplayHighlightTilesForAbility();
+                    DisplayHighlightTilesForAbility(selectedAbility);
+                    break;
+                case PlayerDecideState.ItemPendingClick:
+                    DisplayHighlightTilesForItem(selectedItem);
                     break;
                 default:
                     break;
@@ -364,14 +364,14 @@ public class BattleSceneControllerScript : MonoBehaviour
         }
     }
 
-    private void DisplayHighlightTilesForAbility()
+    private void DisplayHighlightTilesForItem(UsableItem item)
     {
         Point fixedHoverPoint = new Point(hoverPoint.x, -hoverPoint.y);
         Tile origin;
         Tile dest;
         List<Point> pointList = new List<Point>();
 
-        switch (selectedAbility.targetType)
+        switch (item.itemAbility.targetType)
         {
             case AbilityTargetType.AllFoes:
                 break;
@@ -381,7 +381,7 @@ public class BattleSceneControllerScript : MonoBehaviour
                 origin = battleGame.board.getTileFromLocation(battleGame.ActiveCharacter.x, battleGame.ActiveCharacter.y);
                 dest = battleGame.board.getTileFromPoint(fixedHoverPoint);
                 pointList = battleGame.board.getBoardLOSPointList(origin, dest);
-                if (battleGame.board.checkLOS(origin, dest) && pointList.Count <= selectedAbility.range && selectedAbility.ap <= battleGame.ActiveCharacter.ap)
+                if (battleGame.board.checkLOS(origin, dest) && pointList.Count <= item.itemAbility.range && item.actionPoints <= battleGame.ActiveCharacter.ap)
                 {
                     AddHighlightTiles(pointList, Color.green);
                 }
@@ -392,7 +392,62 @@ public class BattleSceneControllerScript : MonoBehaviour
                 origin = battleGame.board.getTileFromLocation(battleGame.ActiveCharacter.x, battleGame.ActiveCharacter.y);
                 dest = battleGame.board.getTileFromPoint(fixedHoverPoint);
                 pointList = battleGame.board.getBoardLOSPointList(origin, dest);
-                if (battleGame.board.checkLOS(origin, dest) && pointList.Count <= selectedAbility.range && selectedAbility.ap <= battleGame.ActiveCharacter.ap)
+                if (battleGame.board.checkLOS(origin, dest) && pointList.Count <= item.itemAbility.range && item.actionPoints <= battleGame.ActiveCharacter.ap)
+                {
+                    AddHighlightTiles(pointList, Color.green);
+                }
+                else { AddHighlightTiles(pointList, Color.red); }
+                break;
+
+            case AbilityTargetType.PointEmpty:
+                pointList.Add(fixedHoverPoint);
+                AddHighlightTiles(pointList, Color.green);
+                break;
+            case AbilityTargetType.PointTarget:
+                //verify target is character
+                pointList.Add(fixedHoverPoint);
+                AddHighlightTiles(pointList, Color.green);
+                break;
+            case AbilityTargetType.Self:
+                break;
+            case AbilityTargetType.SingleFoe:
+                break;
+            case AbilityTargetType.SingleFriend:
+                break;
+            default: break;
+        }
+
+    }
+
+    private void DisplayHighlightTilesForAbility(Ability ability)
+    {
+        Point fixedHoverPoint = new Point(hoverPoint.x, -hoverPoint.y);
+        Tile origin;
+        Tile dest;
+        List<Point> pointList = new List<Point>();
+
+        switch (ability.targetType)
+        {
+            case AbilityTargetType.AllFoes:
+                break;
+            case AbilityTargetType.AllFriends:
+                break;
+            case AbilityTargetType.LOSEmpty:
+                origin = battleGame.board.getTileFromLocation(battleGame.ActiveCharacter.x, battleGame.ActiveCharacter.y);
+                dest = battleGame.board.getTileFromPoint(fixedHoverPoint);
+                pointList = battleGame.board.getBoardLOSPointList(origin, dest);
+                if (battleGame.board.checkLOS(origin, dest) && pointList.Count <= ability.range && ability.ap <= battleGame.ActiveCharacter.ap)
+                {
+                    AddHighlightTiles(pointList, Color.green);
+                }
+                else { AddHighlightTiles(pointList, Color.red); }
+                break;
+            case AbilityTargetType.LOSTarget:
+                //Also need to make sure destination is a game character
+                origin = battleGame.board.getTileFromLocation(battleGame.ActiveCharacter.x, battleGame.ActiveCharacter.y);
+                dest = battleGame.board.getTileFromPoint(fixedHoverPoint);
+                pointList = battleGame.board.getBoardLOSPointList(origin, dest);
+                if (battleGame.board.checkLOS(origin, dest) && pointList.Count <= ability.range && ability.ap <= battleGame.ActiveCharacter.ap)
                 {
                     AddHighlightTiles(pointList, Color.green);
                 }

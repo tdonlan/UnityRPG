@@ -271,35 +271,50 @@ namespace UnityRPG
 
         public static bool UseAbility(GameCharacter character, Ability ability, Tile target, BattleGame game)
         {
+            bool useValue = false;
             if (ability.uses > 0)
             {
-                ability.uses--;
+               
 
                 switch (ability.targetType)
                 {
                     case AbilityTargetType.Self:
-                        return UseAbilitySelf(character, ability, target, game);
+                        useValue= UseAbilitySelf(character, ability, target, game);
+                        break;
                     case AbilityTargetType.SingleFriend:
-                        return UseAbilitySingleFriend(character, ability, target, game);
+                        useValue= UseAbilitySingleFriend(character, ability, target, game);
+                        break;
                     case AbilityTargetType.SingleFoe:
-                        return UseAbilitySingleFoe(character, ability, target, game);
+                        useValue= UseAbilitySingleFoe(character, ability, target, game);
+                        break;
                     case AbilityTargetType.AllFriends:
-                        return UseAbilityAllFriends(character, ability, target, game);
+                        useValue= UseAbilityAllFriends(character, ability, target, game);
+                        break;
                     case AbilityTargetType.AllFoes:
-                        return UseAbilityAllFoes(character, ability, target, game);
+                        useValue = UseAbilityAllFoes(character, ability, target, game);
+                        break;
                     case AbilityTargetType.PointEmpty:
-                        return UseAbilityPointEmpty(character, ability, target, game);
+                        useValue = UseAbilityPointEmpty(character, ability, target, game);
+                        break;
                     case AbilityTargetType.PointTarget:
-                        return UseAbilityPoint(character, ability, target, game);
+                        useValue = UseAbilityPoint(character, ability, target, game);
+                        break;
                     case AbilityTargetType.LOSEmpty:
-                        return UseAbilityLOSEmpty(character, ability, target, game);
+                        useValue = UseAbilityLOSEmpty(character, ability, target, game);
+                        break;
                     case AbilityTargetType.LOSTarget:
-                        return UseAbilityLOS(character, ability, target, game);
+                        useValue = UseAbilityLOS(character, ability, target, game);
+                        break;
                     default:
-                        return false;
+                        useValue = false;
+                        break;
                 }
             }
-            return false;
+            if (useValue)
+            {
+                ability.uses--;
+            }
+            return useValue;
         }
 
         public static Ability getAbilityFree(Ability a)

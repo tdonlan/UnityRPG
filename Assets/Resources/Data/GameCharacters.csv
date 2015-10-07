@@ -10,4 +10,4 @@ ID,Name,Type,CharacterSpritesheetName,CharacterSpriteIndex,PortraitSpritesheetNa
 80009,Death Knight,Enemy,MonsterSprites,8,MonsterPortraits,0,8,25,100,50,10,,,40012,,,,Warrior,6,6,6,6
 80010,King of Skulls,Enemy,MonsterSprites,0,MonsterPortraits,13,10,25,200,55,15,,,40013,,,,Warrior,8,8,8,10
 80011,Bo,Player,CharacterSprites,4,CharacterPortraits,5,1,10,25,11,10,{30002;30002},{70002;70004},40001,,,{10006;10007;10011;10009},Warrior,2,2,2,2
-80012,Player,Player,PlayerSprites,9,PlayerPortraits,6,1,10,50,20,10,{30001; 30002;30002},{70002;70004},40002,,,{10002;10003;10012;10015;10016},Warrior,1,1,1,1
+80012,Player,Player,PlayerSprites,9,PlayerPortraits,6,1,10,50,20,10,{30001; 30002;30002;30003},{70002;70004},40002,,,{10002;10003;10012;10015;10016},Warrior,1,1,1,1
