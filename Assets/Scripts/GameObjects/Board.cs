@@ -301,43 +301,58 @@ namespace UnityRPG
 
         public List<Tile> getBoardLOS(Tile origin, Tile destination)
         {
-            List<Point> pointList = PlotLine.GetPointsOnLine(origin.x, origin.y, destination.x, destination.y).ToList();
             List<Tile> tileList = new List<Tile>();
-            tileList.Add(origin);
-            
-            foreach(var p in pointList)
+            if (origin != null && destination != null)
             {
-                Tile tempTile = this.getTileFromLocation(p.x, p.y);
-                if(tempTile != origin && tempTile != destination)
+
+                List<Point> pointList = PlotLine.GetPointsOnLine(origin.x, origin.y, destination.x, destination.y).ToList();
+               
+                tileList.Add(origin);
+
+                if (pointList != null)
                 {
-                    if(tempTile.empty)
+
+                    foreach (var p in pointList)
                     {
-                        tileList.Add(tempTile);
-                    }
-                    else
-                    {
-                        return tileList;
+                        Tile tempTile = this.getTileFromLocation(p.x, p.y);
+                        if (tempTile != origin && tempTile != destination)
+                        {
+                            if (tempTile.empty)
+                            {
+                                tileList.Add(tempTile);
+                            }
+                            else
+                            {
+                                return tileList;
+                            }
+                        }
+
                     }
                 }
 
-            }
+                tileList.Add(destination);
 
-            tileList.Add(destination);
+            }
 
             return tileList;
         }
 
         public bool checkLOS(Tile origin, Tile destination)
         {
-            List<Tile> tileLOSList = getBoardLOS(origin, destination);
-            if (tileLOSList[tileLOSList.Count - 1] == destination)
+            if (origin != null && destination != null)
             {
-                return true;
+                List<Tile> tileLOSList = getBoardLOS(origin, destination);
+                if (tileLOSList[tileLOSList.Count - 1] == destination)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
-            {
-                return false;
-            }
+            return false;
+           
         }
 
         //Return a path to the tile that has LOS with the destination

@@ -37,7 +37,7 @@ namespace UnityRPG
                 Ammo a = (Ammo)ItemHelper.getFirstItemWithID(attacker.inventory,attacker.Ammo.itemID);
 
                 //check we have ammo 
-                if(attacker.Ammo.count > 0 && a.ammoType == w.ammoType)
+                if(attacker.Ammo != null && attacker.Ammo.count > 0 && a.ammoType == w.ammoType)
                 {
 
                     List<Tile> tileLOSList = game.board.getBoardLOS(game.ActiveTile, targetTile);

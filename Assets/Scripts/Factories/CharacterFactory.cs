@@ -51,8 +51,6 @@ namespace UnityRPG
                 character.abilityList = abilityList;
             }
 
-            
-
             if(data.inventory.Count > 0){
                 List<Item> itemList = new List<Item>();
                 foreach (var i in data.inventory)
@@ -60,9 +58,16 @@ namespace UnityRPG
                     Item tempItem = ItemFactory.getItemFromIndex(i, gameDataSet);
                     if (tempItem != null)
                     {
-                        itemList.Add(tempItem);
+                        if (tempItem.type == ItemType.Ammo)
+                        {
+                            character.inventory.Add(tempItem);
+                            character.Ammo = ItemHelper.getItemSet(character.inventory, tempItem);
+                        }
+                        else
+                        {
+                            itemList.Add(tempItem);
+                        }
                     }
-                    
                 }
 
                 character.usableItemList = itemList;
@@ -85,7 +90,16 @@ namespace UnityRPG
 
             if (data.weapon > 0)
             {
+                Item i = ItemFactory.getItemFromIndex(data.weapon, gameDataSet);
+                
                 Weapon w = (Weapon)ItemFactory.getItemFromIndex(data.weapon, gameDataSet);
+
+                if (w.weaponType == WeaponType.OneHandRanged || w.weaponType == WeaponType.TwoHandRanged)
+                {
+                    w = (RangedWeapon)w;
+                }
+                
+
                 character.weapon = w;
             }
 

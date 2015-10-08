@@ -300,7 +300,6 @@ public class BattleSceneControllerScript : MonoBehaviour
             {
                 tileSquareSprite.color = Color.cyan;
 
-               
             }
             else
             {
@@ -323,7 +322,10 @@ public class BattleSceneControllerScript : MonoBehaviour
         }
         highlightTiles.Clear();
 
+        Point fixedHoverPoint = new Point(hoverPoint.x, -hoverPoint.y);
         List<Point> pathFind;
+        Tile origin;
+        Tile dest;
 
         if (uiState == UIStateType.PlayerDecide)
         {
@@ -352,6 +354,18 @@ public class BattleSceneControllerScript : MonoBehaviour
                     }
                     
                     break;
+                case PlayerDecideState.RangedAttackPendingClick:
+                    RangedWeapon w = (RangedWeapon)battleGame.ActiveCharacter.weapon;
+                      origin = battleGame.board.getTileFromLocation(battleGame.ActiveCharacter.x, battleGame.ActiveCharacter.y);
+                        dest = battleGame.board.getTileFromPoint(fixedHoverPoint);
+                        pathFind = battleGame.board.getBoardLOSPointList(origin, dest);
+
+                        if (battleGame.board.checkLOS(origin, dest) && pathFind.Count <= w.range && w.actionPoints <= battleGame.ActiveCharacter.ap)
+                    {
+                        AddHighlightTiles(pathFind, Color.green);
+                    }
+                    else { AddHighlightTiles(pathFind, Color.red); }
+                break;
                 case PlayerDecideState.AbilityPendingClick:
                     DisplayHighlightTilesForAbility(selectedAbility);
                     break;
