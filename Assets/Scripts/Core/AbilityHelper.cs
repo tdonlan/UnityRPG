@@ -83,7 +83,8 @@ namespace UnityRPG
                         var spriteVector1 = new UnityEngine.Vector3(game.ActiveCharacter.x, -game.ActiveCharacter.y);
                         var spriteVector2 = new UnityEngine.Vector3(target.x, -target.y);
 
-                        game.gameControllerScript.StartTempSprite(spriteVector1, spriteVector2, ae.effectName, ae.effectIndex);
+                        game.gameControllerScript.StartTempSpriteProjectile(spriteVector1, spriteVector2, ae.effectName, ae.effectIndex);
+                      
                          break;
                     default:
                          break;
