@@ -149,6 +149,7 @@ public enum PlayerDecideState
         OneHandRanged,
         TwoHandMelee,
         TwoHandRanged,
+        Thrown
     }
 
     public enum AmmoType
@@ -156,6 +157,7 @@ public enum PlayerDecideState
         Arrows,
         Bolts,
         Stones,
+        Thrown
     }
 
     public enum ArmorType
@@ -271,5 +273,7 @@ public enum PlayerDecideState
     {
         Particle,
         Sprite,
-        Text
+        Text,
+        ProjectileSprite,
+        ProjectileParticle
     }

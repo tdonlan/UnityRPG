@@ -14,10 +14,7 @@ namespace UnityRPG
             {
 
                 var tempTile = game.board.getTileFromLocation(defender.x, defender.y);
-                game.board.AddTempChar(tempTile, '*');
-                game.board.AddTempEffect(tempTile, GameConstants.weaponAttackSpritesheet, GameConstants.weaponAttackSpriteindex);
-                
-                
+
                 return Hit(attacker, defender, game,null);
             }
             else
@@ -42,12 +39,9 @@ namespace UnityRPG
 
                     List<Tile> tileLOSList = game.board.getBoardLOS(game.ActiveTile, targetTile);
 
-                    //Draw Attack temp path
-                    foreach (var t in tileLOSList)
-                    {
-                        game.board.AddTempChar(t, '*');
-                        game.board.AddTempEffect(t, GameConstants.rangedAttackSpritesheet, GameConstants.rangedAttackSpriteindex);
-                    }
+                    var attackerPos = new UnityEngine.Vector3(attacker.x,-attacker.y);
+                    var targetPos = new UnityEngine.Vector3(defender.x,-defender.y);
+                    game.gameControllerScript.StartTempSprite(attackerPos, targetPos, attacker.Ammo.sheetname, attacker.Ammo.spriteindex);
 
                     //check LOS
                     //check range
@@ -128,8 +122,6 @@ namespace UnityRPG
                     defender.AddActiveEffect(AbilityHelper.cloneActiveEffect(ae), game);
                 }
             }
-
-            
 
             return true;
         }

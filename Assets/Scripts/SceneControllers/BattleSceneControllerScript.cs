@@ -1587,7 +1587,7 @@ public class BattleSceneControllerScript : MonoBehaviour
     public void StartTempSpriteOnChar(GameCharacter gameCharacter, string spritesheet, int spriteindex)
     {
          Vector3 charPos = new Vector3(gameCharacter.x,-gameCharacter.y,0);
-         StartTempSprite(charPos, spritesheet, spriteindex);
+         StartTempSprite(charPos,charPos, spritesheet, spriteindex);
     }
 
     public void StartTempParticleOnChar(GameCharacter gameCharacter, string particleName)
@@ -1622,9 +1622,10 @@ public class BattleSceneControllerScript : MonoBehaviour
 
     }
 
-    public void StartTempSprite(Vector3 pos, string spritesheetName, int spriteIndex)
+    public void StartTempSprite(Vector3 pos, Vector3 pos2, string spritesheetName, int spriteIndex)
     {
         pos = getWorldPosOffset(pos);
+        pos2 = getWorldPosOffset(pos2);
 
         var sprite = gameDataObject.assetLibrary.getSprite(spritesheetName, spriteIndex);
         var spriteObj = gameDataObject.assetLibrary.getPrefabGameObject("Sprite");
@@ -1632,9 +1633,8 @@ public class BattleSceneControllerScript : MonoBehaviour
         var spriteRenderer = spriteObj.GetComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = 3;
         spriteRenderer.sprite = sprite;
-        //GameObjectHelper.UpdateSprite(spriteObj, "Sprite", sprite);
 
-        AddEffect(TempEffectType.Sprite, 1, pos, pos, spriteObj);
+        AddEffect(TempEffectType.Sprite, 1, pos, pos2, spriteObj);
     }
 
     #endregion

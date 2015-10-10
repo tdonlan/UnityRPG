@@ -62,7 +62,7 @@ namespace UnityRPG
 
         }
 
-        private static void UseAbilityTempEffect( BattleGame game,GameCharacter character, Tile target, Ability ability)
+        private static void UseAbilityTempEffect(BattleGame game,GameCharacter character, Tile target, Ability ability)
         {
 
             foreach (var ae in ability.activeEffects)
@@ -73,11 +73,20 @@ namespace UnityRPG
                         game.gameControllerScript.StartTempParticles(ae.effectName, new UnityEngine.Vector3(target.x, -target.y));
                         break;
                     case TempEffectType.Sprite:
-                        game.gameControllerScript.StartTempSprite(new UnityEngine.Vector3(target.x, -target.y), ae.effectName, ae.effectIndex);
+                        var spriteVector = new UnityEngine.Vector3(target.x, -target.y);
+                        game.gameControllerScript.StartTempSprite(spriteVector, spriteVector, ae.effectName, ae.effectIndex);
                         break;
                     case TempEffectType.Text:
                         game.gameControllerScript.StartTempText(new UnityEngine.Vector3(target.x, -target.y), UnityEngine.Color.grey, ability.name);
                         break;
+                    case TempEffectType.ProjectileSprite:
+                        var spriteVector1 = new UnityEngine.Vector3(game.ActiveCharacter.x, -game.ActiveCharacter.y);
+                        var spriteVector2 = new UnityEngine.Vector3(target.x, -target.y);
+
+                        game.gameControllerScript.StartTempSprite(spriteVector1, spriteVector2, ae.effectName, ae.effectIndex);
+                         break;
+                    default:
+                         break;
                 }
             }
 
@@ -85,21 +94,9 @@ namespace UnityRPG
 
         private static void UseAbilityTempEffect(BattleGame game, GameCharacter character, GameCharacter target, Ability ability)
         {
-            foreach (var ae in ability.activeEffects)
-            {
-                switch (ae.effectType)
-                {
-                    case TempEffectType.Particle:
-                        game.gameControllerScript.StartTempParticles(ae.effectName, new UnityEngine.Vector3(target.x, target.y));
-                        break;
-                    case TempEffectType.Sprite:
-                        game.gameControllerScript.StartTempSprite(new UnityEngine.Vector3(target.x, target.y), ae.effectName, ae.effectIndex);
-                        break;
-                    case TempEffectType.Text:
-                        game.gameControllerScript.StartTempText(new UnityEngine.Vector3(target.x, target.y), UnityEngine.Color.grey, ability.name);
-                        break;
-                }
-            }
+            Tile targetTile = game.board.getTileFromPoint(new Point(target.x, target.y));
+            UseAbilityTempEffect(game, character, targetTile, ability);
+
         }
 
         private static bool UseAbilityOnCharList(GameCharacter sourceCharacter, Tile target, Ability ability, List<GameCharacter> characterList, BattleGame game)
