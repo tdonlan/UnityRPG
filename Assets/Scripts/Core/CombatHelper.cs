@@ -41,7 +41,7 @@ namespace UnityRPG
 
                     var attackerPos = new UnityEngine.Vector3(attacker.x,-attacker.y);
                     var targetPos = new UnityEngine.Vector3(defender.x,-defender.y);
-                    game.gameControllerScript.StartTempSprite(attackerPos, targetPos, attacker.Ammo.sheetname, attacker.Ammo.spriteindex);
+                    game.gameControllerScript.StartTempSpriteProjectile(attackerPos, targetPos, GameConstants.rangedAttackSpritesheet, GameConstants.rangedAttackSpriteindex);
 
                     //check LOS
                     //check range

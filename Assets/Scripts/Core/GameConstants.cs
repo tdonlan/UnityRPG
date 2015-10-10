@@ -11,10 +11,10 @@ namespace UnityRPG
 {
     public class GameConstants
     {
-        public const string weaponAttackSpritesheet = "Particles";
+        public const string weaponAttackSpritesheet = "SpellEffects";
         public const int weaponAttackSpriteindex = 48;
 
-        public const string rangedAttackSpritesheet = "Particles";
+        public const string rangedAttackSpritesheet = "SpellEffects";
         public const int rangedAttackSpriteindex = 112;
 
         //-----------------------

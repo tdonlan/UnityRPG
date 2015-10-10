@@ -1637,6 +1637,27 @@ public class BattleSceneControllerScript : MonoBehaviour
         AddEffect(TempEffectType.Sprite, 1, pos, pos2, spriteObj);
     }
 
+    public void StartTempSpriteProjectile(Vector3 pos, Vector3 pos2, string spritesheetName, int spriteIndex)
+    {
+        pos = getWorldPosOffset(pos);
+        pos2 = getWorldPosOffset(pos2);
+
+        var dist = Vector3.Distance(pos, pos2);
+        var dir = pos2 - pos;
+        float rot = (float)Math.Atan2(dir.y, dir.x);
+
+        var sprite = gameDataObject.assetLibrary.getSprite(spritesheetName, spriteIndex);
+        var spriteObj = gameDataObject.assetLibrary.getPrefabGameObject("Sprite");
+        spriteObj.transform.position = pos;
+        spriteObj.transform.rotation = Quaternion.Euler(0f, 0f, rot * Mathf.Rad2Deg);
+
+        var spriteRenderer = spriteObj.GetComponent<SpriteRenderer>();
+        spriteRenderer.sortingOrder = 3;
+        spriteRenderer.sprite = sprite;
+
+        AddEffect(TempEffectType.Sprite, .25f, pos, pos2, spriteObj);
+    }
+
     #endregion
 
 
