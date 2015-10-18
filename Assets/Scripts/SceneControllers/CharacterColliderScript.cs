@@ -14,8 +14,11 @@ public class CharacterColliderScript : MonoBehaviour {
     {
         if(this.gameControllerScript == null)
         {
-            var gameControllerObject = GameObject.FindGameObjectWithTag("GameController");
-            this.gameControllerScript = gameControllerObject.GetComponentInChildren<BattleSceneControllerScript>();
+            //var gameControllerObject = GameObject.FindGameObjectWithTag("GameController");
+            //this.gameControllerScript = gameControllerObject.GetComponentInChildren<BattleSceneControllerScript>();
+
+            this.gameControllerScript = GameObject.FindObjectOfType<BattleSceneControllerScript>().GetComponent<BattleSceneControllerScript>();
+   
         }
     }
 	
@@ -24,14 +27,15 @@ public class CharacterColliderScript : MonoBehaviour {
 	
 	}
 
+
     public void OnMouseOver()
     {
-        gameControllerScript.UpdateCharacterHover();
+        //gameControllerScript.UpdateCharacterHover();
 
     }
 
     public void OnMouseExit()
     {
-        gameControllerScript.ClearCharacterHover();
+        //gameControllerScript.ClearCharacterHover();
     }
 }

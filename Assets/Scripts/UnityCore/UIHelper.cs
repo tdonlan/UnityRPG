@@ -160,6 +160,7 @@ using System.Linq;
             return null;
         }
 
+        //SHOULD BE DEPRECATED
         public static void SetAllButtons(bool flag)
         {
             var canvas = GameObject.FindGameObjectWithTag("FrontCanvas");
@@ -171,11 +172,26 @@ using System.Linq;
             //getButton(canvas, "EquipmentButton").interactable = flag;
         }
 
+        //DEPRECATE
         public static void SetButton(string buttonName, bool flag)
         {
             var canvas = GameObject.FindGameObjectWithTag("FrontCanvas");
             getButton(canvas, buttonName).interactable = flag;
            
+        }
+
+        public static void SetAllButtons(List<GameObject> buttonObjects, bool flag)
+        {
+            foreach (var b in buttonObjects)
+            {
+                SetButton(b, flag);
+            }
+        }
+
+        public static void SetButton(GameObject buttonObject, bool flag)
+        {
+            var button = buttonObject.GetComponent<Button>();
+            button.interactable = flag;
         }
 
         public static void MoveUIObject(GameObject uiObject, Vector3 newPos)
