@@ -30,12 +30,15 @@ public class CharacterColliderScript : MonoBehaviour {
 
     public void OnMouseOver()
     {
-        //gameControllerScript.UpdateCharacterHover();
+        //gameControllerScript.SelectCharacter();
+
+
 
     }
 
     public void OnMouseExit()
     {
-        //gameControllerScript.ClearCharacterHover();
+        //gameControllerScript.DeselectCharacter();
+
     }
 }

@@ -580,9 +580,11 @@ using UnityEngine.EventSystems;
             ClearSelectedCharacter();
             if (SelectedCharacter != null)
             {
-                SelectedCharacterPanel = Instantiate(CharacterPrefab);
+                SelectedCharacterPanel = Instantiate(CharacterPanelPrefab);
+
                 SelectedCharacterPanel.transform.SetParent(BattlePanel.transform);
              
+           
 
                 UIHelper.UpdateSpriteComponent(SelectedCharacterPanel, "CharacterPortrait", gameDataObject.assetLibrary.getSprite(SelectedCharacter.portraitSpritesheetName, SelectedCharacter.portraitSpriteIndex));
                 UIHelper.UpdateTextComponent(SelectedCharacterPanel, "CharacterName", SelectedCharacter.name);
@@ -593,7 +595,9 @@ using UnityEngine.EventSystems;
 
                 UIHelper.UpdateSliderValue(SelectedCharacterPanel, "HPSlider", (float)SelectedCharacter.hp / (float)SelectedCharacter.totalHP);
 
-                SelectedCharacterPanel.transform.localPosition = GameConfig.SelectedCharacterPanelLocation;
+             
+
+               SelectedCharacterPanel.transform.localPosition = GameConfig.SelectedCharacterPanelLocation;
             }
         }
 
@@ -682,6 +686,9 @@ using UnityEngine.EventSystems;
 
         public void ClickActionButton(int button)
         {
+
+            clickPoint = null;
+
             switch (button)
             {
                 case 0:
@@ -751,7 +758,6 @@ using UnityEngine.EventSystems;
             if (Input.GetMouseButtonDown(0)) //left click
             {
                 if (!EventSystem.current.IsPointerOverGameObject())
-                //if (!checkPointOnUI(Input.mousePosition))
                 {
                     var mouseTilePt = getTileLocationFromVectorPos(mouseWorldPosition);
                     if (mouseTilePt != null)
@@ -818,24 +824,28 @@ using UnityEngine.EventSystems;
 
             renderer.sprite = Resources.Load<Sprite>("Sprites/highlightTile 1");
 
-            SelectCharacter();
         }
 
-        public void SelectCharacter()
+        public void SelectCharacter(Point p)
         {
-            Vector3 boardPos = getBoardPositionFromScreenPosition(Input.mousePosition);
-            Point boardPoint = getBoardPointFromLocation(boardPos.x, -boardPos.y);
-            SelectedCharacter =  battleGame.getCharacterFromTile(battleGame.board.getTileFromLocation(boardPoint.x, boardPoint.y));
-
-            if(SelectedCharacter != null){
-                Debug.Log("Selected " + SelectedCharacter.name);
+            Tile pointTile = battleGame.board.getTileFromLocation(p.x, -p.y);
+            
+            if (pointTile != null)
+            {
+                SelectedCharacter = battleGame.getCharacterFromTile(pointTile);
+                if (SelectedCharacter != null)
+                {
+                    Debug.Log("Selected " + SelectedCharacter.name);
+                    UpdateUI();
+                }
             }
-          
+
         }
 
         public void DeselectCharacter()
         {
             SelectedCharacter = null;
+            UpdateUI();
         }
 
         private void DeselectTile()
@@ -859,7 +869,7 @@ using UnityEngine.EventSystems;
         }
 
       
-        //DEPCREDATED
+        //DEPRECATED
         void UpdateDebug()
         {
             Vector3 viewPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
@@ -889,7 +899,7 @@ using UnityEngine.EventSystems;
             switch (uiState)
             {
                 case UIStateType.NewTurn:
-                    //UIHelper.SetAllButtons(false);
+
                     UpdateNewTurn();
                     break;
                 case UIStateType.PlayerDecide:
@@ -897,15 +907,14 @@ using UnityEngine.EventSystems;
                     UpdatePlayerDecide();
                     break;
                 case UIStateType.PlayerExecute:
-                    //UIHelper.SetAllButtons(false);
+
                     UpdateBattleActions();
                     break;
                 case UIStateType.EnemyDecide:
-                    //UIHelper.SetAllButtons(false);
                     UpdateEnemyDecide();
                     break;
                 case UIStateType.EnemyExecute:
-                    //UIHelper.SetAllButtons(false);
+
                     UpdateBattleActions();
                     break;
                 default:
@@ -950,7 +959,6 @@ using UnityEngine.EventSystems;
             switch (playerDecideState)
             {
                 case PlayerDecideState.Waiting:
-                    //UIHelper.SetAllButtons(true);
                     break;
                 case PlayerDecideState.MovePendingClick:
                     PlayerMoveSelect();
@@ -1050,7 +1058,6 @@ using UnityEngine.EventSystems;
         //Create battle actions here, or lower level?
         public void PlayerEndTurn()
         {
-            //HidePanels();
             if (uiState == UIStateType.PlayerDecide)
             {
                 battleGame.battleLog.AddEntry(string.Format("{0} ended turn.", battleGame.ActiveCharacter.name));
@@ -1063,7 +1070,6 @@ using UnityEngine.EventSystems;
         //DEPRECATED
         public void PlayerMoveStart()
         {
-            //HidePanels();
             if (uiState == UIStateType.PlayerDecide)
             {
                 if (playerDecideState == PlayerDecideState.Waiting)
@@ -1071,11 +1077,9 @@ using UnityEngine.EventSystems;
                     UIHelper.SetAllButtons(false);
                     UIHelper.SetButton("MoveButton", true);
 
-                    //DebugText.text = string.Format("Select Destination");
                     clickPoint = null;
                     playerDecideState = PlayerDecideState.MovePendingClick;
 
-                    //DisplayPendingActionHover();
                 }
                 else
                 {
@@ -1095,10 +1099,10 @@ using UnityEngine.EventSystems;
                 
                 clickPoint = null;
                 UpdateUI();
-                //RemovePendingAbilityHover();
             }
         }
 
+        //Right Click - smart attack or move
         //Determine if enemy was clicked on to attack, otherwise move to spot
         public void PlayerSmartAttackOrMove()
         {
@@ -1106,7 +1110,7 @@ using UnityEngine.EventSystems;
             {
                 Tile clickTile = battleGame.board.getTileFromPoint(clickPoint);
                 GameCharacter enemyChar = battleGame.getCharacterFromTile(clickTile);
-                if (enemyChar != null)
+                if (enemyChar != null && enemyChar.type == CharacterType.Enemy)
                 {
                     if (battleGame.ActiveCharacter.weapon != null)
                     {
@@ -1128,6 +1132,7 @@ using UnityEngine.EventSystems;
             }
         }
 
+        //DEPRECATED
         public void PlayerAttackStart()
         {
 
@@ -1157,11 +1162,11 @@ using UnityEngine.EventSystems;
                     UIHelper.SetAllButtons(false);
                     UIHelper.SetButton("AttackButton", true);
 
-                    //DebugText.text = string.Format("Select Target");
+
                     clickPoint = null;
                     playerDecideState = PlayerDecideState.AttackPendingClick;
 
-                   // DisplayPendingActionHover();
+
 
                 }
                 else
@@ -1180,14 +1185,12 @@ using UnityEngine.EventSystems;
                 playerDecideState = PlayerDecideState.Waiting;
                 battleGame.actionQueue.AddRange(battleGame.getAttackActionList(clickPoint.x, clickPoint.y));
                 uiState = UIStateType.PlayerExecute;
-                //RemovePendingAbilityHover();
             }
         }
 
         //DEPRECATED
         public void PlayerRangedAttackStart()
         {
-            //HidePanels();
 
             if (uiState == UIStateType.PlayerDecide)
             {
@@ -1196,10 +1199,9 @@ using UnityEngine.EventSystems;
                     UIHelper.SetAllButtons(false);
                     UIHelper.SetButton("AttackButton", true);
 
-                    //DebugText.text = string.Format("Select Target");
                     clickPoint = null;
                     playerDecideState = PlayerDecideState.RangedAttackPendingClick;
-                    //DisplayPendingActionHover();
+
                 }
 
                 else
@@ -1217,7 +1219,6 @@ using UnityEngine.EventSystems;
                 playerDecideState = PlayerDecideState.Waiting;
                 battleGame.actionQueue.AddRange(battleGame.getRangedAttackActionList(clickPoint.x, clickPoint.y));
                 uiState = UIStateType.PlayerExecute;
-                //RemovePendingAbilityHover();
             }
         }
 
@@ -1243,7 +1244,6 @@ using UnityEngine.EventSystems;
                 
                 LoadItemList();
 
-                //RemovePendingAbilityHover();
             }
         }
 
@@ -1267,10 +1267,9 @@ using UnityEngine.EventSystems;
                 playerDecideState = PlayerDecideState.Waiting;
                 battleGame.actionQueue.AddRange(battleGame.getAbilityActionList(selectedAbility, clickPoint.x, clickPoint.y));
                 uiState = UIStateType.PlayerExecute;
-                //HidePanels();
+
                 LoadAbilityList();
 
-                //RemovePendingAbilityHover();
             }
         }
 
@@ -1425,6 +1424,7 @@ using UnityEngine.EventSystems;
             var mouseTilePt = getTileLocationFromVectorPos(mouseWorldPosition);
             if (mouseTilePt != null)
             {
+                SelectCharacter(mouseTilePt);
                 hoverPoint = new Point(mouseTilePt.x, mouseTilePt.y);
 
                 mouseOverTile = Instantiate(SpritePrefab);
