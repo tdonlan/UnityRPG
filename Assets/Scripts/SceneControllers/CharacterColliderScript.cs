@@ -32,13 +32,10 @@ public class CharacterColliderScript : MonoBehaviour {
     {
         //gameControllerScript.SelectCharacter();
 
-
-
     }
 
     public void OnMouseExit()
     {
         //gameControllerScript.DeselectCharacter();
-
     }
 }

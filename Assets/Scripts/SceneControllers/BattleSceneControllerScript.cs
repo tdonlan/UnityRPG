@@ -211,56 +211,6 @@ using UnityEngine.EventSystems;
             return characterObject;
         }
 
-        //DEPRECATED - ability list is loaded at runtime at each Ability Action Button press
-        private void LoadAbilityList()
-        {
-            /*
-            var usableAbilityList = (from data in battleGame.ActiveCharacter.abilityList
-                                     where data.uses > 0
-                                     select data).ToList();
-
-            Transform AbilityPanel = GameObject.FindGameObjectWithTag("AbilityContentPanel").transform;
-
-            //Clear existing abilities
-            UIHelper.DestroyAllChildren(AbilityPanel);
-
-            foreach (var ab in usableAbilityList)
-            {
-                GameObject abilityItem = (GameObject)Instantiate(AbilityItemPrefab);
-                updateAbilityButton(abilityItem, gameDataObject.assetLibrary.getSprite(ab.sheetname, ab.spriteindex), ab);
-                abilityItem = updateAbilityItem(abilityItem, ab);
-                abilityItem.transform.SetParent(AbilityPanel, true);
-            }
-             * */
-        }
-
-        //DEPRECATED
-        private void LoadItemList()
-        {
-            /*
-            Transform ItemPanel = GameObject.FindGameObjectWithTag("ItemContentPanel").transform;
-
-            //Clear existing abilities
-            UIHelper.DestroyAllChildren(ItemPanel);
-
-            var usableItemList = battleGame.ActiveCharacter.usableItemList;
-            foreach (var item in usableItemList)
-            {
-                var usableItem = (UsableItem)item;
-
-                GameObject itemObject = (GameObject)Instantiate(ItemPrefab);
-                UIHelper.UpdateTextComponent(itemObject, "ItemText", item.ToString());
-                UIHelper.UpdateSpriteComponent(itemObject, "ItemButtonImage", gameDataObject.assetLibrary.getSprite(item.sheetname, item.spriteindex));
-
-                Button buttonClick = itemObject.GetComponentInChildren<Button>();
-                buttonClick.onClick.AddListener(() => PlayerItemStart(usableItem));
-
-                itemObject.transform.SetParent(ItemPanel, true);
-
-            }
-            */
-        }
-
         #endregion
 
         #region UpdateUIElements
@@ -270,7 +220,6 @@ using UnityEngine.EventSystems;
             if (battleGame.ActiveCharacter != null)
             {
                 var ac = battleGame.ActiveCharacter;
-                //var ActiveCharacterPanel = GameObject.FindGameObjectWithTag("ActiveCharacterPanel");
                 UIHelper.UpdateSpriteComponent(ActiveCharacterPanel, "CharacterPortrait", gameDataObject.assetLibrary.getSprite(ac.portraitSpritesheetName, ac.portraitSpriteIndex));
                 UIHelper.UpdateTextComponent(ActiveCharacterPanel, "CharacterName", ac.name);
                 UIHelper.UpdateTextComponent(ActiveCharacterPanel, "HPText", string.Format("HP:{0}/{1}", ac.hp, ac.totalHP));
@@ -349,13 +298,10 @@ using UnityEngine.EventSystems;
 
             UIHelper.UpdateSpriteComponent(charPortrait, "PortraitImage", gameDataObject.assetLibrary.getSprite(character.portraitSpritesheetName, character.portraitSpriteIndex));
             UIHelper.UpdateSliderValue(charPortrait, "HPSlider", (float)character.hp / (float)character.totalHP);
-            //UIHelper.UpdateTextComponent(charPortrait, "CharacterName", character.name.ToString());
-
-            //string stats = string.Format("HP: {0}/{1} AP: {2}", character.hp, character.totalHP, character.ap);
 
             //UIHelper.AddClickToGameObject(charPortrait, UpdateInitiativeHover, EventTriggerType.PointerEnter, character);
             //UIHelper.AddClickToGameObject(charPortrait, ClearCharacterHover, EventTriggerType.PointerExit);
-            //UIHelper.AddClickToGameObject(charPortrait, MoveCameraToCharacter, EventTriggerType.PointerClick, character);
+            UIHelper.AddClickToGameObject(charPortrait, MoveCameraToCharacter, EventTriggerType.PointerClick, character);
 
             return charPortrait;
         }
@@ -583,8 +529,6 @@ using UnityEngine.EventSystems;
                 SelectedCharacterPanel = Instantiate(CharacterPanelPrefab);
 
                 SelectedCharacterPanel.transform.SetParent(BattlePanel.transform);
-             
-           
 
                 UIHelper.UpdateSpriteComponent(SelectedCharacterPanel, "CharacterPortrait", gameDataObject.assetLibrary.getSprite(SelectedCharacter.portraitSpritesheetName, SelectedCharacter.portraitSpriteIndex));
                 UIHelper.UpdateTextComponent(SelectedCharacterPanel, "CharacterName", SelectedCharacter.name);
@@ -594,8 +538,6 @@ using UnityEngine.EventSystems;
                 UIHelper.UpdateSliderValue(SelectedCharacterPanel, "APSlider", (float)SelectedCharacter.ap / (float)SelectedCharacter.totalAP);
 
                 UIHelper.UpdateSliderValue(SelectedCharacterPanel, "HPSlider", (float)SelectedCharacter.hp / (float)SelectedCharacter.totalHP);
-
-             
 
                SelectedCharacterPanel.transform.localPosition = GameConfig.SelectedCharacterPanelLocation;
             }
@@ -686,7 +628,6 @@ using UnityEngine.EventSystems;
 
         public void ClickActionButton(int button)
         {
-
             clickPoint = null;
 
             switch (button)
@@ -750,10 +691,7 @@ using UnityEngine.EventSystems;
 
         private void ClickTile()
         {
-
             Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-
-           // DebugText.text = mouseWorldPosition.ToString();
 
             if (Input.GetMouseButtonDown(0)) //left click
             {
@@ -822,7 +760,7 @@ using UnityEngine.EventSystems;
 
             SelectedTile.transform.position = getWorldPosFromTilePoint(new Point(clickPoint.x, -clickPoint.y));
 
-            renderer.sprite = Resources.Load<Sprite>("Sprites/highlightTile 1");
+            renderer.sprite = gameDataObject.assetLibrary.getSprite("HighlightTile", 0);
 
         }
 
@@ -922,23 +860,12 @@ using UnityEngine.EventSystems;
             }
         }
 
-
-
         void UpdateNewTurn()
         {
             FocusCamera(battleGame.ActiveCharacter.x, -battleGame.ActiveCharacter.y);
 
             //Update Map
             LoadCharacters();
-
-            //Update UI
-            UpdateInitiativePanel();
-
-            //Update Abilities
-            LoadAbilityList();
-
-            //update Items
-            LoadItemList();
 
             battleGame.NewTurn = false;
             battleGame.ActiveCharacter.RunActiveEffects(battleGame);
@@ -1067,28 +994,7 @@ using UnityEngine.EventSystems;
             }
         }
 
-        //DEPRECATED
-        public void PlayerMoveStart()
-        {
-            if (uiState == UIStateType.PlayerDecide)
-            {
-                if (playerDecideState == PlayerDecideState.Waiting)
-                {
-                    UIHelper.SetAllButtons(false);
-                    UIHelper.SetButton("MoveButton", true);
-
-                    clickPoint = null;
-                    playerDecideState = PlayerDecideState.MovePendingClick;
-
-                }
-                else
-                {
-                    UIHelper.SetAllButtons(true);
-                    playerDecideState = PlayerDecideState.Waiting;
-                }
-            }
-        }
-
+      
         public void PlayerMoveSelect()
         {
             if (clickPoint != null)
@@ -1132,51 +1038,8 @@ using UnityEngine.EventSystems;
             }
         }
 
-        //DEPRECATED
-        public void PlayerAttackStart()
-        {
-
-            if (battleGame.ActiveCharacter.weapon != null)
-            {
-                if (battleGame.ActiveCharacter.weapon.weaponType == WeaponType.OneHandRanged || battleGame.ActiveCharacter.weapon.weaponType == WeaponType.TwoHandRanged)
-                {
-                    PlayerRangedAttackStart();
-                }
-                else
-                {
-                    PlayerMeleeAttackStart();
-                }
-
-            }
-        }
-
-        //DEPRECATED
-        public void PlayerMeleeAttackStart()
-        {
-            //HidePanels();
-
-            if (uiState == UIStateType.PlayerDecide)
-            {
-                if (playerDecideState == PlayerDecideState.Waiting)
-                {
-                    UIHelper.SetAllButtons(false);
-                    UIHelper.SetButton("AttackButton", true);
-
-
-                    clickPoint = null;
-                    playerDecideState = PlayerDecideState.AttackPendingClick;
-
-
-
-                }
-                else
-                {
-                    UIHelper.SetAllButtons(true);
-                    playerDecideState = PlayerDecideState.Waiting;
-                }
-
-            }
-        }
+       
+      
 
         public void PlayerAttackSelect()
         {
@@ -1188,29 +1051,7 @@ using UnityEngine.EventSystems;
             }
         }
 
-        //DEPRECATED
-        public void PlayerRangedAttackStart()
-        {
-
-            if (uiState == UIStateType.PlayerDecide)
-            {
-                if (playerDecideState == PlayerDecideState.Waiting)
-                {
-                    UIHelper.SetAllButtons(false);
-                    UIHelper.SetButton("AttackButton", true);
-
-                    clickPoint = null;
-                    playerDecideState = PlayerDecideState.RangedAttackPendingClick;
-
-                }
-
-                else
-                {
-                    UIHelper.SetAllButtons(true);
-                    playerDecideState = PlayerDecideState.Waiting;
-                }
-            }
-        }
+     
 
         public void PlayerRangedAttackSelect()
         {
@@ -1241,9 +1082,6 @@ using UnityEngine.EventSystems;
                 playerDecideState = PlayerDecideState.Waiting;
                 battleGame.actionQueue.AddRange(battleGame.getItemActionList(selectedItem, clickPoint.x, clickPoint.y));
                 uiState = UIStateType.PlayerExecute;
-                
-                LoadItemList();
-
             }
         }
 
@@ -1267,9 +1105,6 @@ using UnityEngine.EventSystems;
                 playerDecideState = PlayerDecideState.Waiting;
                 battleGame.actionQueue.AddRange(battleGame.getAbilityActionList(selectedAbility, clickPoint.x, clickPoint.y));
                 uiState = UIStateType.PlayerExecute;
-
-                LoadAbilityList();
-
             }
         }
 
@@ -1277,7 +1112,6 @@ using UnityEngine.EventSystems;
         {
             uiState = UIStateType.PlayerDecide;
             playerDecideState = PlayerDecideState.Waiting;
-            //RemovePendingAbilityHover();
         }
 
         #endregion
@@ -1655,17 +1489,7 @@ using UnityEngine.EventSystems;
 
         #region Helpers
 
-        //DEPRECATED
-        //return true if point on top of UI
-        private bool checkPointOnUI(Vector3 screenPos)
-        {
-            Rect uiScreenRect = new Rect(0, 0, 1280, 210);
-            if (uiScreenRect.Contains(screenPos))
-            {
-                return true;
-            }
-            return false;
-        }
+       
 
         private Bounds getTileBounds(int x, int y)
         {
