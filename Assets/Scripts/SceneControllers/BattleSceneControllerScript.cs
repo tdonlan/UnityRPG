@@ -35,6 +35,8 @@ using UnityEngine.EventSystems;
         public GameObject ActionIconPanel;
         public GameObject BattlePanel;
 
+        public Text BattleLogText;
+
         public Button MoveActionButton;
         public Button AttackActionButton;
         public Button AbilityActionButton;
@@ -310,10 +312,13 @@ using UnityEngine.EventSystems;
         private void UpdateBattleLogText()
         {
             //var battleLogContent = GameObject.FindGameObjectWithTag("BattleLogContent");
-            UIHelper.UpdateTextComponent(EventLogPanel, "BattleLogText", battleGame.battleLog.ToString());
+            //UIHelper.UpdateTextComponent(EventLogPanel, "BattleLogText", battleGame.battleLog.ToString());
 
-            var battleLogScrollRect = GameObject.FindGameObjectWithTag("BattleLogScrollRect").GetComponent<ScrollRect>();
-            battleLogScrollRect.verticalNormalizedPosition = 0;
+            BattleLogText.text = battleGame.battleLog.ToString();
+                
+
+            //var battleLogScrollRect = GameObject.FindGameObjectWithTag("BattleLogScrollRect").GetComponent<ScrollRect>();
+            //battleLogScrollRect.verticalNormalizedPosition = 0;
 
         }
 
@@ -602,7 +607,7 @@ using UnityEngine.EventSystems;
             UpdateInitiativePanel();
 
             //Battle Log
-            //UpdateBattleLogText();
+            UpdateBattleLogText();
 
             //Action Buttons
             UpdateActionButton();
@@ -1684,9 +1689,6 @@ using UnityEngine.EventSystems;
         }
 
         #endregion
-
-
-
 
     }
 

@@ -20,7 +20,13 @@ public class TestScript : MonoBehaviour {
 
     AssetLibrary assetLibrary { get; set; }
 
+
+    public Text scrollText;
+    public ScrollRect scrollRect;
+
     int particleCounter = 0;
+
+    string testText = "";
 
   
 
@@ -28,23 +34,7 @@ public class TestScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        this.assetLibrary = new AssetLibrary();
-
-        HoverPrefab = Resources.Load<GameObject>("HoverPrefab");
-        characterPrefab = Resources.Load<GameObject>("CharacterPrefab");
-        TextPopupPrefab = Resources.Load<GameObject>("Prefab/TextPopupPrefab");
-
-        tempEffectList = new List<TempEffect>();
-
-        isStatsDisplay = false;
-
-        canvas = GameObject.FindObjectOfType<Canvas>();
-
-        //LoadCharacter();
-
-        //LoadPanel();
-
-        //AddCharacterCollider();
+       
 
 
 	}
@@ -52,9 +42,7 @@ public class TestScript : MonoBehaviour {
 	// Update is called once per frame
     void Update()
     {
-        float delta = Time.deltaTime;
-
-        UpdateTempEffects(delta);
+        UpdateScrollText();
     }
 
     private void UpdateTempEffects(float delta)
@@ -207,4 +195,11 @@ public class TestScript : MonoBehaviour {
         AddEffect(TempEffectType.Sprite, 1, pos, pos, spriteObj);
     }
 
+    private void UpdateScrollText()
+    {
+        testText += "hello ";
+        scrollText.text = testText;
+
+        scrollRect.verticalNormalizedPosition = 0;
+    }
 }
