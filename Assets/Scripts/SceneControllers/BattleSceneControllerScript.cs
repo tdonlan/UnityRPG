@@ -231,6 +231,8 @@ using UnityEngine.EventSystems;
 
                 UIHelper.UpdateSliderValue(ActiveCharacterPanel, "HPSlider", (float)ac.hp / (float)ac.totalHP);
 
+                UIHelper.AddClickToGameObject(ActiveCharacterPanel, MoveCameraToCharacter, EventTriggerType.PointerClick, ac);
+
             }
         }
 
@@ -301,8 +303,6 @@ using UnityEngine.EventSystems;
             UIHelper.UpdateSpriteComponent(charPortrait, "PortraitImage", gameDataObject.assetLibrary.getSprite(character.portraitSpritesheetName, character.portraitSpriteIndex));
             UIHelper.UpdateSliderValue(charPortrait, "HPSlider", (float)character.hp / (float)character.totalHP);
 
-            //UIHelper.AddClickToGameObject(charPortrait, UpdateInitiativeHover, EventTriggerType.PointerEnter, character);
-            //UIHelper.AddClickToGameObject(charPortrait, ClearCharacterHover, EventTriggerType.PointerExit);
             UIHelper.AddClickToGameObject(charPortrait, MoveCameraToCharacter, EventTriggerType.PointerClick, character);
 
             return charPortrait;
@@ -710,6 +710,7 @@ using UnityEngine.EventSystems;
                     }
                     if (clickPoint != null)
                     {
+                        SelectCharacter(clickPoint);
                         SelectTile();
                     }
                     else
@@ -754,8 +755,6 @@ using UnityEngine.EventSystems;
             }
         }
 
-
-
         private void SelectTile()
         {
             Destroy(SelectedTile);
@@ -771,7 +770,7 @@ using UnityEngine.EventSystems;
 
         public void SelectCharacter(Point p)
         {
-            Tile pointTile = battleGame.board.getTileFromLocation(p.x, -p.y);
+            Tile pointTile = battleGame.board.getTileFromLocation(p.x, p.y);
             
             if (pointTile != null)
             {
@@ -1143,6 +1142,11 @@ using UnityEngine.EventSystems;
         {
             GameCharacter gc = (GameCharacter)characterObject;
             FocusCamera(gc.x, -gc.y);
+
+            clickPoint = new Point(gc.x, gc.y);
+            SelectTile();
+            SelectCharacter(clickPoint);
+            clickPoint = null;
         }
 
         private void UpdateCamera()
@@ -1258,12 +1262,10 @@ using UnityEngine.EventSystems;
         {
             Destroy(mouseOverTile);
 
-
             Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             var mouseTilePt = getTileLocationFromVectorPos(mouseWorldPosition);
             if (mouseTilePt != null)
             {
-                SelectCharacter(mouseTilePt);
                 hoverPoint = new Point(mouseTilePt.x, mouseTilePt.y);
 
                 mouseOverTile = Instantiate(SpritePrefab);
