@@ -231,7 +231,10 @@ using UnityEngine.EventSystems;
 
                 UIHelper.UpdateSliderValue(ActiveCharacterPanel, "HPSlider", (float)ac.hp / (float)ac.totalHP);
 
-                UIHelper.AddClickToGameObject(ActiveCharacterPanel, MoveCameraToCharacter, EventTriggerType.PointerClick, ac);
+                var charPortrait = UIHelper.getChildObject(ActiveCharacterPanel, "CharacterPortrait");
+
+                UIHelper.RemoveEventTriggers(charPortrait);
+                UIHelper.AddClickToGameObject(charPortrait, MoveCameraToCharacter, EventTriggerType.PointerClick, ac);
 
             }
         }
@@ -835,7 +838,6 @@ using UnityEngine.EventSystems;
             //Update Map
             LoadCharacters();
 
-            //UpdateBattleLogText();
             UpdateUI();
 
             switch (uiState)

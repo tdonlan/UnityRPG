@@ -72,6 +72,7 @@ using System.Linq;
 
         public static void AddClickToGameObject(GameObject gameObject, UnityAction action, EventTriggerType triggerType)
         {
+
             var eventTrigger = gameObject.AddComponent<EventTrigger>();
             eventTrigger.triggers = new List<EventTrigger.Entry>();
             AddEventTrigger(eventTrigger, action, triggerType);
@@ -123,6 +124,15 @@ using System.Linq;
 
             // Add the EventTrigger.Entry to delegates list on the EventTrigger
             eventTrigger.triggers.Add(entry);
+        }
+
+        public static void RemoveEventTriggers(GameObject gameObject)
+        {
+            var eventTriggerList = gameObject.GetComponentsInChildren<EventTrigger>();
+            foreach (var et in eventTriggerList)
+            {
+                UnityEngine.Object.Destroy(et);
+            }
         }
 
 
