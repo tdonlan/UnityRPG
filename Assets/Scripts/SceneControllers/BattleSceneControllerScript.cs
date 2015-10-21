@@ -27,6 +27,7 @@ using UnityEngine.EventSystems;
         private GameObject CharacterPrefab;
 
         //UI References
+        public Canvas Canvas;
         public GameObject ActiveCharacterPanel;
         public GameObject InitListPanel;
         public GameObject PendingActionPanel;
@@ -58,6 +59,8 @@ using UnityEngine.EventSystems;
 
         public UIStateType uiState { get; set; }
         public PlayerDecideState playerDecideState { get; set; }
+
+        public GameObject HoverInfoPanel { get; set; }
 
         //World Data
         public GameObject tileMapPrefab { get; set; }
@@ -236,11 +239,64 @@ using UnityEngine.EventSystems;
                 UIHelper.RemoveEventTriggers(charPortrait);
                 UIHelper.AddClickToGameObject(charPortrait, MoveCameraToCharacter, EventTriggerType.PointerClick, ac);
 
+                var effectPanel = UIHelper.getChildObject(ActiveCharacterPanel,"EffectPanel");
+                UpdateEffectIcons(effectPanel, ac.activeEffects);
+
             }
         }
 
+        private void UpdateEffectIcons(GameObject effectPanel, List<ActiveEffect> effectList)
+        {
+            UIHelper.DestroyAllChildren(effectPanel.transform);
 
-        public void UpdateInitiativePanel()
+            foreach (var ae in effectList)
+            {
+                var effectObject = Instantiate(EffectIconPrefab);
+                effectObject.transform.SetParent(effectPanel.transform);
+                UpdateEffectIcon(effectObject, ae);
+            }
+        }
+
+        private void UpdateEffectIcon(GameObject effectIcon, ActiveEffect ae)
+        {
+            UIHelper.UpdateSpriteComponent(effectIcon, "Image", gameDataObject.assetLibrary.getSprite(ae.effectName, ae.effectIndex));
+            UIHelper.AddClickToGameObject(effectIcon, AddHoverInfoPanel, EventTriggerType.PointerEnter, ae);
+            UIHelper.AddClickToGameObject(effectIcon, RemoveHoverInfoPanel, EventTriggerType.PointerExit);
+        }
+
+        public void RemoveHoverInfoPanel()
+        {
+            if(HoverInfoPanel != null){
+                Destroy(HoverInfoPanel);
+                HoverInfoPanel = null;
+            }
+          
+        }
+
+        public void AddHoverInfoPanel(System.Object activeEffectObject)
+        {
+            ActiveEffect activeEffect = (ActiveEffect)activeEffectObject;
+            if (HoverInfoPanel != null)
+            {
+                HoverInfoPanel.transform.position = UIHelper.getMouseHoverPos(Input.mousePosition);
+            }
+            else
+            {
+                HoverInfoPanel = Instantiate(InfoPopupPrefab);
+                HoverInfoPanel.transform.SetParent(Canvas.transform);
+                HoverInfoPanel.transform.position = UIHelper.getMouseHoverPos(Input.mousePosition);
+                UpdateInfoPopup(HoverInfoPanel, activeEffect.ToString());
+            }
+            
+        }
+
+        public void UpdateInfoPopup(GameObject infoPopup, string text)
+        {
+            UIHelper.UpdateTextComponent(infoPopup, "Text", text);
+        }
+
+
+        private void UpdateInitiativePanel()
         {
             //clear current Panel
             for (int i = InitListPanel.transform.childCount - 1; i >= 0; i--)
@@ -548,6 +604,9 @@ using UnityEngine.EventSystems;
                 UIHelper.UpdateSliderValue(SelectedCharacterPanel, "HPSlider", (float)SelectedCharacter.hp / (float)SelectedCharacter.totalHP);
 
                SelectedCharacterPanel.transform.localPosition = GameConfig.SelectedCharacterPanelLocation;
+
+               var effectPanel = UIHelper.getChildObject(SelectedCharacterPanel, "EffectPanel");
+               UpdateEffectIcons(effectPanel, SelectedCharacter.activeEffects);
             }
         }
 

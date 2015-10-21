@@ -210,5 +210,11 @@ using System.Linq;
             uiRectTransform.localPosition = newPos;
         }
 
+        //return a position for a UI element to hover, given a mouse coordinate (taking in screen location)
+        public static Vector3 getMouseHoverPos(Vector3 mousePos)
+        {
+            return new Vector3(mousePos.x - .2f, mousePos.y - .2f, 0);
+        }
+
     }
 
