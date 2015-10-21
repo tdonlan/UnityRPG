@@ -1,0 +1,35 @@
+1
+Test Battle
+1;ZoneTown;Info;The rats scury from the dirty cracks in the alleyway and leap at you!;Town;
+--
+2:Enemy
+3:Enemy
+4:Enemy
+5:Enemy
+6:Win
+----
+2
+Skeleton Mage
+80013;Skeleton Mage;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Rat;0;0
+--
+----
+3
+Skeleton Warrior
+80014;Skeleton Warrior;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Rat;0;0
+--
+----
+4
+Skeleton Assassin
+80015;Skeleton Assassin;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Rat;0;0
+--
+----
+5
+Skeleton Priest
+80016;Skeleton Priest;Enemy;Red eyes and a snarling mouth dripping diseased spittle;Rat;0;0
+--
+----
+6
+Win
+1;WinScreen;Win;You slaughter the diseased rats with a vengeance, leaving only smashed bundles of fur and blood;WinScreen
+--
+----

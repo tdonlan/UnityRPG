@@ -1,0 +1,11 @@
+1
+Test Zone
+0;Test Zone;Link;A strange test zone full of bugs;Icons2;37;Blank;0
+--
+2:Test
+----
+2
+Test Battle
+20;Alley;Battle;A garbage strewn alley way, with rats swarming out of the garbage heap;Icons1;37;Blank;0
+--
+----

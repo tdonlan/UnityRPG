@@ -40,7 +40,7 @@ public class StartControllerScript : MonoBehaviour {
             case 3:
                 gameDataObject.playerGameCharacter = getGameCharacterFromID(80012);
                 gameDataObject.addCharacter(80011);
-                treeIndex = 4;
+                treeIndex = 19;
                 nodeIndex = 2;
                 break;
             default:

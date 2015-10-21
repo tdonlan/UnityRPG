@@ -17,3 +17,5 @@ Data/SimpleWorld1/BattleCastleBeast;4;ZoneDungeon2;15
 Data/SimpleWorld1/BattleCastleKing;4;ZoneDungeon2;16
 Data/SimpleWorld1/InfoCastleChest;5;InfoCastleChest;17
 Data/SimpleWorld1/DialogBo;2;DialogBo;18
+Data/SimpleWorld1/ZoneTest;1;BattleMap2;19
+Data/SimpleWorld1/BattleTest;4;BattleMap2;20

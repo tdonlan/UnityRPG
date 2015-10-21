@@ -780,7 +780,6 @@ using UnityEngine.EventSystems;
                 SelectedCharacter = battleGame.getCharacterFromTile(pointTile);
                 if (SelectedCharacter != null)
                 {
-                    Debug.Log("Selected " + SelectedCharacter.name);
                     UpdateUI();
                 }
             }
