@@ -191,7 +191,7 @@ public class GameDataObject : MonoBehaviour
                 tag = talentData.tag,
                 targetType = abilityData.targetType,
                 tier = talentData.tier,
-                uses = abilityData.uses,
+                uses = abilityData.cooldown,
                 tilePatternType = abilityData.tilePatternType,
                 abilityReqNameList = getAbilityNameList(talentData.abilityReqs),
                 effectDescriptionList = getEffectsDescriptionList(abilityData.passiveEffects,abilityData.activeEffects)

@@ -1,9 +1,9 @@
-ID,Name,Description,AP,Uses,Range,TargetType,TilePatternType,ActiveEffects,PassiveEffects,SheetName,SpriteIndex
-10001,Fireball,Send a large ball of flame into a crowd of foes,5,5,20,LOSTarget,NineSquare,{1001},,SpellIcons,18
-10002,Magic Missile,Shoot three magic missiles to a target,5,5,20,LOSTarget,Single,{1002;1002;1002},,SpellIcons,31
+ID,Name,Description,AP,cooldown,Range,TargetType,TilePatternType,ActiveEffects,PassiveEffects,SheetName,SpriteIndex
+10001,Fireball,Send a large ball of flame into a crowd of foes,5,3,20,LOSTarget,NineSquare,{1001},,SpellIcons,18
+10002,Magic Missile,Shoot three magic missiles to a target,5,0,20,LOSTarget,Single,{1002;1002;1002},,SpellIcons,31
 10003,Heal,Heal Self,5,1,1,Self,Single,{1003},,SpellIcons,25
 10004,Group Heal,Heal all allies,10,1,20,AllFriends,Single,{1004},,SpellIcons,25
-10005,Teleport,Teleport to a selected location on the map.,10,10,10,PointEmpty,Single,{1010},,SpellIcons,77
+10005,Teleport,Teleport to a selected location on the map.,10,5,10,PointEmpty,Single,{1010},,SpellIcons,77
 10006,Knockback,Knockback the target 1 tile away.,5,1,1,SingleFoe,Single,{1011},,SpellIcons,0
 10007,Charge,"Charge in a straight line towards an enemy, causing damage and knockback.",5,1,5,LOSTarget,Single,{1011; 1012; 1013},,SpellIcons,0
 10008,Grenade,"A grenade explodes, blasting back enemies and causing fire damage.",5,1,10,LOSTarget,NineSquare,{1014; 1015},,SpellEffects,68
@@ -11,11 +11,11 @@ ID,Name,Description,AP,Uses,Range,TargetType,TilePatternType,ActiveEffects,Passi
 10010,Shield,Summon a temporary shield to protect you,5,1,1,Self,Single,{1017; 1018},,SpellIcons,27
 10011,Rage,Attack with a fury,5,1,1,Self,Single,{1019},,SpellIcons,52
 10012,Web,Send a stickey web to trap target and prevent movement.,5,5,5,LOSTarget,NineSquare,{1020},,SpellIcons,59
-10013,Dispell Magic,Remove 1 active effect from target,5,10,5,PointTarget,Single,{1021},,SpellIcons,2
+10013,Dispell Magic,Remove 1 active effect from target,5,5,5,PointTarget,Single,{1021},,SpellIcons,2
 10014,Slow,Cause slow by reducing Action Points,5,5,5,SingleFoe,Single,{1022},,SpellIcons,66
 10015,Stun,Prohibit any action by character.,5,5,5,SingleFoe,Single,{1008},,SpellIcons,54
-10016,Poison,Dangerous poison damages every round.,1,5,1,PointTarget,Single,{1023},,SpellIcons,49
-10017,Mana Blast,Shoot an explosing blast of mana at a group of targets,5,5,20,LOSTarget,NineSquare,{1024},,SpellIcons,82
-10018,Strength Like Ox,Boost strength temporarily,5,5,1,SingleFriend,Single,{1025},,SpellIcons,23
-10019,Fleet Like Fox,Boost agility temporarily,5,5,1,SingleFriend,Single,{1026},,SpellIcons,66
-10020,Throwing Knife,Throw a Knife,1,1,15,LOSTarget,Single,{1027},,SpellIcons,60
+10016,Poison,Dangerous poison damages every round.,1,1,1,PointTarget,Single,{1023},,SpellIcons,49
+10017,Mana Blast,Shoot an explosing blast of mana at a group of targets,5,1,20,LOSTarget,NineSquare,{1024},,SpellIcons,82
+10018,Strength Like Ox,Boost strength temporarily,5,3,1,SingleFriend,Single,{1025},,SpellIcons,23
+10019,Fleet Like Fox,Boost agility temporarily,5,3,1,SingleFriend,Single,{1026},,SpellIcons,66
+10020,Throwing Knife,Throw a Knife,1,0,15,LOSTarget,Single,{1027},,SpellIcons,60

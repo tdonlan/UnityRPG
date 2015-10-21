@@ -54,7 +54,7 @@ namespace UnityRPG
                 spriteindex = data.spriteindex,
                 targetType = data.targetType,
                 tilePatternType = data.tilePatternType,
-                uses = data.uses
+                cooldown = data.cooldown
             };
 
             if (data.activeEffects.Count > 0)

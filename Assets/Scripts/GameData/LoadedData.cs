@@ -44,7 +44,7 @@ namespace UnityRPG
         public string name { get; set; }
         public string description { get; set; }
         public int ap { get; set; }
-        public int uses { get; set; }
+        public int cooldown { get; set; }
 
         public int range { get; set; }
 

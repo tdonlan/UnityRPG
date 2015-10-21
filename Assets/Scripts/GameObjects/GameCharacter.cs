@@ -121,6 +121,18 @@ namespace UnityRPG
             this.ap = totalAP;
         }
 
+        public void UpdateCooldownTimers()
+        {
+            foreach (var a in abilityList)
+            {
+                a.cooldownTimer--;
+                if (a.cooldownTimer < 0)
+                {
+                    a.cooldownTimer = 0;
+                }
+            }
+        }
+
         public void AddActiveEffect(ActiveEffect a, BattleGame game)
         {
             ActivateEffect(a, game);

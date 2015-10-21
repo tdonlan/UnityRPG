@@ -499,7 +499,7 @@ using UnityEngine.EventSystems;
 
         private void UpdatePendingRangedActionAttack()
         {
-            string name = "Melee Attack";
+            string name = "Ranged Attack";
             RangedWeapon w = (RangedWeapon)battleGame.ActiveCharacter.weapon;
             Sprite icon = gameDataObject.assetLibrary.getSprite(w.sheetname, w.spriteindex);
             string stats = w.ToString();
@@ -512,7 +512,7 @@ using UnityEngine.EventSystems;
         {
             string name = selectedAbility.name;
          
-            string stats = string.Format("{0} Cooldwn: {1} Rng: {2} Target: {3} ",selectedAbility.description,selectedAbility.uses,selectedAbility.range,selectedAbility.targetType.ToString());
+            string stats = string.Format("{0} Cooldwn: {1} / {2} Rng: {3} Target: {4} ",selectedAbility.description, selectedAbility.cooldownTimer, selectedAbility.cooldown,selectedAbility.range,selectedAbility.targetType.ToString());
             string cost = String.Format("AP: {0} / {1}", selectedAbility.ap, battleGame.ActiveCharacter.ap);
             Sprite icon = gameDataObject.assetLibrary.getSprite(selectedAbility.sheetname, selectedAbility.spriteindex);
 

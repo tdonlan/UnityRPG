@@ -13,7 +13,8 @@ namespace UnityRPG
         public string name { get; set; }
         public string description { get; set; }
         public int ap { get; set; }
-        public int uses { get; set; }
+        public int cooldown { get; set; }
+        public int cooldownTimer { get; set; }
 
         public int range { get; set; }
 
@@ -27,7 +28,6 @@ namespace UnityRPG
         public int spriteindex { get; set; }
 
 
-
         public Ability()
         {
             
@@ -36,14 +36,14 @@ namespace UnityRPG
 
         public override string ToString()
         {
-            return string.Format("{0}: ap:{1} uses:{2} | {3}", name, ap, uses, description);
+            return string.Format("{0}: ap:{1} uses:{2} | {3}", name, ap, cooldown, description);
         }
 
         public bool spendUses(int uses)
         {
-            if(this.uses >= uses)
+            if(this.cooldown >= uses)
             {
-                this.uses -= uses;
+                this.cooldown -= uses;
                 return true;
             }
             return false;

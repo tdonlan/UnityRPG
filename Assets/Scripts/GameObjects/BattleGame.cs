@@ -95,7 +95,7 @@ namespace UnityRPG
         public void NextTurn()
         {
             actionQueue.Clear();
-            ActiveCharacter.ResetAP();
+
             TurnCounter++;
             NewTurn = true;
 
@@ -104,6 +104,9 @@ namespace UnityRPG
             {
                 currentCharacter = 0;
             }
+
+            ActiveCharacter.ResetAP();
+            ActiveCharacter.UpdateCooldownTimers();
 
             battleLog.AddEntry(string.Format("{0}'s turn", ActiveCharacter.name));
         }
@@ -116,6 +119,9 @@ namespace UnityRPG
             {
                 currentCharacter = 0;
             }
+
+            ActiveCharacter.ResetAP();
+            ActiveCharacter.UpdateCooldownTimers();
 
             battleLog.AddEntry(string.Format("{0}'s turn", ActiveCharacter.name));
         }

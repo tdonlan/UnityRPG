@@ -270,10 +270,8 @@ namespace UnityRPG
         public static bool UseAbility(GameCharacter character, Ability ability, Tile target, BattleGame game)
         {
             bool useValue = false;
-            if (ability.uses > 0)
+            if (ability.cooldownTimer == 0)
             {
-               
-
                 switch (ability.targetType)
                 {
                     case AbilityTargetType.Self:
@@ -310,19 +308,11 @@ namespace UnityRPG
             }
             if (useValue)
             {
-                ability.uses--;
+                ability.cooldownTimer = ability.cooldown;
             }
             return useValue;
         }
 
-        public static Ability getAbilityFree(Ability a)
-        {
-            Ability tempAbility = cloneAbility(a);
-            tempAbility.ap = 0;
-            tempAbility.uses = 999;
-            return tempAbility;
-
-        }
 
 
         //JSON.NET not available in Unity by default

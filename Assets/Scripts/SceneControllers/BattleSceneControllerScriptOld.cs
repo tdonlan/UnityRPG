@@ -1410,7 +1410,7 @@ public class BattleSceneControllerScriptOld : MonoBehaviour
     private void LoadAbilityList()
     {
         var usableAbilityList = (from data in battleGame.ActiveCharacter.abilityList
-                                 where data.uses > 0
+                                 where data.cooldown > 0
                                  select data).ToList();
 
         Transform AbilityPanel = GameObject.FindGameObjectWithTag("AbilityContentPanel").transform;
@@ -1462,7 +1462,7 @@ public class BattleSceneControllerScriptOld : MonoBehaviour
 
     private GameObject updateAbilityItem(GameObject abilityItem, Ability a)
     {
-        string abilityText = string.Format("{0} - {1}. AP: {2} Uses: {3}",a.name,a.description,a.ap,a.uses);
+        string abilityText = string.Format("{0} - {1}. AP: {2} Uses: {3}",a.name,a.description,a.ap,a.cooldown);
        
         //set click on icon
         UIHelper.UpdateTextComponent(abilityItem, "AbilityText", abilityText);

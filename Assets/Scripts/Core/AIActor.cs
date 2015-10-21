@@ -168,7 +168,7 @@ namespace UnityRPG
 
                 foreach (var a in character.abilityList)
                 {
-                    if (a.uses > 0 && a.canUseSelf())
+                    if (a.cooldown > 0 && a.canUseSelf())
                     {
                         if (a.activeEffects.Select(x => x.statType == StatType.Heal) != null)
                         {
