@@ -172,7 +172,7 @@ namespace UnityRPG
         {
             Tile ActiveTile = game.board.getTileFromLocation(character.x, character.y);
 
-            int dist = PlotLine.GetPointsOnLine(character.x, character.y, target.x, target.y).Count();
+            int dist = PlotLine.GetPointsOnLine(character.x, character.y, target.x, target.y).Count()-1;
 
             if(dist <= ability.range)
             {
