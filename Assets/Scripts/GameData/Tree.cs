@@ -385,7 +385,34 @@ using UnityRPG;
              return null;
          }
 
- 
+         public List<Item> getWinItemList(GameDataSet gameDataSet)
+         {
+             List<Item> itemList = new List<Item>();
+
+             var winNode = getWinNode();
+             var itemActionList = winNode.actionList.Where(x => x.actionType == NodeActionType.AddItem);
+             foreach (var itemAction in itemActionList)
+             {
+                 itemList.Add(ItemFactory.getItemFromIndex(itemAction.index, gameDataSet));
+
+             }
+
+             return itemList;
+
+         }
+
+         public long getWinXP()
+         {
+             var winNode = getWinNode();
+             var xpAction = winNode.actionList.Where(x => x.actionType == NodeActionType.AddXP).FirstOrDefault();
+
+             if (xpAction != null)
+             {
+                 return xpAction.index;
+             }
+             return 0;
+         }
+
 
          public bool validateTreeLinks()
          {
