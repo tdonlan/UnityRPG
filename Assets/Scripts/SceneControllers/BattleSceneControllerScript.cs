@@ -474,6 +474,8 @@ using UnityEngine.EventSystems;
         private void UpdateActionIconsItems()
         {
             var itemList = battleGame.ActiveCharacter.usableItemList.Take(10);
+            itemList = itemList.GroupBy(x => x.ID).Select(x=>x.First());
+
             foreach (var item in itemList)
             {
                 Item i = item;
@@ -579,6 +581,11 @@ using UnityEngine.EventSystems;
         {
             string name = selectedItem.name;
             string stats =selectedItem.ToString();
+
+            int count = battleGame.ActiveCharacter.usableItemList.Count(x => x.ID == selectedItem.ID);
+
+            stats += "Count: " + count;
+
             string cost = String.Format("AP: {0} / {1}", selectedItem.actionPoints, battleGame.ActiveCharacter.ap);
             Sprite icon = gameDataObject.assetLibrary.getSprite(selectedItem.sheetname, selectedItem.spriteindex);
 
