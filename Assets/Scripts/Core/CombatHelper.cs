@@ -39,9 +39,6 @@ namespace UnityRPG
 
                     List<Tile> tileLOSList = game.board.getBoardLOS(game.ActiveTile, targetTile);
 
-                    var attackerPos = new UnityEngine.Vector3(attacker.x,-attacker.y);
-                    var targetPos = new UnityEngine.Vector3(defender.x,-defender.y);
-                    game.gameControllerScript.StartTempSpriteProjectile(attackerPos, targetPos, GameConstants.rangedAttackSpritesheet, GameConstants.rangedAttackSpriteindex);
 
                     //check LOS
                     //check range
@@ -51,6 +48,11 @@ namespace UnityRPG
                         {
                             if (attacker.SpendAP(attacker.weapon.actionPoints))
                             {
+                                var attackerPos = new UnityEngine.Vector3(attacker.x, -attacker.y);
+                                var targetPos = new UnityEngine.Vector3(defender.x, -defender.y);
+                                game.gameControllerScript.StartTempSpriteProjectile(attackerPos, targetPos, GameConstants.rangedAttackSpritesheet, GameConstants.rangedAttackSpriteindex);
+
+
                                 //check for hit
                                 if (game.r.Next(20) + attacker.attack > defender.ac)
                                 {
