@@ -35,6 +35,7 @@ using UnityEngine.EventSystems;
         public GameObject EventLogPanel;
         public GameObject ActionIconPanel;
         public GameObject BattlePanel;
+        public GameObject VictoryPanel;
 
         public Text BattleLogText;
 
@@ -622,6 +623,21 @@ using UnityEngine.EventSystems;
             Destroy(SelectedCharacterPanel);
         }
 
+        private void UpdateVictoryPanel()
+        {
+            BattleTreeNode winNode = battleTree.getWinNode();
+       
+            UIHelper.UpdateTextComponent(VictoryPanel, "VictoryText", winNode.content.description);
+            var itemList = battleTree.getWinItemList(gameDataObject.gameDataSet);
+            string itemStr = "";
+            foreach(var item in itemList){
+                itemStr += item.name + "\n";
+            }
+            UIHelper.UpdateTextComponent(VictoryPanel, "LootText", itemStr);
+            UIHelper.UpdateTextComponent(VictoryPanel, "XPText", battleTree.getWinXP() + " XP");
+
+        }
+
         #endregion
 
         #region Update
@@ -878,6 +894,20 @@ using UnityEngine.EventSystems;
 
         }
 
+        public void CloseVictoryPanel()
+        {
+            //Select win node, run actions
+            var winNode = battleTree.getWinNode();
+            winNode.SelectNode(battleTree);
+
+
+            gameDataObject.runActions(winNode.actionList);
+            //switch back to parent tree link
+            gameDataObject.treeStore.SelectTree(parentTreeLink);
+            //go back to the zone view
+            Application.LoadLevel((int)UnitySceneIndex.Zone);
+        }
+
       
         //DEPRECATED
         void UpdateDebug()
@@ -1036,17 +1066,9 @@ using UnityEngine.EventSystems;
 
         public void WinBattle()
         {
-            //Select win node, run actions
-            var winNode = battleTree.getWinNode();
-            winNode.SelectNode(battleTree);
-
-
-            gameDataObject.runActions(winNode.actionList);
-            //switch back to parent tree link
-            gameDataObject.treeStore.SelectTree(parentTreeLink);
-            //go back to the zone view
-            Application.LoadLevel((int)UnitySceneIndex.Zone);
-
+            battleStatus = BattleStatusType.GameOver;
+            UpdateVictoryPanel();
+            VictoryPanel.transform.localPosition = new Vector3(0, 0, 0);
         }
 
         #endregion
