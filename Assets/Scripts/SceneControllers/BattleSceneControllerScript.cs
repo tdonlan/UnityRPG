@@ -638,6 +638,18 @@ using UnityEngine.EventSystems;
 
         }
 
+        private void UpdateGameOverPanel()
+        {
+            UIHelper.UpdateTextComponent(VictoryPanel, "TitleText", "Defeat!");
+            UIHelper.UpdateTextComponent(VictoryPanel, "VictoryText", "All is lost...");
+            UIHelper.UpdateTextComponent(VictoryPanel, "LootText", "");
+            UIHelper.UpdateTextComponent(VictoryPanel, "XPText","");
+
+            Button closeButton =UIHelper.getButton(VictoryPanel, "CloseButton");
+            closeButton.onClick.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
+            closeButton.onClick.AddListener(CloseDefeatPanel);
+        }
+
         #endregion
 
         #region Update
@@ -908,6 +920,12 @@ using UnityEngine.EventSystems;
             Application.LoadLevel((int)UnitySceneIndex.Zone);
         }
 
+        public void CloseDefeatPanel()
+        {
+            Destroy(gameDataObject);
+            Application.LoadLevel((int)UnitySceneIndex.Start);
+        }
+
       
         //DEPRECATED
         void UpdateDebug()
@@ -1060,10 +1078,9 @@ using UnityEngine.EventSystems;
 
         public void LoseBattle()
         {
-            //Go back to Start Scene / Reload
-            //Or show a game over popup from this screen, not a new scene.
             battleStatus = BattleStatusType.GameOver;
-            Application.LoadLevel("GameOverScene");
+            UpdateGameOverPanel();
+            VictoryPanel.transform.localPosition = new Vector3(0, 0, 0);
         }
 
         public void WinBattle()
