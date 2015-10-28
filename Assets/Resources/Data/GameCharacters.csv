@@ -13,5 +13,5 @@ ID,Name,Type,CharacterSpritesheetName,CharacterSpriteIndex,PortraitSpritesheetNa
 80012,Player,Player,PlayerSprites,9,PlayerPortraits,6,1,10,50,20,10,{30001; 30002;30002;30003;30004;30004;30004},{70002;70004},40002,,,{10002;10003;10012;10015;10016},Warrior,1,1,1,1
 80013,Skeleton Mage,Enemy,MonsterSprites,8,MonsterPortraits,12,3,8,25,10,10,,,40000,,,{10002; 10012; 10017},Mage,1,1,2,5
 80014,Skeleton Warrior,Enemy,MonsterSprites,8,MonsterPortraits,15,3,15,50,20,10,{30002;30002},,40001,,,{10007; 10011},Warrior,5,2,5,1
-80015,Skeleton Assassin,Enemy,MonsterSprites,8,MonsterPortraits,6,3,12,35,20,10,{30002;30002},,50002,,,{10016},Archer,2,5,3,1
+80015,Skeleton Assassin,Enemy,MonsterSprites,8,MonsterPortraits,6,3,12,35,20,10,{30002;30002;60002;60002;60002;60002},,50002,,,{10016},Archer,2,5,3,1
 80016,Skeleton Priest,Enemy,MonsterSprites,8,MonsterPortraits,12,3,10,30,10,10,,,40000,,,{10003; 10004},Priest,1,1,4,4
