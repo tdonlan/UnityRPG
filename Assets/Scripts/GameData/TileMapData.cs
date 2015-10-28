@@ -261,7 +261,8 @@ namespace UnityRPG
         //Pathfinding helper for Zone Map
         public List<Point> getPath(int x1, int y1, int x2, int y2)
         {
-            return PathFind.Pathfind(this.zoneTileArray, x1, y1, x2, y2);
+            //return PathFind.Pathfind(this.zoneTileArray, x1, y1, x2, y2);
+            return PathFind.PathfindDiagonal(this.zoneTileArray, x1, y1, x2, y2);
         }
 
     }
