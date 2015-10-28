@@ -161,21 +161,21 @@ namespace UnityRPG
                         if(!Move(action.character,action.targetTile.x,action.targetTile.y))
                         {
                             actionQueue.Clear();
-                            return false;
+                            return true;
                         }
                         break; 
                     case BattleActionType.Attack:
                         if(!Attack(action.character,action.targetTile))
                         {
                             actionQueue.Clear();
-                            return false;
+                            return true;
                         }
                         break;
                     case BattleActionType.RangedAttack:
                         if (!RangedAttack(action.character, action.targetTile))
                         {
                             actionQueue.Clear();
-                            return false;
+                            return true;
                         }
                         break;
                     case BattleActionType.UseAbility:
@@ -183,14 +183,14 @@ namespace UnityRPG
                        if(!UseAbility(action.character,action.ability,action.targetTile))
                        {
                            actionQueue.Clear();
-                           return false;
+                           return true;
                        }
                         break;
                     case BattleActionType.UseItem:
                         if(!UseItem(action.character,action.item,action.targetTile))
                         {
                             actionQueue.Clear();
-                            return false;
+                            return true;
                         }
                         break;
                     case BattleActionType.EndTurn:
@@ -539,8 +539,6 @@ namespace UnityRPG
             if (!CoreHelper.checkEffect(ActiveCharacter.activeEffects, ActiveCharacter.passiveEffects, StatType.Stun))
             {
                 actionList = AI.getBattleActionList((EnemyCharacter)ActiveCharacter, this);
-               
-
             }
 
             return actionList;

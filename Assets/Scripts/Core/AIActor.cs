@@ -52,10 +52,12 @@ namespace UnityRPG
        
         }
 
+
+
         private List<AIAction> getAIActions(BattleGame game, AIActionType type)
         {
             List<AIAction> retvalList = new List<AIAction>();
-            switch(type)
+            switch (type)
             {
                 case AIActionType.Attack:
                     retvalList.AddRange(getAIAttackActions(game));
@@ -69,6 +71,17 @@ namespace UnityRPG
                 default:
                     break;
             }
+
+            //Remove any actions that cost too much AP
+            for (int i = retvalList.Count - 1; i >= 0; i--)
+            {
+                int apCost = retvalList[i].battleActionList.Sum(x => x.AP);
+                if (apCost > game.ActiveCharacter.ap)
+                {
+                    retvalList.RemoveAt(i);
+                }
+            }
+
             return retvalList;
         }
 
@@ -107,11 +120,10 @@ namespace UnityRPG
 
                     foreach (var p in pointList)
                     {
-                        battleActionList.Add(new BattleAction() { character = character, actionType = BattleActionType.Move, targetTile = game.board.getTileFromPoint(p) });
+                        battleActionList.Add(new BattleAction() { AP=1, character = character, actionType = BattleActionType.Move, targetTile = game.board.getTileFromPoint(p) });
                     }
 
-                    battleActionList.Add(new BattleAction() { character = character, targetCharacter = targetCharacter, targetTile = game.board.getTileFromLocation(targetCharacter.x, targetCharacter.y), actionType = BattleActionType.Attack });
-                    
+                    battleActionList.Add(new BattleAction() { AP=character.weapon.actionPoints, character = character, targetCharacter = targetCharacter, targetTile = game.board.getTileFromLocation(targetCharacter.x, targetCharacter.y), actionType = BattleActionType.Attack });
                     
                     aiActionList.Add(new AIAction() {actionType=AIActionType.Attack,cost=cost,battleActionList=battleActionList });
                 }
@@ -144,10 +156,10 @@ namespace UnityRPG
 
                     foreach (var p in pointList)
                     {
-                        battleActionList.Add(new BattleAction() { character = character, actionType = BattleActionType.Move, targetTile = game.board.getTileFromPoint(p) });
+                        battleActionList.Add(new BattleAction() {AP=1, character = character, actionType = BattleActionType.Move, targetTile = game.board.getTileFromPoint(p) });
                     }
 
-                    battleActionList.Add(new BattleAction() { character = character, targetCharacter = targetCharacter, targetTile = game.board.getTileFromLocation(targetCharacter.x, targetCharacter.y), actionType = BattleActionType.RangedAttack });
+                    battleActionList.Add(new BattleAction() {AP=character.weapon.actionPoints, character = character, targetCharacter = targetCharacter, targetTile = game.board.getTileFromLocation(targetCharacter.x, targetCharacter.y), actionType = BattleActionType.RangedAttack });
 
 
                     aiActionList.Add(new AIAction() { actionType = AIActionType.Attack, cost = cost, battleActionList = battleActionList });
@@ -172,7 +184,8 @@ namespace UnityRPG
                     {
                         if (a.activeEffects.Select(x => x.statType == StatType.Heal) != null)
                         {
-                            List<BattleAction> battleActionList = new List<BattleAction>() { new BattleAction() { ability = a, character = character, targetCharacter = character, targetTile = targetTile, actionType = BattleActionType.UseAbility } };
+                            List<BattleAction> battleActionList = new List<BattleAction>() {  
+                                new BattleAction() {AP=a.ap, ability = a, character = character, targetCharacter = character, targetTile = targetTile, actionType = BattleActionType.UseAbility } };
                             aiActionList.Add(new AIAction() { actionType = AIActionType.Heal, cost = a.ap, battleActionList = battleActionList });
                         }
                     }
@@ -191,13 +204,12 @@ namespace UnityRPG
                     {
                         if (i.activeEffects.Select(x => x.statType == StatType.Heal) != null)
                         {
-                            List<BattleAction> battleActionList = new List<BattleAction>() { new BattleAction() { item = tempItem, character = character, targetCharacter = character, targetTile = targetTile, actionType = BattleActionType.UseItem } };
+                            List<BattleAction> battleActionList = new List<BattleAction>() { 
+                                new BattleAction() {AP=tempItem.actionPoints,  item = tempItem, character = character, targetCharacter = character, targetTile = targetTile, actionType = BattleActionType.UseItem } };
                             aiActionList.Add(new AIAction() { actionType = AIActionType.Heal, cost = tempItem.actionPoints, battleActionList = battleActionList });
                         }
                     }
                 }
-            
-   
 
             return AIActionList;
         }

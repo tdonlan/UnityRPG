@@ -15,14 +15,17 @@ namespace UnityRPG
         {
             List<BattleAction> retvalList = character.aiActor.getBattleActionList(game);
 
-            retvalList.Add(getEndTurnAction(character));
+            if (retvalList.Count == 0)
+            {
+                retvalList.Add(getEndTurnAction(character));
+            }
 
             return retvalList;
         }
 
         private static BattleAction getEndTurnAction(EnemyCharacter character)
         {
-            return new BattleAction() { actionType = BattleActionType.EndTurn, character = character, targetCharacter = null, targetTile = null };
+            return new BattleAction() { AP=0, actionType = BattleActionType.EndTurn, character = character, targetCharacter = null, targetTile = null };
             
         }
 
@@ -41,11 +44,11 @@ namespace UnityRPG
 
             foreach (var p in pointList)
             {
-                actionList.Add(new BattleAction() { character = enemy, actionType = BattleActionType.Move, targetTile = game.board.getTileFromPoint(p) });
+                actionList.Add(new BattleAction() { AP=1, character = enemy, actionType = BattleActionType.Move, targetTile = game.board.getTileFromPoint(p) });
             }
 
             //attack action
-            actionList.Add(new BattleAction() { character = enemy, targetTile = targetTile, actionType = BattleActionType.Attack });
+            actionList.Add(new BattleAction() { AP=enemy.weapon.actionPoints, character = enemy, targetTile = targetTile, actionType = BattleActionType.Attack });
 
             return actionList;
         }

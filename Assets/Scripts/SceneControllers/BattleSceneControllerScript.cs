@@ -1043,8 +1043,10 @@ using UnityEngine.EventSystems;
                     }
                     else
                     {
-                        battleGame.NextTurn();
-                        uiState = UIStateType.NewTurn;
+                        uiState = UIStateType.EnemyDecide;
+
+                        //battleGame.NextTurn();
+                        //uiState = UIStateType.NewTurn;
                     }
                 }
             }
