@@ -552,8 +552,16 @@ namespace UnityRPG
 
             Tile tempTile = board.getTileFromLocation(character.x,character.y);
             board.EmptyTile(tempTile);
-            characterList.Remove(character);
+            RemoveCharacter(character);
 
+        }
+
+        //helper to cleanly remove characters from battle and keep the current character counter correct
+        public void RemoveCharacter(GameCharacter character)
+        {
+            GameCharacter activeChar = ActiveCharacter;
+            characterList.Remove(character);
+            currentCharacter = characterList.IndexOf(activeChar);
         }
     }
 }
