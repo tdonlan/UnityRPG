@@ -201,21 +201,21 @@ namespace UnityRPG
                     cost[point.x - 1, point.y-1] = currentCost + getCost(tileArray[point.x - 1, point.y-1]);
                 }
                 //upright
-                if (point.x + 1 >= 0 && point.y - 1 >= 0 && cost[point.x + 1, point.y - 1] == 0)
+                if (point.x + 1 < Width && point.y - 1 >= 0 && cost[point.x + 1, point.y - 1] == 0)
                 {
                     active.Add(new Point(point.x + 1, point.y - 1));
 
                     cost[point.x + 1, point.y - 1] = currentCost + getCost(tileArray[point.x + 1, point.y - 1]);
                 }
                 //downleft
-                if (point.x - 1 >= 0 && point.y + 1 >= 0 && cost[point.x - 1, point.y + 1] == 0)
+                if (point.x - 1 >= 0 && point.y + 1 < Height && cost[point.x - 1, point.y + 1] == 0)
                 {
                     active.Add(new Point(point.x - 1, point.y + 1));
 
                     cost[point.x - 1, point.y + 1] = currentCost + getCost(tileArray[point.x - 1, point.y + 1]);
                 }
                 //downright
-                if (point.x + 1 >= 0 && point.y + 1 >= 0 && cost[point.x + 1, point.y + 1] == 0)
+                if (point.x + 1 < Width && point.y + 1 < Height && cost[point.x + 1, point.y + 1] == 0)
                 {
                     active.Add(new Point(point.x + 1, point.y + 1));
 

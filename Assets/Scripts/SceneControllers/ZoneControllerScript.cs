@@ -25,6 +25,8 @@ public class ZoneControllerScript : MonoBehaviour {
     public GameObject tileSelectPrefab;
     public GameObject tileSelectSprite;
 
+    public GameObject SpritePrefab;
+
     public TileMapData tileMapData;
 
     public ZoneTree zoneTree { get; set; }
@@ -87,6 +89,8 @@ public class ZoneControllerScript : MonoBehaviour {
         setPlayerStart();
 
         //loadPlayerCharacterList();
+
+        displayCollisionSprites();
     }
 
     private void loadTree()
@@ -115,6 +119,8 @@ public class ZoneControllerScript : MonoBehaviour {
         treeInfoPanelRectTransform = TreeInfoPanel.GetComponent<RectTransform>();
 
         pcBoxPrefab = Resources.Load<GameObject>("PrefabUI/ZonePartyCharacterPrefab");
+
+        SpritePrefab = Resources.Load<GameObject>("PrefabGame/SpritePrefab");
     }
 
     private void loadTileMap()
@@ -181,7 +187,33 @@ public class ZoneControllerScript : MonoBehaviour {
         playerScript.SetPosition(tileMapData.getSpawnPoint((int)zoneTree.currentIndex - 1).center);
         //player.transform.position = tileMapData.getSpawnPoint((int)zoneTree.currentIndex-1).center;
     }
-    
+
+    //testing
+    private void displayCollisionSprites()
+    {
+
+        for (int i = 0; i < tileMapData.zoneTileArray.GetLength(0); i++)
+        {
+            for (int j = 0; j < tileMapData.zoneTileArray.GetLength(1); j++)
+            {
+                var tileSquare = Instantiate(SpritePrefab);
+                tileSquare.transform.position = getWorldPosFromTilePoint(new Point(i, -j));
+
+                var tileSquareSprite = tileSquare.GetComponent<SpriteRenderer>();
+                tileSquareSprite.sprite = gameDataObject.assetLibrary.getSprite("Tile64", 0);
+
+                if (!tileMapData.zoneTileArray[i, j].empty)
+                {
+                    tileSquareSprite.color = GameConfig.transRed;
+
+                }
+                else
+                {
+                    tileSquareSprite.color = GameConfig.transWhite;
+                }
+            }
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -263,7 +295,6 @@ public class ZoneControllerScript : MonoBehaviour {
                 playerScript.Move(newPos);
                 movePath.RemoveAt(0);
             }
-
         }
     }
 
@@ -279,11 +310,9 @@ public class ZoneControllerScript : MonoBehaviour {
 
             if (!(tileMapData.checkCollision(mouseTileBounds)))
             {
-              
                 Point playerPointPos = getTileLocationFromVectorPos(player.transform.position);
                 movePath = tileMapData.getPath(playerPointPos.x , -playerPointPos.y , mouseTilePoint.x, -mouseTilePoint.y);
                 movePath.RemoveAt(0);
-                
             }
         }
     }
@@ -292,7 +321,7 @@ public class ZoneControllerScript : MonoBehaviour {
     {
         Destroy(tileSelectSprite);
         tileSelectSprite = Instantiate(tileSelectPrefab);
-        tileSelectSprite.transform.position = new Vector3(pos.x,pos.y,-5);
+        tileSelectSprite.transform.position = new Vector3(pos.x,pos.y,0);
         setDebugText(pos.ToString());
     }
 
@@ -319,9 +348,15 @@ public class ZoneControllerScript : MonoBehaviour {
         return retval;
     }
 
+    
     private Vector3 getWorldPosFromTilePoint(Point p)
     {
         return new Vector3(p.x * Tile.TILE_SIZE, p.y * Tile.TILE_SIZE, 0);
+    }
+
+    private Vector3 getWorldPosFromTilePointForDisplay(Point p)
+    {
+        return new Vector3(p.x + 0.5f, p.y - 0.5f, 0);
     }
     
 
