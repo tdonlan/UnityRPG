@@ -56,9 +56,6 @@ public class ZoneControllerScript : MonoBehaviour {
     Point mouseTilePoint;
     List<Point> movePath = new List<Point>();
 
-    public float moveTimer;
-    public float moveTime = .05f;
-
 
     void Start()
     {
@@ -174,13 +171,15 @@ public class ZoneControllerScript : MonoBehaviour {
     private void setPlayerSprite()
     {
         var playerSprite = player.GetComponent<SpriteRenderer>();
+
         playerSprite.sprite = gameDataObject.assetLibrary.getSprite(gameDataObject.playerGameCharacter.characterSpritesheetName, gameDataObject.playerGameCharacter.characterSpriteIndex);
 
     }
 
     private void setPlayerStart()
     {
-        player.transform.position = tileMapData.getSpawnPoint((int)zoneTree.currentIndex-1).center;
+        playerScript.SetPosition(tileMapData.getSpawnPoint((int)zoneTree.currentIndex - 1).center);
+        //player.transform.position = tileMapData.getSpawnPoint((int)zoneTree.currentIndex-1).center;
     }
     
 	
@@ -257,14 +256,14 @@ public class ZoneControllerScript : MonoBehaviour {
     {
         if (movePath.Count > 0)
         {
-            moveTimer -= Time.deltaTime;
-            if (moveTimer <= 0)
+         
+            if (Vector3.Distance(player.transform.position, playerScript.moveDestination) < .1f)
             {
                 Vector3 newPos = getWorldPosFromTilePoint(new Point(movePath[0].x, -movePath[0].y));
                 playerScript.Move(newPos);
                 movePath.RemoveAt(0);
-                moveTimer = moveTime;
             }
+
         }
     }
 
@@ -283,6 +282,8 @@ public class ZoneControllerScript : MonoBehaviour {
               
                 Point playerPointPos = getTileLocationFromVectorPos(player.transform.position);
                 movePath = tileMapData.getPath(playerPointPos.x , -playerPointPos.y , mouseTilePoint.x, -mouseTilePoint.y);
+                movePath.RemoveAt(0);
+                
             }
         }
     }

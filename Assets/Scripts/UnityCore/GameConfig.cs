@@ -30,6 +30,8 @@ using System.Linq;
         public static readonly Vector3 PendingActionPanelLocation = new Vector3(-374f, -20.8f, 0f);
         public static readonly Vector3 SelectedCharacterPanelLocation = new Vector3(117f, -20.83f, 0f);
 
+        public static readonly float zonePlayerMoveTime = .1f;
+
         public static readonly float playerUpdateBattleTimer = 0.5f;
         public static readonly float enemyUpdateBattleTimer = 0.25f;
 

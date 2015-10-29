@@ -1,16 +1,20 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerControllerScript : MonoBehaviour {
 
-    private float speed = .05f;
+    private float speed = 5;
     private float moveAmt = 0.5f;
 
     private bool canMove = true;
 
+    public Vector3 moveDestination;
+
+    public Vector3 velocity;
+
     public Bounds playerBounds;
 
-    private ZoneControllerScript tileSceneScript;
+    private ZoneControllerScript zoneControllerScript;
 
     private Camera mainCamera;
     
@@ -22,7 +26,7 @@ public class PlayerControllerScript : MonoBehaviour {
 
     private void setRefs()
     {
-        this.tileSceneScript = GameObject.FindObjectOfType<ZoneControllerScript>().GetComponent<ZoneControllerScript>();
+        this.zoneControllerScript = GameObject.FindObjectOfType<ZoneControllerScript>().GetComponent<ZoneControllerScript>();
         this.mainCamera = GameObject.FindObjectOfType<Camera>();
 
        
@@ -41,67 +45,44 @@ public class PlayerControllerScript : MonoBehaviour {
         UpdateCamera();
         setPlayerRect();
       
+        zoneControllerScript.checkPlayerObjectCollision(playerBounds);
 
-        tileSceneScript.checkPlayerObjectCollision(playerBounds);
+        if (Vector3.Distance(gameObject.transform.position, moveDestination) > .1f)
+        {
+            UpdateMove();
+        }
+     
 
-        float moveY=0.0f;
-        float moveX=0.0f;
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            canMove = false;
-          
-            moveX = -moveAmt;
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            canMove = false;
-   
-            moveX = moveAmt;
-        }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            canMove = false;
-         
-            moveY = moveAmt;
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            canMove = false;
-            moveY = -moveAmt;
-        }
-
-        if(Input.GetKeyUp(KeyCode.LeftArrow)){
-            canMove = true;
-        }
-        if(Input.GetKeyUp(KeyCode.RightArrow)){
-             canMove = true;
-        }
-        if (Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            canMove = true;
-        }
-        if (Input.GetKeyUp(KeyCode.DownArrow))
-        {
-            canMove = true;
-        }
-
-            UpdateCamera();
-        
-    
-        var pos = this.gameObject.transform.position;
-
-        var newPos = new Vector3(pos.x + moveX, pos.y + moveY);
-
-        Move(newPos);
        
 	}
+
+    private void UpdateMove()
+    {
+        var dir = moveDestination - this.gameObject.transform.position;
+       
+        dir.Normalize();
+
+        velocity = dir * Time.deltaTime * speed;
+
+        this.gameObject.transform.position += velocity;
+
+    }
 
     public void Move(Vector3 newPos)
     {
         if (!checkCollision(getNewBounds(newPos)))
         {
-            this.gameObject.transform.position = newPos;
+        
+            moveDestination = newPos;
         }
+    }
+
+    //Used when spawning character
+    public void SetPosition(Vector3 newPos)
+    {
+        gameObject.transform.position = newPos;
+        moveDestination = newPos;
+            
     }
 
     private void UpdateCamera()
@@ -121,9 +102,9 @@ public class PlayerControllerScript : MonoBehaviour {
 
     private bool checkCollision(Bounds bounds)
     {
-        if (tileSceneScript.tileMapData != null)
+        if (zoneControllerScript.tileMapData != null)
         {
-            return tileSceneScript.tileMapData.checkCollision(bounds);
+            return zoneControllerScript.tileMapData.checkCollision(bounds);
 
         }
         return false;
