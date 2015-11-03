@@ -231,8 +231,30 @@ public class CharacterCreationControllerScript : MonoBehaviour {
 
             gameDataObject.playerGameCharacter = CharacterFactory.getGameCharacterFromGameCharacterData(playerData, gameDataObject.gameDataSet);
 
-            Application.LoadLevel((int)UnitySceneIndex.World);
+            StartGame();
 
         }
+    }
+
+    private void StartGame()
+    {
+        ITree currentTree = gameDataObject.treeStore.getCurrentTree();
+
+        switch (currentTree.treeType)
+        {
+            case TreeType.Cutscene:
+                Application.LoadLevel((int)UnitySceneIndex.Cutscene);
+                break;
+            case TreeType.World:
+                Application.LoadLevel((int)UnitySceneIndex.World);
+                break;
+            case TreeType.Zone:
+                Application.LoadLevel((int)UnitySceneIndex.Zone);
+                break;
+            default:
+                break;
+
+        }
+      
     }
 } 
