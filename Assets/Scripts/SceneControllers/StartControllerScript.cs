@@ -60,7 +60,25 @@ public class StartControllerScript : MonoBehaviour {
 
     public void EnterWorld()
     {
-        Application.LoadLevel((int)UnitySceneIndex.World);
+
+        ITree currentTree = gameDataObject.treeStore.getCurrentTree();
+
+        switch (currentTree.treeType)
+        {
+            case TreeType.Cutscene:
+                Application.LoadLevel((int)UnitySceneIndex.Cutscene);
+                break;
+            case TreeType.World:
+                Application.LoadLevel((int)UnitySceneIndex.World);
+                break;
+            case TreeType.Zone:
+                Application.LoadLevel((int)UnitySceneIndex.Zone);
+                break;
+            default:
+                break;
+
+        }
+      
     }
 	
 	// Update is called once per frame

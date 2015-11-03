@@ -1,0 +1,11 @@
+﻿1
+Start
+0;Cutscene;FarmBackground;0;In the beginning, there was a simple farmboy, minding the potatoes.
+--
+2:Start2
+----
+2
+Start2
+1;Link;FarmBackground;0;Little did he know, he had a date with destiny!
+--
+----

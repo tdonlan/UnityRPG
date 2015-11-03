@@ -229,6 +229,28 @@ using System.Text;
 
     }
 
+    public class CutsceneTreeNode : TreeNode, ITreeNode
+    {
+        public CutsceneNodeContent content { get; set; }
+
+        public CutsceneTreeNode(long index, string name, List<TreeBranch> branchList, List<TreeNodeFlagSet> flagSetList, CutsceneNodeContent content)
+        {
+            this.content = content;
+            this.index = index;
+            this.name = name;
+
+            this.branchList = branchList;
+            this.flagSetList = flagSetList;
+        }
+
+        public override string ToString()
+        {
+            string retval = string.Format("{0}.{1}: {2}\n", index, name, content);
+            return retval;
+        }
+
+    }
+
     public class StoreTreeNode : TreeNode, ITreeNode
     {
         public StoreNodeContent content { get; set; }
@@ -318,6 +340,17 @@ using System.Text;
         public string nodeName { get; set; }
         public string text { get; set; }
         public long linkIndex { get; set; }
+    }
+
+    public class CutsceneNodeContent : ITreeNodeContent
+    {
+        public long linkIndex { get; set; }
+        public ZoneNodeType nodeType { get; set; }
+
+        public string sheetName { get; set; }
+        public int spriteIndex { get; set; }
+        public string text { get; set; }
+
     }
 
     public class StoreNodeContent : ITreeNodeContent

@@ -48,8 +48,10 @@ public class WorldControllerScript : MonoBehaviour {
 
     private void loadTree()
     {
-        int worldIndex = 0; //need to retrieve this from the treeStroe
-        gameDataObject.treeStore.SelectTree(worldIndex);
+
+        //int worldIndex = 0; //need to retrieve this from the treeStroe
+       // gameDataObject.treeStore.SelectTree(worldIndex);
+
         worldTree = (WorldTree)gameDataObject.treeStore.getCurrentTree();
 
     }

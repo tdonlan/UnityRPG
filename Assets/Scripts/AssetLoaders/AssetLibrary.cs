@@ -125,6 +125,8 @@ namespace UnityRPG
             spritesheetList.Add(getSpritesheet("CharacterSprites", "Sprites/Sprites/CharacterSprites"));
             spritesheetList.Add(getSpritesheet("MonsterSprites", "Sprites/Sprites/MonsterSprites"));
             spritesheetList.Add(getSpritesheet("PlayerSprites", "Sprites/Sprites/PlayerSprites"));
+
+            spritesheetList.Add(getSpritesheet("FarmBackground", "Sprites/Backgrounds/Village 1"));
             //---------------------------------------------
 
             /* Old spritesheets

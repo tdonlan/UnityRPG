@@ -26,7 +26,6 @@ using UnityEngine;
                     curFileName = treeArray[0];
                     TextAsset treeText = Resources.Load<TextAsset>(treeArray[0]);
 
-
                     ITree tempTree = SimpleTreeParser.getTreeFromString(treeText.text, (TreeType)Int32.Parse(treeArray[1]), ts.globalFlags);
                     tempTree.treeName = treeArray[2];
                     ts.treeDictionary.Add(Int32.Parse(treeArray[3]), tempTree);
@@ -39,6 +38,9 @@ using UnityEngine;
                 string error = ex.Message + ex.StackTrace;
                 return null;
             }
+
+            //select the first manifest item as current tree index
+            ts.currentTreeIndex = ts.treeDictionary.Keys.ToList()[0];
 
             return ts;
         }
@@ -97,6 +99,13 @@ using UnityEngine;
                     storeTree.treeNodeDictionary = getStoreTreeNodeFromList(treeNodeList);
                     storeTree.currentIndex = treeNodeList[0].index;
                     t = storeTree;
+                    break;
+                case TreeType.Cutscene:
+                    CutsceneTree cutsceneTree = new CutsceneTree(gf, treeType);
+                      treeNodeList = getTreeNodeListFromString(data, treeType);
+                      cutsceneTree.treeNodeDictionary = getCutsceneTreeNodeFromList(treeNodeList);
+                      cutsceneTree.currentIndex = treeNodeList[0].index;
+                      t = cutsceneTree;
                     break;
                 default:
                     break;
@@ -224,6 +233,10 @@ using UnityEngine;
                     var storeTreeNode = new StoreTreeNode(Int64.Parse(dataList[0]), dataList[1], null, null, (StoreNodeContent)getTreeNodeContentFromStr(dataList[2], treeType));
                     node = storeTreeNode;
                     break;
+                case TreeType.Cutscene:
+                       var cutsceneTreeNode = new CutsceneTreeNode(Int64.Parse(dataList[0]), dataList[1], null, null, (CutsceneNodeContent)getTreeNodeContentFromStr(dataList[2], treeType));
+                       node = cutsceneTreeNode;
+                    break;
                 default: break;
             }
 
@@ -259,6 +272,8 @@ using UnityEngine;
                     return getInfoNodeContentFromStr(contentStr);
                 case TreeType.Store:
                     return getStoreNodeContentFromStr(contentStr);
+                case TreeType.Cutscene:
+                    return getCutsceneNodeContentFromStr(contentStr);
                 default:
                     return null;
             }
@@ -322,6 +337,24 @@ using UnityEngine;
                     return new InfoNodeContent() { linkIndex = Int64.Parse(contentList[0]), nodeName = contentList[1], nodeType = infoNodeType, icon = contentList[3], text = contentList[4] };
                 default: return null;
             }
+        }
+
+        private static CutsceneNodeContent getCutsceneNodeContentFromStr(string contentStr)
+        {
+
+
+            
+            var contentList = ParseHelper.getSplitList(contentStr, ";");
+            ZoneNodeType zoneNodeType = getZoneNodeTypeFromStr(contentList[1]);
+
+            return new CutsceneNodeContent() {
+                linkIndex = Int64.Parse(contentList[0]),
+                nodeType = zoneNodeType,
+                sheetName= contentList[2],
+                spriteIndex=Int32.Parse(contentList[3]),
+                text = contentList[4]
+
+            };         
         }
 
         public static StoreNodeContent getStoreNodeContentFromStr(string contentStr)
@@ -523,6 +556,18 @@ using UnityEngine;
             foreach (var node in treeNodeList)
             {
                 InfoTreeNode wNode = (InfoTreeNode)node;
+                treeNodeDict.Add(wNode.index, wNode);
+            }
+
+            return treeNodeDict;
+        }
+
+        public static Dictionary<long, CutsceneTreeNode> getCutsceneTreeNodeFromList(List<ITreeNode> treeNodeList)
+        {
+            Dictionary<long, CutsceneTreeNode> treeNodeDict = new Dictionary<long, CutsceneTreeNode>();
+            foreach (var node in treeNodeList)
+            {
+                CutsceneTreeNode wNode = (CutsceneTreeNode)node;
                 treeNodeDict.Add(wNode.index, wNode);
             }
 

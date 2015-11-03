@@ -9,7 +9,8 @@ public enum UnitySceneIndex
     Battle = 4,
     Store=5,
     CharacterScreen=6,
-    CharacterCreationScreen=7
+    CharacterCreationScreen=7,
+    Cutscene=8
 }
 
 public enum SpritesheetType
@@ -67,7 +68,8 @@ public enum PlayerDecideState
         Quest=3,
         Battle=4,
         Info=5,
-        Store=6
+        Store=6,
+        Cutscene=7
 
     }
 
@@ -80,6 +82,7 @@ public enum PlayerDecideState
         Info,
         Puzzle,
         Link,
+        Cutscene
 
     }
 

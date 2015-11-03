@@ -484,6 +484,53 @@ using UnityRPG;
          }
      }
 
+     public class CutsceneTree : ITree
+     {
+         public string treeName { get; set; }
+         public long treeIndex { get; set; }
+         public long currentIndex { get; set; }
+         public TreeType treeType { get; set; }
+
+         public Dictionary<long, CutsceneTreeNode> treeNodeDictionary { get; set; }
+
+         public GlobalFlags globalFlags { get; set; }
+
+         public CutsceneTree(GlobalFlags globalFlags, TreeType treeType)
+         {
+             currentIndex = 0;
+             treeNodeDictionary = new Dictionary<long, CutsceneTreeNode>();
+             this.globalFlags = globalFlags;
+             this.treeType = treeType;
+         }
+
+         public ITreeNode getNode(long index)
+         {
+             if (treeNodeDictionary.ContainsKey(index))
+             {
+                 return treeNodeDictionary[index];
+             }
+             return null;
+         }
+
+         public void SelectNode(long index)
+         {
+             this.currentIndex = index;
+
+             treeNodeDictionary[currentIndex].SelectNode(this);
+
+         }
+
+         public bool checkNode(long index)
+         {
+             return treeNodeDictionary.ContainsKey(index);
+         }
+
+         public bool validateTreeLinks()
+         {
+             return true;
+         }
+     }
+
 
      public class StoreTree : ITree
      {
