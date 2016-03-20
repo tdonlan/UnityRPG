@@ -122,7 +122,7 @@ using UnityEngine.EventSystems;
             SetCamera();
 
             //testing
-            displayCollisionSprites();
+            //displayCollisionSprites();
 
         }
 
@@ -172,23 +172,26 @@ using UnityEngine.EventSystems;
             CharacterPrefab = Resources.Load<GameObject>("PrefabGame/CharacterPrefab");
         }
 
-        private void LoadCharacters()
-        {
-            UpdateActiveCharacterPanel();
+    private void LoadCharacters()
+	{
+		UpdateActiveCharacterPanel ();
 
-            //clear Characters
-            foreach (var c in tileCharacterList)
-            {
-                Destroy(c);
-            }
+		//clear Characters
+		foreach (var c in tileCharacterList) {
+			Destroy (c);
+		}
 
-            tileCharacterList.Clear();
+		tileCharacterList.Clear ();
 
-            foreach (var character in battleGame.characterList)
-            {
-                tileCharacterList.Add(LoadCharacter(character));
-            }
-        }
+		//draw in order of y coordinate, to prevent wierd overlaps
+		var orderedCharList = battleGame.characterList;
+
+		orderedCharList = orderedCharList.OrderByDescending (x => x.y).ToList ();
+
+		foreach (var character in orderedCharList) {
+			tileCharacterList.Add (LoadCharacter (character));
+		}
+	}
 
 
         //Load Character Avatar Sprite on Tile Map
@@ -196,19 +199,23 @@ using UnityEngine.EventSystems;
         {
             GameObject characterObject = (GameObject)Instantiate(CharacterPrefab);
             GameObjectHelper.UpdateSprite(characterObject, "CharacterSprite", gameDataObject.assetLibrary.getSprite(character.characterSpritesheetName, character.characterSpriteIndex));
+			GameObjectHelper.UpdateSprite(characterObject, "SpriteOutline", gameDataObject.assetLibrary.getSprite(character.characterSpritesheetName, character.characterSpriteIndex));
 
             if (character.type == CharacterType.Player)
             {
                 GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.green);
+			GameObjectHelper.UpdateSpriteColor(characterObject, "SpriteOutline", Color.green);
 
                 if (battleGame.ActiveCharacter.Equals(character))
                 {
                     GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.yellow);
+				GameObjectHelper.UpdateSpriteColor(characterObject, "SpriteOutline", Color.yellow);
                 }
             }
             else
             {
                 GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.red);
+			GameObjectHelper.UpdateSpriteColor(characterObject, "SpriteOutline", Color.red);
             }
 
             var characterPos = getWorldPosFromTilePoint(new Point(character.x, -character.y));
