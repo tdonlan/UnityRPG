@@ -202,22 +202,29 @@ using UnityEngine.EventSystems;
             GameObjectHelper.UpdateSprite(characterObject, "CharacterSprite", gameDataObject.assetLibrary.getSprite(character.characterSpritesheetName, character.characterSpriteIndex));
 			GameObjectHelper.UpdateSprite(characterObject, "SpriteOutline", gameDataObject.assetLibrary.getSprite(character.characterSpritesheetName, character.characterSpriteIndex));
 
-            if (character.type == CharacterType.Player)
-            {
-                GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.green);
-			GameObjectHelper.UpdateSpriteColor(characterObject, "SpriteOutline", Color.green);
 
-                if (battleGame.ActiveCharacter.Equals(character))
-                {
-                    GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.yellow);
-				GameObjectHelper.UpdateSpriteColor(characterObject, "SpriteOutline", Color.yellow);
-                }
-            }
-            else
-            {
-                GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.red);
-			GameObjectHelper.UpdateSpriteColor(characterObject, "SpriteOutline", Color.red);
-            }
+		GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.clear);
+		GameObjectHelper.UpdateSpriteColor(characterObject, "SpriteOutline", Color.clear);
+
+			if(character.Equals(SelectedCharacter))
+			{
+	            if (character.type == CharacterType.Player)
+	            {
+	                GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.green);
+					GameObjectHelper.UpdateSpriteColor(characterObject, "SpriteOutline", Color.green);
+
+	                if (battleGame.ActiveCharacter.Equals(character))
+	                {
+	                    GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.yellow);
+					GameObjectHelper.UpdateSpriteColor(characterObject, "SpriteOutline", Color.yellow);
+	                }
+	            }
+	            else
+	            {
+	                GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.red);
+				GameObjectHelper.UpdateSpriteColor(characterObject, "SpriteOutline", Color.red);
+	            }
+			}
 
             var characterPos = getWorldPosFromTilePoint(new Point(character.x, -character.y));
             characterObject.transform.position = characterPos;
@@ -884,6 +891,7 @@ using UnityEngine.EventSystems;
                 SelectedCharacter = battleGame.getCharacterFromTile(pointTile);
                 if (SelectedCharacter != null)
                 {
+					LoadCharacters ();
                     UpdateUI();
                 }
             }

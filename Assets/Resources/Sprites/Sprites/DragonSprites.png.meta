@@ -1,0 +1,385 @@
+fileFormatVersion: 2
+guid: 3c5926824664f42478c934f41a0cf54c
+timeCreated: 1458675448
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: $Monster_Dragon_Hammertail_0
+    21300002: $Monster_Dragon_Hammertail_1
+    21300004: $Monster_Dragon_Hammertail_2
+    21300006: $Monster_Dragon_Hammertail_3
+    21300008: $Monster_Dragon_Hammertail_4
+    21300010: $Monster_Dragon_Hammertail_5
+    21300012: $Monster_Dragon_Hammertail_6
+    21300014: $Monster_Dragon_Hammertail_7
+    21300016: $Monster_Dragon_Hammertail_8
+    21300018: $Monster_Dragon_Hammertail_9
+    21300020: $Monster_Dragon_Hammertail_10
+    21300022: $Monster_Dragon_Hammertail_11
+    21300024: DragonSprites_0
+    21300026: DragonSprites_1
+    21300028: DragonSprites_2
+    21300030: DragonSprites_3
+    21300032: DragonSprites_4
+    21300034: DragonSprites_5
+    21300036: DragonSprites_6
+    21300038: DragonSprites_7
+    21300040: DragonSprites_8
+    21300042: DragonSprites_9
+    21300044: DragonSprites_10
+    21300046: DragonSprites_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 32
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: DragonSprites_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 600
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 31, y: 63}
+        - {x: 6, y: 68}
+        - {x: -3, y: 66}
+        - {x: -17, y: 72}
+        - {x: -44, y: 72}
+        - {x: -44, y: -29}
+        - {x: -29, y: -79}
+        - {x: -16, y: -97}
+        - {x: -13, y: -98}
+        - {x: 20, y: -98}
+        - {x: 42, y: -78}
+        - {x: 51, y: -54}
+        - {x: 51, y: 6}
+    - name: DragonSprites_1
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 600
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8, y: 63}
+        - {x: 31, y: 7}
+        - {x: 8, y: 64}
+        - {x: 1, y: 81}
+        - {x: -17, y: 81}
+        - {x: -46, y: 30}
+        - {x: -46, y: -35}
+        - {x: -22, y: -98}
+        - {x: 43, y: -98}
+        - {x: 46, y: -84}
+        - {x: 46, y: 58}
+        - {x: 17, y: 68}
+    - name: DragonSprites_2
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 600
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 40, y: 59}
+        - {x: 37, y: 72}
+        - {x: 33, y: 74}
+        - {x: 26, y: 74}
+        - {x: 13, y: 63}
+        - {x: -2, y: 71}
+        - {x: -35, y: 66}
+        - {x: -51, y: 24}
+        - {x: -51, y: -57}
+        - {x: -17, y: -98}
+        - {x: 19, y: -98}
+        - {x: 33, y: -88}
+        - {x: 42, y: -43}
+        - {x: 42, y: 30}
+    - name: DragonSprites_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 250
+        height: 200
+      alignment: 9
+      pivot: {x: 0.40584975, y: 0.1192453}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 75.53756, y: 70.15094}
+        - {x: 50.53756, y: 77.15094}
+        - {x: 78.53756, y: 71.15094}
+        - {x: 83.53756, y: 73.15094}
+        - {x: 86.53756, y: 78.15094}
+        - {x: 55.53756, y: 96.15094}
+        - {x: 32.53756, y: 110.15094}
+        - {x: -96.46244, y: 110.15094}
+        - {x: -100.46244, y: 106.15094}
+        - {x: -100.46244, y: 14.15094}
+        - {x: -57.46244, y: -21.84906}
+        - {x: 58.53756, y: -21.84906}
+        - {x: 70.53756, y: -19.84906}
+        - {x: 133.53757, y: 24.15094}
+        - {x: 133.53757, y: 69.15094}
+        - {x: 129.53757, y: 76.15094}
+    - name: DragonSprites_4
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 400
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 34, y: 37}
+        - {x: -118, y: 37}
+        - {x: -124, y: 30}
+        - {x: -124, y: -74}
+        - {x: -109, y: -98}
+        - {x: 49, y: -98}
+        - {x: 113, y: -70}
+        - {x: 117, y: -63}
+        - {x: 117, y: -3}
+    - name: DragonSprites_5
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 400
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 104, y: -54}
+        - {x: 67, y: -11}
+        - {x: 19, y: 38}
+        - {x: -11, y: 41}
+        - {x: -65, y: 41}
+        - {x: -76, y: 23}
+        - {x: -57, y: -5}
+        - {x: -122, y: -29}
+        - {x: -124, y: -31}
+        - {x: -124, y: -52}
+        - {x: -72, y: -98}
+        - {x: 112, y: -98}
+        - {x: 113, y: -87}
+        - {x: 113, y: -64}
+    - name: DragonSprites_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 60, y: 42}
+        - {x: -15, y: 42}
+        - {x: -76, y: -16}
+        - {x: -60, y: -14}
+        - {x: -111, y: -57}
+        - {x: -111, y: -100}
+        - {x: 71, y: -100}
+        - {x: 104, y: -80}
+        - {x: 124, y: -42}
+        - {x: 124, y: -13}
+    - name: DragonSprites_7
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 200
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 39}
+        - {x: -60, y: 30}
+        - {x: -65, y: -7}
+        - {x: -59, y: -8}
+        - {x: -117, y: -8}
+        - {x: -117, y: -61}
+        - {x: -110, y: -71}
+        - {x: -87, y: -63}
+        - {x: -23, y: -100}
+        - {x: 94, y: -100}
+        - {x: 124, y: -78}
+        - {x: 124, y: -14}
+        - {x: 80, y: 39}
+    - name: DragonSprites_8
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 200
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 76, y: -57}
+        - {x: 114, y: -59}
+        - {x: 123, y: -50}
+        - {x: 123, y: -30}
+        - {x: 78, y: 36}
+        - {x: -8, y: 36}
+        - {x: -40, y: 18}
+        - {x: -61, y: 1}
+        - {x: -58, y: -2}
+        - {x: -55, y: -3}
+        - {x: -37, y: 5}
+        - {x: -58, y: -7}
+        - {x: -65, y: -18}
+        - {x: -108, y: -10}
+        - {x: -113, y: -19}
+        - {x: -113, y: -53}
+        - {x: -11, y: -100}
+        - {x: 57, y: -100}
+        - {x: 86, y: -96}
+        - {x: 97, y: -65}
+        - {x: 84, y: -58}
+    - name: DragonSprites_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 3, y: -96}
+        - {x: 4, y: -99}
+        - {x: 6, y: -100}
+        - {x: 13, y: -100}
+        - {x: 17, y: -99}
+        - {x: 17, y: -95}
+        - {x: 15, y: -93}
+        - {x: 6, y: -93}
+      - - {x: 48, y: 37}
+        - {x: 41, y: 93}
+        - {x: -10, y: 93}
+        - {x: -14, y: 74}
+        - {x: -13, y: 66}
+        - {x: -51, y: 93}
+        - {x: -51, y: -63}
+        - {x: 16, y: -95}
+        - {x: 19, y: -96}
+        - {x: 52, y: -96}
+        - {x: 52, y: -64}
+        - {x: 42, y: -54}
+      - - {x: -8, y: -88}
+        - {x: -6, y: -90}
+        - {x: -3, y: -89}
+        - {x: -3, y: -86}
+        - {x: -5, y: -84}
+        - {x: -8, y: -85}
+    - name: DragonSprites_10
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 0
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21, y: 68}
+        - {x: 3, y: 93}
+        - {x: -46, y: 93}
+        - {x: -46, y: -51}
+        - {x: -8, y: -100}
+        - {x: 27, y: -100}
+        - {x: 39, y: -91}
+        - {x: 46, y: 50}
+        - {x: 46, y: 91}
+        - {x: 41, y: 92}
+    - name: DragonSprites_11
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 0
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -41, y: 93}
+        - {x: -41, y: 19}
+        - {x: -27, y: -28}
+        - {x: -41, y: -73}
+        - {x: -41, y: -94}
+        - {x: -30, y: -100}
+        - {x: 16, y: -100}
+        - {x: 51, y: 18}
+        - {x: 51, y: 93}
+      - - {x: 2, y: -84}
+        - {x: 2, y: -90}
+        - {x: 7, y: -90}
+        - {x: 8, y: -89}
+        - {x: 8, y: -84}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
