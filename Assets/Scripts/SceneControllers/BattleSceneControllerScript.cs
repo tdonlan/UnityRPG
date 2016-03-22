@@ -1648,7 +1648,7 @@ using UnityEngine.EventSystems;
 
         private Vector3 getWorldPosOffset(Vector3 pos)
         {
-		return new Vector3(pos.x * Tile.TILE_SIZE, pos.y * Tile.TILE_SIZE, pos.z);
+		return new Vector3(pos.x * Tile.TILE_SIZE + (Tile.TILE_SIZE/2), pos.y * Tile.TILE_SIZE -(Tile.TILE_SIZE/2), pos.z);
         }
 
         private Point getBoardPointFromLocation(float x, float y)
@@ -1731,7 +1731,7 @@ using UnityEngine.EventSystems;
                 c = Color.red;
             }
 
-            Vector3 charPos = new Vector3(gameCharacter.x, -gameCharacter.y + 0.5f, 0);
+            Vector3 charPos = new Vector3(gameCharacter.x , -gameCharacter.y + 0.5f, 0);
             battleGame.battleLog.AddEntry(charPos.ToString());
 
             StartTempText(charPos, c, amount.ToString());
