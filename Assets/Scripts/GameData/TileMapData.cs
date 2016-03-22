@@ -52,9 +52,6 @@ namespace UnityRPG
         //Battle Tile Array uses 32x32 px tiles.  Also includes tileSpriteLookup metadata object
         private void loadBattleTileArray(GameObject tileMapGameObject)
         {
-
-            string strTileArray = "";
-
             Bounds mapBounds = tileMapGameObject.GetComponentInChildren<Renderer>().bounds;
 
 			int tileWidth = (int)Math.Ceiling(mapBounds.size.x / Tile.TILE_SIZE);
@@ -67,7 +64,7 @@ namespace UnityRPG
                 {
                  
 					Vector3 center = new Vector3(x * Tile.TILE_SIZE + (Tile.TILE_SIZE/2), -y * Tile.TILE_SIZE + (Tile.TILE_SIZE/2),0);
-                    Vector3 size = new Vector3(Tile.TILE_SIZE, Tile.TILE_SIZE);
+                    Vector3 size = new Vector3(Tile.TILE_SIZE/2, Tile.TILE_SIZE/2);
                     Bounds tileBounds = new Bounds(center, size);
                     bool empty = !checkCollision(tileBounds);
 
@@ -75,54 +72,13 @@ namespace UnityRPG
 
                     //Extra metadata on tile
                     battleTileArray[x, y].tileSpriteLookup = getTileSpriteLookup(tileBounds, x, y, empty);
-
-                    strTileArray += empty ? "." : "#";
                 }
-                strTileArray += System.Environment.NewLine;
             }
-            int i = 1;
         }
-
-		//Battle Tile Array uses 64 x 64 px tiles.  Also includes tileSpriteLookup metadata object
-		private void loadBattleTileArrayNew(GameObject tileMapGameObject)
-		{
-
-			string strTileArray = "";
-
-			Bounds mapBounds = tileMapGameObject.GetComponentInChildren<Renderer>().bounds;
-
-			int tileWidth = (int)Math.Ceiling(mapBounds.size.x * Tile.TILE_SIZE);
-			int tileHeight = (int)Math.Ceiling(mapBounds.size.y * Tile.TILE_SIZE);
-
-			battleTileArray = new Tile[tileWidth, tileHeight];
-			for (int y = 0; y < tileHeight; y++)
-			{
-				for (int x = 0; x < tileWidth; x++)
-				{
-
-					Vector3 center = new Vector3(x * (Tile.TILE_SIZE * 2) + (Tile.TILE_SIZE*2), -y * (Tile.TILE_SIZE * 2) + (Tile.TILE_SIZE*2),0);
-					Vector3 size = new Vector3(Tile.TILE_SIZE, Tile.TILE_SIZE);
-					Bounds tileBounds = new Bounds(center, size);
-					bool empty = !checkCollision(tileBounds);
-
-					battleTileArray[x, y] = new Tile(x, y, empty);
-
-					//Extra metadata on tile
-					battleTileArray[x, y].tileSpriteLookup = getTileSpriteLookup(tileBounds, x, y, empty);
-
-					strTileArray += empty ? "." : "#";
-				}
-				strTileArray += System.Environment.NewLine;
-			}
-			int i = 1;
-		}
-
+			
         //Zone TileArray uses 16x16 px tiles, used only for zone pathfinding
         private void loadZoneTileArray(GameObject tileMapGameObject)
         {
-
-            string strTileArray = "";
-
             Bounds mapBounds = tileMapGameObject.GetComponentInChildren<Renderer>().bounds;
 
             int tileWidth = (int)Math.Ceiling(mapBounds.size.x / Tile.TILE_SIZE);
@@ -136,17 +92,13 @@ namespace UnityRPG
                 {
                     Vector3 center = new Vector3(x * Tile.TILE_SIZE + (Tile.TILE_SIZE / 2), -y * Tile.TILE_SIZE + (Tile.TILE_SIZE / 2), 0);
                     
-                    Vector3 size = new Vector3(Tile.TILE_SIZE, Tile.TILE_SIZE);
+                    Vector3 size = new Vector3(Tile.TILE_SIZE/2, Tile.TILE_SIZE/2);
                     Bounds tileBounds = new Bounds(center, size);
                     bool empty = !checkCollision(tileBounds);
 
                     zoneTileArray[x, y] = new Tile(x, y, empty);
-
-                    strTileArray += empty ? "." : "#";
                 }
-                strTileArray += System.Environment.NewLine;
             }
-     
         }
 
         private  TileSpriteLookup getTileSpriteLookup(Bounds testBounds, int x, int y, bool isEmpty)
