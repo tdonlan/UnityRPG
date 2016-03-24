@@ -32,7 +32,6 @@ public class ZoneControllerScript : MonoBehaviour {
     private ZoneTreeNode currentNode;
     private long currentNodeIndex;
 
-
     public string debugTextString;
     public Text debugText;
     public Text panelText;
@@ -124,11 +123,24 @@ public class ZoneControllerScript : MonoBehaviour {
 
     private void loadTileMap()
     {
-        //get name of prefab of this map - match same name of tree?
         tileMapPrefab = Resources.Load<GameObject>(zoneTree.treeName);
         tileMapObject = (GameObject)Instantiate(tileMapPrefab);
-       // tileMapObject.tag = "tileMap";
+		//updateMapCollision();
     }
+
+	//iterate through all child box2d colliders.  if the parent isn't collision, disable for collision
+	public void updateMapCollision()
+	{
+		var box2dList = tileMapObject.GetComponentsInChildren<BoxCollider2D>();
+		foreach (var box2d in box2dList) {
+			Transform parent = box2d.gameObject.transform.parent;
+
+			string parentName = parent.name;
+			if (parentName != "collision") {
+				Physics2D.IgnoreCollision (box2d, playerScript.playerBoxCollider2D);
+			}
+		}
+	}
 
     private void loadTileMapData()
     {
@@ -184,7 +196,6 @@ public class ZoneControllerScript : MonoBehaviour {
     private void setPlayerStart()
     {
         playerScript.SetPosition(tileMapData.getSpawnPoint((int)zoneTree.currentIndex - 1).center);
-        //player.transform.position = tileMapData.getSpawnPoint((int)zoneTree.currentIndex-1).center;
     }
 
     //testing
@@ -233,9 +244,7 @@ public class ZoneControllerScript : MonoBehaviour {
                 {
                     UpdateMouseClick();
                 }
-
             }
-            UpdateMove();
         }
 
 	}
@@ -282,21 +291,7 @@ public class ZoneControllerScript : MonoBehaviour {
 
         UIHelper.AddClickToGameObject(pcBox, ClickPCBox, EventTriggerType.PointerClick, gameCharacter as object);
     }
-
-    private void UpdateMove()
-    {
-        if (movePath.Count > 0)
-        {
-         
-            if (Vector3.Distance(player.transform.position, playerScript.moveDestination) < .1f)
-            {
-                Vector3 newPos = getWorldPosFromTilePoint(new Point(movePath[0].x, -movePath[0].y));
-                playerScript.Move(newPos);
-                movePath.RemoveAt(0);
-            }
-        }
-    }
-
+		
     private void UpdateMouseClick()
     {
         Vector3 mousePos = Input.mousePosition;
@@ -306,13 +301,6 @@ public class ZoneControllerScript : MonoBehaviour {
         {
             Bounds mouseTileBounds = getTileBounds(mouseTilePoint.x, mouseTilePoint.y);
             AddTileSelectSprite(getWorldPosFromTilePoint(mouseTilePoint));
-
-            if (!(tileMapData.checkCollision(mouseTileBounds)))
-            {
-                Point playerPointPos = getTileLocationFromVectorPos(player.transform.position);
-                movePath = tileMapData.getPath(playerPointPos.x , -playerPointPos.y , mouseTilePoint.x, -mouseTilePoint.y);
-                movePath.RemoveAt(0);
-            }
         }
     }
 
@@ -363,8 +351,7 @@ public class ZoneControllerScript : MonoBehaviour {
     {
         this.debugText.text = text;
     }
-
-
+		
     public void checkPlayerObjectCollision(Bounds playerBounds)
     {
         if (tileMapData != null)

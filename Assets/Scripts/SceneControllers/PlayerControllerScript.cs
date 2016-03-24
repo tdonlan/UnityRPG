@@ -46,6 +46,7 @@ public class PlayerControllerScript : MonoBehaviour {
 	private int walkCounter;
 
 	public Rigidbody2D playerRigidBody;
+	public BoxCollider2D playerBoxCollider2D;
 
 	public Vector3 destination;
 	public Camera mainCamera;
@@ -86,9 +87,10 @@ public class PlayerControllerScript : MonoBehaviour {
 		animTimer = .1f;
 		playerSR = gameObject.GetComponent<SpriteRenderer>();
 		playerRigidBody = gameObject.GetComponent<Rigidbody2D>();
-
+		playerBoxCollider2D = gameObject.GetComponent<BoxCollider2D> ();
 
         this.zoneControllerScript = GameObject.FindObjectOfType<ZoneControllerScript>().GetComponent<ZoneControllerScript>();
+		zoneControllerScript.updateMapCollision ();
 
 		LoadAnimations();
 
@@ -119,8 +121,8 @@ public class PlayerControllerScript : MonoBehaviour {
 		UpdateAnimTimer();
 		UpdateMovement();
 		UpdateControl();
-
-
+		setPlayerRect ();
+		zoneControllerScript.checkPlayerObjectCollision(playerBounds);
 
 		debugText.text = animationState.ToString();
 	}
