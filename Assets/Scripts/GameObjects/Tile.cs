@@ -9,7 +9,7 @@ namespace UnityRPG
     public class Tile
     {
 
-        public static float TILE_SIZE = 0.5f;
+        public static float TILE_SIZE = 2f;
 
         public char TileChar { get; set; }
         public char TempChar { get; set; }

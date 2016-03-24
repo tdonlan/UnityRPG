@@ -38,6 +38,7 @@ using UnityEngine.EventSystems;
         public GameObject VictoryPanel;
 
         public Text BattleLogText;
+	public Text DebugText;
 
         public Button MoveActionButton;
         public Button AttackActionButton;
@@ -172,23 +173,26 @@ using UnityEngine.EventSystems;
             CharacterPrefab = Resources.Load<GameObject>("PrefabGame/CharacterPrefab");
         }
 
-        private void LoadCharacters()
-        {
-            UpdateActiveCharacterPanel();
+    private void LoadCharacters()
+	{
+		UpdateActiveCharacterPanel ();
 
-            //clear Characters
-            foreach (var c in tileCharacterList)
-            {
-                Destroy(c);
-            }
+		//clear Characters
+		foreach (var c in tileCharacterList) {
+			Destroy (c);
+		}
 
-            tileCharacterList.Clear();
+		tileCharacterList.Clear ();
 
-            foreach (var character in battleGame.characterList)
-            {
-                tileCharacterList.Add(LoadCharacter(character));
-            }
-        }
+		//draw in order of y coordinate, to prevent wierd overlaps
+		var orderedCharList = battleGame.characterList;
+
+		orderedCharList = orderedCharList.OrderByDescending (x => x.y).ToList ();
+
+		foreach (var character in orderedCharList) {
+			tileCharacterList.Add (LoadCharacter (character));
+		}
+	}
 
 
         //Load Character Avatar Sprite on Tile Map
@@ -196,20 +200,31 @@ using UnityEngine.EventSystems;
         {
             GameObject characterObject = (GameObject)Instantiate(CharacterPrefab);
             GameObjectHelper.UpdateSprite(characterObject, "CharacterSprite", gameDataObject.assetLibrary.getSprite(character.characterSpritesheetName, character.characterSpriteIndex));
+			GameObjectHelper.UpdateSprite(characterObject, "SpriteOutline", gameDataObject.assetLibrary.getSprite(character.characterSpritesheetName, character.characterSpriteIndex));
 
-            if (character.type == CharacterType.Player)
-            {
-                GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.green);
 
-                if (battleGame.ActiveCharacter.Equals(character))
-                {
-                    GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.yellow);
-                }
-            }
-            else
-            {
-                GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.red);
-            }
+		GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.clear);
+		GameObjectHelper.UpdateSpriteColor(characterObject, "SpriteOutline", Color.clear);
+
+			if(character.Equals(SelectedCharacter))
+			{
+	            if (character.type == CharacterType.Player)
+	            {
+	                GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.green);
+					GameObjectHelper.UpdateSpriteColor(characterObject, "SpriteOutline", Color.green);
+
+	                if (battleGame.ActiveCharacter.Equals(character))
+	                {
+	                    GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.yellow);
+					GameObjectHelper.UpdateSpriteColor(characterObject, "SpriteOutline", Color.yellow);
+	                }
+	            }
+	            else
+	            {
+	                GameObjectHelper.UpdateSpriteColor(characterObject, "HighlightSprite", Color.red);
+				GameObjectHelper.UpdateSpriteColor(characterObject, "SpriteOutline", Color.red);
+	            }
+			}
 
             var characterPos = getWorldPosFromTilePoint(new Point(character.x, -character.y));
             characterObject.transform.position = characterPos;
@@ -717,6 +732,8 @@ using UnityEngine.EventSystems;
 
             //Selected Character Panel
             UpdateSelectedCharacter();
+
+		//UpdateDebug ();
         }
 
         private void UpdateAllButtonStatus(bool flag)
@@ -874,6 +891,7 @@ using UnityEngine.EventSystems;
                 SelectedCharacter = battleGame.getCharacterFromTile(pointTile);
                 if (SelectedCharacter != null)
                 {
+					LoadCharacters ();
                     UpdateUI();
                 }
             }
@@ -939,7 +957,7 @@ using UnityEngine.EventSystems;
 
             string mousePos = string.Format("Mouse: {0},{1} | World: {2},{3} | view {4},{5} | canvas {6},{7}",
                 Input.mousePosition.x, Input.mousePosition.y, viewPos.x, viewPos.y, worldPos.x, worldPos.y, canvasPos.x, canvasPos.y);
-            //DebugText.text = mousePos;
+            DebugText.text = mousePos;
 
         }
 
@@ -1604,8 +1622,6 @@ using UnityEngine.EventSystems;
 
         #region Helpers
 
-       
-
         private Bounds getTileBounds(int x, int y)
         {
             Vector3 center = new UnityEngine.Vector3(x, y, 0);
@@ -1616,8 +1632,13 @@ using UnityEngine.EventSystems;
 
         private Point getTileLocationFromVectorPos(Vector3 pos)
         {
-            int x = Mathf.RoundToInt(pos.x - .5f);
-            int y = Mathf.RoundToInt(pos.y + .5f);
+		int x = (int)Math.Ceiling (pos.x / Tile.TILE_SIZE - (Tile.TILE_SIZE/2));
+		int y = (int)Math.Ceiling (pos.y / Tile.TILE_SIZE);
+		//int x = Mathf.RoundToInt(pos.x /  Tile.TILE_SIZE - (Tile.TILE_SIZE/2));
+		//int y = Mathf.RoundToInt(pos.y /  Tile.TILE_SIZE + (Tile.TILE_SIZE/2));
+
+		DebugText.text = string.Format ("{0}, {1}", x, y);
+
 
             Point retval = null;
 
@@ -1630,18 +1651,18 @@ using UnityEngine.EventSystems;
 
         private Vector3 getWorldPosFromTilePoint(Point p)
         {
-            return new Vector3(p.x + 0.5f, p.y - 0.5f, 0);
+		return new Vector3(p.x * Tile.TILE_SIZE + (Tile.TILE_SIZE/2), p.y * Tile.TILE_SIZE -(Tile.TILE_SIZE/2) , 0);
         }
 
         private Vector3 getWorldPosOffset(Vector3 pos)
         {
-            return new Vector3(pos.x + 0.5f, pos.y - 0.5f, pos.z);
+		return new Vector3(pos.x * Tile.TILE_SIZE + (Tile.TILE_SIZE/2), pos.y * Tile.TILE_SIZE -(Tile.TILE_SIZE/2), pos.z);
         }
 
         private Point getBoardPointFromLocation(float x, float y)
         {
-            x = x + 0.5f;
-            y = y + 0.5f;
+			x = x + Tile.TILE_SIZE;
+			y = y + Tile.TILE_SIZE;
 
             Point retval = null;
 
@@ -1718,7 +1739,7 @@ using UnityEngine.EventSystems;
                 c = Color.red;
             }
 
-            Vector3 charPos = new Vector3(gameCharacter.x, -gameCharacter.y + 0.5f, 0);
+            Vector3 charPos = new Vector3(gameCharacter.x , -gameCharacter.y + 0.5f, 0);
             battleGame.battleLog.AddEntry(charPos.ToString());
 
             StartTempText(charPos, c, amount.ToString());
