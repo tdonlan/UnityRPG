@@ -54,7 +54,6 @@ public class ZoneControllerScript : MonoBehaviour {
     Camera mainCamera;
 
     Point mouseTilePoint;
-    List<Point> movePath = new List<Point>();
 
 
     void Start()
@@ -85,10 +84,6 @@ public class ZoneControllerScript : MonoBehaviour {
 
         setPlayerSprite();
         setPlayerStart();
-
-        //loadPlayerCharacterList();
-
-        //displayCollisionSprites();
     }
 
     private void loadTree()
@@ -125,10 +120,11 @@ public class ZoneControllerScript : MonoBehaviour {
     {
         tileMapPrefab = Resources.Load<GameObject>(zoneTree.treeName);
         tileMapObject = (GameObject)Instantiate(tileMapPrefab);
-		//updateMapCollision();
+		//updateMapCollision();  Can't wire this up until player is initialized - unless we retrieve player box2d directly.
     }
 
 	//iterate through all child box2d colliders.  if the parent isn't collision, disable for collision
+	//currently called from playerScript
 	public void updateMapCollision()
 	{
 		var box2dList = tileMapObject.GetComponentsInChildren<BoxCollider2D>();
@@ -197,34 +193,7 @@ public class ZoneControllerScript : MonoBehaviour {
     {
         playerScript.SetPosition(tileMapData.getSpawnPoint((int)zoneTree.currentIndex - 1).center);
     }
-
-    //testing
-    private void displayCollisionSprites()
-    {
-
-        for (int i = 0; i < tileMapData.zoneTileArray.GetLength(0); i++)
-        {
-            for (int j = 0; j < tileMapData.zoneTileArray.GetLength(1); j++)
-            {
-                var tileSquare = Instantiate(SpritePrefab);
-                tileSquare.transform.position = getWorldPosFromTilePoint(new Point(i, -j));
-
-                var tileSquareSprite = tileSquare.GetComponent<SpriteRenderer>();
-                tileSquareSprite.sprite = gameDataObject.assetLibrary.getSprite("Tile64", 0);
-
-                if (!tileMapData.zoneTileArray[i, j].empty)
-                {
-                    tileSquareSprite.color = GameConfig.transRed;
-
-                }
-                else
-                {
-                    tileSquareSprite.color = GameConfig.transWhite;
-                }
-            }
-        }
-    }
-	
+		
 	// Update is called once per frame
 	void Update () {
 
@@ -259,7 +228,6 @@ public class ZoneControllerScript : MonoBehaviour {
 
         GameCharacter selectedChar = gameDataObject.getSelectedCharacter();
        
-
         GameObject playerBox = (GameObject)Instantiate(pcBoxPrefab);
         playerBox.transform.SetParent(partyListPanel.transform, true);
         UpdatePlayerCharacterBox(playerBox, gameDataObject.playerGameCharacter, gameDataObject.playerGameCharacter.Equals(selectedChar));
@@ -298,8 +266,7 @@ public class ZoneControllerScript : MonoBehaviour {
         Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(mousePos);
         mouseTilePoint = getTileLocationFromVectorPos(mouseWorldPosition);
         if (mouseTilePoint != null)
-        {
-            Bounds mouseTileBounds = getTileBounds(mouseTilePoint.x, mouseTilePoint.y);
+        { 
             AddTileSelectSprite(getWorldPosFromTilePoint(mouseTilePoint));
         }
     }
@@ -387,10 +354,6 @@ public class ZoneControllerScript : MonoBehaviour {
        
     }
 
-
-
-
-    
     public void ZoneNodeButtonClick()
     {
         zoneTree.SelectNode(currentNodeIndex);
