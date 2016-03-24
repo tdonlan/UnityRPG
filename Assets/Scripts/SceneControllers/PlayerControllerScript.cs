@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -119,16 +120,28 @@ public class PlayerControllerScript : MonoBehaviour {
 		UpdateMovement();
 		UpdateControl();
 
+
+
 		debugText.text = animationState.ToString();
 	}
 
 	private void UpdateControl()
 	{
-		if(Input.GetMouseButton(0)){
-			var mousePos = Input.mousePosition;
 
-			destination = mainCamera.ScreenToWorldPoint(mousePos);
-			destination = new Vector3(destination.x, destination.y, 0);
+		if (!zoneControllerScript.gameDataObject.isPaused)
+		{
+			//check for mouse click
+			if (Input.GetMouseButtonDown(0))
+			{
+				if (!EventSystem.current.IsPointerOverGameObject())
+				{
+					var mousePos = Input.mousePosition;
+
+					destination = mainCamera.ScreenToWorldPoint(mousePos);
+					destination = new Vector3(destination.x, destination.y, 0);
+				}
+
+			}
 		}
 
 		Velocity = destination - gameObject.transform.position;
@@ -137,12 +150,10 @@ public class PlayerControllerScript : MonoBehaviour {
 		{
 			Velocity.Normalize();
 		}
-
-
+			
 		playerRigidBody.velocity = Velocity * speed;
 
 		mainCamera.transform.position = new Vector3(gameObject.transform.position.x,gameObject.transform.position.y,mainCamera.transform.position.z);
-
 
 		debugText.text = string.Format("{0}, {1}", playerRigidBody.velocity.x,playerRigidBody.velocity.y);
 	}

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine;
 using UnityEngine.UI;
 
 using System.Collections.Generic;
@@ -90,7 +89,7 @@ public class ZoneControllerScript : MonoBehaviour {
 
         //loadPlayerCharacterList();
 
-        displayCollisionSprites();
+        //displayCollisionSprites();
     }
 
     private void loadTree()
