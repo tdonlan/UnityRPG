@@ -1,0 +1,311 @@
+fileFormatVersion: 2
+guid: 2b40e6832d44442a8981bee8fc06dadc
+timeCreated: 1458847523
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: DwarfWalk_0
+    21300002: DwarfWalk_1
+    21300004: DwarfWalk_2
+    21300006: DwarfWalk_3
+    21300008: DwarfWalk_4
+    21300010: DwarfWalk_5
+    21300012: DwarfWalk_6
+    21300014: DwarfWalk_7
+    21300016: DwarfWalk_8
+    21300018: DwarfWalk_9
+    21300020: DwarfWalk_10
+    21300022: DwarfWalk_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 32
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: DwarfWalk_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 210
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 26}
+        - {x: -8, y: 26}
+        - {x: -18, y: 12}
+        - {x: -18, y: -20}
+        - {x: -13, y: -35}
+        - {x: 9, y: -35}
+        - {x: 29, y: -23}
+        - {x: 29, y: 1}
+        - {x: 15, y: 22}
+    - name: DwarfWalk_1
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 210
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: 26}
+        - {x: -10, y: 26}
+        - {x: -17, y: 21}
+        - {x: -17, y: -35}
+        - {x: 18, y: -35}
+        - {x: 28, y: -19}
+        - {x: 28, y: 10}
+        - {x: 20, y: 18}
+    - name: DwarfWalk_2
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 210
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 26}
+        - {x: -15, y: 21}
+        - {x: -15, y: -35}
+        - {x: 11, y: -35}
+        - {x: 28, y: -21}
+        - {x: 28, y: 8}
+        - {x: 6, y: 26}
+    - name: DwarfWalk_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 140
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12, y: 25}
+        - {x: -23, y: 25}
+        - {x: -27, y: 16}
+        - {x: -27, y: -33}
+        - {x: -24, y: -35}
+        - {x: 31, y: -35}
+        - {x: 35, y: -17}
+        - {x: 35, y: 0}
+        - {x: 31, y: 11}
+    - name: DwarfWalk_4
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 140
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30, y: 12}
+        - {x: -35, y: 5}
+        - {x: -35, y: -3}
+        - {x: -33, y: -5}
+        - {x: -20, y: -4}
+        - {x: -15, y: -31}
+        - {x: -12, y: -35}
+        - {x: 6, y: -35}
+        - {x: 31, y: -24}
+        - {x: 31, y: 10}
+        - {x: 29, y: 15}
+        - {x: 11, y: 25}
+        - {x: -4, y: 25}
+        - {x: -13, y: 18}
+    - name: DwarfWalk_5
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 140
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23, y: 25}
+        - {x: -35, y: 25}
+        - {x: -35, y: -34}
+        - {x: 10, y: -34}
+        - {x: 17, y: -31}
+        - {x: 24, y: -25}
+        - {x: 28, y: -13}
+        - {x: 28, y: 1}
+    - name: DwarfWalk_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 70
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21, y: 25}
+        - {x: -31, y: 14}
+        - {x: -31, y: -20}
+        - {x: -23, y: -34}
+        - {x: 23, y: -34}
+        - {x: 30, y: -21}
+        - {x: 30, y: 21}
+        - {x: 16, y: 25}
+    - name: DwarfWalk_7
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 70
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5, y: 25}
+        - {x: -14, y: 19}
+        - {x: -22, y: -12}
+        - {x: -22, y: -15}
+        - {x: -19, y: -18}
+        - {x: -17, y: -18}
+        - {x: -12, y: -32}
+        - {x: -9, y: -35}
+        - {x: 14, y: -35}
+        - {x: 35, y: -20}
+        - {x: 35, y: -1}
+        - {x: 10, y: 25}
+    - name: DwarfWalk_8
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 70
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 25}
+        - {x: -20, y: 11}
+        - {x: -20, y: -35}
+        - {x: 21, y: -35}
+        - {x: 32, y: -32}
+        - {x: 35, y: -20}
+        - {x: 35, y: 14}
+        - {x: 32, y: 25}
+    - name: DwarfWalk_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 28, y: 11}
+        - {x: 11, y: 27}
+        - {x: -1, y: 27}
+        - {x: -16, y: 16}
+        - {x: -16, y: -28}
+        - {x: -15, y: -34}
+        - {x: -11, y: -35}
+        - {x: 6, y: -35}
+        - {x: 23, y: -27}
+        - {x: 34, y: -18}
+        - {x: 34, y: 1}
+    - name: DwarfWalk_10
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 0
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 27}
+        - {x: -16, y: 18}
+        - {x: -16, y: -31}
+        - {x: -15, y: -33}
+        - {x: 14, y: -33}
+        - {x: 32, y: -26}
+        - {x: 32, y: 9}
+        - {x: 5, y: 27}
+    - name: DwarfWalk_11
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 0
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 35}
+        - {x: -14, y: 24}
+        - {x: -14, y: -16}
+        - {x: -13, y: -21}
+        - {x: -6, y: -35}
+        - {x: 28, y: -35}
+        - {x: 28, y: 19}
+        - {x: 4, y: 35}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
