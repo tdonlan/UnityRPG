@@ -133,7 +133,7 @@ public class PlayerControllerScript : MonoBehaviour {
 		if (!zoneControllerScript.gameDataObject.isPaused)
 		{
 			//check for mouse click
-			if (Input.GetMouseButtonDown(0))
+			if (Input.GetMouseButton(0))
 			{
 				if (!EventSystem.current.IsPointerOverGameObject())
 				{
@@ -354,44 +354,6 @@ public class PlayerControllerScript : MonoBehaviour {
 		playerSR.sprite = walkAnimationList[walkCounter];
 	}
 
-
-	// Update is called once per frame
-	void UpdateOld () {
-        UpdateCamera();
-        setPlayerRect();
-      
-        zoneControllerScript.checkPlayerObjectCollision(playerBounds);
-
-        if (Vector3.Distance(gameObject.transform.position, moveDestination) > .1f)
-        {
-            UpdateMove();
-        }
-     
-
-       
-	}
-
-    private void UpdateMove()
-    {
-        var dir = moveDestination - this.gameObject.transform.position;
-       
-        dir.Normalize();
-
-        velocity = dir * Time.deltaTime * speed;
-
-        this.gameObject.transform.position += velocity;
-
-    }
-
-    public void Move(Vector3 newPos)
-    {
-        if (!checkCollision(getNewBounds(newPos)))
-        {
-        
-            moveDestination = newPos;
-        }
-    }
-
     //Used when spawning character
     public void SetPosition(Vector3 newPos)
     {
@@ -399,30 +361,5 @@ public class PlayerControllerScript : MonoBehaviour {
         moveDestination = newPos;
             
     }
-
-    private void UpdateCamera()
-    {
-        var cameraPos = this.mainCamera.transform.position;
-        var newPos = this.transform.position;
-        this.mainCamera.transform.position = new Vector3(Mathf.Lerp(cameraPos.x,newPos.x,.1f),Mathf.Lerp(cameraPos.y,newPos.y,.1f),cameraPos.z);
-    }
-
-    private Bounds getNewBounds(Vector3 newPos)
-    {
-        Bounds newBounds = playerBounds;
-        newBounds.center = newPos;
-        return newBounds;
-
-    }
-
-    private bool checkCollision(Bounds bounds)
-    {
-        if (zoneControllerScript.tileMapData != null)
-        {
-            return zoneControllerScript.tileMapData.checkCollision(bounds);
-
-        }
-        return false;
-       
-    }
+		
 }

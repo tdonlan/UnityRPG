@@ -53,9 +53,6 @@ public class ZoneControllerScript : MonoBehaviour {
 
     Camera mainCamera;
 
-    Point mouseTilePoint;
-
-
     void Start()
     {
 
@@ -264,7 +261,7 @@ public class ZoneControllerScript : MonoBehaviour {
     {
         Vector3 mousePos = Input.mousePosition;
         Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(mousePos);
-        mouseTilePoint = getTileLocationFromVectorPos(mouseWorldPosition);
+        Point mouseTilePoint = getTileLocationFromVectorPos(mouseWorldPosition);
         if (mouseTilePoint != null)
         { 
             AddTileSelectSprite(getWorldPosFromTilePoint(mouseTilePoint));
