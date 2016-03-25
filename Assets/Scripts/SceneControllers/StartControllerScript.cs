@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityRPG;
 
@@ -50,7 +51,8 @@ public class StartControllerScript : MonoBehaviour {
         gameDataObject.treeStore.SelectTree(treeIndex);
         ZoneTree curTree = (ZoneTree)gameDataObject.treeStore.getTree(gameDataObject.treeStore.currentTreeIndex);
         curTree.SelectNode(nodeIndex);
-        Application.LoadLevel((int)UnitySceneIndex.Battle);
+		SceneManager.LoadScene((int)UnitySceneIndex.Battle);
+        
     }
 
     private GameCharacter getGameCharacterFromID(long ID)
@@ -66,13 +68,16 @@ public class StartControllerScript : MonoBehaviour {
         switch (currentTree.treeType)
         {
             case TreeType.Cutscene:
-                Application.LoadLevel((int)UnitySceneIndex.Cutscene);
+			SceneManager.LoadScene((int)UnitySceneIndex.Cutscene);
+               
                 break;
             case TreeType.World:
-                Application.LoadLevel((int)UnitySceneIndex.World);
+			SceneManager.LoadScene((int)UnitySceneIndex.World);
+               
                 break;
             case TreeType.Zone:
-                Application.LoadLevel((int)UnitySceneIndex.Zone);
+			SceneManager.LoadScene((int)UnitySceneIndex.Zone);
+             
                 break;
             default:
                 break;
@@ -89,12 +94,14 @@ public class StartControllerScript : MonoBehaviour {
     //Testing
     public void LoadCharacterScreen()
     {
-        Application.LoadLevel((int)UnitySceneIndex.CharacterScreen);
+		SceneManager.LoadScene((int)UnitySceneIndex.CharacterScreen);
+      
     }
 
     public void CreateCharacter()
     {
-        Application.LoadLevel((int)UnitySceneIndex.CharacterCreationScreen);
+		SceneManager.LoadScene((int)UnitySceneIndex.CharacterCreationScreen);
+     
     }
 
     public void LoadGame()
@@ -109,10 +116,12 @@ public class StartControllerScript : MonoBehaviour {
         switch (curTree.treeType)
         {
             case TreeType.World:
-                Application.LoadLevel((int)UnitySceneIndex.World);
+			SceneManager.LoadScene((int)UnitySceneIndex.World);
+               
                 break;
             case TreeType.Zone:
-                Application.LoadLevel((int)UnitySceneIndex.Zone);
+			SceneManager.LoadScene((int)UnitySceneIndex.Zone);
+               
                 break;
         }
     }

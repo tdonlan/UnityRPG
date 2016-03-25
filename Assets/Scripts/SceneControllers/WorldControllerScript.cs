@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -135,9 +136,8 @@ public class WorldControllerScript : MonoBehaviour {
     //entering the zone / switching scenes
     public void ClickEnterZoneButton(long linkIndex){
         //switch scenes to the zone index
-        //Application.LoadLevel(2); //old zone scene
         gameDataObject.treeStore.SelectTree(linkIndex);
-        Application.LoadLevel((int)UnitySceneIndex.Zone); //tiled zone scene
+		SceneManager.LoadScene((int)UnitySceneIndex.Zone);
     }
 	
 

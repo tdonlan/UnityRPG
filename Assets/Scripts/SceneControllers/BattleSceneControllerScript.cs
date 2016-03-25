@@ -8,6 +8,7 @@ using System.Linq;
 using UnityRPG;
 
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 
     public class BattleSceneControllerScript : MonoBehaviour
@@ -935,13 +936,15 @@ using UnityEngine.EventSystems;
             //switch back to parent tree link
             gameDataObject.treeStore.SelectTree(parentTreeLink);
             //go back to the zone view
-            Application.LoadLevel((int)UnitySceneIndex.Zone);
+		SceneManager.LoadScene((int)UnitySceneIndex.Zone);
+
         }
 
         public void CloseDefeatPanel()
         {
             Destroy(gameDataObject);
-            Application.LoadLevel((int)UnitySceneIndex.Start);
+		SceneManager.LoadScene((int)UnitySceneIndex.Start);
+           
         }
 
       

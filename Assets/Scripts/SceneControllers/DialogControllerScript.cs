@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 using System.Collections;
 using System.Collections.Generic;
@@ -179,7 +180,8 @@ public class DialogControllerScript : MonoBehaviour {
         gameDataObject.treeStore.SelectTree(parentTreeLink);
         
         //go back to the zone view
-        Application.LoadLevel((int)UnitySceneIndex.Zone);
+		SceneManager.LoadScene((int)UnitySceneIndex.Zone);
+     
     }
     
 	

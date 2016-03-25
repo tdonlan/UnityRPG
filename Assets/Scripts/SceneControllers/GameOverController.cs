@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class GameOverController : MonoBehaviour {
@@ -25,7 +26,7 @@ public class GameOverController : MonoBehaviour {
     public void Restart()
     {
         Destroy(this.gameControllerScript);
-
-        Application.LoadLevel("StartScene");
+		SceneManager.LoadScene ("StartScene");
+       
     }
 }

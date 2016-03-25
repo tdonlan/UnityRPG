@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -243,13 +244,16 @@ public class CharacterCreationControllerScript : MonoBehaviour {
         switch (currentTree.treeType)
         {
             case TreeType.Cutscene:
-                Application.LoadLevel((int)UnitySceneIndex.Cutscene);
+			SceneManager.LoadScene((int)UnitySceneIndex.Cutscene);
+                
                 break;
             case TreeType.World:
-                Application.LoadLevel((int)UnitySceneIndex.World);
+			SceneManager.LoadScene((int)UnitySceneIndex.World);
+              
                 break;
             case TreeType.Zone:
-                Application.LoadLevel((int)UnitySceneIndex.Zone);
+			SceneManager.LoadScene((int)UnitySceneIndex.Zone);
+              
                 break;
             default:
                 break;

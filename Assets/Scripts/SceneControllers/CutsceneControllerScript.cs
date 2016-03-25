@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class CutsceneControllerScript : MonoBehaviour {
@@ -79,22 +80,26 @@ public class CutsceneControllerScript : MonoBehaviour {
         gameDataObject.treeStore.SelectTree(linkIndex);
         if (gameDataObject.treeStore.getCurrentTree() is WorldTree)
         {
-            Application.LoadLevel((int)UnitySceneIndex.World);
+			SceneManager.LoadScene((int)UnitySceneIndex.World);
+          
         }
         else
         {
-            Application.LoadLevel((int)UnitySceneIndex.Zone);
+			SceneManager.LoadScene((int)UnitySceneIndex.Zone);
+            
         }
     }
 
     private void ClickBattleNode(long battleIndex)
     {
-        Application.LoadLevel((int)UnitySceneIndex.Battle);
+		SceneManager.LoadScene((int)UnitySceneIndex.Battle);
+      
     }
 
     private void ClickCutsceneNode(long index)
     {
-        Application.LoadLevel((int)UnitySceneIndex.Cutscene);
+		SceneManager.LoadScene((int)UnitySceneIndex.Cutscene);
+        
     }
 
 

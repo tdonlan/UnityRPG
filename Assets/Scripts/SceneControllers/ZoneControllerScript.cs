@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
-
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using System.Collections;
 using System.Collections.Generic;
 
 using UnityRPG;
-using UnityEngine.EventSystems;
+
 
 public class ZoneControllerScript : MonoBehaviour {
 
@@ -401,33 +402,37 @@ public class ZoneControllerScript : MonoBehaviour {
         gameDataObject.treeStore.SelectTree(linkIndex);
         if (gameDataObject.treeStore.getCurrentTree() is WorldTree)
         {
-            Application.LoadLevel((int)UnitySceneIndex.World);
+			SceneManager.LoadScene ((int)UnitySceneIndex.World);
+            //Application.LoadLevel((int)UnitySceneIndex.World);
         }
         else
         {
-            Application.LoadLevel((int)UnitySceneIndex.Zone);
+			SceneManager.LoadScene ((int)UnitySceneIndex.Zone);
+            //Application.LoadLevel((int)UnitySceneIndex.Zone);
         }
     }
 
     private void ClickDialogNode(long dialogIndex)
     {
-        Application.LoadLevel((int)UnitySceneIndex.Dialog);
+		SceneManager.LoadScene ((int)UnitySceneIndex.Dialog);
+        //Application.LoadLevel((int)UnitySceneIndex.Dialog);
     }
 
     private void ClickBattleNode(long battleIndex)
     {
-        Application.LoadLevel((int)UnitySceneIndex.Battle);
+		SceneManager.LoadScene ((int)UnitySceneIndex.Battle);
+        //Application.LoadLevel((int)UnitySceneIndex.Battle);
     }
 
     private void ClickStoreNode(long storeIndex)
     {
-        Application.LoadLevel((int)UnitySceneIndex.Store);
+		SceneManager.LoadScene ((int)UnitySceneIndex.Store);
+        //Application.LoadLevel((int)UnitySceneIndex.Store);
     }
 
     public void ClickPCBox(object gcObject)
     {
       
-
         GameCharacter gc = gcObject as GameCharacter;
 
         gameDataObject.SelectCharacter(gc);
@@ -437,8 +442,7 @@ public class ZoneControllerScript : MonoBehaviour {
 
         loadPlayerCharacterList();
     }
-
-
+		
     public void TestAddPCBox()
     {
         loadPlayerCharacterList();

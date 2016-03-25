@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
+
 using System.Linq;
 
 using UnityRPG;
@@ -133,7 +135,8 @@ public class StoreControllerScript : MonoBehaviour {
         gameDataObject.treeStore.SelectTree(parentTreeLink);
 
         //go back to the zone view
-        Application.LoadLevel((int)UnitySceneIndex.Zone);
+		SceneManager.LoadScene((int)UnitySceneIndex.Zone);
+     
     }
 
     public void BuyItem(long itemID)
