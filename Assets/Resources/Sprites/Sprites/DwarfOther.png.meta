@@ -1,0 +1,377 @@
+fileFormatVersion: 2
+guid: d3a0cb5da362448019fcd526a88f4a58
+timeCreated: 1458847510
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: DwarfOther_0
+    21300002: DwarfOther_1
+    21300004: DwarfOther_2
+    21300006: DwarfOther_3
+    21300008: DwarfOther_4
+    21300010: DwarfOther_5
+    21300012: DwarfOther_6
+    21300014: DwarfOther_7
+    21300016: DwarfOther_8
+    21300018: DwarfOther_9
+    21300020: DwarfOther_10
+    21300022: DwarfOther_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 32
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: DwarfOther_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 210
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 6, y: 23}
+        - {x: -9, y: 23}
+        - {x: -19, y: 17}
+        - {x: -19, y: -33}
+        - {x: 19, y: -33}
+        - {x: 35, y: -16}
+        - {x: 35, y: 5}
+        - {x: 32, y: 15}
+    - name: DwarfOther_1
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 210
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 35}
+        - {x: -14, y: 19}
+        - {x: -14, y: -30}
+        - {x: -13, y: -32}
+        - {x: 9, y: -32}
+        - {x: 34, y: -27}
+        - {x: 35, y: -19}
+        - {x: 35, y: 28}
+        - {x: 28, y: 35}
+      - - {x: 26, y: 24}
+        - {x: 29, y: 25}
+        - {x: 29, y: 28}
+        - {x: 26, y: 29}
+        - {x: 24, y: 27}
+    - name: DwarfOther_2
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 210
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: 25}
+        - {x: -4, y: 23}
+        - {x: -8, y: 19}
+        - {x: -13, y: 11}
+        - {x: -8, y: 19}
+        - {x: -7, y: 23}
+        - {x: -22, y: 31}
+        - {x: -29, y: 31}
+        - {x: -34, y: 29}
+        - {x: -35, y: 17}
+        - {x: -35, y: -19}
+        - {x: -31, y: -29}
+        - {x: -14, y: -35}
+        - {x: 34, y: -35}
+        - {x: 34, y: 17}
+        - {x: 29, y: 21}
+    - name: DwarfOther_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 140
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 26}
+        - {x: -17, y: -7}
+        - {x: -12, y: -7}
+        - {x: -9, y: -6}
+        - {x: -17, y: -11}
+        - {x: -21, y: -16}
+        - {x: -21, y: -19}
+        - {x: -17, y: -26}
+        - {x: -6, y: -34}
+        - {x: -3, y: -35}
+        - {x: 20, y: -35}
+        - {x: 35, y: -23}
+        - {x: 35, y: 18}
+        - {x: 28, y: 26}
+    - name: DwarfOther_4
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 140
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 33}
+        - {x: -30, y: 31}
+        - {x: -30, y: 22}
+        - {x: -18, y: -2}
+        - {x: -5, y: -25}
+        - {x: 5, y: -27}
+        - {x: 26, y: -27}
+        - {x: 35, y: -16}
+        - {x: 35, y: 15}
+        - {x: 10, y: 33}
+      - - {x: -24, y: -5}
+        - {x: -28, y: -7}
+        - {x: -31, y: -15}
+        - {x: -29, y: -17}
+        - {x: -27, y: -17}
+        - {x: -21, y: -13}
+        - {x: -21, y: -6}
+      - - {x: 10, y: 29}
+        - {x: 13, y: 30}
+        - {x: 13, y: 33}
+        - {x: 10, y: 34}
+        - {x: 8, y: 32}
+    - name: DwarfOther_5
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 140
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31, y: 14}
+        - {x: -35, y: 6}
+        - {x: -35, y: -18}
+        - {x: -32, y: -17}
+        - {x: -14, y: -28}
+        - {x: -11, y: -26}
+        - {x: 28, y: -26}
+        - {x: 35, y: -23}
+        - {x: 35, y: 14}
+      - - {x: 31, y: 7}
+        - {x: 33, y: 4}
+        - {x: 35, y: 5}
+        - {x: 35, y: 8}
+        - {x: 33, y: 9}
+      - - {x: -17, y: 14}
+        - {x: -14, y: 15}
+        - {x: -14, y: 18}
+        - {x: -17, y: 19}
+        - {x: -19, y: 17}
+    - name: DwarfOther_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 70
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18, y: 24}
+        - {x: -34, y: 7}
+        - {x: -34, y: -15}
+        - {x: -32, y: -18}
+        - {x: -19, y: -34}
+        - {x: 9, y: -34}
+        - {x: 35, y: -18}
+        - {x: 35, y: 5}
+        - {x: 9, y: 24}
+      - - {x: -2, y: 24}
+        - {x: 1, y: 25}
+        - {x: 1, y: 28}
+        - {x: -2, y: 29}
+        - {x: -4, y: 27}
+    - name: DwarfOther_7
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 70
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 27, y: 28}
+        - {x: -14, y: 28}
+        - {x: -29, y: 12}
+        - {x: -29, y: -11}
+        - {x: -21, y: -20}
+        - {x: -18, y: -24}
+        - {x: -1, y: -33}
+        - {x: 12, y: -33}
+        - {x: 35, y: -25}
+        - {x: 35, y: 14}
+        - {x: 31, y: 25}
+    - name: DwarfOther_8
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 70
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10, y: 26}
+        - {x: 3, y: 26}
+        - {x: 1, y: 23}
+        - {x: 3, y: 13}
+        - {x: -35, y: 7}
+        - {x: -35, y: -26}
+        - {x: 29, y: -26}
+        - {x: 35, y: -20}
+        - {x: 35, y: 5}
+        - {x: 34, y: 10}
+      - - {x: -10, y: 7}
+        - {x: -7, y: 8}
+        - {x: -7, y: 11}
+        - {x: -10, y: 12}
+        - {x: -12, y: 10}
+    - name: DwarfOther_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 31}
+        - {x: -17, y: 12}
+        - {x: -17, y: -21}
+        - {x: -14, y: -29}
+        - {x: 28, y: -29}
+        - {x: 35, y: -28}
+        - {x: 35, y: 22}
+        - {x: 4, y: 31}
+    - name: DwarfOther_10
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 0
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1, y: 35}
+        - {x: -6, y: 35}
+        - {x: -22, y: 10}
+        - {x: -24, y: -4}
+        - {x: -24, y: -27}
+        - {x: 11, y: -27}
+        - {x: 32, y: -12}
+        - {x: 32, y: 12}
+        - {x: 30, y: 14}
+    - name: DwarfOther_11
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 0
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 32, y: -24}
+        - {x: 35, y: -25}
+        - {x: 35, y: 1}
+        - {x: 34, y: 1}
+        - {x: 31, y: 0}
+        - {x: 23, y: 19}
+        - {x: -20, y: 19}
+        - {x: -31, y: 7}
+        - {x: -31, y: -14}
+        - {x: -8, y: -35}
+        - {x: 8, y: -35}
+        - {x: 25, y: -29}
+        - {x: 29, y: -19}
+        - {x: 29, y: -15}
+        - {x: 29, y: -21}
+      - - {x: -32, y: -17}
+        - {x: -29, y: -16}
+        - {x: -29, y: -13}
+        - {x: -32, y: -12}
+        - {x: -34, y: -14}
+      - - {x: -35, y: -10}
+        - {x: -34, y: -11}
+        - {x: -31, y: -10}
+        - {x: -31, y: -7}
+        - {x: -34, y: -6}
+        - {x: -35, y: -7}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

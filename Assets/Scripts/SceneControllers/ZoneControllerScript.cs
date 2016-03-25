@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine;
 using UnityEngine.UI;
 
 using System.Collections.Generic;
@@ -33,7 +32,6 @@ public class ZoneControllerScript : MonoBehaviour {
     private ZoneTreeNode currentNode;
     private long currentNodeIndex;
 
-
     public string debugTextString;
     public Text debugText;
     public Text panelText;
@@ -54,10 +52,6 @@ public class ZoneControllerScript : MonoBehaviour {
     public List<GameObject> objectSpriteList = new List<GameObject>();
 
     Camera mainCamera;
-
-    Point mouseTilePoint;
-    List<Point> movePath = new List<Point>();
-
 
     void Start()
     {
@@ -87,10 +81,6 @@ public class ZoneControllerScript : MonoBehaviour {
 
         setPlayerSprite();
         setPlayerStart();
-
-        //loadPlayerCharacterList();
-
-        displayCollisionSprites();
     }
 
     private void loadTree()
@@ -125,11 +115,25 @@ public class ZoneControllerScript : MonoBehaviour {
 
     private void loadTileMap()
     {
-        //get name of prefab of this map - match same name of tree?
         tileMapPrefab = Resources.Load<GameObject>(zoneTree.treeName);
         tileMapObject = (GameObject)Instantiate(tileMapPrefab);
-       // tileMapObject.tag = "tileMap";
+		//updateMapCollision();  Can't wire this up until player is initialized - unless we retrieve player box2d directly.
     }
+
+	//iterate through all child box2d colliders.  if the parent isn't collision, disable for collision
+	//currently called from playerScript
+	public void updateMapCollision()
+	{
+		var box2dList = tileMapObject.GetComponentsInChildren<BoxCollider2D>();
+		foreach (var box2d in box2dList) {
+			Transform parent = box2d.gameObject.transform.parent;
+
+			string parentName = parent.name;
+			if (parentName != "collision") {
+				Physics2D.IgnoreCollision (box2d, playerScript.playerBoxCollider2D);
+			}
+		}
+	}
 
     private void loadTileMapData()
     {
@@ -185,36 +189,8 @@ public class ZoneControllerScript : MonoBehaviour {
     private void setPlayerStart()
     {
         playerScript.SetPosition(tileMapData.getSpawnPoint((int)zoneTree.currentIndex - 1).center);
-        //player.transform.position = tileMapData.getSpawnPoint((int)zoneTree.currentIndex-1).center;
     }
-
-    //testing
-    private void displayCollisionSprites()
-    {
-
-        for (int i = 0; i < tileMapData.zoneTileArray.GetLength(0); i++)
-        {
-            for (int j = 0; j < tileMapData.zoneTileArray.GetLength(1); j++)
-            {
-                var tileSquare = Instantiate(SpritePrefab);
-                tileSquare.transform.position = getWorldPosFromTilePoint(new Point(i, -j));
-
-                var tileSquareSprite = tileSquare.GetComponent<SpriteRenderer>();
-                tileSquareSprite.sprite = gameDataObject.assetLibrary.getSprite("Tile64", 0);
-
-                if (!tileMapData.zoneTileArray[i, j].empty)
-                {
-                    tileSquareSprite.color = GameConfig.transRed;
-
-                }
-                else
-                {
-                    tileSquareSprite.color = GameConfig.transWhite;
-                }
-            }
-        }
-    }
-	
+		
 	// Update is called once per frame
 	void Update () {
 
@@ -234,9 +210,7 @@ public class ZoneControllerScript : MonoBehaviour {
                 {
                     UpdateMouseClick();
                 }
-
             }
-            UpdateMove();
         }
 
 	}
@@ -251,7 +225,6 @@ public class ZoneControllerScript : MonoBehaviour {
 
         GameCharacter selectedChar = gameDataObject.getSelectedCharacter();
        
-
         GameObject playerBox = (GameObject)Instantiate(pcBoxPrefab);
         playerBox.transform.SetParent(partyListPanel.transform, true);
         UpdatePlayerCharacterBox(playerBox, gameDataObject.playerGameCharacter, gameDataObject.playerGameCharacter.Equals(selectedChar));
@@ -283,37 +256,15 @@ public class ZoneControllerScript : MonoBehaviour {
 
         UIHelper.AddClickToGameObject(pcBox, ClickPCBox, EventTriggerType.PointerClick, gameCharacter as object);
     }
-
-    private void UpdateMove()
-    {
-        if (movePath.Count > 0)
-        {
-         
-            if (Vector3.Distance(player.transform.position, playerScript.moveDestination) < .1f)
-            {
-                Vector3 newPos = getWorldPosFromTilePoint(new Point(movePath[0].x, -movePath[0].y));
-                playerScript.Move(newPos);
-                movePath.RemoveAt(0);
-            }
-        }
-    }
-
+		
     private void UpdateMouseClick()
     {
         Vector3 mousePos = Input.mousePosition;
         Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(mousePos);
-        mouseTilePoint = getTileLocationFromVectorPos(mouseWorldPosition);
+        Point mouseTilePoint = getTileLocationFromVectorPos(mouseWorldPosition);
         if (mouseTilePoint != null)
-        {
-            Bounds mouseTileBounds = getTileBounds(mouseTilePoint.x, mouseTilePoint.y);
+        { 
             AddTileSelectSprite(getWorldPosFromTilePoint(mouseTilePoint));
-
-            if (!(tileMapData.checkCollision(mouseTileBounds)))
-            {
-                Point playerPointPos = getTileLocationFromVectorPos(player.transform.position);
-                movePath = tileMapData.getPath(playerPointPos.x , -playerPointPos.y , mouseTilePoint.x, -mouseTilePoint.y);
-                movePath.RemoveAt(0);
-            }
         }
     }
 
@@ -364,8 +315,7 @@ public class ZoneControllerScript : MonoBehaviour {
     {
         this.debugText.text = text;
     }
-
-
+		
     public void checkPlayerObjectCollision(Bounds playerBounds)
     {
         if (tileMapData != null)
@@ -401,10 +351,6 @@ public class ZoneControllerScript : MonoBehaviour {
        
     }
 
-
-
-
-    
     public void ZoneNodeButtonClick()
     {
         zoneTree.SelectNode(currentNodeIndex);
