@@ -102,18 +102,27 @@ using UnityRPG;
 
         //returns the ZoneTreeNode if its in the root branch list and meets conditions
         public ITreeNode getNodeCheckingRootBranchList(long index)
-        {
-            var rootNode = treeNodeDictionary[1];
-            if (index == 1)
-            {
-                return rootNode; //always return the root node (entrance to the zone)
-            }
-            if (rootNode.getBranchList(this).Find(x => x.linkIndex == index) != null)
-            {
-                return getNode(index);
-            }
-            return null;
-        }
+	{
+		var rootNode = treeNodeDictionary [1];
+		ZoneTreeNode node = (ZoneTreeNode)getNode (index);
+		if (index == 1) {
+			return rootNode; //always return the root node (entrance to the zone)
+		}
+		if (node.content.nodeType == ZoneNodeType.Lock) {
+			//always return lock nodes, regardless of global flags
+			return node;
+		}
+		if (rootNode.getBranchList (this).Find (x => x.linkIndex == index) != null) {
+			return node;
+		}
+		return null;
+	}
+		
+	public bool getLockNodeCollision(long index)
+	{
+		var rootNode = treeNodeDictionary [1];
+		return (rootNode.getBranchList (this).Find (x => x.linkIndex == index) == null);
+	}
 
         public void SelectNode(long index)
         {

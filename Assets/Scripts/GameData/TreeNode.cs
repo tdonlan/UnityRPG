@@ -39,6 +39,7 @@ using System.Text;
                 {
                     foreach (var cond in tb.conditionList)
                     {
+					
                         if (!t.globalFlags.checkFlag(cond.flagName, cond.value, cond.flagCompareType))
                         {
                             branchInclude = false;

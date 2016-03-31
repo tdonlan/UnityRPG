@@ -82,7 +82,8 @@ public enum PlayerDecideState
         Info,
         Puzzle,
         Link,
-        Cutscene
+        Cutscene,
+		Lock
 
     }
 

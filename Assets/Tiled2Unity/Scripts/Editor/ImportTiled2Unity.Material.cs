@@ -1,4 +1,7 @@
-﻿using System;
+﻿#if !UNITY_WEBPLAYER
+// Note: This parital class is not compiled in for WebPlayer builds.
+// The Unity Webplayer is deprecated. If you *must* use it then make sure Tiled2Unity assets are imported via another build target first.
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,22 +19,20 @@ namespace Tiled2Unity
     partial class ImportTiled2Unity
     {
         // We need to call this while the renderers on the model is having its material assigned to it
+        // This is invoked for every submesh in the .obj wavefront mesh
         public Material FixMaterialForMeshRenderer(string objName, Renderer renderer)
         {
             string xmlPath = GetXmlImportAssetPath(objName);
-            XDocument xml = XDocument.Load(xmlPath);
+            ImportBehaviour importBehavior = ImportBehaviour.FindOrCreateImportBehaviour(xmlPath);
 
             // The mesh to match
             string meshName = renderer.name;
 
-            // The mesh name may be decorated by Unity
-            string pattern = @"_MeshPart[\d]$";
-            Regex regex = new Regex(pattern);
-            meshName = regex.Replace(meshName, "");
-
-            var assignMaterials = xml.Root.Elements("AssignMaterial");
+            // Increment our progress bar
+            importBehavior.IncrementProgressBar(String.Format("Assign material: {0}", meshName));
 
             // Find an assignment that matches the mesh renderer
+            var assignMaterials = importBehavior.XmlDocument.Root.Elements("AssignMaterial");
             XElement match = assignMaterials.FirstOrDefault(el => el.Attribute("mesh").Value == meshName);
 
             if (match == null)
@@ -57,22 +58,6 @@ namespace Tiled2Unity
             {
                 Debug.LogError(String.Format("Could not find material: {0}", materialName));
             }
-            renderer.sharedMaterial = material;
-
-            // Set the sorting layer for the mesh
-            string sortingLayer = match.Attribute("sortingLayerName").Value;
-            if (!String.IsNullOrEmpty(sortingLayer) && !SortingLayerExposedEditor.GetSortingLayerNames().Contains(sortingLayer))
-            {
-                Debug.LogError(string.Format("Sorting Layer \"{0}\" does not exist. Check your Project Settings -> Tags and Layers", sortingLayer));
-                renderer.sortingLayerName = "Default";
-            }
-            else
-            {
-                renderer.sortingLayerName = sortingLayer;
-            }
-
-            // Set the sorting order
-            renderer.sortingOrder = ImportUtils.GetAttributeAsInt(match, "sortingOrder");
 
             // Do we have an alpha color key?
             string htmlColor = ImportUtils.GetAttributeAsString(match, "alphaColorKey", "");
@@ -83,10 +68,11 @@ namespace Tiled2Unity
                 byte g = byte.Parse(htmlColor.Substring(3, 2), System.Globalization.NumberStyles.HexNumber);
                 byte b = byte.Parse(htmlColor.Substring(5, 2), System.Globalization.NumberStyles.HexNumber);
                 Color color = new Color32(r, g, b, 255);
-                renderer.sharedMaterial.SetColor("_AlphaColorKey", color);
+                material.SetColor("_AlphaColorKey", color);
             }
 
-            return renderer.sharedMaterial;
+            return material;
         }
     }
 }
+#endif

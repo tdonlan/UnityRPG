@@ -1,7 +1,13 @@
-﻿using System.Collections;
+﻿#if UNITY_4_0 || UNITY_4_0_1 || UNITY_4_2 || UNITY_4_3 || UNITY_4_5 || UNITY_4_6 || UNITY_4_7 || UNITY_5_0 || UNITY_5_1 || UNITY_5_2
+#define T2U_USE_LEGACY_IMPORTER
+#else
+#undef T2U_USE_LEGACY_IMPORTER
+#endif
+
+using System.Collections;
 using System.IO;
+using System.Linq;
 using System.Xml;
-using System.Xml.Linq;
 using System;
 
 using UnityEditor;
@@ -14,13 +20,44 @@ namespace Tiled2Unity
     {
         private static bool UseThisImporter(string assetPath)
         {
+            // Certain file types are ignored by this asset post processor (i.e. scripts)
+            // (Note that an empty string as the extension is a folder)
+            string[] ignoreThese = { ".cs", ".txt", "", };
+            if (ignoreThese.Any(ext => String.Compare(ext, Path.GetExtension(assetPath), true) == 0))
+            {
+                return false;
+            }
+
+            // Note: This importer can never be used if UNITY_WEBPLAYER is the configuration
+            bool useThisImporter = false;
+
             // Is this file relative to our Tiled2Unity export marker file?
             // If so, then we want to use this asset postprocessor
-            string assetFolder = Path.GetFullPath(Path.GetDirectoryName(assetPath));
-            string exportMarkerPath = Path.Combine(assetFolder, "..");
-            exportMarkerPath = Path.Combine(exportMarkerPath, "Tiled2Unity.export.txt");
+            string path = assetPath;
+            while (!String.IsNullOrEmpty(path))
+            {
+                path = Path.GetDirectoryName(path);
+                string exportMarkerPath = Path.Combine(path, "Tiled2Unity.export.txt");
+                if (File.Exists(exportMarkerPath))
+                {
+                    // This is a file under the Tiled2Unity root.
+                    useThisImporter = true;
+                    break;
+                }
+            }
 
-            return File.Exists(exportMarkerPath);
+            if (useThisImporter == true)
+            {
+#if UNITY_WEBPLAYER
+                String warning = String.Format("Importing '{0}' but Tiled2Unity files cannot be imported with the WebPlayer[deprecated] platform.\nHowever, You can use Tiled2Unity prefabs imported by another platform.", assetPath);
+                Debug.LogWarning(warning);
+                return false;
+#else
+                return true;
+#endif
+            }
+
+            return false;
         }
 
         private bool UseThisImporter()
@@ -34,19 +71,20 @@ namespace Tiled2Unity
             {
                 if (UseThisImporter(imported))
                 {
-                    //Debug.Log(string.Format("Imported: {0}", imported));
+                   //Debug.Log(string.Format("Imported: {0}", imported));
                 }
                 else
                 {
                     continue;
                 }
 
+#if !UNITY_WEBPLAYER
                 using (ImportTiled2Unity t2uImporter = new ImportTiled2Unity(imported))
                 {
                     if (t2uImporter.IsTiled2UnityFile())
                     {
-                        // Start the import process by importing our textures and meshes
-                        t2uImporter.XmlImported(imported);
+                        // Start the import process. This will trigger textures and meshes to be imported as well.
+                        t2uImporter.ImportBegin(imported);
                     }
                     else if (t2uImporter.IsTiled2UnityTexture())
                     {
@@ -55,13 +93,17 @@ namespace Tiled2Unity
                     }
                     else if (t2uImporter.IsTiled2UnityWavefrontObj())
                     {
+                        // Now that the mesh has been imported we will build the prefab
                         t2uImporter.MeshImported(imported);
                     }
                     else if (t2uImporter.IsTiled2UnityPrefab())
                     {
+                        // Now the the prefab is built and imported we are done
+                        t2uImporter.ImportFinished(imported);
                         Debug.Log(string.Format("Imported prefab from Tiled map editor: {0}", imported));
                     }
                 }
+#endif
             }
         }
 
@@ -74,12 +116,17 @@ namespace Tiled2Unity
 
             // Keep normals otherwise Unity will complain about needing them.
             // Normals may not be a bad idea anyhow
+#if T2U_USE_LEGACY_IMPORTER
             modelImporter.normalImportMode = ModelImporterTangentSpaceMode.Import;
+            modelImporter.tangentImportMode = ModelImporterTangentSpaceMode.None;
+#else
+            modelImporter.importNormals = ModelImporterNormals.Import;
+            modelImporter.importTangents = ModelImporterTangents.None;
+#endif
 
             // Don't need animations or tangents.
             modelImporter.generateAnimations = ModelImporterGenerateAnimations.None;
             modelImporter.animationType = ModelImporterAnimationType.None;
-            modelImporter.tangentImportMode = ModelImporterTangentSpaceMode.None;
 
             // Do not need mesh colliders on import.
             modelImporter.addCollider = false;
@@ -99,9 +146,19 @@ namespace Tiled2Unity
             {
                 mr.gameObject.AddComponent<SortingLayerExposed>();
 
-                // Also, no shadows
+                // No shadows
                 mr.receiveShadows = false;
-                ImportUtils.SetCastShadows(mr, false);
+#if T2U_USE_LEGACY_IMPORTER
+                mr.castShadows = false;
+#else
+                mr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+#endif
+
+                // No probes
+                mr.useLightProbes = false;
+#if !T2U_USE_LEGACY_IMPORTER
+                mr.reflectionProbeUsage = UnityEngine.Rendering.ReflectionProbeUsage.Off;
+#endif
             }
         }
 
@@ -124,8 +181,12 @@ namespace Tiled2Unity
                 rootName = rootName.Remove(rootIndex);
             }
 
+#if !UNITY_WEBPLAYER
             ImportTiled2Unity importer = new ImportTiled2Unity(this.assetPath);
             return importer.FixMaterialForMeshRenderer(rootName, renderer);
+#else
+            return null;
+#endif
         }
 
         private void OnPreprocessTexture()

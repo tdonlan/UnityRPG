@@ -126,12 +126,31 @@ public class ZoneControllerScript : MonoBehaviour {
 	public void updateMapCollision()
 	{
 		var box2dList = tileMapObject.GetComponentsInChildren<BoxCollider2D>();
+		int objectCount = 0;
 		foreach (var box2d in box2dList) {
 			Transform parent = box2d.gameObject.transform.parent;
 
 			string parentName = parent.name;
 			if (parentName != "collision") {
-				Physics2D.IgnoreCollision (box2d, playerScript.playerBoxCollider2D);
+				if (parentName == "objects") {
+					Debug.Log ("Checking object collision");
+					//check for lock
+					ZoneTreeNode node = (ZoneTreeNode)zoneTree.getNodeCheckingRootBranchList(objectCount+1);
+					if (node.content.nodeType == ZoneNodeType.Lock) {
+						if (zoneTree.getLockNodeCollision (objectCount + 1)) {
+							Debug.Log ("Removing collision for lock");
+							Physics2D.IgnoreCollision (box2d, playerScript.playerBoxCollider2D);
+						} else {
+							Debug.Log ("Enabling collision for lock");
+							Physics2D.IgnoreCollision (box2d, playerScript.playerBoxCollider2D, false);
+						}
+					} else {
+						Physics2D.IgnoreCollision (box2d, playerScript.playerBoxCollider2D);
+					}
+					objectCount++;
+				} else {
+					Physics2D.IgnoreCollision (box2d, playerScript.playerBoxCollider2D);
+				}
 			}
 		}
 	}
@@ -139,7 +158,6 @@ public class ZoneControllerScript : MonoBehaviour {
     private void loadTileMapData()
     {
         tileMapData = new TileMapData(tileMapObject);
-  
     }
 
     private void loadTileSprites()
@@ -157,7 +175,11 @@ public class ZoneControllerScript : MonoBehaviour {
             ZoneTreeNode node = (ZoneTreeNode)zoneTree.getNodeCheckingRootBranchList(i+1);
             if (node != null)
             {
-                objectSpriteList.Add(loadTileSprite(node.content.spritesheetName,node.content.spritesheetIndex, tileMapData.objectBounds[i].center));
+				if (node.content.nodeType == ZoneNodeType.Lock && zoneTree.getLockNodeCollision(i+1)) {
+					objectSpriteList.Add(loadTileSprite(node.content.iconSpritesheetName,node.content.iconSpritesheetIndex, tileMapData.objectBounds[i].center));
+				} else {
+					objectSpriteList.Add(loadTileSprite(node.content.spritesheetName,node.content.spritesheetIndex, tileMapData.objectBounds[i].center));
+				}
             }
         }
     }
@@ -165,7 +187,6 @@ public class ZoneControllerScript : MonoBehaviour {
     private GameObject loadTileSprite(string spritesheetName, int spriteIndex, Vector3 pos)
     {
         GameObject spriteObject = null;
-       // var spriteResource = Resources.Load<Sprite>("ZoneImage/"+spriteName);
         var spriteResource = gameDataObject.assetLibrary.getSprite(spritesheetName, spriteIndex);
         if (spriteResource != null)
         {
@@ -174,9 +195,7 @@ public class ZoneControllerScript : MonoBehaviour {
             var spriteObjectSprite = spriteObject.GetComponent<SpriteRenderer>();
             spriteObjectSprite.sprite = spriteResource;
         }
-
         return spriteObject;
-
     }
 
     private void setPlayerSprite()
@@ -332,9 +351,10 @@ public class ZoneControllerScript : MonoBehaviour {
                     {
                         ZoneNodeButtonClick();
                     }
-  
-                    panelText.text = currentNode.content.nodeName + " " + currentNode.content.description;
-                    panelButton.enabled = true;
+					else if (currentNode.content.nodeType != ZoneNodeType.Lock) {
+						panelText.text = currentNode.content.nodeName + " " + currentNode.content.description;
+						panelButton.enabled = true;
+					}
                 }
                 else
                 {
@@ -357,7 +377,6 @@ public class ZoneControllerScript : MonoBehaviour {
         zoneTree.SelectNode(currentNodeIndex);
         if (currentNode != null)
         {
-
             switch (currentNode.content.nodeType)
             {
                 case ZoneNodeType.Link:
@@ -390,6 +409,9 @@ public class ZoneControllerScript : MonoBehaviour {
 
         TreeInfoControllerScript treeInfoScript = TreeInfoPanel.GetComponent<TreeInfoControllerScript>();
         treeInfoScript.UpdateInfo(gameDataObject, curInfoTree);
+
+		//if this Info Node changes flags that would update locks  
+		updateMapCollision ();
 
 
         treeInfoPanelRectTransform.localPosition = new UnityEngine.Vector3(0, 0, 0);

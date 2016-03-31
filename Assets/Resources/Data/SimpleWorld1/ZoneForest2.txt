@@ -4,6 +4,7 @@ Clearing in the Woods
 --
 2:Skeletons!{!SkeletonsKilled}
 3:Treasure Chest {!ForestChest}
+4:Locked Gate {!HermitSecret}
 ----
 2
 Skeletons!
@@ -13,5 +14,10 @@ Skeletons!
 3
 Treasure Chest
 8;Treasure Chest;Info;A wooden chest with an iron lock;Icons1;80;MiscItems1;5
+--
+----
+4
+Locked Gate
+0;Locked Gate;Lock;A wooden gate with an iron lock;Blank;0;MiscItems1;5
 --
 ----
