@@ -14,6 +14,10 @@ public class InventoryTestController : MonoBehaviour
 
 	//prefabs
 	private GameObject draggableItemPrefab;
+	private GameObject itemInfoPrefab;
+
+	private GameObject itemInfoPopup;
+
 
 	private bool isInventoryLoaded = false;
 
@@ -33,7 +37,7 @@ public class InventoryTestController : MonoBehaviour
 	private void loadPrefabs()
 	{
 		draggableItemPrefab = Resources.Load<GameObject> ("PrefabUI/DragItemPrefab");
-		
+		itemInfoPrefab = Resources.Load<GameObject> ("PrefabUI/ItemInfoPrefab");
 	}
 
 	private void loadGameData()
@@ -44,41 +48,38 @@ public class InventoryTestController : MonoBehaviour
 	private void initScene()
 	{
 		dragAndDropScript = GameObject.FindObjectOfType<DragAndDropScript> ();
-
-
 	}
 
 	private void loadInventory()
 	{
 		var inventoryList = gameDataObject.playerGameCharacter.inventory;
 
-		//debugText.text = JsonUtility.ToJson (inventoryList);
-
 		int slotCounter = 0;
 		foreach (var i in inventoryList) {
+			
 			debugText.text += i.name;
+
 			var dragItem = initDraggableItem (i);
 			if (slotCounter < dragAndDropScript.slotList.Count) {
 				var slot = dragAndDropScript.slotList [slotCounter];
 
 				var dragItemScript = dragItem.GetComponent<DragItemControllerScript> ();
+
+				dragAndDropScript.draggableItemList.Add (dragItemScript);
 				slot.addItem (dragItemScript);
-				//dragItemScript.addToSlot (slot);
 				slotCounter++;
 			}
 
-
-			
 		}
 
 	}
-
-
 
 	private GameObject initDraggableItem(Item i)
 	{
 		var dragItem = Instantiate (draggableItemPrefab);
 		dragItem.transform.parent = dragAndDropScript.canvasTransform;
+		var dragItemScript = dragItem.GetComponent<DragItemControllerScript> ();
+		dragItemScript.item = i;
 		var dragItemSprite = dragItem.GetComponent<Image> ();
 		dragItemSprite.sprite = gameDataObject.assetLibrary.getSprite (i.sheetname, i.spriteindex);
 
@@ -93,6 +94,29 @@ public class InventoryTestController : MonoBehaviour
 			loadInventory ();
 			isInventoryLoaded = true;
 		}
+
+		checkMouseOver ();
+	}
+
+	private void checkMouseOver()
+	{
+		Destroy (itemInfoPopup);
+		foreach (var dragItem in dragAndDropScript.draggableItemList) {
+			if (dragItem.boxCollider2D.OverlapPoint (Input.mousePosition)) {
+				initItemInfoPopup (dragItem);
+			}
+		}
+
+	}
+
+	private void initItemInfoPopup(DragItemControllerScript dragItem)
+	{
+		itemInfoPopup = Instantiate (itemInfoPrefab);
+		itemInfoPopup.transform.parent = dragAndDropScript.canvasTransform;
+		itemInfoPopup.transform.position = Input.mousePosition;
+		var itemInfoText = itemInfoPopup.GetComponentInChildren<Text> ();
+		itemInfoText.text = dragItem.item.ToString ();
+
 	}
 }
 

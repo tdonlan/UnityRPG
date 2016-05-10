@@ -39,6 +39,8 @@ public class DragAndDropScript : MonoBehaviour {
 		
 	private void UpdateMouse()
 	{
+
+
 		if (Input.GetMouseButtonDown (0)) {
 			checkGrab ();
 		}
@@ -46,7 +48,7 @@ public class DragAndDropScript : MonoBehaviour {
 			ReleaseItem ();
 		}
 	}
-
+		
 	private void checkGrab()
 	{
 		foreach (var slot in slotList) {
