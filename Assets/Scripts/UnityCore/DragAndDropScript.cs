@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class DragAndDropScript : MonoBehaviour {
 
@@ -18,7 +19,12 @@ public class DragAndDropScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		addSlots ();
+	}
+
+	void addSlots()
+	{
+		slotList = GameObject.FindObjectsOfType<SlotControllerScript> ().ToList();
 	}
 	
 	// Update is called once per frame
@@ -30,8 +36,6 @@ public class DragAndDropScript : MonoBehaviour {
 			DragCurrentItem ();
 		}
 	}
-
-
 		
 	private void UpdateMouse()
 	{
