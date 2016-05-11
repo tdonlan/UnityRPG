@@ -74,6 +74,21 @@ public class InventoryTestController : MonoBehaviour
 
 	}
 
+	private void loadEquipment()
+	{
+		var armorList = gameDataObject.playerGameCharacter.equippedArmor;
+		foreach (var armor in armorList) {
+			var dragItem = initDraggableItem ((Item)armor);
+			var slot = dragAndDropScript.equipmentDictionary [armor.armorType];
+			var dragItemScript = dragItem.GetComponent<DragItemControllerScript> ();
+
+			dragAndDropScript.draggableItemList.Add (dragItemScript);
+			slot.addItem (dragItemScript);
+
+		}
+	
+	}
+
 	private GameObject initDraggableItem(Item i)
 	{
 		var dragItem = Instantiate (draggableItemPrefab);
@@ -92,6 +107,7 @@ public class InventoryTestController : MonoBehaviour
 	{
 		if (!isInventoryLoaded) {
 			loadInventory ();
+			loadEquipment ();
 			isInventoryLoaded = true;
 		}
 

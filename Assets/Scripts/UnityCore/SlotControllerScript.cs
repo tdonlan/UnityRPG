@@ -53,7 +53,7 @@ public class SlotControllerScript : MonoBehaviour
 		return null;
 	}
 
-	public bool addItem(DragItemControllerScript dragItem)
+	public virtual bool addItem(DragItemControllerScript dragItem)
 	{
 		Debug.Log ("Added item " + dragItem.gameObject.name + "  to " + gameObject.name);
 

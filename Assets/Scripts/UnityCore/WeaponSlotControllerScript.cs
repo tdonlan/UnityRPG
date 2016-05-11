@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 using UnityRPG;
 
-public class EquipmentSlotControllerScript : SlotControllerScript
+public class WeaponSlotControllerScript : SlotControllerScript
 {
-	public ArmorType armorType;
+	public WeaponType weaponType;
 
 }
 
