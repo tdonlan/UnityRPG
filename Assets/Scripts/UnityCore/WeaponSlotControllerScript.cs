@@ -6,7 +6,15 @@ using UnityRPG;
 
 public class WeaponSlotControllerScript : SlotControllerScript
 {
-	public WeaponType weaponType;
+	public override bool addItem(DragItemControllerScript dragItem)
+	{
+		if(dragItem.item is Weapon)
+		 {
+			return base.addItem (dragItem);
+		} else {
+			return false;
+		}
 
+	}
 }
 

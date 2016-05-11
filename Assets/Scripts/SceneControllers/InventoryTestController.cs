@@ -84,9 +84,19 @@ public class InventoryTestController : MonoBehaviour
 
 			dragAndDropScript.draggableItemList.Add (dragItemScript);
 			slot.addItem (dragItemScript);
-
 		}
 	
+	}
+
+	private void loadWeapon()
+	{
+
+		if (gameDataObject.playerGameCharacter.weapon != null) {
+			var dragItem = initDraggableItem ((Item)gameDataObject.playerGameCharacter.weapon);
+			var dragItemScript = dragItem.GetComponent<DragItemControllerScript> ();
+			dragAndDropScript.draggableItemList.Add (dragItemScript);
+			dragAndDropScript.weaponSlot.addItem (dragItemScript);
+		}
 	}
 
 	private GameObject initDraggableItem(Item i)
@@ -108,6 +118,7 @@ public class InventoryTestController : MonoBehaviour
 		if (!isInventoryLoaded) {
 			loadInventory ();
 			loadEquipment ();
+			loadWeapon ();
 			isInventoryLoaded = true;
 		}
 
@@ -127,7 +138,6 @@ public class InventoryTestController : MonoBehaviour
 				}
 			}
 		}
-
 	}
 
 	private void checkRightClick()
@@ -140,6 +150,9 @@ public class InventoryTestController : MonoBehaviour
 						switch (slotItem.item.type) {
 						case ItemType.Armor:
 							rightClickArmor (slot, slotItem);
+							break;
+						case ItemType.Weapon:
+							rightClickWeapon (slot, slotItem);
 							break;
 						default:
 							break;
@@ -169,9 +182,21 @@ public class InventoryTestController : MonoBehaviour
 		}
 	}
 
-	private void rightClickWeapon()
+	private void rightClickWeapon(SlotControllerScript slot, DragItemControllerScript dragItem)
 	{
-
+		if (slot is WeaponSlotControllerScript) {
+			//do nothing if we're already an weapon slot
+			return;
+		} else {
+			Weapon a = (Weapon)dragItem.item;
+			var weaponSlot = dragAndDropScript.weaponSlot;
+			var curWeapon = weaponSlot.getItem ();
+			if (curWeapon != null) {
+				//switch items
+				slot.addItem (curWeapon);
+			}
+			weaponSlot.addItem (dragItem);
+		}
 	}
 
 	private void rightClickUsableItem()

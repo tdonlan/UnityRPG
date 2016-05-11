@@ -11,6 +11,7 @@ public class DragAndDropScript : MonoBehaviour {
 	public List<DragItemControllerScript> draggableItemList = new List<DragItemControllerScript>();
 	public List<SlotControllerScript> slotList = new List<SlotControllerScript>();
 	public Dictionary<ArmorType,EquipmentSlotControllerScript> equipmentDictionary = new Dictionary<ArmorType, EquipmentSlotControllerScript> ();
+	public WeaponSlotControllerScript weaponSlot = new WeaponSlotControllerScript(); 
 
 	public DragItemControllerScript currentItem = null;
 	public SlotControllerScript lastSlot = null;
@@ -33,6 +34,8 @@ public class DragAndDropScript : MonoBehaviour {
 		{
 			equipmentDictionary.Add (armorSlot.armorType, armorSlot);
 		}
+
+		weaponSlot = GameObject.FindObjectOfType<WeaponSlotControllerScript> ();
 	}
 	
 	// Update is called once per frame
