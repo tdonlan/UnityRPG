@@ -112,6 +112,7 @@ public class InventoryTestController : MonoBehaviour
 		}
 
 		checkMouseOver ();
+		checkRightClick ();
 	}
 
 	//TODO: inefficient to instantiate every frame?
@@ -126,6 +127,55 @@ public class InventoryTestController : MonoBehaviour
 				}
 			}
 		}
+
+	}
+
+	private void checkRightClick()
+	{
+		if (Input.GetMouseButtonDown (1)) {
+			foreach (var slot in dragAndDropScript.slotList) {
+				if (slot.boxCollider2D.OverlapPoint (Input.mousePosition)) {
+					var slotItem = slot.getItem ();
+					if (slotItem != null) {
+						switch (slotItem.item.type) {
+						case ItemType.Armor:
+							rightClickArmor (slot, slotItem);
+							break;
+						default:
+							break;
+						}
+					}
+				}
+
+			}
+
+		}
+	}
+
+	private void rightClickArmor(SlotControllerScript slot, DragItemControllerScript dragItem)
+	{
+		if (slot is EquipmentSlotControllerScript) {
+			//do nothing if we're already an equipment slot
+			return;
+		} else {
+			Armor a = (Armor)dragItem.item;
+			var equipSlot = dragAndDropScript.equipmentDictionary [a.armorType];
+			var curEquipItem = equipSlot.getItem ();
+			if (curEquipItem != null) {
+				//switch items
+				slot.addItem (curEquipItem);
+			}
+			equipSlot.addItem (dragItem);
+		}
+	}
+
+	private void rightClickWeapon()
+	{
+
+	}
+
+	private void rightClickUsableItem()
+	{
 
 	}
 
