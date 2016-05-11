@@ -118,6 +118,7 @@ public class InventoryTestController : MonoBehaviour
 		itemInfoPopup = Instantiate (itemInfoPrefab);
 		itemInfoPopup.transform.parent = dragAndDropScript.canvasTransform;
 		itemInfoPopup.transform.position = Input.mousePosition;
+
 		var itemInfoText = itemInfoPopup.GetComponentInChildren<Text> ();
 		itemInfoText.text = dragItem.item.ToString ();
 
