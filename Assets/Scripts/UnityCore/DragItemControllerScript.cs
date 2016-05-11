@@ -11,7 +11,6 @@ public class DragItemControllerScript: MonoBehaviour
 
 	public Item item; 
 
-
 	// Use this for initialization
 	void Start ()
 	{

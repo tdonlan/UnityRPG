@@ -27,8 +27,6 @@ public class SlotControllerScript : MonoBehaviour
 			dragItem.transform.position = gameObject.transform.position;
 		}
 
-		//updateSlotText ();
-
 	}
 
 	private void updateSlotText()

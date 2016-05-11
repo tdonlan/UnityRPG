@@ -98,12 +98,16 @@ public class InventoryTestController : MonoBehaviour
 		checkMouseOver ();
 	}
 
+	//TODO: inefficient to instantiate every frame?
 	private void checkMouseOver()
 	{
 		Destroy (itemInfoPopup);
-		foreach (var dragItem in dragAndDropScript.draggableItemList) {
-			if (dragItem.boxCollider2D.OverlapPoint (Input.mousePosition)) {
-				initItemInfoPopup (dragItem);
+		//only display popup if not dragging.
+		if (dragAndDropScript.currentItem == null) {
+			foreach (var dragItem in dragAndDropScript.draggableItemList) {
+				if (dragItem.boxCollider2D.OverlapPoint (Input.mousePosition)) {
+					initItemInfoPopup (dragItem);
+				}
 			}
 		}
 
