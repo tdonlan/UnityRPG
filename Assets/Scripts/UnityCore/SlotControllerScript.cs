@@ -2,8 +2,11 @@
 using System.Collections;
 using UnityEngine.UI;
 
+using UnityRPG;
+
 public class SlotControllerScript : MonoBehaviour
 {
+	public GameDataObject gameDataObject { get; set; }
 
 	public DragItemControllerScript dragItem;
 	public BoxCollider2D boxCollider2D;
@@ -14,6 +17,16 @@ public class SlotControllerScript : MonoBehaviour
 	void Start ()
 	{
 		
+	}
+
+	void OnLevelWasLoaded(int level)
+	{
+		loadGameData();
+	}
+
+	private void loadGameData()
+	{
+		gameDataObject = GameObject.FindObjectOfType<GameDataObject>();
 	}
 	
 	// Update is called once per frame
@@ -40,9 +53,12 @@ public class SlotControllerScript : MonoBehaviour
 		}
 	}
 		
-	public DragItemControllerScript getItem()
+	public virtual DragItemControllerScript getItem()
 	{
 		if (this.dragItem != null) {
+
+			gameDataObject.playerGameCharacter.inventory.Remove (this.dragItem.item);
+
 			Debug.Log("Removed item " + this.dragItem.gameObject.name + "  from " + gameObject.name);
 
 			DragItemControllerScript tempItem = dragItem;
@@ -60,6 +76,9 @@ public class SlotControllerScript : MonoBehaviour
 		if (this.dragItem == null) {
 			this.dragItem = dragItem;
 			this.dragItem.addToSlot (this);
+
+			gameDataObject.playerGameCharacter.inventory.Add (this.dragItem.item);
+
 			return true;
 		} else {
 			return false;

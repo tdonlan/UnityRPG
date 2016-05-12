@@ -24,7 +24,7 @@ public class InventoryTestController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-	
+		
 	}
 
 	void OnLevelWasLoaded(int level)
@@ -57,7 +57,7 @@ public class InventoryTestController : MonoBehaviour
 		int slotCounter = 0;
 		foreach (var i in inventoryList) {
 			
-			debugText.text += i.name;
+			//debugText.text += i.name;
 
 			var dragItem = initDraggableItem (i);
 			if (slotCounter < dragAndDropScript.slotList.Count) {
@@ -124,6 +124,14 @@ public class InventoryTestController : MonoBehaviour
 
 		checkMouseOver ();
 		checkRightClick ();
+
+		UpdateStats ();
+	}
+
+	private void UpdateStats()
+	{
+		debugText.text = gameDataObject.playerGameCharacter.ToString ();
+
 	}
 
 	//TODO: inefficient to instantiate every frame?
@@ -188,7 +196,7 @@ public class InventoryTestController : MonoBehaviour
 			//do nothing if we're already an weapon slot
 			return;
 		} else {
-			Weapon a = (Weapon)dragItem.item;
+			
 			var weaponSlot = dragAndDropScript.weaponSlot;
 			var curWeapon = weaponSlot.getItem ();
 			if (curWeapon != null) {

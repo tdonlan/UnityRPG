@@ -50,8 +50,6 @@ public class DragAndDropScript : MonoBehaviour {
 		
 	private void UpdateMouse()
 	{
-
-
 		if (Input.GetMouseButtonDown (0)) {
 			checkGrab ();
 		}
@@ -84,7 +82,6 @@ public class DragAndDropScript : MonoBehaviour {
 	private void DragCurrentItem()
 	{
 		currentItem.gameObject.transform.position = Input.mousePosition;
-
 	}
 
 
@@ -94,7 +91,8 @@ public class DragAndDropScript : MonoBehaviour {
 			bool isSet = false;
 			foreach (var slot in slotList) {
 				if (slot.boxCollider2D.OverlapPoint (Input.mousePosition)) {
-					if (slot.addItem (currentItem)) {
+					if(addItemToSlot (slot, currentItem))
+					{
 						isSet = true;
 					}
 					break;
@@ -107,5 +105,24 @@ public class DragAndDropScript : MonoBehaviour {
 				
 			currentItem = null;
 		}
+	}
+
+	private bool addItemToSlot(SlotControllerScript slot, DragItemControllerScript dragItem)
+	{
+		if (slot.addItem (dragItem))
+		{
+			if (slot is EquipmentSlotControllerScript) {
+
+			} else if (slot is WeaponSlotControllerScript) {
+
+			} else if (slot is HotbarSlotControllerScript) {
+			} else 
+			{
+				
+			
+			}
+			return true;
+		}
+		return false;
 	}
 }
