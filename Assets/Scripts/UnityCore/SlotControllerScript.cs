@@ -36,6 +36,7 @@ public class SlotControllerScript : MonoBehaviour
 			this.boxCollider2D = this.gameObject.GetComponent<BoxCollider2D>();
 		}
 
+		//TODO: is this a hack?
 		if (dragItem != null) {
 			dragItem.transform.position = gameObject.transform.position;
 		}
@@ -57,7 +58,7 @@ public class SlotControllerScript : MonoBehaviour
 	{
 		if (this.dragItem != null) {
 
-			gameDataObject.playerGameCharacter.inventory.Remove (this.dragItem.item);
+			removeInventoryItem (this.dragItem.item);
 
 			Debug.Log("Removed item " + this.dragItem.gameObject.name + "  from " + gameObject.name);
 
@@ -77,7 +78,7 @@ public class SlotControllerScript : MonoBehaviour
 			this.dragItem = dragItem;
 			this.dragItem.addToSlot (this);
 
-			gameDataObject.playerGameCharacter.inventory.Add (this.dragItem.item);
+			addInventoryItem (this.dragItem.item);
 
 			return true;
 		} else {
@@ -85,5 +86,27 @@ public class SlotControllerScript : MonoBehaviour
 		}
 	}
 
+	//Place an item in a slot, but dont update underlying inventory.  Used for bulk loads from inventory
+	public bool putItem(DragItemControllerScript dragItem)
+	{
+		if (this.dragItem == null) {
+			this.dragItem = dragItem;
+			this.dragItem.addToSlot (this);
+			return true;
+		} else {
+			return false;
+		}
+	}
+		
+
+	private void addInventoryItem(Item i)
+	{
+		gameDataObject.addItem (i.ID, 1);
+	}
+
+	private void removeInventoryItem(Item i)
+	{
+		gameDataObject.removeItem (i.ID, 1);
+	}
 }
 

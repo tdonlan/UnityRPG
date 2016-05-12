@@ -13,7 +13,7 @@ public class EquipmentSlotControllerScript : SlotControllerScript
 	{
 		if (this.dragItem != null) {
 
-			gameDataObject.playerGameCharacter.RemoveArmor ((Armor)dragItem.item);
+			removeArmor ((Armor)dragItem.item);
 
 			Debug.Log("Removed item " + this.dragItem.gameObject.name + "  from " + gameObject.name);
 
@@ -23,6 +23,7 @@ public class EquipmentSlotControllerScript : SlotControllerScript
 		}
 		return null;
 	}
+
 
 	public override bool addItem(DragItemControllerScript dragItem)
 	{
@@ -35,7 +36,7 @@ public class EquipmentSlotControllerScript : SlotControllerScript
 					this.dragItem = dragItem;
 					this.dragItem.addToSlot (this);
 
-					gameDataObject.playerGameCharacter.EquipArmor (a);
+					addArmor (a);
 
 					return true;
 				} 
@@ -43,7 +44,16 @@ public class EquipmentSlotControllerScript : SlotControllerScript
 		}
 
 		return false;
+	}
 
+	private void removeArmor(Armor a)
+	{
+		gameDataObject.getSelectedCharacter ().RemoveArmor (a);
+	}
+
+	private void addArmor(Armor a)
+	{
+		gameDataObject.getSelectedCharacter ().EquipArmor (a);
 	}
 }
 

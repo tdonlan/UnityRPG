@@ -29,6 +29,7 @@ public class DragItemControllerScript: MonoBehaviour
 	public void addToSlot(SlotControllerScript slot)
 	{
 		this.lastSlot = slot;
+		this.transform.position = slot.transform.position;
 	}
 
 	public void returnToSlot()

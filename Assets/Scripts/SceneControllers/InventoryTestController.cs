@@ -7,6 +7,8 @@ using UnityRPG;
 public class InventoryTestController : MonoBehaviour
 {
 	public GameDataObject gameDataObject { get; set; }
+	public GameCharacter selectedGameCharacter;
+	public int selectedCharIndex = 0;
 
 	public Text debugText;
 
@@ -43,6 +45,8 @@ public class InventoryTestController : MonoBehaviour
 	private void loadGameData()
 	{
 		gameDataObject = GameObject.FindObjectOfType<GameDataObject>();
+		gameDataObject.SelectCharacter (gameDataObject.playerGameCharacter);
+		selectedGameCharacter = gameDataObject.getSelectedCharacter ();
 	}
 
 	private void initScene()
@@ -50,6 +54,7 @@ public class InventoryTestController : MonoBehaviour
 		dragAndDropScript = GameObject.FindObjectOfType<DragAndDropScript> ();
 	}
 
+	//Inventory shared by all chars, just load once.
 	private void loadInventory()
 	{
 		var inventoryList = gameDataObject.playerGameCharacter.inventory;
@@ -66,7 +71,7 @@ public class InventoryTestController : MonoBehaviour
 				var dragItemScript = dragItem.GetComponent<DragItemControllerScript> ();
 
 				dragAndDropScript.draggableItemList.Add (dragItemScript);
-				slot.addItem (dragItemScript);
+				slot.putItem (dragItemScript);
 				slotCounter++;
 			}
 
@@ -76,26 +81,46 @@ public class InventoryTestController : MonoBehaviour
 
 	private void loadEquipment()
 	{
-		var armorList = gameDataObject.playerGameCharacter.equippedArmor;
+
+		//Clear all armor slots
+		foreach (var armorSlot in dragAndDropScript.equipmentDictionary.Values) {
+			var item = armorSlot.dragItem;
+			if (item != null) {
+				armorSlot.dragItem = null;
+				dragAndDropScript.draggableItemList.Remove (item);
+				Destroy (item.gameObject);
+			}
+		}
+
+		//Load all armor from current selected character
+		var armorList = gameDataObject.getSelectedCharacter().equippedArmor;
 		foreach (var armor in armorList) {
 			var dragItem = initDraggableItem ((Item)armor);
 			var slot = dragAndDropScript.equipmentDictionary [armor.armorType];
 			var dragItemScript = dragItem.GetComponent<DragItemControllerScript> ();
 
 			dragAndDropScript.draggableItemList.Add (dragItemScript);
-			slot.addItem (dragItemScript);
+			slot.putItem (dragItemScript);
 		}
 	
 	}
 
 	private void loadWeapon()
 	{
+		//Clear weapon slot
+		var item = dragAndDropScript.weaponSlot.dragItem;
+		if (item != null) {
+			dragAndDropScript.weaponSlot.dragItem = null;
+			dragAndDropScript.draggableItemList.Remove (item);
+			Destroy (item.gameObject);
+		}
 
-		if (gameDataObject.playerGameCharacter.weapon != null) {
-			var dragItem = initDraggableItem ((Item)gameDataObject.playerGameCharacter.weapon);
+		//load weapon from current selected character
+		if (gameDataObject.getSelectedCharacter().weapon != null) {
+			var dragItem = initDraggableItem ((Item)gameDataObject.getSelectedCharacter().weapon);
 			var dragItemScript = dragItem.GetComponent<DragItemControllerScript> ();
 			dragAndDropScript.draggableItemList.Add (dragItemScript);
-			dragAndDropScript.weaponSlot.addItem (dragItemScript);
+			dragAndDropScript.weaponSlot.putItem (dragItemScript);
 		}
 	}
 
@@ -130,7 +155,7 @@ public class InventoryTestController : MonoBehaviour
 
 	private void UpdateStats()
 	{
-		debugText.text = gameDataObject.playerGameCharacter.ToString ();
+		debugText.text =gameDataObject.getSelectedCharacter().name + "\n" +   gameDataObject.getSelectedCharacter().ToString ();
 
 	}
 
@@ -221,6 +246,32 @@ public class InventoryTestController : MonoBehaviour
 		var itemInfoText = itemInfoPopup.GetComponentInChildren<Text> ();
 		itemInfoText.text = dragItem.item.ToString ();
 
+	}
+
+	public void toggleCharacter()
+	{
+		Debug.Log ("toggling characters");
+		selectedCharIndex++;
+		if (selectedCharIndex > gameDataObject.partyList.Count) {
+			selectedCharIndex = 0;
+		}
+
+		if (selectedCharIndex == 0)
+		{
+			selectedGameCharacter = gameDataObject.playerGameCharacter;
+		}
+		else if (gameDataObject.partyList.Count > 0 && selectedCharIndex <= gameDataObject.partyList.Count)
+		{
+			selectedGameCharacter =  gameDataObject.partyList[selectedCharIndex - 1];
+		}
+
+		gameDataObject.SelectCharacter (selectedGameCharacter);
+
+		Debug.Log ("Selected " + selectedGameCharacter.name);
+	
+		loadEquipment ();
+		loadWeapon ();
+	
 	}
 }
 

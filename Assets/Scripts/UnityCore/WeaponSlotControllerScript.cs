@@ -11,7 +11,7 @@ public class WeaponSlotControllerScript : SlotControllerScript
 	{
 		if (this.dragItem != null) {
 
-			gameDataObject.playerGameCharacter.weapon = null;
+			removeWeapon ((Weapon)dragItem.item);
 
 			Debug.Log("Removed item " + this.dragItem.gameObject.name + "  from " + gameObject.name);
 
@@ -32,7 +32,7 @@ public class WeaponSlotControllerScript : SlotControllerScript
 				this.dragItem = dragItem;
 				this.dragItem.addToSlot (this);
 
-				gameDataObject.playerGameCharacter.weapon = (Weapon)dragItem.item;
+				addWeapon ((Weapon)dragItem.item);
 
 				return true;
 			} 
@@ -40,6 +40,16 @@ public class WeaponSlotControllerScript : SlotControllerScript
 
 		return false;
 
+	}
+
+	private void addWeapon(Weapon w)
+	{
+		gameDataObject.getSelectedCharacter ().EquipWeapon (w);
+	}
+
+	private void removeWeapon(Weapon w)
+	{
+		gameDataObject.getSelectedCharacter ().RemoveWeapon (w);
 	}
 
 }

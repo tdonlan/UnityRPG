@@ -47,9 +47,7 @@ public class GameDataObject : MonoBehaviour
         playerGameCharacter.level = 1;
 
     }
-
- 
-
+		
     public void loadGameData()
     {
         gameDataSet = new GameDataSet();
