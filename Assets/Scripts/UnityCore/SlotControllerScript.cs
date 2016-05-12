@@ -37,11 +37,11 @@ public class SlotControllerScript : MonoBehaviour
 		}
 
 		//TODO: is this a hack?
-		/*
+
 		if (dragItem != null) {
-			dragItem.transform.position = gameObject.transform.position;
+			dragItem.gameObject.transform.position = gameObject.transform.position;
 		}
-		*/
+
 
 	}
 

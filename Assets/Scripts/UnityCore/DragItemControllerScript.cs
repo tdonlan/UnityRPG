@@ -16,7 +16,7 @@ public class DragItemControllerScript: MonoBehaviour
 	{
 		this.lastSlot = null;
 	}
-	
+
 	// Update is called once per frame
 	void Update ()
 	{
@@ -30,7 +30,7 @@ public class DragItemControllerScript: MonoBehaviour
 	{
 		Debug.Log("Adding " + item.name + " to " + slot.gameObject.name);
 		this.lastSlot = slot;
-		this.transform.position = slot.transform.position;
+		this.gameObject.transform.position = slot.gameObject.transform.position;
 	}
 
 	public void returnToSlot()
