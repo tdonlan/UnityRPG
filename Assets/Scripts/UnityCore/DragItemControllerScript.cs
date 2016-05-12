@@ -28,6 +28,7 @@ public class DragItemControllerScript: MonoBehaviour
 		
 	public void addToSlot(SlotControllerScript slot)
 	{
+		Debug.Log("Adding " + item.name + " to " + slot.gameObject.name);
 		this.lastSlot = slot;
 		this.transform.position = slot.transform.position;
 	}

@@ -125,4 +125,24 @@ public class DragAndDropScript : MonoBehaviour {
 		}
 		return false;
 	}
+
+	public void clearEquipment()
+	{
+		foreach (var slot in equipmentDictionary.Values) {
+			removeItemFromSlot (slot);
+		}
+
+		removeItemFromSlot (weaponSlot);
+	}
+
+	//delete item from slot, and destroy dragItem gameObjec
+	private void removeItemFromSlot(SlotControllerScript slot)
+	{
+		var dragItem = slot.dragItem;
+		if (dragItem != null) {
+			draggableItemList.Remove (dragItem);
+			slot.dragItem = null;
+			Destroy (dragItem.gameObject);
+		}
+	}
 }

@@ -37,9 +37,11 @@ public class SlotControllerScript : MonoBehaviour
 		}
 
 		//TODO: is this a hack?
+		/*
 		if (dragItem != null) {
 			dragItem.transform.position = gameObject.transform.position;
 		}
+		*/
 
 	}
 
@@ -85,6 +87,7 @@ public class SlotControllerScript : MonoBehaviour
 			return false;
 		}
 	}
+
 
 	//Place an item in a slot, but dont update underlying inventory.  Used for bulk loads from inventory
 	public bool putItem(DragItemControllerScript dragItem)

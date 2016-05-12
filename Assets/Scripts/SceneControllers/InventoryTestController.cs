@@ -81,17 +81,6 @@ public class InventoryTestController : MonoBehaviour
 
 	private void loadEquipment()
 	{
-
-		//Clear all armor slots
-		foreach (var armorSlot in dragAndDropScript.equipmentDictionary.Values) {
-			var item = armorSlot.dragItem;
-			if (item != null) {
-				armorSlot.dragItem = null;
-				dragAndDropScript.draggableItemList.Remove (item);
-				Destroy (item.gameObject);
-			}
-		}
-
 		//Load all armor from current selected character
 		var armorList = gameDataObject.getSelectedCharacter().equippedArmor;
 		foreach (var armor in armorList) {
@@ -102,19 +91,10 @@ public class InventoryTestController : MonoBehaviour
 			dragAndDropScript.draggableItemList.Add (dragItemScript);
 			slot.putItem (dragItemScript);
 		}
-	
 	}
 
 	private void loadWeapon()
 	{
-		//Clear weapon slot
-		var item = dragAndDropScript.weaponSlot.dragItem;
-		if (item != null) {
-			dragAndDropScript.weaponSlot.dragItem = null;
-			dragAndDropScript.draggableItemList.Remove (item);
-			Destroy (item.gameObject);
-		}
-
 		//load weapon from current selected character
 		if (gameDataObject.getSelectedCharacter().weapon != null) {
 			var dragItem = initDraggableItem ((Item)gameDataObject.getSelectedCharacter().weapon);
@@ -178,14 +158,14 @@ public class InventoryTestController : MonoBehaviour
 		if (Input.GetMouseButtonDown (1)) {
 			foreach (var slot in dragAndDropScript.slotList) {
 				if (slot.boxCollider2D.OverlapPoint (Input.mousePosition)) {
-					var slotItem = slot.getItem ();
+					var slotItem = slot.dragItem;
 					if (slotItem != null) {
 						switch (slotItem.item.type) {
 						case ItemType.Armor:
-							rightClickArmor (slot, slotItem);
+							rightClickArmor (slot);
 							break;
 						case ItemType.Weapon:
-							rightClickWeapon (slot, slotItem);
+							rightClickWeapon (slot);
 							break;
 						default:
 							break;
@@ -198,12 +178,14 @@ public class InventoryTestController : MonoBehaviour
 		}
 	}
 
-	private void rightClickArmor(SlotControllerScript slot, DragItemControllerScript dragItem)
+	private void rightClickArmor(SlotControllerScript slot)
 	{
 		if (slot is EquipmentSlotControllerScript) {
+			Debug.Log ("right clicked equip slot");
 			//do nothing if we're already an equipment slot
 			return;
 		} else {
+			var dragItem = slot.getItem ();
 			Armor a = (Armor)dragItem.item;
 			var equipSlot = dragAndDropScript.equipmentDictionary [a.armorType];
 			var curEquipItem = equipSlot.getItem ();
@@ -215,13 +197,13 @@ public class InventoryTestController : MonoBehaviour
 		}
 	}
 
-	private void rightClickWeapon(SlotControllerScript slot, DragItemControllerScript dragItem)
+	private void rightClickWeapon(SlotControllerScript slot)
 	{
 		if (slot is WeaponSlotControllerScript) {
 			//do nothing if we're already an weapon slot
 			return;
 		} else {
-			
+			var dragItem = slot.getItem ();
 			var weaponSlot = dragAndDropScript.weaponSlot;
 			var curWeapon = weaponSlot.getItem ();
 			if (curWeapon != null) {
@@ -269,6 +251,7 @@ public class InventoryTestController : MonoBehaviour
 
 		Debug.Log ("Selected " + selectedGameCharacter.name);
 	
+		dragAndDropScript.clearEquipment ();
 		loadEquipment ();
 		loadWeapon ();
 	
