@@ -38,8 +38,8 @@ public class InventoryTestController : MonoBehaviour
 
 	private void loadPrefabs()
 	{
-		draggableItemPrefab = Resources.Load<GameObject> ("PrefabUI/DragItemPrefab");
-		itemInfoPrefab = Resources.Load<GameObject> ("PrefabUI/ItemInfoPrefab");
+		draggableItemPrefab = Resources.Load<GameObject> ("PrefabUI/InventoryUI/DragItemPrefab");
+		itemInfoPrefab = Resources.Load<GameObject> ("PrefabUI/InventoryUI/ItemInfoPrefab");
 	}
 
 	private void loadGameData()
