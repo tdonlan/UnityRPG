@@ -7,14 +7,14 @@ public class DragItemControllerScript: MonoBehaviour
 {
 	public BoxCollider2D boxCollider2D;
 
-	SlotControllerScript lastSlot;
+	public SlotControllerScript lastSlot;
 
 	public Item item; 
 
 	// Use this for initialization
 	void Start ()
 	{
-		this.lastSlot = null;
+		//this.lastSlot = null;
 	}
 
 	// Update is called once per frame

@@ -226,7 +226,7 @@ public class InventoryTestController : MonoBehaviour
 		itemInfoPopup.transform.position = Input.mousePosition;
 
 		var itemInfoText = itemInfoPopup.GetComponentInChildren<Text> ();
-		itemInfoText.text = dragItem.item.ToString ();
+		itemInfoText.text =  dragItem.item.ToString () +  "\n" + dragItem.lastSlot.name;
 
 	}
 
