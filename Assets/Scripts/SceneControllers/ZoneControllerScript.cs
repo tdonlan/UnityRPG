@@ -136,7 +136,7 @@ public class ZoneControllerScript : MonoBehaviour {
 					Debug.Log ("Checking object collision");
 					//check for lock
 					ZoneTreeNode node = (ZoneTreeNode)zoneTree.getNodeCheckingRootBranchList(objectCount+1);
-					if (node.content.nodeType == ZoneNodeType.Lock) {
+					if (node != null && node.content.nodeType == ZoneNodeType.Lock) {
 						if (zoneTree.getLockNodeCollision (objectCount + 1)) {
 							Debug.Log ("Removing collision for lock");
 							Physics2D.IgnoreCollision (box2d, playerScript.playerBoxCollider2D);
