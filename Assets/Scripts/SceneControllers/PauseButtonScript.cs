@@ -69,8 +69,8 @@ public class PauseButtonScript : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            gameDataObject.isPaused = true;
-            DisplayEquipMenu();
+            //gameDataObject.isPaused = true;
+            //DisplayEquipMenu();
         }
         else if (Input.GetKeyDown(KeyCode.C))
         {

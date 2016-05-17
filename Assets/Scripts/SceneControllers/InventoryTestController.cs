@@ -18,8 +18,14 @@ public class InventoryTestController : MonoBehaviour
 	private GameObject draggableItemPrefab;
 	private GameObject itemInfoPrefab;
 
+	//Game Objects
 	private GameObject itemInfoPopup;
 
+	private bool inventoryShowing = false;
+	public GameObject InventoryPanel;
+
+	private bool equipmentShowing = false;
+	public GameObject EquipmentPanel;
 
 	private bool isInventoryLoaded = false;
 
@@ -127,15 +133,38 @@ public class InventoryTestController : MonoBehaviour
 			isInventoryLoaded = true;
 		}
 
+		UpdateKeys ();
 		checkMouseOver ();
 		checkRightClick ();
 
-		UpdateStats ();
+		//UpdateStats ();
+	}
+
+	private void UpdateKeys()
+	{
+		if (Input.GetKeyDown (KeyCode.I)) {
+			if (inventoryShowing) {
+				hideInventoryPanel ();
+			} else {
+				showInventoryPanel ();
+			}
+		}
+
+		if (Input.GetKeyDown (KeyCode.E)) {
+			if (equipmentShowing) {
+				hideEquipmentPanel ();
+			} else {
+				showEquipmentPanel ();
+			}
+
+		}
+
+
 	}
 
 	private void UpdateStats()
 	{
-		debugText.text =gameDataObject.getSelectedCharacter().name + "\n" +   gameDataObject.getSelectedCharacter().ToString ();
+		//debugText.text =gameDataObject.getSelectedCharacter().name + "\n" +   gameDataObject.getSelectedCharacter().ToString ();
 
 	}
 
@@ -255,6 +284,30 @@ public class InventoryTestController : MonoBehaviour
 		loadEquipment ();
 		loadWeapon ();
 	
+	}
+
+	public void showInventoryPanel()
+	{
+		inventoryShowing = true;
+		InventoryPanel.transform.position = GameConfig.InventoryPanelLocation;
+	}
+
+	public void hideInventoryPanel()
+	{
+		inventoryShowing = false;
+		InventoryPanel.transform.position = GameConfig.OffscreenLocation;
+	}
+
+	public void showEquipmentPanel()
+	{
+		equipmentShowing = true;
+		EquipmentPanel.transform.position = GameConfig.EquipmentPanelLocation;
+	}
+
+	public void hideEquipmentPanel()
+	{
+		equipmentShowing = false;
+		EquipmentPanel.transform.position = GameConfig.OffscreenLocation;
 	}
 }
 
