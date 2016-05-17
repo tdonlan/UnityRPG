@@ -60,6 +60,13 @@ public class InventoryTestController : MonoBehaviour
 		dragAndDropScript = GameObject.FindObjectOfType<DragAndDropScript> ();
 	}
 
+	public void resetAllEquipment()
+	{
+		dragAndDropScript.clearEquipment ();
+		loadEquipment ();
+		loadWeapon ();
+	}
+
 	//Inventory shared by all chars, just load once.
 	private void loadInventory()
 	{
@@ -140,6 +147,7 @@ public class InventoryTestController : MonoBehaviour
 		//UpdateStats ();
 	}
 
+	//move somewhere else?
 	private void UpdateKeys()
 	{
 		if (Input.GetKeyDown (KeyCode.I)) {

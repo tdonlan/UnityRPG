@@ -54,6 +54,8 @@ public class ZoneControllerScript : MonoBehaviour {
 
     Camera mainCamera;
 
+	public InventoryTestController inventoryController;
+
     void Start()
     {
 
@@ -454,13 +456,16 @@ public class ZoneControllerScript : MonoBehaviour {
 
     public void ClickPCBox(object gcObject)
     {
-      
+		Debug.Log ("clicked PC Box");
         GameCharacter gc = gcObject as GameCharacter;
 
         gameDataObject.SelectCharacter(gc);
         UIHelper.UpdateSliderValue(CharacterHover, "HPSlider", (float)gc.hp / (float)gc.totalHP);
         UIHelper.UpdateTextComponent(CharacterHover, "CharacterName", gc.name);
         UIHelper.UpdateTextComponent(CharacterHover, "CharacterStats", gc.ToString());
+
+		//Update Inventory
+		inventoryController.resetAllEquipment();
 
         loadPlayerCharacterList();
     }
