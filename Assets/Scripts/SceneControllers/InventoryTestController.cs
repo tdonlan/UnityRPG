@@ -129,7 +129,7 @@ public class InventoryTestController : MonoBehaviour
 			var dragItem = initDraggableItem (ammoItem);
 			var dragItemScript = dragItem.GetComponent<DragItemControllerScript> ();
 			dragAndDropScript.draggableItemList.Add (dragItemScript);
-			dragAndDropScript.weaponSlot.putItem (dragItemScript);
+			dragAndDropScript.ammoSlot.putItem (dragItemScript);
 		}
 	}
 
