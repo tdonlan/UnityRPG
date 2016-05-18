@@ -63,8 +63,11 @@ public class InventoryTestController : MonoBehaviour
 	public void resetAllEquipment()
 	{
 		dragAndDropScript.clearEquipment ();
+		loadInventory ();
 		loadEquipment ();
 		loadWeapon ();
+		loadHotbar ();
+		loadAmmo ();
 	}
 
 	//Inventory shared by all chars, just load once.
@@ -78,8 +81,8 @@ public class InventoryTestController : MonoBehaviour
 			//debugText.text += i.name;
 
 			var dragItem = initDraggableItem (i);
-			if (slotCounter < dragAndDropScript.slotList.Count) {
-				var slot = dragAndDropScript.slotList [slotCounter];
+			if (slotCounter < dragAndDropScript.inventorySlotList.Count) {
+				var slot = dragAndDropScript.inventorySlotList [slotCounter];
 
 				var dragItemScript = dragItem.GetComponent<DragItemControllerScript> ();
 
@@ -91,6 +94,8 @@ public class InventoryTestController : MonoBehaviour
 		}
 
 	}
+
+
 
 	private void loadEquipment()
 	{
@@ -117,6 +122,36 @@ public class InventoryTestController : MonoBehaviour
 		}
 	}
 
+	private void loadAmmo()
+	{
+		if (gameDataObject.getSelectedCharacter ().Ammo != null) {
+			Item ammoItem = ItemFactory.getItemFromIndex (gameDataObject.getSelectedCharacter ().Ammo.itemID, gameDataObject.gameDataSet);
+			var dragItem = initDraggableItem (ammoItem);
+			var dragItemScript = dragItem.GetComponent<DragItemControllerScript> ();
+			dragAndDropScript.draggableItemList.Add (dragItemScript);
+			dragAndDropScript.weaponSlot.putItem (dragItemScript);
+		}
+	}
+
+	private void loadHotbar()
+	{
+		var itemList = gameDataObject.getSelectedCharacter ().usableItemList;
+		int count = 0;
+		foreach (var item in itemList) {
+			if (count < dragAndDropScript.hotbarSlotList.Count) {
+				
+				var dragItem = initDraggableItem (item);
+				var slot = dragAndDropScript.hotbarSlotList [count];
+
+				var dragItemScript = dragItem.GetComponent<DragItemControllerScript> ();
+
+				dragAndDropScript.draggableItemList.Add (dragItemScript);
+				slot.putItem (dragItemScript);
+				count++;
+			}
+		}
+	}
+
 	private GameObject initDraggableItem(Item i)
 	{
 		var dragItem = Instantiate (draggableItemPrefab);
@@ -137,6 +172,8 @@ public class InventoryTestController : MonoBehaviour
 			loadInventory ();
 			loadEquipment ();
 			loadWeapon ();
+			loadHotbar ();
+			loadAmmo ();
 			isInventoryLoaded = true;
 		}
 
@@ -291,7 +328,8 @@ public class InventoryTestController : MonoBehaviour
 		dragAndDropScript.clearEquipment ();
 		loadEquipment ();
 		loadWeapon ();
-	
+		loadHotbar ();
+		loadAmmo ();
 	}
 
 	public void showInventoryPanel()

@@ -7,14 +7,22 @@ using System.Linq;
 using UnityRPG;
 
 public class DragAndDropScript : MonoBehaviour {
-
+	//All Draggable items
 	public List<DragItemControllerScript> draggableItemList = new List<DragItemControllerScript>();
+	//All slots
 	public List<SlotControllerScript> slotList = new List<SlotControllerScript>();
+
+	public List<SlotControllerScript> inventorySlotList = new List<SlotControllerScript>();
 	public Dictionary<ArmorType,EquipmentSlotControllerScript> equipmentDictionary = new Dictionary<ArmorType, EquipmentSlotControllerScript> ();
 	public WeaponSlotControllerScript weaponSlot = new WeaponSlotControllerScript(); 
+	public AmmoSlotControllerScript ammoSlot = new AmmoSlotControllerScript();
+	public List<HotbarSlotControllerScript> hotbarSlotList = new List<HotbarSlotControllerScript>();
+
 
 	public DragItemControllerScript currentItem = null;
 	public SlotControllerScript lastSlot = null;
+
+	public GameObject InventoryPanel;
 
 	public Camera mainCamera;
 
@@ -28,13 +36,18 @@ public class DragAndDropScript : MonoBehaviour {
 
 	void addSlots()
 	{
+		
 		slotList = GameObject.FindObjectsOfType<SlotControllerScript> ().ToList();
+
+		inventorySlotList = InventoryPanel.GetComponentsInChildren<SlotControllerScript> ().ToList ();
+
 		var armorSlotList = GameObject.FindObjectsOfType<EquipmentSlotControllerScript> ().ToList();
 		foreach(var armorSlot in armorSlotList)
 		{
 			equipmentDictionary.Add (armorSlot.armorType, armorSlot);
 		}
-
+		hotbarSlotList = GameObject.FindObjectsOfType<HotbarSlotControllerScript> ().ToList ();
+		ammoSlot = GameObject.FindObjectOfType<AmmoSlotControllerScript> ();
 		weaponSlot = GameObject.FindObjectOfType<WeaponSlotControllerScript> ();
 	}
 	
@@ -109,30 +122,24 @@ public class DragAndDropScript : MonoBehaviour {
 
 	private bool addItemToSlot(SlotControllerScript slot, DragItemControllerScript dragItem)
 	{
-		if (slot.addItem (dragItem))
-		{
-			if (slot is EquipmentSlotControllerScript) {
-
-			} else if (slot is WeaponSlotControllerScript) {
-
-			} else if (slot is HotbarSlotControllerScript) {
-			} else 
-			{
-				
-			
-			}
-			return true;
-		}
-		return false;
+		return slot.addItem (dragItem);
 	}
 
 	public void clearEquipment()
 	{
+		foreach(var slot in inventorySlotList)
+		{
+			removeItemFromSlot (slot);
+		}
 		foreach (var slot in equipmentDictionary.Values) {
 			removeItemFromSlot (slot);
 		}
 
 		removeItemFromSlot (weaponSlot);
+		removeItemFromSlot (ammoSlot);
+		foreach (var slot in hotbarSlotList) {
+			removeItemFromSlot (slot);
+		}
 	}
 
 	//delete item from slot, and destroy dragItem gameObjec
