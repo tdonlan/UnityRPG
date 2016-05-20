@@ -18,6 +18,7 @@ public class GameDataObject : MonoBehaviour
 
     public bool isPaused = false; // menu is open on a screen
 
+
     //Loaded Data
     public GameDataSet gameDataSet { get; set; }
 
@@ -306,8 +307,8 @@ public class GameDataObject : MonoBehaviour
         }
 
     }
-    
 
-   
+
+    
 }
 

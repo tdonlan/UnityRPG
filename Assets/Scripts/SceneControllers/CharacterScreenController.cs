@@ -152,6 +152,8 @@ public class CharacterScreenController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
             UpdateInput();
+
+			UpdateUI ();
 	}
 
     private void UpdateInput()

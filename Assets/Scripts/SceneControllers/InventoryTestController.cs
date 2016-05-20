@@ -68,6 +68,7 @@ public class InventoryTestController : MonoBehaviour
 		loadWeapon ();
 		loadHotbar ();
 		loadAmmo ();
+	
 	}
 
 	//Inventory shared by all chars, just load once.
@@ -244,6 +245,10 @@ public class InventoryTestController : MonoBehaviour
 						case ItemType.Weapon:
 							rightClickWeapon (slot);
 							break;
+
+						case ItemType.Ammo:
+							break;
+						//wire up other types
 						default:
 							break;
 						}
@@ -293,7 +298,7 @@ public class InventoryTestController : MonoBehaviour
 
 	private void rightClickUsableItem()
 	{
-
+		//add to hotbar? or use?
 	}
 
 	private void initItemInfoPopup(DragItemControllerScript dragItem)
@@ -307,6 +312,7 @@ public class InventoryTestController : MonoBehaviour
 
 	}
 
+	//DEPRECATED
 	public void toggleCharacter()
 	{
 		Debug.Log ("toggling characters");

@@ -78,6 +78,7 @@ public class DragAndDropScript : MonoBehaviour {
 				var slotItem = slot.getItem ();
 				if (slotItem != null) {
 					this.currentItem = slotItem;
+
 				}
 			}
 		}
@@ -106,6 +107,7 @@ public class DragAndDropScript : MonoBehaviour {
 				if (slot.boxCollider2D.OverlapPoint (Input.mousePosition)) {
 					if(addItemToSlot (slot, currentItem))
 					{
+
 						isSet = true;
 					}
 					break;
@@ -114,9 +116,11 @@ public class DragAndDropScript : MonoBehaviour {
 
 			if (!isSet) {
 				currentItem.returnToSlot ();
+
 			}
 				
 			currentItem = null;
+
 		}
 	}
 

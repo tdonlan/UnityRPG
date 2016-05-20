@@ -235,8 +235,20 @@ public class ZoneControllerScript : MonoBehaviour {
             }
         }
 
+
+			UpdateUI ();
+
+
 	}
 
+	public void UpdateUI()
+	{
+		var gc = gameDataObject.getSelectedCharacter ();
+		UIHelper.UpdateSliderValue(CharacterHover, "HPSlider", (float)gc.hp / (float)gc.totalHP);
+		UIHelper.UpdateTextComponent(CharacterHover, "CharacterName", gc.name);
+		UIHelper.UpdateTextComponent(CharacterHover, "CharacterStats", gc.ToString());
+	}
+		
     private void loadPlayerCharacterList()
     {
         foreach (var p in partyList)
@@ -460,16 +472,16 @@ public class ZoneControllerScript : MonoBehaviour {
         GameCharacter gc = gcObject as GameCharacter;
 
         gameDataObject.SelectCharacter(gc);
-        UIHelper.UpdateSliderValue(CharacterHover, "HPSlider", (float)gc.hp / (float)gc.totalHP);
-        UIHelper.UpdateTextComponent(CharacterHover, "CharacterName", gc.name);
-        UIHelper.UpdateTextComponent(CharacterHover, "CharacterStats", gc.ToString());
+ 
 
 		//Update Inventory
 		inventoryController.resetAllEquipment();
 
         loadPlayerCharacterList();
+
+
     }
-		
+
     public void TestAddPCBox()
     {
         loadPlayerCharacterList();
