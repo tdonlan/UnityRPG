@@ -95,8 +95,6 @@ public class InventoryTestController : MonoBehaviour
 
 	}
 
-
-
 	private void loadEquipment()
 	{
 		//Load all armor from current selected character
@@ -202,6 +200,11 @@ public class InventoryTestController : MonoBehaviour
 				showEquipmentPanel ();
 			}
 
+		}
+
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			hideEquipmentPanel ();
+			hideInventoryPanel ();
 		}
 
 

@@ -12,6 +12,7 @@ using System.Linq;
 
 //For Reference https://github.com/AyARL/UnityGUIExamples/blob/master/EventTrigger/Assets/TriggerSetup.cs
 
+//DEPRECATED
 public class EquipmentControllerScript : MonoBehaviour {
 
 
@@ -134,18 +135,7 @@ public class EquipmentControllerScript : MonoBehaviour {
 
     private void UpdateInput()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            //CloseScreen();
-        }
-        else if (Input.GetKeyDown(KeyCode.C))
-        {
-            ShowCharacterScreen();
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            //CloseScreen();
-        }
+
     }
 
     public void UpdateUI()
@@ -192,9 +182,6 @@ public class EquipmentControllerScript : MonoBehaviour {
 
     public void LoadCurrentAmmo()
     {
-
-        
-
         if (curGameCharacter.Ammo != null)
         {
 

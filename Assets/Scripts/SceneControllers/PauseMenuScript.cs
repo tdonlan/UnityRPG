@@ -26,6 +26,8 @@ public class PauseMenuScript : MonoBehaviour {
     public Text TextXP;
     public Text TextLevel;
     public Text TextLevelCounter;
+
+	public bool isShowing = false;
     
 	// Use this for initialization
 	void Start () {
@@ -59,27 +61,22 @@ public class PauseMenuScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if (gameDataObject.isPaused)
-        {
+        
             UpdateData();
             UpdateInput();
-        }
+        
        
 	}
 
     private void UpdateInput()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            ShowEquipmentScreen();
-        }
-        else if (Input.GetKeyDown(KeyCode.C))
-        {
-            ShowCharacterScreen();
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            //CloseScreen();
+			if (isShowing) {
+				CloseScreen();
+			} else {
+				ShowInfoScreen ();
+			}
         }
     }
 
@@ -156,32 +153,16 @@ public class PauseMenuScript : MonoBehaviour {
 
     public void ShowInfoScreen()
     {
+		gameDataObject.isPaused = true;
+		isShowing = true;
         InfoScreen.transform.localPosition = new Vector3(0, 0, 0);
         CharacterScreen.transform.localPosition = new Vector3(10000, 10000, 0);
         EquipmentScreen.transform.localPosition = new Vector3(10000, 10000, 0);
     }
-
-    public void ShowEquipmentScreen()
-    {
-        equipmentScreenController.UpdateUI();
-
-        EquipmentScreen.transform.localPosition = new Vector3(0, 0, 0);
-        CharacterScreen.transform.localPosition = new Vector3(10000, 10000, 0);
-        InfoScreen.transform.localPosition = new Vector3(10000, 10000, 0);
-    }
-
-    public void ShowCharacterScreen()
-    {
-
-        characterScreenController.UpdateUI();
-
-        CharacterScreen.transform.localPosition = new Vector3(0, 0, 0);
-        EquipmentScreen.transform.localPosition = new Vector3(10000, 10000, 0);
-        InfoScreen.transform.localPosition = new Vector3(10000, 10000, 0);
-    }
-
+		
     public void CloseScreen()
     {
+		isShowing = false;
         gameDataObject.isPaused = false;
         gameObject.transform.localPosition = new Vector3(10000, 10000, 0);
     }

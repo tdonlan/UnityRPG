@@ -61,6 +61,8 @@ public class CharacterScreenController : MonoBehaviour {
 
     private GameCharacter curGameCharacter;
 
+	public bool isShowing = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -149,25 +151,22 @@ public class CharacterScreenController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if (gameDataObject.isPaused)
-        {
             UpdateInput();
-        }
 	}
 
     private void UpdateInput()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            ShowEquipmentScreen();
+			if (isShowing) {
+				CloseScreen();
+			} else {
+				ShowCharacterScreen ();
+			}
         }
-        else if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            //CloseScreen();
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape))
-        {
-           // CloseScreen();
+            CloseScreen();
         }
     }
 
@@ -377,23 +376,10 @@ public class CharacterScreenController : MonoBehaviour {
         }
     }
 
-    public void ShowInfoScreen()
-    {
-        InfoScreen.transform.localPosition = new Vector3(0, 0, 0);
-        CharacterScreen.transform.localPosition = new Vector3(10000, 10000, 0);
-        EquipmentScreen.transform.localPosition = new Vector3(10000, 10000, 0);
-    }
-
-    public void ShowEquipmentScreen()
-    {
-        equipmentScreenController.UpdateUI();
-        EquipmentScreen.transform.localPosition = new Vector3(0, 0, 0);
-        CharacterScreen.transform.localPosition = new Vector3(10000, 10000, 0);
-        InfoScreen.transform.localPosition = new Vector3(10000, 10000, 0);
-    }
 
     public void ShowCharacterScreen()
     {
+		isShowing = true;
         CharacterScreen.transform.localPosition = new Vector3(0, 0, 0);
         EquipmentScreen.transform.localPosition = new Vector3(10000, 10000, 0);
         InfoScreen.transform.localPosition = new Vector3(10000, 10000, 0);
@@ -401,7 +387,7 @@ public class CharacterScreenController : MonoBehaviour {
 
     public void CloseScreen()
     {
-        gameDataObject.isPaused = false;
+		isShowing = false;
         gameObject.transform.localPosition = new Vector3(10000, 10000, 0);
     }
 

@@ -56,31 +56,6 @@ public class PauseButtonScript : MonoBehaviour {
 
         pauseMenuRectTransform.localPosition = new Vector3(0, 0, 0);
     }
-	
-	// Update is called once per frame
-	void Update () {
-        if (!gameDataObject.isPaused)
-        {
-            UpdateInput();
-        }
-	}
 
-    private void UpdateInput()
-    {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            //gameDataObject.isPaused = true;
-            //DisplayEquipMenu();
-        }
-        else if (Input.GetKeyDown(KeyCode.C))
-        {
-             gameDataObject.isPaused = true;
-            DisplayCharacterMenu();
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            gameDataObject.isPaused = true;
-            DisplayMenu();
-        }
-    }
+
 }
