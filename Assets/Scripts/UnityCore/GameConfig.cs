@@ -26,6 +26,11 @@ using System.Linq;
 
         public static readonly Vector3 HoverStatsPanelLocation = new Vector3(0, 315, 0);
 
+	public static readonly Vector3 InventoryPanelLocation = new Vector3 (1025, 400, 0);
+	public static readonly Vector3 EquipmentPanelLocation = new Vector3 (341, 400, 0);
+
+	public static readonly Vector3 OffscreenLocation = new Vector3 (9000, 9000, 0);
+
 
         public static readonly Vector3 PendingActionPanelLocation = new Vector3(-374f, -20.8f, 0f);
         public static readonly Vector3 SelectedCharacterPanelLocation = new Vector3(117f, -20.83f, 0f);

@@ -54,6 +54,8 @@ public class ZoneControllerScript : MonoBehaviour {
 
     Camera mainCamera;
 
+	public InventoryTestController inventoryController;
+
     void Start()
     {
 
@@ -136,7 +138,7 @@ public class ZoneControllerScript : MonoBehaviour {
 					Debug.Log ("Checking object collision");
 					//check for lock
 					ZoneTreeNode node = (ZoneTreeNode)zoneTree.getNodeCheckingRootBranchList(objectCount+1);
-					if (node.content.nodeType == ZoneNodeType.Lock) {
+					if (node != null && node.content.nodeType == ZoneNodeType.Lock) {
 						if (zoneTree.getLockNodeCollision (objectCount + 1)) {
 							Debug.Log ("Removing collision for lock");
 							Physics2D.IgnoreCollision (box2d, playerScript.playerBoxCollider2D);
@@ -233,8 +235,20 @@ public class ZoneControllerScript : MonoBehaviour {
             }
         }
 
+
+			UpdateUI ();
+
+
 	}
 
+	public void UpdateUI()
+	{
+		var gc = gameDataObject.getSelectedCharacter ();
+		UIHelper.UpdateSliderValue(CharacterHover, "HPSlider", (float)gc.hp / (float)gc.totalHP);
+		UIHelper.UpdateTextComponent(CharacterHover, "CharacterName", gc.name);
+		UIHelper.UpdateTextComponent(CharacterHover, "CharacterStats", gc.ToString());
+	}
+		
     private void loadPlayerCharacterList()
     {
         foreach (var p in partyList)
@@ -454,17 +468,20 @@ public class ZoneControllerScript : MonoBehaviour {
 
     public void ClickPCBox(object gcObject)
     {
-      
+		Debug.Log ("clicked PC Box");
         GameCharacter gc = gcObject as GameCharacter;
 
         gameDataObject.SelectCharacter(gc);
-        UIHelper.UpdateSliderValue(CharacterHover, "HPSlider", (float)gc.hp / (float)gc.totalHP);
-        UIHelper.UpdateTextComponent(CharacterHover, "CharacterName", gc.name);
-        UIHelper.UpdateTextComponent(CharacterHover, "CharacterStats", gc.ToString());
+ 
+
+		//Update Inventory
+		inventoryController.resetAllEquipment();
 
         loadPlayerCharacterList();
+
+
     }
-		
+
     public void TestAddPCBox()
     {
         loadPlayerCharacterList();

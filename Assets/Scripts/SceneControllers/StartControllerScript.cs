@@ -125,4 +125,11 @@ public class StartControllerScript : MonoBehaviour {
                 break;
         }
     }
+
+	public void testInventory()
+	{
+		gameDataObject.playerGameCharacter = getGameCharacterFromID(80012);
+		gameDataObject.addCharacter(80011);
+		SceneManager.LoadScene("InventoryTest");
+	}
 }

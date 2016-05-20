@@ -257,21 +257,15 @@ namespace UnityRPG
 
         public void EquipWeapon(Weapon w)
         {
-            if (inventory.Contains(w))
-            {
-                inventory.Remove(w);
-                this.weapon = w;
+			if (w != null) {
+				this.weapon = w;
 
-                
-
-                if (w.passiveEffects != null)
-                {
-                    foreach (var pe in w.passiveEffects)
-                    {
-                        AddPassiveEffect(pe);
-                    }
-                }
-            }
+				if (w.passiveEffects != null) {
+					foreach (var pe in w.passiveEffects) {
+						AddPassiveEffect (pe);
+					}
+				}
+			}
         }
 
 
@@ -282,8 +276,6 @@ namespace UnityRPG
                 if (weapon == w)
                 {
                     weapon = null;
-
-                    inventory.Add(w);
 
                     if (w.passiveEffects != null)
                     {
@@ -299,11 +291,8 @@ namespace UnityRPG
         public void EquipArmor(Armor a)
         {
 
-            if (inventory.Contains(a))
-            {
                 if (equippedArmor.FindAll(x => x.armorType == a.armorType).Count == 0)
                 {
-                    inventory.Remove(a);
                     equippedArmor.Add(a);
                     if (a.passiveEffects != null)
                     {
@@ -312,9 +301,8 @@ namespace UnityRPG
                             AddPassiveEffect(pe);
                         }
                     }
-
                 }
-            }
+            
         }
 
         public void RemoveArmorInSlot(ArmorType type)
@@ -344,7 +332,6 @@ namespace UnityRPG
             if (equippedArmor.Contains(a))
             {
                 equippedArmor.Remove(a);
-                inventory.Add(a);
                 if (a.passiveEffects != null)
                 {
                     foreach (var pe in a.passiveEffects)
@@ -356,12 +343,10 @@ namespace UnityRPG
             }
         }
 
+		//Creates an ItemSet to assign to Ammo
         public void EquipAmmo(Ammo a)
         {
-            if (inventory.Contains(a))
-            {
-                this.Ammo = ItemHelper.getItemSet(inventory, a);
-            }
+			this.Ammo = ItemHelper.getItemSet(inventory, a);
         }
 
         public void RemoveAmmo()
@@ -369,32 +354,18 @@ namespace UnityRPG
             this.Ammo = null;
         }
 
-        //Adds item from shared inventory to character usable item list
+        //Adds item to character usable item list
         public void addUsableItem(Item i)
-        {
-            if (inventory.Contains(i))
-            {
-                /*
-                if (usableItemList.Contains(i))
-                {
-                    usableItemList.Add(i);
-                    inventory.Remove(i);
-                }
-                 */
-                if (usableItemList.Count < GameConstants.maxCharacterUsableItems)
-                {
-                    usableItemList.Add(i);
-                    inventory.Remove(i);
-                }
-            }
-            
-        }
+		{
+			if (usableItemList.Count <= GameConstants.maxCharacterUsableItems) {
+				usableItemList.Add (i);
+			}
+		}
 
-        //removes item from character usable item list, returns to shared inventory
+        //removes item from character usable item list
         public void removeUsableItem(Item i) {
             if (usableItemList.Contains(i))
             {
-                inventory.Add(i);
                 usableItemList.Remove(i);
             }
         }
